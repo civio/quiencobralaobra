@@ -1,0 +1,17 @@
+---
+
+---
+
+<div class="subtitle">
+  <h2>Un mapa de la contratación de obra pública en España</h2>
+</div>
+
+<div class="home-viz">
+  <%= image_tag(lorem.image('1140x500', :text => 'Home Visualization'), :class => 'img-responsive',) %>
+</div>
+
+<div class="title posts">
+  <p>Artículos recientes</p>
+</div>
+
+<%= partial('partials/posts', :locals => { :limit_to => 3 }) %>

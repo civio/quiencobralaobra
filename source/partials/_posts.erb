@@ -1,0 +1,27 @@
+<div class="posts wall row">
+   
+  <!-- Posts list -->
+  <% data.posts.each_with_index do |post, i| %>
+    <% unless !(defined?(limit_to)).nil? and i >= limit_to %> 
+
+    <div class="wall-item col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2><%= link_to post.title, '/articulos/'+post.url %></h2>
+          <div class="post-date">
+            <span class="day"><%= post.date_day %></span>
+            <span class="month"><%= post.date_month %></span>
+          </div>
+        </div>
+        <div class="panel-body">
+          <%= link_to image_tag( lorem.image('500x300'), :class => 'img-responsive' ), '/articulos/'+post.url, :class => 'image' %>
+          <div class="description">
+            <p><%= lorem.sentences 2 %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% end %>
+  <% end %>
+</div>

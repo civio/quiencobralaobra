@@ -1,0 +1,53 @@
+// Setup variables
+
+// Colors
+
+$colorTitle:        #414141;
+$colorHeader:       #eef2ea;
+$colorHeaderLink:   #a8c315;
+$colorGray:         #515151;
+$colorBody:         #dee5d8;
+$colorSidebar:      #e1e1cd;
+$colorTextGreen:    #6bb21b;
+$colorLinkGreen:    #8aa304;
+$colorOrange:       #ce7a20;
+$colorSecondary:    #dde4cd;
+
+$body-bg:           $colorBody;
+
+// Tipography
+
+$font-family-sans-serif:  'Open Sans', sans-serif;
+$font-family-serif:       'Libre Baskerville', serif;
+$font-family-economica:   'Economica', sans-serif;
+
+$font-size-base:          16px;
+
+$font-size-h1:            floor(($font-size-base * 2.6)) !default;     // ~36px
+$font-size-h2:            floor(($font-size-base * 1.25)) !default;    // ~20px
+$font-size-h3:            floor(($font-size-base * 1.125)) !default;   // ~18px
+$font-size-h4:            floor(($font-size-base * 0.8125)) !default;  // ~13px
+$font-size-h5:            floor(($font-size-base * 0.75)) !default;    // ~12px
+$font-size-h6:            floor(($font-size-base * 0.6875)) !default;  // ~11px
+
+$headings-font-weight:    normal;
+$headings-color:          $colorTitle;
+
+
+$grid-gutter-width:       16px;
+
+// Navbar
+
+$navbar-default-bg:               $colorHeader;
+$navbar-default-link-color:       $colorGray;
+$navbar-default-link-hover-color: $colorHeaderLink;
+
+// Panel
+
+$panel-bg: #f9f9f9;
+
+// Styles
+
+$border-radius-base:  0;
+$border-radius-large: 0;
+$border-radius-small: 0;

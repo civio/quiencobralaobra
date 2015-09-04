@@ -1,0 +1,40 @@
+---
+
+---
+
+<div id="page-title" class="post single">
+  <h2>Contrato</h2>
+</div>
+
+<p>
+  <strong>Fecha</strong><br/><%= data.date %>
+</p>
+<p>
+  <strong>Administración</strong>
+  <br/>
+  <%= link_to data.administration, '/administraciones/'+get_url( data.administration, 'administrations' ) %>
+</p>
+<p>
+  <strong>Empresa</strong>
+  <br/>
+  <%= link_to data.company, '/empresas/'+get_url( data.company, 'companies' ) %>
+</p>
+<p>
+  <strong>Procedimiento</strong>
+  <br/>
+  <%= data.procedure %>
+</p>
+<p>
+  <strong>Tipo</strong>
+  <br/>
+  <%= data.type %>
+</p>
+<p>
+  <strong>Licitación</strong> ($)
+  <br/>
+  <%= data.tender %>
+</p><p>
+  <strong>Precio</strong> ($)
+  <br/>
+  <%= data.price %>
+</p>

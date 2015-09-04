@@ -1,0 +1,167 @@
+html { 
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2 {
+  line-height: 40px;
+}
+h3 {
+  line-height: 32px;
+}
+h4 {
+  line-height: 30px;
+}
+h5 {
+  line-height: 26px;
+}
+h6 {
+  line-height: 24px;
+}
+
+
+.title{
+  position: relative;
+  margin: 4*$grid-gutter-width 0;
+
+  p{
+    display: inline-block;
+    margin: 0;
+    padding: 0 $grid-gutter-width;
+    color: $colorGray;
+    background: $colorBody;
+    font-family: $font-family-economica;
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: lowercase;
+    text-shadow: 0px 1px 0px rgba(255,255,255,.4), 0 0 0px rgba(0,0,0,.2);
+  }
+
+  &:before{
+    display: block;
+    content: "";
+    float: left;
+    width: 4*$grid-gutter-width;
+    height: 4*$grid-gutter-width;
+    margin-top: -8px;
+    overflow: hidden;
+    background: url(http://quienmanda.es/images/sprites.png) no-repeat 0 -8px $colorBody;
+  }
+
+  @include title-lines( #fff, 22px );
+}
+
+.wall-item{
+  
+  .panel{
+    position: relative;
+    border: none;
+    margin-bottom: $grid-gutter-width;
+    @include box-shadow( 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05) );
+
+    .panel-heading{
+      background: $panel-bg;
+      border: none;
+      padding: 12px;
+    }
+
+    .panel-body{
+      padding: 0;
+    }
+
+    h2, h3{
+      color: $colorGray;
+      font-family: $font-family-serif;
+      font-weight: 700;
+      line-height: 1.375em;
+      padding-left: 3px;
+      margin-left: 3*$grid-gutter-width;
+      min-height: 56px;
+      border-left: 1px solid $colorTextGreen;
+
+      a{
+        display: block;
+        min-height: 56px;
+        padding-left: 10px;
+        border-left: 1px solid $colorTextGreen;
+      }
+    }
+
+    h2{
+      font-size: 1.375em;
+    }
+
+    h3{
+      font-size: 1.25em;
+    }
+
+    a{
+      color: $colorGray;
+      @include transition( all 0.3s ease-in-out );
+      
+      &:hover,
+      &:focus{
+        color: $colorLinkGreen;
+        text-decoration: none;
+      }
+    }
+
+    .post-date{
+      position: absolute;
+      top: 12px;
+      left: 0;
+      width: auto;
+      height: auto;
+      padding: 0 19px;
+      margin: 0;
+      text-align: center;
+
+      .day,
+      .month{
+        display: block;
+        color: $colorGray;
+        font-size: 1.25em;
+        line-height: 1.375em;
+      }
+      .day{
+        font-family: $font-family-serif;
+      }
+      .month{
+        font-family: $font-family-economica;
+        text-transform: uppercase;
+      }
+    }
+
+    a.image{
+      display: block;
+
+      &:hover{
+        opacity: 0.8;
+      }
+    }
+
+    .description,
+    .description-top{
+      color: $colorGray;
+      font-size: 0.938em;
+      line-height: 1.5em;
+      margin-top: 7px;
+
+      p{ 
+        padding: 2px 9px 0;
+      }
+    }
+  }
+}
+
+.posts .wall-item .panel{
+
+  h2, h3{
+    margin-left: 3*$grid-gutter-width;
+  }
+}

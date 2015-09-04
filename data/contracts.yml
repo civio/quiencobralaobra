@@ -1,0 +1,376 @@
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 245448
+    company: OHL
+    date: 11/08/2011 
+    price: 240187.50
+    administration: Ministerio de Interior
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 380062
+    company: OHL
+    date: 11/08/2011 
+    price: 365925.00
+    administration: Ministerio de Defensa
+-
+    procedure: Negociado sin publicidad 
+    type: Servicios 
+    tender: 56913
+    company: Ferrovial
+    date: 12/08/2011 
+    price: 50645.65
+    administration: Ministerio de Industria
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 101739
+    company: Ferrovial
+    date: 08/08/2011 
+    price: 95449.59
+    administration: Ministerio de Interior
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 244169
+    company: Ferrovial
+    date: 01/08/2011 
+    price: 210600.00
+    administration: Ministerio de Interior
+-
+    procedure: Negociado sin publicidad 
+    type: Servicios 
+    tender: 34828
+    company: Acciona
+    date: 05/08/2011 
+    price: 34736.00
+    administration: Comunidad de Madrid
+-
+    procedure: Negociado sin publicidad 
+    type: Obras 
+    tender: 236077
+    company: Acciona
+    date: 21/08/2011 
+    price: 215300.00
+    administration: Generalitat de Catalunya
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 90341
+    company: ACS
+    date: 02/09/2011 
+    price: 88400.00
+    administration: Generalitat Valenciana
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 110377
+    company: ACS
+    date: 02/09/2011 
+    price: 104000.00
+    administration: Ministerio de Interior
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 98980
+    company: ACS
+    date: 02/09/2011 
+    price: 88400.00
+    administration: Comunidad de Madrid
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 90625
+    company: Ferrovial
+    date: 29/08/2011 
+    price: 89100.00
+    administration: Generalitat de Catalunya
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 119055
+    company: OHL
+    date: 29/08/2011 
+    price: 110849.44
+    administration: Ministerio de Defensa
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 474334
+    company: OHL
+    date: 29/08/2011 
+    price: 408731.48
+    administration: Ministerio de Defensa
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 401750
+    company: Ferrovial
+    date: 25/08/2011 
+    price: 401700.00
+    administration: Ministerio de Industria
+-
+    procedure: Negociado sin publicidad 
+    type: Obras 
+    tender: 89109
+    company: ACS
+    date: 22/09/2011 
+    price: 79300.00
+    administration: Generalitat Valenciana
+-
+    procedure: Negociado sin publicidad 
+    type: Suministro 
+    tender: 34102
+    company: Ferrovial
+    date: 26/09/2011 
+    price: 30628.92
+    administration: Ministerio de Interior
+-
+    procedure: Negociado sin publicidad 
+    type: Suministro 
+    tender: 127839
+    company: Sacyr
+    date: 01/09/2011 
+    price: 120000.00
+    administration: Ministerio de Interior
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 823720
+    company: Acciona
+    date: 12/09/2011 
+    price: 720000.00
+    administration: Generalitat de Catalunya
+-
+    procedure: Negociado sin publicidad 
+    type: Obras 
+    tender: 178587
+    company: OHL
+    date: 09/09/2011 
+    price: 156600.00
+    administration: Comunidad de Madrid
+-
+    procedure: Abierto 
+    type: Obras 
+    tender: 352094
+    company: Acciona
+    date: 09/09/2011 
+    price: 327729.29
+    administration: Ministerio de Interior
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 75600
+    company: ACS
+    date: 02/09/2011 
+    price: 72800.00
+    administration: Generalitat de Catalunya
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 89241
+    company: ACS
+    date: 02/09/2011 
+    price: 82160.00
+    administration: Generalitat Valenciana
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 120076
+    company: ACS
+    date: 02/09/2011 
+    price: 108160.00
+    administration: Ministerio de Defensa
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 773249
+    company: OHL
+    date: 19/10/2011 
+    price: 661500.01
+    administration: Ministerio de Interior
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 129926
+    company: ACS
+    date: 29/09/2011 
+    price: 112320.00
+    administration: Ministerio de Interior
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 123619
+    company: Ferrovial
+    date: 28/09/2011 
+    price: 118872.00
+    administration: Ministerio de Industria
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 134828
+    company: Ferrovial
+    date: 28/09/2011 
+    price: 114920.00
+    administration: Generalitat de Catalunya
+-
+    procedure: Negociado sin publicidad 
+    type: Servicios 
+    tender: 70511
+    company: Acciona
+    date: 26/10/2011 
+    price: 62400.00
+    administration: Ministerio de Interior
+-
+    procedure: Negociado sin publicidad 
+    type: Obras 
+    tender: 72830
+    company: Sacyr
+    date: 21/10/2011 
+    price: 69991.99
+    administration: Generalitat Valenciana
+-
+    procedure: Negociado sin publicidad 
+    type: Obras 
+    tender: 245111
+    company: FCC
+    date: 20/10/2011 
+    price: 215000.00
+    administration: Generalitat Valenciana
+-
+    procedure: Abierto 
+    type: Suministro 
+    tender: 196441
+    company: OHL
+    date: 20/10/2011 
+    price: 164943.52
+    administration: Ministerio de Defensa
+-
+    procedure: Negociado sin publicidad 
+    type: Servicios 
+    tender: 109286
+    company: Ferrovial
+    date: 21/10/2011 
+    price: 95680.00
+    administration: Ministerio de Defensa
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 183571
+    company: OHL
+    date: 20/10/2011 
+    price: 159372.40
+    administration: Ministerio de Interior
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 449615
+    company: ACS
+    date: 10/11/2011 
+    price: 407368.54
+    administration: Comunidad de Madrid
+-
+    procedure: Negociado sin publicidad 
+    type: Servicios 
+    tender: 68768
+    company: Sacyr
+    date: 10/01/2012 
+    price: 62296.00
+    administration: Generalitat Valenciana
+-
+    procedure: Abierto 
+    type: Obras 
+    tender: 939854
+    company: FCC
+    date: 29/04/2011 
+    price: 812642.94
+    administration: Ministerio de Defensa
+-
+    procedure: Negociado sin publicidad 
+    type: Obras 
+    tender: 254383
+    company: OHL
+    date: 09/12/2011 
+    price: 214846.68
+    administration: Comunidad de Madrid
+-
+    procedure: Abierto 
+    type: Obras 
+    tender: 239317
+    company: Acciona
+    date: 19/01/2012 
+    price: 236909.31
+    administration: Generalitat Valenciana
+-
+    procedure: Negociado sin publicidad 
+    type: Obras 
+    tender: 253344
+    company: Sacyr
+    date: 04/11/2011 
+    price: 214744.15
+    administration: Ministerio de Industria
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 352935
+    company: OHL
+    date: 20/12/2011 
+    price: 314226.81
+    administration: Comunidad de Madrid
+-
+    procedure: Negociado sin publicidad 
+    type: Obras 
+    tender: 183586
+    company: OHL
+    date: 13/01/2012 
+    price: 161007.81
+    administration: Comunidad de Madrid
+-
+    procedure: Negociado sin publicidad 
+    type: Suministro 
+    tender: 66193
+    company: OHL
+    date: 30/12/2011 
+    price: 58496.50
+    administration: Generalitat de Catalunya
+-
+    procedure: Abierto 
+    type: Servicios 
+    tender: 55730
+    company: Acciona
+    date: 01/10/2014 
+    price: 49895.04
+    administration: Generalitat de Catalunya
+-
+    procedure: Negociado sin publicidad 
+    type: Servicios 
+    tender: 50470
+    company: Acciona
+    date: 23/09/2014 
+    price: 45898.44
+    administration: Generalitat Valenciana
+-
+    procedure: Negociado sin publicidad 
+    type: Servicios 
+    tender: 21627
+    company: ACS
+    date: 20/10/2011 
+    price: 21216.00
+    administration: Generalitat Valenciana
+-
+    procedure: Negociado sin publicidad 
+    type: Servicios 
+    tender: 25767
+    company: Sacyr
+    date: 22/09/2014 
+    price: 25656.96
+    administration: Ministerio de Interior
+-
+    procedure: Negociado sin publicidad 
+    type: Otros 
+    tender: 171680
+    company: FCC
+    date: 03/09/2014 
+    price: 150384.00
+    administration: Generalitat de Catalunya

@@ -1,0 +1,16 @@
+// Double lines around titles
+@mixin title-lines($color, $top: 20px) {
+
+  &:after{
+    content: "";
+    display: block;
+    position: absolute;
+    top: $top;
+    left: 0;
+    right: 0;
+    height: 5px;
+    border-top: 1px solid $color;
+    border-bottom: 1px solid $color;
+    z-index: -1;
+  }
+}

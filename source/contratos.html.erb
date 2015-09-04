@@ -1,0 +1,42 @@
+---
+
+---
+
+<div id="page-title" class="contracts">
+  <h2>Contratos</h2>
+</div>
+
+<div>
+  <%= image_tag(lorem.image('1140x500', :text => 'Contracts Visualization'), :class => 'img-responsive') %>
+</div>
+
+<div class="table-responsive">
+  <table class="table footable table-striped table-bordered">
+    <thead>
+      <tr>
+        <th data-sort-ignore="true"></th>
+        <th>Fecha</th>
+        <th>Administración</th>
+        <th>Empresa</th>
+        <th>Procedimiento</th>
+        <th>Tipo</th>
+        <th>Licitación <i>(€)</i></th>
+        <th>Precio <i>(€)</i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.contracts.each_with_index do |contract, i| %>
+      <tr>
+        <td><%= link_to '<i class="glyphicon glyphicon-link"></i>'.html_safe, '/contratos/'+i.to_s %></td>
+        <td><%= contract.date %></td>
+        <td><%= link_to contract.administration, '/administraciones/'+get_url( contract.administration, 'administrations' ) %></td>
+        <td><%= link_to contract.company, '/empresas/'+get_url( contract.company, 'companies' ) %></td>
+        <td><%= contract.procedure %></td>
+        <td><%= contract.type %></td>
+        <td><%= contract.tender %></td>
+        <td><%= contract.price %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to '<h1>Quién Cobra la Obra</h1>', '/', :class => 'navbar-brand' %>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Busca...">
+        </div>
+        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Artículos', '/articulos' %></li>
+        <li><%= link_to 'Contratos', '/contratos' %></li>
+        <li><%= link_to 'Administraciones', '/administraciones' %></li>
+        <li><%= link_to 'Empresas', '/empresas' %></li>
+        <li><%= link_to 'La Ley', '/la-ley' %></li>
+        <li><%= link_to 'Nosotros', '/nosotros' %></li>
+      </ul>
+
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>

@@ -1,0 +1,21 @@
+<div class="entities wall row">
+ 
+  <!-- Entities list -->
+  <% entities_data.each do |entity| %>
+
+    <div class="wall-item col-sm-3">
+      <div class="panel panel-default">
+        <%= link_to image_tag( lorem.image('500x300'), :class => 'img-responsive' ), '/'+path+'/'+entity.url, :class => 'image' %>
+        <div class="panel-heading">
+          <h2><%= link_to entity.name, '/'+path+'/'+entity.url %></h2>
+        </div>
+        <div class="panel-body">
+          <div class="description">
+            <p><%= lorem.sentences 2 %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+</div>
