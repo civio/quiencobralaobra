@@ -1,4 +1,5 @@
 //= require_tree .
+//= require bootstrap
 
 $( document ).ready(function() {
     
@@ -6,6 +7,9 @@ $( document ).ready(function() {
 
   // Add sort capability to tables
   $('.footable').footable();
+
+  // Setup tooltips
+  $('[data-toggle="tooltip"]').tooltip();
 
   // Setup Packery for Wall Layout
   var $wall = $('.wall');

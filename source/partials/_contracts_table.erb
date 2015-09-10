@@ -1,17 +1,5 @@
----
-
----
-
-<div id="page-title" class="contracts">
-  <h2>Contratos</h2>
-</div>
-
-<div>
-  <%= image_tag(lorem.image('1140x500', :text => 'Contracts Visualization'), :class => 'img-responsive') %>
-</div>
-
 <div class="table-responsive">
-  <table class="table footable table-striped table-bordered">
+  <table class="table footable table-striped">
     <thead>
       <tr>
         <th data-sort-ignore="true"></th>
@@ -25,7 +13,8 @@
       </tr>
     </thead>
     <tbody>
-      <% data.contracts.each_with_index do |contract, i| %>
+    <% data.contracts.each_with_index do |contract, i| %>
+      <% unless !(defined?(company)).nil? and company != contract.company %>
       <tr>
         <td><%= link_to '<i class="glyphicon glyphicon-link"></i>'.html_safe, '/contratos/'+i.to_s %></td>
         <td><%= contract.date %></td>
@@ -37,6 +26,7 @@
         <td><%= contract.price %></td>
       </tr>
       <% end %>
+    <% end %>
     </tbody>
   </table>
 </div>

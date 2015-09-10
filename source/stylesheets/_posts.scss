@@ -1,0 +1,266 @@
+.post{
+
+  .picture-footer,
+  .picture-credits{
+    color: $colorGray;
+    font-size: 0.875em;
+    background: $colorSecondary;
+    margin: 0;
+    padding: $grid-gutter-width;
+
+    a{
+      color: $colorLinkGreen;
+      text-decoration: underline;
+
+      &:hover{
+        color: $colorGray;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .picture-footer{
+    padding-bottom: 6px;
+  }
+
+  .picture-credits{
+    padding-top: 0;
+  }
+
+  .panel-body{
+    position: relative;
+    padding: 2*$grid-gutter-width;
+  }
+
+  h3.post-title{
+    position: relative;
+    color: $colorGray;
+    font-family: $font-family-serif;
+    font-size: 1.375em;
+    font-weight: bold;
+    line-height: 1.375em;
+    text-align: left;
+    padding-left: 12px;
+    margin-left: 96px;
+    min-height: 106px;
+
+    @include title-lines-vertical( $colorTextGreen, -5px );
+  }
+  
+  .post-date{
+    display: block;
+    position: absolute;
+    top: 2*$grid-gutter-width;
+    left: 2*$grid-gutter-width;
+    width: 4*$grid-gutter-width;
+    padding: 10px 0;
+    background: $colorHeader;
+    text-align: center;
+
+    .day,
+    .month,
+    .year{
+      display: block;
+      color: $colorGray;
+    }
+
+    .day{
+      font-size: 1.25em;
+      font-family: $font-family-serif;
+    }
+
+    .month{
+      font-size: 1.375em;
+      font-family: $font-family-economica;
+      text-transform: uppercase;
+      padding: 4px 0;
+    }
+
+    .year{
+      color: $colorGray;
+      font-size: 0.875em;
+      font-family: $font-family-serif;
+    }
+  }
+
+  .post-meta{
+    color: #666;
+    padding: 12px 0;
+    margin: 2*$grid-gutter-width 0 0;
+    border-top: 1px solid $colorSecondary;
+
+    a{
+      color: $colorTitle;
+      font-family: $font-family-serif;
+      font-style: italic;
+      text-decoration: none;
+
+      &:hover{ 
+        color: #666;  
+      }
+    }
+  }
+
+  .post-description {
+
+    font-size: 0.938em;    
+    line-height: 1.6em;    
+    color: $colorGray;
+    overflow: hidden;
+    background: url(/images/moustache.gif) no-repeat bottom center;
+    padding: 2*$grid-gutter-width 0 $grid-gutter-width;
+    border-top: 1px solid $colorSecondary;
+
+    a{
+      border-bottom: 1px dotted $colorTextGreen;
+
+      &:hover{
+        border-bottom: 1px solid #333;
+        color: #000;
+      }
+    }
+
+    p{
+      margin-bottom: $grid-gutter-width;
+    }
+
+    ul{
+      padding-left: $grid-gutter-width;
+      padding-bottom: $grid-gutter-width;
+      @include box-sizing( border-box );
+    }
+
+    li{
+      padding-left: 40px;
+      padding-bottom: $grid-gutter-width;
+      background: url(/images/list-moustache.gif) no-repeat 0px 7px;
+    }
+  }
+
+  .post-comments{
+    background: $colorSecondary;
+    padding: 4*$grid-gutter-width 2*$grid-gutter-width 2*$grid-gutter-width;
+  }
+
+  .civio-banner{
+    display: block;
+    margin: 2*$grid-gutter-width 0;
+  }
+
+  .post-content .sharing-buttons{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -24px;
+    padding: 0;
+  }
+
+  .sidebar .sharing-buttons{
+    margin: $grid-gutter-width 0 1.5*$grid-gutter-width;
+    padding: 0;
+  }
+
+  .related-entities{
+    background: $colorSidebar;
+
+    .panel-heading:before,
+    .panel-body:before{
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 12px;
+      height: 100%;
+      background: -moz-linear-gradient(left, rgba(5,5,5,0.1) 0%, rgba(0,0,0,0) 100%);
+      background: -webkit-gradient(left top, right top, color-stop(0%, rgba(5,5,5,0.1)), color-stop(100%, rgba(0,0,0,0)));
+      background: -webkit-linear-gradient(left, rgba(5,5,5,0.1) 0%, rgba(0,0,0,0) 100%);
+      background: -o-linear-gradient(left, rgba(5,5,5,0.1) 0%, rgba(0,0,0,0) 100%);
+      background: -ms-linear-gradient(left, rgba(5,5,5,0.1) 0%, rgba(0,0,0,0) 100%);
+      background: linear-gradient(to right, rgba(5,5,5,0.1) 0%, rgba(0,0,0,0) 100%);
+    }
+
+    .panel-heading{
+      position: relative;
+      background: transparent;
+      padding: 2*$grid-gutter-width 2*$grid-gutter-width 0;
+      border: none;
+      @include title-lines-horizontal( $colorWhite, 46px );
+      &:after{
+        right: 2*$grid-gutter-width;
+        left: 2*$grid-gutter-width;
+      }
+
+      h4{
+        display: inline;
+        position: relative;
+        padding-right: 12px;
+        font-family: $font-family-economica;
+        font-size: 1.625em;
+        font-weight: bold;
+        line-height: 1em;
+        background: $colorSidebar;
+        z-index: 10;
+      }
+    }
+
+    ul{
+      padding: 0;
+    }
+
+    li{
+
+      float: none;
+      clear: both;
+      margin-bottom: 24px;
+      list-style: none;
+      min-height: 74px;
+      position: relative;
+
+      /* Expandir/colapsar entidades relacionadas en el sidebar */
+      &.extra-related-entity {
+        display: none;
+      } 
+
+      $pictureW: 4*$grid-gutter-width;
+
+      .picture{
+        position: absolute;
+        width: $pictureW;
+        height: $pictureW;
+        //border: 3px solid #fff;
+      }
+
+      .content{
+
+        color: $colorGray;
+        text-shadow: none;
+        margin-left: $pictureW + $grid-gutter-width;
+
+        a{
+          display: block;
+          width: 100%;
+          color: $colorLinkGreen;
+          font-weight: bold;
+
+          &:hover{
+            text-decoration: none;
+            color: $colorGray;
+          }
+        }
+      }
+
+      .admin-link{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+
+      &:after{
+        content: "";
+        float: none;
+        clear: both;
+      }
+    }
+  }
+}

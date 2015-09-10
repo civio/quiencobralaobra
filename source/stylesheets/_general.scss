@@ -24,45 +24,77 @@ h6 {
   line-height: 24px;
 }
 
+.panel{
+  border: none;
+  @include box-shadow( 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05) );
+}
+
+table{
+  font-size: 0.938em;
+}
+
+.container{
+  position: relative;
+}
+
+.no-gutter.row{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
+
+hr.title-lines-horizontal{
+  position: relative;
+  border-color: transparent;
+  @include title-lines-horizontal( $colorTextGreen, 0 );
+}
 
 .title{
   position: relative;
-  margin: 4*$grid-gutter-width 0;
+  margin: 3*$grid-gutter-width 0;
 
-  p{
+  h2, p{
     display: inline-block;
-    margin: 0;
+    margin: 0 0 0 4*$grid-gutter-width;
     padding: 0 $grid-gutter-width;
     color: $colorGray;
     background: $colorBody;
     font-family: $font-family-economica;
     font-size: 2em;
     font-weight: bold;
-    text-transform: lowercase;
+    line-height: 40px;
     text-shadow: 0px 1px 0px rgba(255,255,255,.4), 0 0 0px rgba(0,0,0,.2);
+  }
+
+  h2{
+    font-size: 2.25em;
   }
 
   &:before{
     display: block;
     content: "";
-    float: left;
+    position: absolute;
+    top: 50%;
+    left: 0;
     width: 4*$grid-gutter-width;
     height: 4*$grid-gutter-width;
-    margin-top: -8px;
+    margin-top: -2*$grid-gutter-width;
     overflow: hidden;
     background: url(http://quienmanda.es/images/sprites.png) no-repeat 0 -8px $colorBody;
   }
 
-  @include title-lines( #fff, 22px );
+  @include title-lines-horizontal( mix( $colorBody, $colorTextGreen, 50% ), $grid-gutter-width+4, -1 );
 }
 
 .wall-item{
   
   .panel{
     position: relative;
-    border: none;
     margin-bottom: $grid-gutter-width;
-    @include box-shadow( 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05) );
 
     .panel-heading{
       background: $panel-bg;
@@ -74,40 +106,27 @@ h6 {
       padding: 0;
     }
 
-    h2, h3{
+    h3{
       color: $colorGray;
+      font-size: 1.125em;
       font-family: $font-family-serif;
       font-weight: 700;
       line-height: 1.375em;
-      padding-left: 3px;
-      margin-left: 3*$grid-gutter-width;
-      min-height: 56px;
-      border-left: 1px solid $colorTextGreen;
+      position: relative;
+
+      @include title-lines-vertical( $colorTextGreen );
 
       a{
         display: block;
-        min-height: 56px;
-        padding-left: 10px;
-        border-left: 1px solid $colorTextGreen;
-      }
-    }
+        padding-left: $grid-gutter-width;
+        color: $colorGray;
+        @include transition( color 0.3s ease-out );
 
-    h2{
-      font-size: 1.375em;
-    }
-
-    h3{
-      font-size: 1.25em;
-    }
-
-    a{
-      color: $colorGray;
-      @include transition( all 0.3s ease-in-out );
-      
-      &:hover,
-      &:focus{
-        color: $colorLinkGreen;
-        text-decoration: none;
+        &:hover,
+        &:focus{
+          color: $colorLinkGreen;
+          text-decoration: none;
+        }
       }
     }
 
@@ -126,7 +145,7 @@ h6 {
         display: block;
         color: $colorGray;
         font-size: 1.25em;
-        line-height: 1.375em;
+        line-height: 1.5em;
       }
       .day{
         font-family: $font-family-serif;
@@ -139,6 +158,8 @@ h6 {
 
     a.image{
       display: block;
+      margin-bottom: 8px;
+      @include transition( opacity 0.3s ease-out );
 
       &:hover{
         opacity: 0.8;
@@ -150,10 +171,11 @@ h6 {
       color: $colorGray;
       font-size: 0.938em;
       line-height: 1.5em;
-      margin-top: 7px;
+      //margin-top: 7px;
 
       p{ 
-        padding: 2px 9px 0;
+        padding: 0 12px;
+        margin-bottom: 12px;
       }
     }
   }
@@ -161,7 +183,12 @@ h6 {
 
 .posts .wall-item .panel{
 
-  h2, h3{
+  h3{
+    font-size: 1.25em;
     margin-left: 3*$grid-gutter-width;
+
+    a{
+      min-height: 56px;
+    }
   }
 }

@@ -87,7 +87,7 @@ end
 
 # Generate html files for posts
 data.posts.each do |post|
-  proxy "/articulos/#{post.url}.html", "articulo.html", :locals => { :title => post.title }, :ignore => true
+  proxy "/articulos/#{post.url}.html", "articulo.html", :locals => { :title => post.title, :related_entities => post.related_entities }, :ignore => true
 end
 
 # Generate html files for companies
