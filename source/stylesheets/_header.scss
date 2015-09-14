@@ -5,8 +5,12 @@
 }
 
 .navbar-toggle{
-  margin-top: $grid-gutter-width;
+  position: absolute;
+  float: none;
+  right: $grid-gutter-width/2;
+  bottom: $grid-gutter-width;
   padding: 11px 9px;
+  margin: 0;
 
   .icon-bar{
     height: 3px;

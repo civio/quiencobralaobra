@@ -91,3 +91,11 @@
     @include title-lines-horizontal( $colorTextGreen, 20px, -1 );
   }
 }
+
+
+@media (min-width: $screen-sm-min) {
+  
+  .sharing-right{
+    display: block;
+  }
+}
