@@ -42,9 +42,20 @@ $grid-gutter-width:       16px;
 
 // Navbar
 
+$navbar-height:                   145px;
+
+//** Point at which the navbar becomes uncollapsed.
+$screen-md:                       992px !default;
+$grid-float-breakpoint:           $screen-md;
+
 $navbar-default-bg:               $colorHeader;
 $navbar-default-link-color:       $colorGray;
 $navbar-default-link-hover-color: $colorHeaderLink;
+
+// Navbar toggle
+$navbar-default-toggle-hover-bg:           $colorBody;
+$navbar-default-toggle-icon-bar-bg:        $colorLinkGreen;
+$navbar-default-toggle-border-color:       mix( $colorLinkGreen, $colorHeader, 50% );
 
 // Panel
 

@@ -4,7 +4,7 @@
   <% data.posts.each_with_index do |post, i| %>
     <% unless !(defined?(limit_to)).nil? and i >= limit_to %> 
 
-    <div class="wall-item col-sm-4">
+    <div class="wall-item col-sm-6 col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3><%= link_to post.title, '/articulos/'+post.url %></h3>

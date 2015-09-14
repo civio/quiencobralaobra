@@ -1,13 +1,16 @@
 .navbar-default{
-  height: 145px;
   margin: 0;
   z-index: 1000;
   @include box-shadow( 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05) );
 }
 
-.navbar-header{
-  width: 0;
-  overflow: visible;
+.navbar-toggle{
+  margin-top: $grid-gutter-width;
+  padding: 11px 9px;
+
+  .icon-bar{
+    height: 3px;
+  }
 }
 
 .navbar .navbar-brand{
@@ -21,22 +24,28 @@
 }
 
 #navbar{
-  padding-top: 83px;
+  position: absolute;
+  right: $grid-gutter-width;
+  left: $grid-gutter-width;
+  top: 2+$navbar-height;
+  background: $colorHeader;
+  width: auto;
+  @include box-shadow( 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05) );
 
   .navbar-nav{
     position: relative;
-    margin-left: 68px;
-    padding-left: 186px;
-    padding-right: 41px;
+    padding-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
     background: url(/images/nav-pattern.png) repeat-x 0 26px transparent;
 
     > li > a{
       font-size: 1.375em;
       font-family: $font-family-economica;
       font-weight: 700;
-      padding: 9px $grid-gutter-width;
-      margin-top: 7px;
+      padding: 10px $grid-gutter-width;
       background: $colorHeader;
+      border-bottom: 2px solid $colorBody;
       text-shadow: 0 1px 0 #fff;
       @include transition(color 0.3s ease-in-out);
     }
@@ -44,11 +53,18 @@
 
   .navbar-form{
     padding: 0;
-    margin: 8px 0 0;
+    margin: 9px 0 12px 8px;
+    border: none;
+
+    .form-group{
+      display: inline-block;
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
 
     input{
       color: $colorGray;
-      width: 170px;
+      width: 190px;
       height: 30px;
       font-size: 0.875em;
       background: lighten( $colorBody, 2% );

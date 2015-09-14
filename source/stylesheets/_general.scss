@@ -37,6 +37,11 @@ table{
   position: relative;
 }
 
+.img-responsive{
+  width: 100%;
+  max-width: none;
+}
+
 .no-gutter.row{
   margin-left: 0;
   margin-right: 0;
@@ -84,10 +89,24 @@ hr.title-lines-horizontal{
     height: 4*$grid-gutter-width;
     margin-top: -2*$grid-gutter-width;
     overflow: hidden;
-    background: url(http://quienmanda.es/images/sprites.png) no-repeat 0 -8px $colorBody;
+    background: url(../images/sprites.png) no-repeat 0 -8px $colorBody;
   }
 
   @include title-lines-horizontal( mix( $colorBody, $colorTextGreen, 50% ), $grid-gutter-width+4, -1 );
+}
+
+
+.administraciones .title:before,
+.title.administrations:before{
+  background-position: 0 -71px;
+}
+.empresas .title:before,
+.title.companies:before{
+  background-position: 0 -135px;
+}
+.contratos .title:before,
+.title.contracts:before{
+  background-position: 0 -199px;
 }
 
 .wall-item{

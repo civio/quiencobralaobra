@@ -1,0 +1,37 @@
+---
+
+---
+
+<div class="title contracts">
+  <h2>Contratos</h2>
+</div>
+
+<div class="entities wall row">
+ 
+  <!-- Entities list -->
+  <% data.companies[0..3].each do |entity| %>
+
+    <div class="wall-item col-sm-3">
+      <div class="panel panel-default">
+        <%= link_to image_tag( lorem.image('500x300'), :class => 'img-responsive' ), '/empresas/'+entity.url, :class => 'image' %>
+        <div class="panel-heading">
+          <h3><%= link_to entity.name, '/empresas/'+entity.url %></h3>
+        </div>
+        <div class="panel-body">
+          <div class="description">
+            <p><%= lorem.sentences 2 %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+
+<div class="panel panel-default">
+  <%= image_tag(lorem.image('1140x500', :text => 'Contracts Visualization'), :class => 'img-responsive') %>
+</div>
+
+<div class="panel panel-default">
+  <%= partial('partials/contracts_table') %>
+</div>

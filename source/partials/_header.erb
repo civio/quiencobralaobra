@@ -10,12 +10,6 @@
       <%= link_to '<h1>Quién Cobra la Obra</h1>', '/', :class => 'navbar-brand' %>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
-      <form class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Busca...">
-        </div>
-        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-      </form>
       <ul class="nav navbar-nav">
         <li><%= link_to 'Artículos', '/articulos' %></li>
         <li><%= link_to 'Contratos', '/contratos' %></li>
@@ -24,6 +18,12 @@
         <li><%= link_to 'La Ley', '/la-ley' %></li>
         <li><%= link_to 'Nosotros', '/nosotros' %></li>
       </ul>
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Busca...">
+        </div>
+        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+      </form>
 
     </div><!--/.nav-collapse -->
   </div>
