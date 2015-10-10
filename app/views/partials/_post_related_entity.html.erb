@@ -3,7 +3,13 @@
     <%= link_to image_tag('http://lorempixel.com/74/74', :class => 'img-responsive'), '#', :class => 'image' %>
   </div>
   <div class="content">
-    <%= link_to title, '#' %>
+    <%=
+      if entity.class.name == 'Bidder'
+        link_to entity.name, bidder_path(entity)
+      else
+        link_to entity.name, public_body_path(entity)
+      end
+    %>
     <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.</small>
   </div>
 </li>

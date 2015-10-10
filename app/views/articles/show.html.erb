@@ -54,8 +54,8 @@
       </div>
       <div class="panel-body">
         <ul>
-          <% @article.related_entities.each do |entity| %>
-            <%= render(partial: 'partials/post_related_entity', locals: { title: entity.name }) %>
+          <% @article.mentions_in_content.each do |mention| %>
+            <%= render(partial: 'partials/post_related_entity', locals: { entity: mention.mentionee }) %>
           <% end %>
         </ul>
       </div>

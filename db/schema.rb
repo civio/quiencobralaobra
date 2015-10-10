@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010193424) do
+ActiveRecord::Schema.define(version: 20151010194122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 20151010193424) do
   end
 
   add_index "cpv_terms", ["code"], name: "index_cpv_terms_on_code", using: :btree
+
+  create_table "mentions", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "mentionee_id"
+    t.string  "mentionee_type"
+  end
+
+  add_index "mentions", ["article_id"], name: "index_mentions_on_article_id", using: :btree
+  add_index "mentions", ["mentionee_type", "mentionee_id"], name: "index_mentions_on_mentionee_type_and_mentionee_id", using: :btree
 
   create_table "public_bodies", force: :cascade do |t|
     t.string   "name"
