@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'nosotros', to: 'home#about_us', as: :about_us
   get 'la-ley', to: 'home#about_the_law', as: :about_the_law
 
-  resources :public_bodies, path: 'administraciones', only: :index
+  resources :public_bodies, path: 'administraciones', only: [:index, :show]
 
   resources :bidders, path: 'empresas', only: :index
 

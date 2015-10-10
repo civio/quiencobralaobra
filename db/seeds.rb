@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+PublicBody.delete_all
+PublicBody.create([{ name: 'Ministerio de Agricultura'}, { name: 'Ministerio de Cultura' }])
