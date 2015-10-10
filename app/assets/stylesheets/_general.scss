@@ -1,0 +1,213 @@
+html { 
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2 {
+  line-height: 40px;
+}
+h3 {
+  line-height: 32px;
+}
+h4 {
+  line-height: 30px;
+}
+h5 {
+  line-height: 26px;
+}
+h6 {
+  line-height: 24px;
+}
+
+.panel{
+  border: none;
+  @include box-shadow( 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05) );
+}
+
+table{
+  font-size: 0.938em;
+}
+
+.container{
+  position: relative;
+}
+
+.img-responsive{
+  width: 100%;
+  max-width: none;
+}
+
+.no-gutter.row{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
+
+hr.title-lines-horizontal{
+  position: relative;
+  border-color: transparent;
+  @include title-lines-horizontal( $colorTextGreen, 0 );
+}
+
+.title{
+  position: relative;
+  margin: 3*$grid-gutter-width 0;
+
+  h2, p{
+    display: inline-block;
+    margin: 0 0 0 4*$grid-gutter-width;
+    padding: 0 $grid-gutter-width;
+    color: $colorGray;
+    background: $colorBody;
+    font-family: $font-family-economica;
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 40px;
+    text-shadow: 0px 1px 0px rgba(255,255,255,.4), 0 0 0px rgba(0,0,0,.2);
+  }
+
+  h2{
+    font-size: 2.25em;
+  }
+
+  &:before{
+    display: block;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 4*$grid-gutter-width;
+    height: 4*$grid-gutter-width;
+    margin-top: -2*$grid-gutter-width;
+    overflow: hidden;
+    background: asset-url('sprites.png') no-repeat 0 -8px $colorBody;
+  }
+
+  @include title-lines-horizontal( mix( $colorBody, $colorTextGreen, 50% ), $grid-gutter-width+4, -1 );
+}
+
+
+.administraciones .title:before,
+.title.administrations:before{
+  background-position: 0 -71px;
+}
+.empresas .title:before,
+.title.companies:before{
+  background-position: 0 -135px;
+}
+.contratos .title:before,
+.title.contracts:before{
+  background-position: 0 -199px;
+}
+
+.wall-item{
+  
+  .panel{
+    position: relative;
+    margin-bottom: $grid-gutter-width;
+
+    .panel-heading{
+      background: $panel-bg;
+      border: none;
+      padding: 12px;
+    }
+
+    .panel-body{
+      padding: 0;
+    }
+
+    h3{
+      color: $colorGray;
+      font-size: 1.125em;
+      font-family: $font-family-serif;
+      font-weight: 700;
+      line-height: 1.375em;
+      position: relative;
+
+      @include title-lines-vertical( $colorTextGreen );
+
+      a{
+        display: block;
+        padding-left: $grid-gutter-width;
+        color: $colorGray;
+        @include transition( color 0.3s ease-out );
+
+        &:hover,
+        &:focus{
+          color: $colorLinkGreen;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .post-date{
+      position: absolute;
+      top: 12px;
+      left: 0;
+      width: auto;
+      height: auto;
+      padding: 0 19px;
+      margin: 0;
+      text-align: center;
+
+      .day,
+      .month{
+        display: block;
+        color: $colorGray;
+        font-size: 1.25em;
+        line-height: 1.5em;
+      }
+      .day{
+        font-family: $font-family-serif;
+      }
+      .month{
+        font-family: $font-family-economica;
+        text-transform: uppercase;
+      }
+    }
+
+    a.image{
+      display: block;
+      margin-bottom: 8px;
+      @include transition( opacity 0.3s ease-out );
+
+      &:hover{
+        opacity: 0.8;
+      }
+    }
+
+    .description,
+    .description-top{
+      color: $colorGray;
+      font-size: 0.938em;
+      line-height: 1.5em;
+      //margin-top: 7px;
+
+      p{ 
+        padding: 0 12px;
+        margin-bottom: 12px;
+      }
+    }
+  }
+}
+
+.posts .wall-item .panel{
+
+  h3{
+    font-size: 1.25em;
+    margin-left: 3*$grid-gutter-width;
+
+    a{
+      min-height: 56px;
+    }
+  }
+}

@@ -1,0 +1,101 @@
+// Header
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) 
+@media (min-width: @screen-sm-min) { ... }
+
+/* Medium devices (desktops, 992px and up) 
+@media (min-width: @screen-md-min) { ... }
+
+/* Large devices (large desktops, 1200px and up) 
+@media (min-width: @screen-lg-min) { ... }
+*/
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  
+  #navbar{
+    width: 250px;
+    left: auto;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {
+
+  .navbar-header{
+    width: 0;
+    overflow: visible;
+  }
+
+  #navbar{
+    position: static;
+    width: auto;
+    margin-top: 0;
+    padding-top: 86px;
+    border: none;
+    @include box-shadow( none );
+
+    .navbar-nav{
+      margin-left: 68px;
+      padding-left: 146px;
+
+      > li > a{
+        padding: 9px $grid-gutter-width/2;
+        margin-top: 7px;
+        border: none;
+      }
+    }
+  
+    .navbar-form{
+      margin: 8px 0 0;
+
+      input{
+        width: 152px;
+      }
+    }
+  } 
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {
+
+  #navbar{
+
+    .navbar-nav{
+      margin-left: 68px;
+      padding-left: 186px;
+      padding-right: 41px;
+
+      > li > a{
+        padding-right: $grid-gutter-width;
+        padding-left: $grid-gutter-width;
+      }
+    }
+
+    .navbar-form input{
+      width: 170px;
+    }
+  }
+}
+
+
+// Home
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-sm-min) {
+
+  .subtitle{
+    @include title-lines-horizontal( $colorTextGreen, 20px, -1 );
+  }
+}
+
+
+@media (min-width: $screen-sm-min) {
+  
+  .sharing-right{
+    display: block;
+  }
+}

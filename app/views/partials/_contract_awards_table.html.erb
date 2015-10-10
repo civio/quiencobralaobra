@@ -1,0 +1,32 @@
+<div class="table-responsive">
+  <table class="table footable table-striped">
+    <thead>
+      <tr>
+        <th data-sort-ignore="true"></th>
+        <th>Fecha</th>
+        <th>Administración</th>
+        <th>Empresa</th>
+        <th>Procedimiento</th>
+        <th>Tipo</th>
+        <th>Licitación <i>(€)</i></th>
+        <th>Precio <i>(€)</i></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @contract_awards.each_with_index do |award, i| %>
+      <% unless !(defined?(company)).nil? and company != award.company %>
+      <tr>
+        <td><%= link_to '<i class="glyphicon glyphicon-link"></i>'.html_safe, '/contratos/'+i.to_s %></td>
+        <td><%= award.date %></td>
+        <td><%= link_to award.administration, '/administraciones/'+get_url( award.administration, 'administrations' ) %></td>
+        <td><%= link_to award.company, '/empresas/'+get_url( award.company, 'companies' ) %></td>
+        <td><%= award.procedure %></td>
+        <td><%= award.type %></td>
+        <td><%= award.tender %></td>
+        <td><%= award.price %></td>
+      </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>

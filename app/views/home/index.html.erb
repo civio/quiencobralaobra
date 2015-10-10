@@ -1,0 +1,13 @@
+<div class="subtitle">
+  <h2>Un mapa de la contratación de obra pública en España</h2>
+</div>
+
+<div class="panel panel-default">
+  <%= image_tag('http://lorempixel.com/1140/500', :class => 'img-responsive') %>
+</div>
+
+<div class="title posts">
+  <p>Artículos recientes</p>
+</div>
+
+<%= render('partials/posts', :locals => { :limit_to => 3 }) %>

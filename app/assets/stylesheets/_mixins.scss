@@ -1,0 +1,33 @@
+// Horizontal double lines around titles
+@mixin title-lines-horizontal($color, $top: 20px, $zindex: auto ) {
+
+  &:after{
+    content: "";
+    display: block;
+    position: absolute;
+    top: $top;
+    left: 0;
+    right: 0;
+    height: 5px;
+    border-top: 1px solid $color;
+    border-bottom: 1px solid $color;
+    z-index: $zindex;
+  }
+}
+
+// Vertical double lines at left
+@mixin title-lines-vertical($color, $left: 0) {
+
+  &:after{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: $left;
+    bottom: 0;
+    width: 5px;
+    height: 100%;
+    border-right: 1px solid $color;
+    border-left: 1px solid $color;
+  }
+}
