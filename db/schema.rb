@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010165105) do
+ActiveRecord::Schema.define(version: 20151010185405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,16 @@ ActiveRecord::Schema.define(version: 20151010165105) do
     t.datetime "publication_date"
   end
 
+  add_index "articles", ["slug"], name: "index_articles_on_slug", unique: true, using: :btree
+  add_index "articles", ["title"], name: "index_articles_on_title", unique: true, using: :btree
+
   create_table "bidders", force: :cascade do |t|
     t.string "name"
     t.string "slug"
   end
+
+  add_index "bidders", ["name"], name: "index_bidders_on_name", unique: true, using: :btree
+  add_index "bidders", ["slug"], name: "index_bidders_on_slug", unique: true, using: :btree
 
   create_table "cpv_terms", force: :cascade do |t|
     t.string   "code"
@@ -40,5 +46,8 @@ ActiveRecord::Schema.define(version: 20151010165105) do
     t.string "name"
     t.string "slug"
   end
+
+  add_index "public_bodies", ["name"], name: "index_public_bodies_on_name", unique: true, using: :btree
+  add_index "public_bodies", ["slug"], name: "index_public_bodies_on_slug", unique: true, using: :btree
 
 end
