@@ -1,20 +1,20 @@
 <div class="posts wall row">
    
   <!-- Posts list -->
-  <% @articles.each_with_index do |post, i| %>
+  <% @articles.each_with_index do |article, i| %>
     <% unless !(defined?(limit_to)).nil? and i >= limit_to %> 
 
     <div class="wall-item col-sm-6 col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3><%= link_to post.title, '/articulos/'+post.url %></h3>
+          <h3><%= link_to article.title, article_path(article) %></h3>
           <div class="post-date">
-            <span class="day"><%= post.date_day %></span>
-            <span class="month"><%= post.date_month %></span>
+            <span class="day"><%= article.publication_date.day %></span>
+            <span class="month"><%= I18n.localize(article.publication_date, :format => "%B")[0,3] %></span>
           </div>
         </div>
         <div class="panel-body">
-          <%= link_to image_tag('http://lorempixel.com/500/300', :class => 'img-responsive'), "/articulos/#{post.url}", :class => 'image' %>
+          <%= link_to image_tag('http://lorempixel.com/500/300', :class => 'img-responsive'), article_path(article), :class => 'image' %>
           <div class="description">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.</p>
           </div>

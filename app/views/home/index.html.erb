@@ -3,11 +3,11 @@
 </div>
 
 <div class="panel panel-default">
-  <%= image_tag('http://lorempixel.com/1140/500', :class => 'img-responsive') %>
+  <%= image_tag('http://lorempixel.com/1140/500', class: 'img-responsive') %>
 </div>
 
 <div class="title posts">
   <p>Artículos recientes</p>
 </div>
 
-<%= render('partials/posts', :locals => { :limit_to => 3 }) %>
+<%= render(partial: 'partials/posts', locals: { limit_to: 3 }) %>

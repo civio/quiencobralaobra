@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @articles = [] # FIXME
+    @articles = Article.all
   end
 
   def about_us
