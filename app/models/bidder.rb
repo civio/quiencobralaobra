@@ -1,5 +1,5 @@
 class Bidder < ActiveRecord::Base
-  has_many :awards
+  has_many :awards, dependent: :delete_all
 
   has_many :mentions, as: :mentionee, inverse_of: :mentionee, dependent: :delete_all
 
