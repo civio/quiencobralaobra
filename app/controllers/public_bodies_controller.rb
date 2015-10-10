@@ -7,12 +7,12 @@ class PublicBodiesController < ApplicationController
 
   def show
     @title = @public_body.name
-    @contract_awards = []
+    @contract_awards = @public_body.awards
   end
 
   private
 
     def set_public_body
-      @public_body = PublicBody.find_by_slug!(params[:id])
+      @public_body = PublicBody.includes(:awards).find_by_slug!(params[:id])
     end
 end

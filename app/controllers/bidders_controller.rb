@@ -7,12 +7,12 @@ class BiddersController < ApplicationController
 
   def show
     @title = @bidder.name
-    @contract_awards = []
+    @contract_awards = @bidder.awards
   end
 
   private
 
     def set_bidder
-      @bidder = Bidder.find_by_slug!(params[:id])
+      @bidder = Bidder.includes(:awards).find_by_slug!(params[:id])
     end
 end
