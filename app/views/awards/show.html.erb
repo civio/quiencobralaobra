@@ -1,0 +1,36 @@
+<div class="title contract single">
+  <h2>Contrato</h2>
+</div>
+
+<div class="panel panel-default">
+  <div class="table-responsive">
+    <table class="table footable table-striped">
+      <tbody>
+        <tr>
+          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Fecha</th>
+          <td><%= @award.award_date %></td>
+        </tr>
+        <tr>
+          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Administración</th>
+          <td><%= link_to @award.public_body.name, public_body_path(@award.public_body) %></td>
+        </tr>
+        <tr>
+          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Ganador</th>
+          <td><%= link_to @award.bidder.name, bidder_path(@award.bidder) %></td>
+        </tr>
+        <tr>
+          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Procedimiento</th>
+          <td>Procedimiento</td>
+        </tr>
+        <tr>
+          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Tipo</th>
+          <td>Tipo</td>
+        </tr>
+        <tr>
+          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Importe (€)</th>
+          <td><%= @award.amount %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

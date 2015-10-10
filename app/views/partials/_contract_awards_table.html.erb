@@ -8,24 +8,20 @@
         <th>Empresa</th>
         <th>Procedimiento</th>
         <th>Tipo</th>
-        <th>Licitación <i>(€)</i></th>
-        <th>Precio <i>(€)</i></th>
+        <th>Importe <i>(€)</i></th>
       </tr>
     </thead>
     <tbody>
-    <% @contract_awards.each_with_index do |award, i| %>
-      <% unless !(defined?(company)).nil? and company != award.company %>
+    <% @contract_awards.each do |award| %>
       <tr>
-        <td><%= link_to '<i class="glyphicon glyphicon-link"></i>'.html_safe, '/contratos/'+i.to_s %></td>
-        <td><%= award.date %></td>
-        <td><%= link_to award.administration, '/administraciones/'+get_url( award.administration, 'administrations' ) %></td>
-        <td><%= link_to award.company, '/empresas/'+get_url( award.company, 'companies' ) %></td>
-        <td><%= award.procedure %></td>
-        <td><%= award.type %></td>
-        <td><%= award.tender %></td>
-        <td><%= award.price %></td>
+        <td><%= link_to '<i class="glyphicon glyphicon-link"></i>'.html_safe, award_path(award) %></td>
+        <td><%= award.award_date %></td>
+        <td><%= link_to award.public_body.name, public_body_path(award.public_body) %></td>
+        <td><%= link_to award.bidder.name, bidder_path(award.bidder) %></td>
+        <td>Procedimiento</td>
+        <td>Tipo</td>
+        <td><%= award.amount %></td>
       </tr>
-      <% end %>
     <% end %>
     </tbody>
   </table>

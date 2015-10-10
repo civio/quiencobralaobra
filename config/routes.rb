@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :bidders, path: 'empresas', only: [:index, :show]
 
-  resources :awards, path: 'contratos', only: :index
+  resources :awards, path: 'contratos', only: [:index, :show]
 
   resources :articles, path: 'articulos', only: [:index, :show]
 
