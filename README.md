@@ -15,6 +15,7 @@ In OS X, if using Postgres.app as the database the 'pg' gem will throw an error.
 Create the database:
 
     $ rake db:create
+    $ rake db:seed
 
 Load CPV codes:
 

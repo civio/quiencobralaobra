@@ -8,3 +8,6 @@
 
 PublicBody.delete_all
 PublicBody.create([{ name: 'Ministerio de Agricultura'}, { name: 'Ministerio de Cultura' }])
+
+Bidder.delete_all
+Bidder.create([{ name: 'Iberdrola'}, { name: 'FCC' }, { name: 'Microsoft' }])
