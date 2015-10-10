@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010185837) do
+ActiveRecord::Schema.define(version: 20151010193424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20151010185837) do
     t.string   "title"
     t.string   "slug"
     t.datetime "publication_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "articles", ["slug"], name: "index_articles_on_slug", unique: true, using: :btree
@@ -41,8 +43,10 @@ ActiveRecord::Schema.define(version: 20151010185837) do
   add_index "awards", ["public_body_id"], name: "index_awards_on_public_body_id", using: :btree
 
   create_table "bidders", force: :cascade do |t|
-    t.string "name"
-    t.string "slug"
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "bidders", ["name"], name: "index_bidders_on_name", unique: true, using: :btree
@@ -58,8 +62,10 @@ ActiveRecord::Schema.define(version: 20151010185837) do
   add_index "cpv_terms", ["code"], name: "index_cpv_terms_on_code", using: :btree
 
   create_table "public_bodies", force: :cascade do |t|
-    t.string "name"
-    t.string "slug"
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "public_bodies", ["name"], name: "index_public_bodies_on_name", unique: true, using: :btree
