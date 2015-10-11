@@ -11,4 +11,37 @@ namespace :data do
     end
   end
 
+  desc "Import list of awards"
+  task import_awards: :environment do
+    def row_to_hash(row, column_names)
+      properties = {}
+      row.each_with_index {|value, position| properties[column_names[position]] = value }
+      properties
+    end
+
+    def load_award(properties)
+      public_body = PublicBody.where(name: properties['Entidad adjudicadora - Organismo']).first_or_create
+      bidder = Bidder.where(name: properties['Formalización del contrato - Contratista']).first_or_create
+      Award.create!({
+          public_body: public_body,
+          bidder: bidder, 
+          award_date: '1/1/2015', # FIXME
+          amount: properties['Análisis - Importe']*100 # in cents 
+        })
+    end
+
+    column_names = nil
+    Award.delete_all
+    CSV.read('db/awards.csv').each_with_index do |row, i|
+      if i==0
+        # The first row contains the column names
+        column_names = row
+      else
+        # We convert the row to a hash with named properties
+        # FIXME: Remove trailing dots (here or in the parser?)
+        properties = row_to_hash(row, column_names)
+        load_award(properties)
+      end
+    end
+  end
 end
