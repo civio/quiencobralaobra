@@ -48,8 +48,8 @@ group :development do
 end
 
 
-
 # QCLO app
+gem 'devise'
 gem 'stringex'
 
 # Admin interface

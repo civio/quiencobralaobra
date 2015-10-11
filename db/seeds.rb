@@ -6,6 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.create!( name: 'Admin', 
+              email: 'admin@quiencobralaobra.es', 
+              password: 'password', 
+              password_confirmation: 'password')
+
+
 PublicBody.delete_all
 first_body = PublicBody.create!({ name: 'Ministerio de Agricultura'})
 second_body = PublicBody.create!({ name: 'Ministerio de Cultura' })
