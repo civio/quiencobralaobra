@@ -15,8 +15,15 @@ In OS X, if using Postgres.app as the database the 'pg' gem will throw an error.
 Create the database:
 
     $ rake db:create
+
+You can load some fake data using the DB seeds:
+
     $ rake db:seed
 
-Load CPV codes:
+Or load a small subset of real contract data:
+
+    $ rake data:import_awards
+
+Load CPV codes (not needed for now):
 
     $ rake data:import_cpv
