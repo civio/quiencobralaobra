@@ -16,11 +16,11 @@ Create the database:
 
     $ rake db:create
 
-You can load some fake data using the DB seeds:
+Create the first user (admin@quiencobralaobra.es / password) using the DB seeds:
 
     $ rake db:seed
 
-Or load a small subset of real contract data:
+Then load a small subset of real contract data, which will automatically create a number of public authorities and bidders:
 
     $ rake data:import_awards
 
