@@ -50,6 +50,7 @@ end
 
 # QCLO app
 gem 'devise'
+gem "cancancan"
 gem 'stringex'
 
 # Admin interface
