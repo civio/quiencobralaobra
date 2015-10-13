@@ -25,7 +25,7 @@
         <a href="http://www.civio.es/dona/" class="civio-banner" target="_blank">
           <img class="img-responsive" alt="Banner civio" src="<%= asset_path("banner_civio.jpg") %>">
         </a>
-        <%= render('partials/sharing_buttons') %>
+        <%= render 'partials/sharing_buttons', title: @title %>
       </div>
       <div class="post-comments">
         <div id="disqus_thread"></div>
@@ -47,7 +47,7 @@
   </div>
 
   <div class="sidebar col-sm-4">
-    <%= render('partials/sharing_buttons') %>
+    <%= render 'partials/sharing_buttons', title: @title %>
     <div class="related-entities panel panel-default">
       <div class="panel-heading">
         <h4>Protagonistas</h4>
