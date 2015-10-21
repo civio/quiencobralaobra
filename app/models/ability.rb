@@ -6,6 +6,11 @@ class Ability
       can :access, :rails_admin   # grant access to rails_admin
       can :dashboard              # grant access to the dashboard
       can :manage, :all           # access all models
+    else
+      # Note that allowing access only to published articles doesn't mean the
+      # non-published ones disappear from the Article list automatically.
+      # Additional work is needed in the controller.
+      can :read, Article, published: true
     end
 
     # Define abilities for the passed in user here. For example:

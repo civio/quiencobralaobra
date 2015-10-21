@@ -25,6 +25,7 @@ first_article = Article.create!({
     photo_footer: 'Lorem ipsum pie de foto',
     photo_credit: 'El autor',
     photo_credit_link: 'http://google.com',
+    published: true,
     publication_date: '12/9/2015'
   })
 # first_article.mentions_in_content = create_mentions(first_article, [first_body, first_bidder])
@@ -36,6 +37,7 @@ second_article = Article.create!({
     photo_footer: 'Lorem ipsum pie de foto',
     photo_credit: 'El autor',
     photo_credit_link: 'http://google.com',
+    published: true,
     publication_date: '20/9/2015'
   })
 # second_article.mentions_in_content = create_mentions(first_article, [first_bidder, second_bidder, third_bidder])
@@ -47,6 +49,7 @@ third_article = Article.create!({
     photo_footer: 'Lorem ipsum pie de foto',
     photo_credit: 'El autor',
     photo_credit_link: 'http://google.com',
+    published: false,
     publication_date: '4/10/2015'
   })
 # third_article.mentions_in_content = create_mentions(first_article, [first_body, second_body])
@@ -58,6 +61,7 @@ Article.create!({
     photo_footer: 'Lorem ipsum pie de foto',
     photo_credit: 'El autor',
     photo_credit_link: 'http://google.com',
+    published: false,
     publication_date: '14/10/2015'
   })
 

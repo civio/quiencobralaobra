@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @articles = Article.all
+    @articles = (can? :manage, Article) ? Article.all : Article.published
   end
 
   def about_us

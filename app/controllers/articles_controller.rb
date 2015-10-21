@@ -2,10 +2,11 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show]
 
   def index
-    @articles = Article.all
+    @articles = (can? :manage, Article) ? Article.all : Article.published
   end
 
   def show
+    authorize! :read, @article
     @title = @article.title
   end
 
