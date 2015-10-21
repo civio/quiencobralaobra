@@ -16,7 +16,7 @@
         <div class="panel-body">
           <%= link_to image_tag('http://lorempixel.com/500/300', :class => 'img-responsive'), article_path(article), :class => 'image' %>
           <div class="description">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.</p>
+            <p><%= article.lead %></p>
           </div>
         </div>
       </div>

@@ -7,19 +7,18 @@
   <div class="post-content col-sm-8">
     <div class="panel panel-default">
       <%= image_tag('http://lorempixel.com/780/360', class: 'img-responsive') %>
-      <div class="picture-footer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.</div>
-      <div class="picture-credits">Foto: <%= link_to 'Lorem Ipsum', '#' %></div>
+      <div class="picture-footer"><%= @article.photo_footer %></div>
+      <div class="picture-credits">Foto: <%= link_to @article.photo_credit, @article.photo_credit_link, target: '_blank' %></div>
       <div class="panel-body">
         <div class="post-date">
-          <span class="day">31</span>
-          <span class="month">ago</span>
-          <span class="year">2015</span>
+          <span class="day"><%= @article.publication_date.day %></span>
+          <span class="month"><%= I18n.localize(@article.publication_date, :format => "%B")[0,3] %></span>
+          <span class="year"><%= @article.publication_date.year %></span>
         </div>
-        <h3 class="post-title"><%= @title %></h3>
+        <h3 class="post-title"><%= @article.lead %></h3>
         <div class="post-meta">Por <%= link_to 'Javier de Vega', '#' %></div>
         <div class="post-description">
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+          <p><%= @article.content %></p>
         </div>
         <!-- CIVIO Banner -->
         <a href="http://www.civio.es/dona/" class="civio-banner" target="_blank">
