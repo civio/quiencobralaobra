@@ -50,8 +50,14 @@ end
 
 # QCLO app
 gem 'devise'
-gem "cancancan"
+gem 'cancancan'
 gem 'stringex'
+gem 'figaro'
+
+# Picture upload and handling
+gem 'mini_magick'
+gem 'carrierwave'
+gem 'fog'
 
 # Admin interface
 gem 'rails_admin'

@@ -93,7 +93,7 @@ RailsAdmin.config do |config|
       end
       group :photo do
         label "Photo"
-        field :photo_id
+        field :photo, :carrierwave
         field :photo_footer
         field :photo_credit
         field :photo_credit_link

@@ -29,6 +29,8 @@ first_article = Article.create!({
     published: true,
     publication_date: '12/9/2015'
   })
+first_article.photo.store!(File.open(File.join(Rails.root, 'db', 'seed_files', 'foo.png')))
+first_article.save!
 # first_article.mentions_in_content = create_mentions(first_article, [first_body, first_bidder])
 
 second_article = Article.create!({

@@ -14,7 +14,9 @@
           </div>
         </div>
         <div class="panel-body">
-          <%= link_to image_tag('http://lorempixel.com/500/300', :class => 'img-responsive'), article_path(article), :class => 'image' %>
+          <% if article.photo and !article.photo.url.blank? %>
+            <%= link_to image_tag(article.photo.url(:small), :class => 'img-responsive'), article_path(article), :class => 'image' %>
+          <% end %>
           <div class="description">
             <p><%= article.lead %></p>
           </div>

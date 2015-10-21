@@ -6,7 +6,9 @@
 
   <div class="post-content col-sm-8">
     <div class="panel panel-default">
-      <%= image_tag('http://lorempixel.com/780/360', class: 'img-responsive') %>
+      <% if @article.photo and !@article.photo.url.blank? %>
+        <%= link_to image_tag(@article.photo.url(:full), :class => 'img-responsive'), article_path(@article), :class => 'image' %>
+      <% end %>
       <div class="picture-footer"><%= @article.photo_footer %></div>
       <div class="picture-credits">Foto: <%= link_to @article.photo_credit, @article.photo_credit_link, target: '_blank' %></div>
       <div class="panel-body">

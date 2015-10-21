@@ -107,7 +107,7 @@
     line-height: 1.6em;    
     color: $colorGray;
     overflow: hidden;
-    background: url(/images/moustache.gif) no-repeat bottom center;
+    background: asset-url('moustache.gif') no-repeat bottom center;
     padding: 2*$grid-gutter-width 0 $grid-gutter-width;
     border-top: 1px solid $colorSecondary;
 
@@ -133,7 +133,7 @@
     li{
       padding-left: 40px;
       padding-bottom: $grid-gutter-width;
-      background: url(/images/list-moustache.gif) no-repeat 0px 7px;
+      background: asset-url('list-moustache.gif') no-repeat 0px 7px;
     }
   }
 
