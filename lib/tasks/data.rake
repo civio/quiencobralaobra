@@ -29,7 +29,8 @@ namespace :data do
           category: properties['Análisis - Tipo'],
           process_type: properties['Análisis - Procedimiento'],
           process_track: properties['Análisis - Tramitación'],
-          amount: properties['Análisis - Importe']*100 # in cents
+          amount: properties['Análisis - Importe']*100, # in cents
+          properties: properties
         })
     end
 

@@ -38,3 +38,19 @@
     </table>
   </div>
 </div>
+
+<div class="panel panel-default">
+  <div class="table-responsive">
+    <table class="table footable table-striped">
+      <tbody>
+        <% @award.properties.keys.sort.each do |key| %>
+          <% next if @award.properties[key].blank? %>
+          <tr>
+            <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> <%= key %></th>
+            <td><%= @award.properties[key] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
