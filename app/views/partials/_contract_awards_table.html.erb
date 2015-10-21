@@ -6,8 +6,9 @@
         <th>Fecha</th>
         <th>Administración</th>
         <th>Empresa</th>
-        <th>Procedimiento</th>
         <th>Tipo</th>
+        <th>Procedimiento</th>
+        <th>Tramitación</th>
         <th>Importe <i>(€)</i></th>
       </tr>
     </thead>
@@ -18,8 +19,9 @@
         <td><%= award.award_date %></td>
         <td><%= link_to award.public_body.name, public_body_path(award.public_body) %></td>
         <td><%= link_to award.bidder.name, bidder_path(award.bidder) %></td>
-        <td>Procedimiento</td>
-        <td>Tipo</td>
+        <td><%= award.category %></td>
+        <td><%= award.process_type %></td>
+        <td><%= award.process_track %></td>
         <td><%= award.amount %></td>
       </tr>
     <% end %>

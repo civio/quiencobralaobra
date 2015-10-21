@@ -26,7 +26,10 @@ namespace :data do
           public_body: public_body,
           bidder: bidder, 
           award_date: '1/1/2015', # FIXME
-          amount: properties['Análisis - Importe']*100 # in cents 
+          category: properties['Análisis - Tipo'],
+          process_type: properties['Análisis - Procedimiento'],
+          process_track: properties['Análisis - Tramitación'],
+          amount: properties['Análisis - Importe']*100 # in cents
         })
     end
 
