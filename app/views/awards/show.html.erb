@@ -19,12 +19,16 @@
           <td><%= link_to @award.bidder.name, bidder_path(@award.bidder) %></td>
         </tr>
         <tr>
-          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Procedimiento</th>
-          <td>Procedimiento</td>
+          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Tipo</th>
+          <td><%= @award.category %></td>
         </tr>
         <tr>
-          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Tipo</th>
-          <td>Tipo</td>
+          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Procedimiento</th>
+          <td><%= @award.process_type %></td>
+        </tr>
+        <tr>
+          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Tramitación</th>
+          <td><%= @award.process_track %></td>
         </tr>
         <tr>
           <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Importe (€)</th>
