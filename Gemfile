@@ -55,3 +55,4 @@ gem 'stringex'
 
 # Admin interface
 gem 'rails_admin'
+gem 'ckeditor_rails'

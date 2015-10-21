@@ -18,7 +18,7 @@
         <h3 class="post-title"><%= @article.lead %></h3>
         <div class="post-meta">Por <%= link_to 'Javier de Vega', '#' %></div>
         <div class="post-description">
-          <p><%= @article.content %></p>
+          <%= raw(@article.content) %>
         </div>
         <!-- CIVIO Banner -->
         <a href="http://www.civio.es/dona/" class="civio-banner" target="_blank">

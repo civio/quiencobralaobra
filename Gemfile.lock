@@ -49,6 +49,8 @@ GEM
     builder (3.2.2)
     byebug (6.0.2)
     cancancan (1.13.1)
+    ckeditor_rails (4.5.3)
+      railties (>= 3.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -192,6 +194,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.5)
   byebug
   cancancan
+  ckeditor_rails
   coffee-rails (~> 4.1.0)
   devise
   jbuilder (~> 2.0)
