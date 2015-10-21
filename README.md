@@ -27,3 +27,15 @@ Then load a small subset of real contract data, which will automatically create 
 Load CPV codes (not needed for now):
 
     $ rake data:import_cpv
+
+###Deploying in Heroku
+
+Follow the usual steps. Create the app and then:
+
+    $ git push heroku master
+    $ heroku run rake db:setup
+    $ heroku run rake data:import_awards
+
+In production uploaded pictures are stored in S3, so you will need to provide your AWS credentials, which we handle safely using the Figaro gem. Edit `config/application.yml` and then, to set the env variables in Heroku, run:
+
+    $ figaro heroku:set -e production
