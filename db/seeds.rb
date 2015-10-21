@@ -7,10 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.delete_all
-User.create!( name: 'Admin', 
-              email: 'admin@quiencobralaobra.es', 
-              password: 'password', 
-              password_confirmation: 'password')
+admin = User.create!( name: 'Admin', 
+                      email: 'admin@quiencobralaobra.es', 
+                      password: 'password', 
+                      password_confirmation: 'password')
 
 
 def create_mentions(article, mentionees)
@@ -21,6 +21,7 @@ Article.delete_all
 first_article = Article.create!({
     title: 'Economía oculta los nombres de las tabaqueras con las que se reúne para hablar sobre la Directiva de Productos del Tabaco',
     lead: 'Lorem Ipsum Blah Blah',
+    author: admin,
     content: 'Lorem Ipsum Blah Blah. Lorem Ipsum Blah Blah. Lorem Ipsum Blah Blah. Lorem Ipsum Blah Blah.',
     photo_footer: 'Lorem ipsum pie de foto',
     photo_credit: 'El autor',
@@ -33,6 +34,7 @@ first_article = Article.create!({
 second_article = Article.create!({
     title: 'La inversión en obra pública',
     lead: 'Lorem Ipsum Blah Blah',
+    author: admin,
     content: 'Lorem Ipsum Blah Blah. Lorem Ipsum Blah Blah. Lorem Ipsum Blah Blah. Lorem Ipsum Blah Blah.',
     photo_footer: 'Lorem ipsum pie de foto',
     photo_credit: 'El autor',
@@ -45,6 +47,7 @@ second_article = Article.create!({
 third_article = Article.create!({
     title: 'Negociado versus concurso',
     lead: 'Lorem Ipsum Blah Blah',
+    author: admin,
     content: 'Lorem Ipsum Blah Blah. Lorem Ipsum Blah Blah. Lorem Ipsum Blah Blah. Lorem Ipsum Blah Blah.',
     photo_footer: 'Lorem ipsum pie de foto',
     photo_credit: 'El autor',
@@ -57,6 +60,7 @@ third_article = Article.create!({
 Article.create!({
     title: 'Lo que siempre quisiste saber sobre la contratación pública',
     lead: 'Lorem Ipsum Blah Blah',
+    author: admin,
     content: 'Lorem Ipsum Blah Blah. Lorem Ipsum Blah Blah. Lorem Ipsum Blah Blah. Lorem Ipsum Blah Blah.',
     photo_footer: 'Lorem ipsum pie de foto',
     photo_credit: 'El autor',
