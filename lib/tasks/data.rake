@@ -25,7 +25,7 @@ namespace :data do
       Award.create!({
           public_body: public_body,
           bidder: bidder, 
-          award_date: '1/1/2015', # FIXME
+          award_date: properties['[QCLO] Fecha de adjudicación'],
           category: properties['Análisis - Tipo'],
           process_type: properties['Análisis - Procedimiento'],
           process_track: properties['Análisis - Tramitación'],
