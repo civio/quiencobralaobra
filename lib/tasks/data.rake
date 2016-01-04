@@ -44,7 +44,6 @@ namespace :data do
         column_names = row
       else
         # We convert the row to a hash with named properties
-        # FIXME: Remove trailing dots (here or in the parser?)
         properties = row_to_hash(row, column_names)
         load_award(properties)
       end
