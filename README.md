@@ -36,6 +36,11 @@ Follow the usual steps. Create the app and then:
     $ heroku run rake db:setup
     $ heroku run rake data:import_awards
 
+Or upload a copy of the local development database:
+
+    $ pg_dump -Fc --no-acl --no-owner -h localhost qclo_development > qclo.dump
+    $ heroku pg:backups restore 'https://dl.dropboxusercontent.com/u/.../qclo.dump' DATABASE_COLOR
+
 In production uploaded pictures are stored in S3, so you will need to provide your AWS credentials, which we handle safely using the Figaro gem. Edit `config/application.yml` and then, to set the env variables in Heroku, run:
 
     $ figaro heroku:set -e production
