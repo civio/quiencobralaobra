@@ -12,7 +12,7 @@ namespace :data do
   end
 
   desc "Import list of awards"
-  task import_awards: :environment do
+  task :import_awards, [:filename] => :environment do |t, args|
     def row_to_hash(row, column_names)
       properties = {}
       row.each_with_index {|value, position| properties[column_names[position]] = value }
@@ -36,7 +36,7 @@ namespace :data do
 
     column_names = nil
     Award.delete_all
-    CSV.read('db/awards.csv').each_with_index do |row, i|
+    CSV.read(args[:filename]).each_with_index do |row, i|
       if i==0
         # The first row contains the column names
         column_names = row
