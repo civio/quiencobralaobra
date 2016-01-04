@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021185614) do
+ActiveRecord::Schema.define(version: 20160104010518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20151021185614) do
   end
 
   add_index "awards", ["bidder_id"], name: "index_awards_on_bidder_id", using: :btree
-  add_index "awards", ["properties"], name: "index_awards_on_properties", using: :btree
   add_index "awards", ["public_body_id"], name: "index_awards_on_public_body_id", using: :btree
 
   create_table "bidders", force: :cascade do |t|
