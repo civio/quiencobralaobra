@@ -45,7 +45,9 @@ namespace :data do
       else
         # We convert the row to a hash with named properties
         properties = row_to_hash(row, column_names)
-        load_award(properties)
+
+        # Load the data if it's a public works award
+        load_award(properties) if properties['[QCLO] Es Obra Pública']=='S'
       end
     end
   end
