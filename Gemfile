@@ -62,3 +62,6 @@ gem 'fog'
 # Admin interface
 gem 'rails_admin'
 gem 'ckeditor_rails'
+
+# Serve assets in Heroku and handle logging
+gem 'rails_12factor', group: :production
