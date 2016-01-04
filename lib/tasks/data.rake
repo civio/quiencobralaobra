@@ -36,6 +36,8 @@ namespace :data do
 
     column_names = nil
     Award.delete_all
+    Bidder.delete_all
+    PublicBody.delete_all
     CSV.read(args[:filename]).each_with_index do |row, i|
       if i==0
         # The first row contains the column names
