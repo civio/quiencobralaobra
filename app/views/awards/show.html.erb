@@ -12,11 +12,11 @@
         </tr>
         <tr>
           <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Administración</th>
-          <td><%= link_to @award.public_body.name, public_body_path(@award.public_body) %></td>
+          <td><%= link_to @award.public_body.name, public_body_path(@award.public_body) unless @award.public_body.name.blank?%></td>
         </tr>
         <tr>
           <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Ganador</th>
-          <td><%= link_to @award.bidder.name, bidder_path(@award.bidder) %></td>
+          <td><%= link_to @award.bidder.name, bidder_path(@award.bidder) unless @award.bidder.name.blank? %></td>
         </tr>
         <tr>
           <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Tipo</th>
