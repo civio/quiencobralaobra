@@ -19,4 +19,5 @@
 #
 config/application.yml
 public/uploads
+public/assets
 *.dump
