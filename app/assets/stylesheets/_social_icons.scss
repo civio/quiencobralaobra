@@ -62,9 +62,12 @@
   text-align: left;
   direction: ltr;
   
-  $sharing-button-color-glow: $colorSidebar;
+  $sharing-button-color-glow: darken( $colorSidebar, 8% );
+  $sharing-button-color-glow-dark: darken( $colorSidebar, 70% );
 
-  @include box-shadow( 0 0 0 3px rgba(red($sharing-button-color-glow), green($sharing-button-color-glow), blue($sharing-button-color-glow), 0.5), 0 0 0.25em rgba(red($sharing-button-color-glow), green($sharing-button-color-glow), blue($sharing-button-color-glow), 1) inset );
+  @include box-shadow( 
+    0 0 0 3px rgba(red($sharing-button-color-glow), green($sharing-button-color-glow), blue($sharing-button-color-glow), 0.6), 
+    0 0 4px 0 rgba(red($sharing-button-color-glow-dark), green($sharing-button-color-glow-dark), blue($sharing-button-color-glow-dark), 0.4) inset );
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {

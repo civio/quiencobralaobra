@@ -21,3 +21,7 @@ config/application.yml
 public/uploads
 public/assets
 *.dump
+
+config/application.yml-example
+
+db/2015.csv

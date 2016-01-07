@@ -4,6 +4,10 @@
     padding: $grid-gutter-width $grid-gutter-width 5px;
   }
 
+  .entity-picture{
+    padding: 5px 5px 0;
+  }
+
   .entity-title{
     color: $colorGray;
     font-family: $font-family-serif;
@@ -33,17 +37,29 @@
       display: block;
       text-align: center;
       margin: 0;
+      padding: 0;
     }
 
     li{
       float: none;
       display: inline;
       line-height: 40px;
-      font-size: 1.25em;
+      font-size: 1.125em;
+      padding: 0 2px;
+
+      .quien-manda{
+        display: inline;
+        padding: 0 14px;
+        background: url(../images/qm-logo-small.png) no-repeat center 3px transparent;
+
+        &:hover{
+          background-position: center -21px;
+        }
+      }
     }
 
     a:hover {
-      color: $colorTextGreen;
+      color: $colorTitle;
     }
   }
 }
