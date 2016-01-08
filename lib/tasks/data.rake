@@ -19,22 +19,8 @@ namespace :data do
       properties
     end
 
-    def load_award(properties)
-      public_body = PublicBody.where(name: properties['Entidad adjudicadora - Organismo']).first_or_create
-      bidder = Bidder.where(name: properties['Formalización del contrato - Contratista']).first_or_create
-      Award.create!({
-          public_body: public_body,
-          bidder: bidder, 
-          award_date: properties['[QCLO] Fecha de adjudicación'],
-          category: properties['Análisis - Tipo'],
-          process_type: properties['Análisis - Procedimiento'],
-          process_track: properties['Análisis - Tramitación'],
-          amount: properties['Análisis - Importe']*100, # in cents
-          properties: properties
-        })
-    end
-
     column_names = nil
+    processed_records = 0
     Award.delete_all
     Bidder.delete_all
     PublicBody.delete_all
@@ -47,8 +33,11 @@ namespace :data do
         properties = row_to_hash(row, column_names)
 
         # Load the data if it's a public works award
-        load_award(properties) if properties['[QCLO] Es Obra Pública']=='S'
+        Award.load_from_hash(properties) if properties['[QCLO] Es Obra Pública']=='S'
+        processed_records += 1
       end
     end
+
+    puts "#{processed_records} records processed successfully."
   end
 end
