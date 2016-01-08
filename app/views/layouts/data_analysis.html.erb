@@ -10,7 +10,19 @@
       <% unless alert.nil? %>
       <p class="alert-info"><%= alert %></p>
       <% end %>
-      <%= yield %>
+
+      <div class="title">
+        <h2>
+          <%= link_to 'Análisis de datos', data_analysis_index_path() %>
+          <%= ": #{@analysis_name}" unless @analysis_name.blank? %>
+        </h2>
+      </div>
+
+      <div class="panel panel-default panel-page">
+        <div class="panel-body">
+          <%= yield %>
+        </div>
+      </div>
     </div>
   </body>
 </html>
