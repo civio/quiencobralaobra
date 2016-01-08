@@ -30,6 +30,12 @@ RailsAdmin.config do |config|
     show_in_app
   end
 
+  # Add our own custom admin stuff
+  config.navigation_static_label = "Extras"
+  config.navigation_static_links = {
+    'Data Analysis' => '/admin/data_analysis'
+  }
+
   # If you want to track changes on your models:
   # config.audit_with :history, 'User'
 

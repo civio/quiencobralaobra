@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   resources :articles, path: 'articulos', only: [:index, :show]
 
+  # Data analysis
+  get '/admin/data_analysis', to: 'data_analysis#index', as: :data_analysis_index
+
   # Admin interface
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 

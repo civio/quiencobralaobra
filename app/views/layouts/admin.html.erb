@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <%= render "partials/head" %>
+  <body>
+    <%= render "partials/admin_header" %>
+    <div class="container">
+      <% unless notice.nil? %>
+      <p class="alert-info"><%= notice %></p>
+      <% end %>
+      <% unless alert.nil? %>
+      <p class="alert-info"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
