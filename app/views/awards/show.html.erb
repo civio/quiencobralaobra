@@ -7,6 +7,10 @@
     <table class="table footable table-striped">
       <tbody>
         <tr>
+          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Descripción</th>
+          <td><%= @award.properties['Objeto del contrato - Descripción'] %></td>
+        </tr>
+        <tr>
           <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Fecha</th>
           <td><%= @award.award_date %></td>
         </tr>
@@ -33,6 +37,12 @@
         <tr>
           <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Importe (€)</th>
           <td><%= @award.amount %></td>
+        </tr>
+        <tr>
+          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Fuente (€)</th>
+          <td><%= link_to @award.properties['BOE ID'],
+                          "http://www.boe.es/buscar/doc.php?id=#{@award.properties['BOE ID']}",
+                          target: '_blank' %></td>
         </tr>
       </tbody>
     </table>
