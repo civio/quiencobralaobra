@@ -4,7 +4,9 @@ class Award < ActiveRecord::Base
 
   def self.load_from_hash(properties)
     # Load the data only if it's a public works award
-    return unless properties['[QCLO] Es Obra Pública']=='S'
+    # FIXME: Let's load the whole thing temporarily and use the database to check
+    # whether we're doing it correctly.
+    # return unless properties['[QCLO] Es Obra Pública']=='S'
 
     public_body = PublicBody.where(name: properties['Entidad adjudicadora - Organismo']).first_or_create
     bidder = Bidder.where(name: properties['Formalización del contrato - Contratista']).first_or_create
