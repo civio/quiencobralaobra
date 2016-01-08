@@ -3,6 +3,9 @@ class Award < ActiveRecord::Base
   belongs_to :bidder
 
   def self.load_from_hash(properties)
+    # Load the data only if it's a public works award
+    return unless properties['[QCLO] Es Obra Pública']=='S'
+
     public_body = PublicBody.where(name: properties['Entidad adjudicadora - Organismo']).first_or_create
     bidder = Bidder.where(name: properties['Formalización del contrato - Contratista']).first_or_create
     Award.create!({

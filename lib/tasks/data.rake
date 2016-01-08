@@ -29,11 +29,8 @@ namespace :data do
         # The first row contains the column names
         column_names = row
       else
-        # We convert the row to a hash with named properties
-        properties = row_to_hash(row, column_names)
-
-        # Load the data if it's a public works award
-        Award.load_from_hash(properties) if properties['[QCLO] Es Obra Pública']=='S'
+        # We convert the row to a hash with named properties, and load it
+        Award.load_from_hash(row_to_hash(row, column_names))
         processed_records += 1
       end
     end
