@@ -1,0 +1,5 @@
+<p>Sobre un total de <%= @total_contracts %> contratos:</p>
+
+<% @results.each do |result| %>
+  <p><%= "#{result['key']}: #{result['count']}" %></p>
+<% end %>
