@@ -101,10 +101,9 @@
   }
 
   .post-description {
-    font-size: 1.125em;
-    //font-size: 0.938em;    
-    //line-height: 1.6em;    
-    color: $colorGray;
+    font-size: 1.125em; 
+    line-height: 1.5em;    
+    //color: $colorGray;
     overflow: hidden;
     background: asset-url('moustache.gif') no-repeat bottom center;
     padding: 2*$grid-gutter-width 0 $grid-gutter-width;
