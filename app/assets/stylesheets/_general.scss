@@ -209,3 +209,30 @@ hr.title-lines-horizontal{
     }
   }
 }
+
+.panel{
+
+  .page-navigation{
+    padding: $grid-gutter-width;
+    padding-left: 3*$grid-gutter-width;
+
+    li{
+      font-size: 1.125em;
+      line-height: 1.25em;
+      margin-bottom: $grid-gutter-width;
+
+      a{
+        color: $colorTitle;
+
+        &:hover{
+          color: $colorTextGreen;
+        }
+      }
+    }
+  }
+}
+
+.carousel-controls{
+  height: 120px;
+  position: relative;
+}

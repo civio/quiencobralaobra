@@ -1,0 +1,57 @@
+<div class="title law">
+  <h2>Guía básica de la Ley de Contratos del Sector Público</h2>
+</div>
+
+<div class="row">
+  <div class="col-sm-3">
+    <%= render "partials/page_the_law_navigation", index: @page_index %>
+  </div>
+
+  <div class="col-sm-9">
+    <div class="panel panel-default panel-page">
+      <div class="panel-body">
+
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+        
+        <h3>Prohibiciones para contratar con las AAPP</h3>
+        <ul>
+          <li>Solo pueden ser adjudicatarias las empresas que tengan en sus fines (estatutos o reglas fundacionales) el objeto o ámbito de actividad.</li>
+          <li>No pueden concurrir empresas que participen en la elaboración de las especificaciones técnicas o documentos preparatorios "siempre que pueda provocar restrucciones a la libre competencia o suponer trato privilegiado".</li>
+          <li>Están vetadas las empresas sancionadas por infracción grave en: disciplina de mercado, integración laboral y no discriminación de discapacitados; o muy grave en: materia social (prevención de riesgos laborales, por ejemplo) o medioambiental. </li>
+          <li>Prohibido también para empresas en concurso voluntario, insolventes o sometidas a intervención judicial.</li>
+          <li>Tienen que hallarse al corriente en el cumplimiento de sus obligaciones tributarias o con la seguridad social.</li>
+          <li>Veto a las que presented falsedades en su declaración responsable de estar en cumplimiento de lo anterior. </li>
+          <li>Vetado para quienes se encuentren en los supuestos de conflictos de interés de miembros del Gobierno y altos cargos (Ley 53/1984). También sus cónyuges, vinculados e hijos (si tienen su representación legal). </li>
+          <li>Prohibición a quienes hayan contratado a personas que incumplen conflicto de intereses al pasar de lo público a lo privado en los dos años siguientes del mismo sector que regulaba en lo público. </li>
+          <li>Condenado (el que se presente o las empresas cuyos administradores o representantes estén condenados por el trabajo en esa empresa) por sentencia firme en los siguientes delitos:
+            <ul>
+              <li>Asociación ilítica.</li>
+              <li>Corrupción en transaccciones económicas internacionales.</li>
+              <li>Tráfico de influencias.</li>
+              <li>Cohecho.</li>
+              <li>Fraude y exacciones ilegales.</li>
+              <li>Delitos contra la Hacienda Pública y la Seguridad Social.</li>
+              <li>Delitos contra los derechos de los trabajadores.</li>
+              <li>Malversación y similares.</li>
+              <li>Delitos relativos a la protección del medio ambiente.</li>
+              <li>Pena de inhabilitación para el ejercicio de su oficio</li>
+            </ul>
+          </li>
+        </ul>
+        <p><strong>Prohibido pero, ¿por cuánto tiempo?</strong> > En general, cinco años, 8 si hablamos de condenas firmes. </p>
+        <h4>Otras prohibiciones</h4>
+        <ul>
+          <li>Haber dado lugar a resolución firme de contrato anterior.</li>
+          <li>Haber infringido la prohibición de contratar antes.</li>
+          <li>Retirar su candidatura a una licitación o no cumplimentar los papeles necesarios para que te la adjudiquen. </li>
+          <li>Haber incumplido condiciones esenciales de contrato anterior. </li>
+        </ul>
+        <p><strong>¿Cómo se comprueba?</strong>. Lo más usual es que la empresa firme un documento en el que declara estar al corriente de sus pagos con Hacienda y la Seguridad Social y no estar en ninguna de las prohibiciones anteriores. </p>
+
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
