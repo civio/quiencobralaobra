@@ -76,7 +76,7 @@ hr.title-lines-horizontal{
   }
 
   h2{
-    font-size: 2.25em;
+    font-size: 2em;
   }
 
   &:before{
@@ -118,7 +118,7 @@ hr.title-lines-horizontal{
     .panel-heading{
       background: $panel-bg;
       border: none;
-      padding: 12px;
+      padding: 12px $grid-gutter-width;
     }
 
     .panel-body{
@@ -133,11 +133,10 @@ hr.title-lines-horizontal{
       line-height: 1.375em;
       position: relative;
 
-      @include title-lines-vertical( $colorTextGreen );
+      //@include title-lines-vertical( $colorTextGreen );
 
       a{
         display: block;
-        padding-left: $grid-gutter-width;
         color: $colorGray;
         @include transition( color 0.3s ease-out );
 
@@ -203,8 +202,7 @@ hr.title-lines-horizontal{
 .posts .wall-item .panel{
 
   h3{
-    font-size: 1.25em;
-    margin-left: 3*$grid-gutter-width;
+    font-size: 1.375em;
 
     a{
       min-height: 56px;
