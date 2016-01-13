@@ -11,13 +11,10 @@
       <div class="picture-footer"><%= @article.photo_footer %></div>
       <div class="picture-credits">Foto: <%= link_to @article.photo_credit, @article.photo_credit_link, target: '_blank' %></div>
       <div class="panel-body">
-        <div class="post-date">
-          <span class="day"><%= @article.publication_date.day %></span>
-          <span class="month"><%= I18n.localize(@article.publication_date, :format => "%B")[0,3] %></span>
-          <span class="year"><%= @article.publication_date.year %></span>
-        </div>
         <h3 class="post-title"><%= @article.lead %></h3>
-        <div class="post-meta">Por <%= @article.author.name %></div>
+        <div class="post-meta">
+          <%= @article.publication_date.day %>.<%= @article.publication_date.month %>.<%= @article.publication_date.year %></span> | <%= @article.author.name %>
+        </div>
         <div class="post-description">
           <%= raw(@article.content) %>
         </div>

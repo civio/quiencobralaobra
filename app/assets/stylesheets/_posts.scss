@@ -41,8 +41,7 @@
     line-height: 1.375em;
     text-align: left;
     padding-left: 12px;
-    margin-left: 96px;
-    min-height: 106px;
+    margin-left: 5px;
 
     @include title-lines-vertical( $colorTextGreen, -5px );
   }
