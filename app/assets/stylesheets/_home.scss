@@ -20,6 +20,8 @@
 
   .panel-body{
     padding: 2*$grid-gutter-width;
+    font-size: 1.125em;
+    line-height: 1.5em;
   }
 
   h3, h4, h5, h6{
@@ -41,6 +43,7 @@
     font-size: 1.25em;
     line-height: 1.25em;
     padding: $grid-gutter-width 0;
+    font-weight: 600;
   }
 
   h5{

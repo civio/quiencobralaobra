@@ -14,7 +14,7 @@
             <%= link_to image_tag(article.photo.url(:small), :class => 'img-responsive'), article_path(article), :class => 'image' %>
           <% end %>
           <div class="description">
-            <p><%= article.lead %></p>
+            <p><%= article.lead.html_safe %></p>
           </div>
         </div>
       </div>
