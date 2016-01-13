@@ -2,9 +2,8 @@
   <h2><%= @title %></h2>
 </div>
 
-<div class="row no-gutter post">
-
-  <div class="post-content col-sm-8">
+<div class="post">
+  <div class="post-content">
     <div class="panel panel-default">
       <% if @article.photo and !@article.photo.url.blank? %>
         <%= link_to image_tag(@article.photo.url(:full), :class => 'img-responsive'), article_path(@article), :class => 'image' %>
@@ -43,22 +42,6 @@
         </script>
         <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-      </div>
-    </div>
-  </div>
-
-  <div class="sidebar col-sm-4">
-    <%= render 'partials/sharing_buttons', title: @title %>
-    <div class="related-entities panel panel-default">
-      <div class="panel-heading">
-        <h4>Protagonistas</h4>
-      </div>
-      <div class="panel-body">
-        <ul>
-          <% @article.mentions_in_content.each do |mention| %>
-            <%= render(partial: 'partials/post_related_entity', locals: { entity: mention.mentionee }) %>
-          <% end %>
-        </ul>
       </div>
     </div>
   </div>
