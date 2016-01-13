@@ -5,8 +5,9 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  get 'nosotros', to: 'home#about_us', as: :about_us
+  get 'metodologia', to: 'home#methodology', as: :methodology
   get 'la-ley', to: 'home#about_the_law', as: :about_the_law
+  get 'glosario', to: 'home#glossary', as: :glossary
 
   resources :public_bodies, path: 'administraciones', only: [:index, :show]
 
