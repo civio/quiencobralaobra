@@ -41,8 +41,7 @@
     line-height: 1.375em;
     text-align: left;
     padding-left: 12px;
-    margin-left: 96px;
-    min-height: 106px;
+    margin-left: 5px;
 
     @include title-lines-vertical( $colorTextGreen, -5px );
   }
@@ -102,10 +101,9 @@
   }
 
   .post-description {
-
-    font-size: 0.938em;    
-    line-height: 1.6em;    
-    color: $colorGray;
+    font-size: 1.125em; 
+    line-height: 1.5em;    
+    //color: $colorGray;
     overflow: hidden;
     background: asset-url('moustache.gif') no-repeat bottom center;
     padding: 2*$grid-gutter-width 0 $grid-gutter-width;

@@ -2,9 +2,8 @@
   <h2><%= @title %></h2>
 </div>
 
-<div class="row no-gutter post">
-
-  <div class="post-content col-sm-8">
+<div class="post">
+  <div class="post-content">
     <div class="panel panel-default">
       <% if @article.photo and !@article.photo.url.blank? %>
         <%= link_to image_tag(@article.photo.url(:full), :class => 'img-responsive'), article_path(@article), :class => 'image' %>
@@ -12,13 +11,10 @@
       <div class="picture-footer"><%= @article.photo_footer %></div>
       <div class="picture-credits">Foto: <%= link_to @article.photo_credit, @article.photo_credit_link, target: '_blank' %></div>
       <div class="panel-body">
-        <div class="post-date">
-          <span class="day"><%= @article.publication_date.day %></span>
-          <span class="month"><%= I18n.localize(@article.publication_date, :format => "%B")[0,3] %></span>
-          <span class="year"><%= @article.publication_date.year %></span>
+        <h3 class="post-title"><%= @article.lead.html_safe %></h3>
+        <div class="post-meta">
+          <%= @article.publication_date.day %>.<%= @article.publication_date.month %>.<%= @article.publication_date.year %></span> | <%= @article.author.name %>
         </div>
-        <h3 class="post-title"><%= @article.lead %></h3>
-        <div class="post-meta">Por <%= @article.author.name %></div>
         <div class="post-description">
           <%= raw(@article.content) %>
         </div>
@@ -43,22 +39,6 @@
         </script>
         <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-      </div>
-    </div>
-  </div>
-
-  <div class="sidebar col-sm-4">
-    <%= render 'partials/sharing_buttons', title: @title %>
-    <div class="related-entities panel panel-default">
-      <div class="panel-heading">
-        <h4>Protagonistas</h4>
-      </div>
-      <div class="panel-body">
-        <ul>
-          <% @article.mentions_in_content.each do |mention| %>
-            <%= render(partial: 'partials/post_related_entity', locals: { entity: mention.mentionee }) %>
-          <% end %>
-        </ul>
       </div>
     </div>
   </div>

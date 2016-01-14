@@ -8,17 +8,13 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3><%= link_to article.title, article_path(article) %></h3>
-          <div class="post-date">
-            <span class="day"><%= article.publication_date.day %></span>
-            <span class="month"><%= I18n.localize(article.publication_date, :format => "%B")[0,3] %></span>
-          </div>
         </div>
         <div class="panel-body">
           <% if article.photo and !article.photo.url.blank? %>
             <%= link_to image_tag(article.photo.url(:small), :class => 'img-responsive'), article_path(article), :class => 'image' %>
           <% end %>
           <div class="description">
-            <p><%= article.lead %></p>
+            <p><%= article.lead.html_safe %></p>
           </div>
         </div>
       </div>

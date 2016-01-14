@@ -5,8 +5,19 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  get 'nosotros', to: 'home#about_us', as: :about_us
-  get 'la-ley', to: 'home#about_the_law', as: :about_the_law
+
+  get 'la-ley', to: 'pages#the_law',                                  as: :the_law_0, :defaults => { :id => 0 }
+  get 'la-ley/a-quien-aplica', to: 'pages#the_law',                   as: :the_law_1, :defaults => { :id => 1 }
+  get 'la-ley/tipos-de-contrato-por-el-objeto', to: 'pages#the_law',  as: :the_law_2, :defaults => { :id => 2 }
+  get 'la-ley/tipos-de-contrato-por-el-proceso', to: 'pages#the_law', as: :the_law_3, :defaults => { :id => 3 }
+  get 'la-ley/cuando-se-permite-el-uso-del-procedimiento-negociado', to: 'pages#the_law', as: :the_law_4, :defaults => { :id => 4 }
+  get 'la-ley/obligaciones-de-publicidad', to: 'pages#the_law',       as: :the_law_5, :defaults => { :id => 5 }
+  get 'la-ley/prohibiciones-para-contratar-con-las-aapp', to: 'pages#the_law', as: :the_law_6, :defaults => { :id => 6 }
+  get 'la-ley/los-tiempos', to: 'pages#the_law',                      as: :the_law_7, :defaults => { :id => 7 }
+  get 'la-ley/clausulas-de-resolucion', to: 'pages#the_law',          as: :the_law_8, :defaults => { :id => 8 }
+  
+  get 'glosario', to: 'pages#glossary', as: :glossary
+  get 'metodologia', to: 'pages#methodology', as: :methodology
 
   resources :public_bodies, path: 'administraciones', only: [:index, :show]
 

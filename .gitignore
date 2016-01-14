@@ -25,3 +25,5 @@ public/assets
 config/application.yml-example
 
 db/2015.csv
+
+Gemfile.lock

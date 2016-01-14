@@ -1,0 +1,32 @@
+<div class="title law">
+  <h2>Guía básica de la Ley de Contratos del Sector Público</h2>
+</div>
+
+<div class="row">
+  <div class="col-sm-3">
+    <%= render "partials/page_the_law_navigation", index: @page_index %>
+  </div>
+
+  <div class="col-sm-9">
+    <div class="panel panel-default panel-page">
+      <div class="panel-body">
+
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+        
+        <h3>Cláusulas de resolución</h3>
+        <ul>
+          <li>Por muerte, incapacidad o extinción de la empresa. </li>
+          <li>Por concurso o insolvencia.</li>
+          <li>Demora en plazos por parte del contratista (o, en procesos urgentes, si arranca más tarde de 15 días desde la formalización).</li>
+          <li>Demora en los pagos por parte de la administración de más de seis meses (o lo que marque cada CCAA). A partir de 30 días desde finalizado hay intereses. </li>
+          <li>Imposibilidad de ejecutar o seguir ejecutando el contrato por lesión grave del interés público y cuando no sea posible modificar el contrato para evitarlo. </li>
+          <li>Incumplimiento de las obligaciones contractuales esenciales.</li>
+        </ul>
+
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -20,6 +20,8 @@
 
   .panel-body{
     padding: 2*$grid-gutter-width;
+    font-size: 1.125em;
+    line-height: 1.5em;
   }
 
   h3, h4, h5, h6{
@@ -34,12 +36,14 @@
     border-bottom: 1px solid $colorSecondary;
     text-indent: 48px;
     background: asset-url('favicon-32x32.png') no-repeat 0 16px transparent;
+    font-weight: 600;
   }
 
   h4{
     font-size: 1.25em;
     line-height: 1.25em;
     padding: $grid-gutter-width 0;
+    font-weight: 600;
   }
 
   h5{
