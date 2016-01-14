@@ -213,8 +213,8 @@ hr.title-lines-horizontal{
 .panel{
 
   .page-navigation{
-    padding: $grid-gutter-width;
-    padding-left: 3*$grid-gutter-width;
+    padding: 2*$grid-gutter-width $grid-gutter-width $grid-gutter-width 3*$grid-gutter-width;
+    background: $colorHeader;
 
     li{
       font-size: 1.125em;
@@ -228,11 +228,19 @@ hr.title-lines-horizontal{
           color: $colorTextGreen;
         }
       }
+
+      &.active a{
+        color: $colorTextGreen;
+        font-weight: 600;
+      }
     }
   }
-}
 
-.carousel-controls{
-  height: 120px;
-  position: relative;
+  .page-navigation-btns{
+    min-height: 30px;
+    
+    .page-next{
+      float: right;
+    }
+  }
 }
