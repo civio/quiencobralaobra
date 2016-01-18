@@ -2,7 +2,7 @@
   <h2>Guía básica de la Ley de Contratos del Sector Público</h2>
 </div>
 
-<div class="row">
+<div class="row law">
   <div class="col-sm-3">
     <%= render "partials/page_the_law_navigation", index: @page_index %>
   </div>
@@ -11,7 +11,7 @@
     <div class="panel panel-default panel-page">
       <div class="panel-body">
 
-        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next, position: 'top' %>
         
         <h3>Prohibiciones para contratar con las AAPP</h3>
         <ul>
@@ -48,7 +48,7 @@
         </ul>
         <p><strong>¿Cómo se comprueba?</strong>. Lo más usual es que la empresa firme un documento en el que declara estar al corriente de sus pagos con Hacienda y la Seguridad Social y no estar en ninguna de las prohibiciones anteriores. </p>
 
-        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next, position: 'bottom' %>
 
       </div>
     </div>

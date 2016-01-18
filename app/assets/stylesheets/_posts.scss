@@ -1,5 +1,13 @@
 .post{
 
+  .post-title{
+    font-size: 2em;
+    font-family: $font-family-serif;
+    font-weight: bold;
+    line-height: 1.375em;
+    padding: $grid-gutter-width;
+  }
+
   .picture-footer,
   .picture-credits{
     color: $colorGray;
@@ -29,7 +37,7 @@
 
   .panel-body{
     position: relative;
-    padding: 2*$grid-gutter-width;
+    padding: 2*$grid-gutter-width 3*$grid-gutter-width;;
   }
 
   h3.post-title{

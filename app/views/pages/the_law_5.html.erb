@@ -2,7 +2,7 @@
   <h2>Guía básica de la Ley de Contratos del Sector Público</h2>
 </div>
 
-<div class="row">
+<div class="row law">
   <div class="col-sm-3">
     <%= render "partials/page_the_law_navigation", index: @page_index %>
   </div>
@@ -11,7 +11,7 @@
     <div class="panel panel-default panel-page">
       <div class="panel-body">
 
-        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next, position: 'top' %>
         
         <h3>Obligaciones de publicidad</h3>
         <p>Veamos a qué están obligados y dónde lo tienen que publicar:</p>
@@ -35,7 +35,7 @@
           <li>Si el valor es superior a los 100.000 euros (o más de 100.000 euros al año o más de cinco años en contratos de gestión de servicios públicos): BOE y/o boletines oficiales CCAA y provinciales (a elegir). Aunque hay una excepción pequeña: el órgano de contratación podrá no publicar determinada información, preguntando a la UE si es necesario, en contratos menores de 193.000 euros de hostelería, transporte, servicios jurídicos, educación, servicios sociales y esparcimiento. </li>
         </ul>
 
-        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next, position: 'bottom' %>
 
       </div>
     </div>
