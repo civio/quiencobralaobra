@@ -82,7 +82,7 @@ first_article.save!
 
 second_article = Article.create!({
     title: 'El 60% de los contratos de los ministerios en 2014 se adjudicaron sin concurso',
-    lead: 'En el último año, de los <strong>7.237</strong> contratos adjudicados, solo 2.889 lo fueron vía concurso abierto',
+    lead: '<p>En el último año, de los <strong>7.237</strong> contratos adjudicados, solo 2.889 lo fueron vía concurso abierto</p><div id="home-chart"></div>',
     author: eva,
     content: '<p>La Ley de Contratos del Sector Público es clara: <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2011-17887&amp;tn=1&amp;p=20150331&amp;vd=#a138">“La adjudicación se realizará, ordinariamente, utilizando el procedimiento abierto o el procedimiento restringido”</a>. ¿Se cumple? En lo que respecta a los ministerios y, en los últimos dos años, no. Tanto en 2013 como en 2014, el 60% de los contratos se adjudicaron vía negociado, <strong>la gran mayoría sin publicidad</strong>.</p>
 
