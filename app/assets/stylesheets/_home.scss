@@ -53,3 +53,82 @@
   }
 }
 
+.posts-highlighted .panel{
+
+  h3{
+    font-family: $font-family-serif;
+    font-weight: 700;
+    font-size: 1.75em;
+    line-height: 1.375em;
+    text-align: center;
+
+    a{
+      display: block;
+      color: $colorGray;
+
+      &:hover{
+        color: $colorTextGreen;
+      }
+    }
+  }
+
+  .description{
+    text-align: center;
+  }
+}
+
+.home-btns{
+
+  .panel{
+    padding: 5px;
+  }
+
+  a{
+    display: block;
+    font-family: $font-family-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: $grid-gutter-width;
+    background: $colorHeader;
+    text-align: center;
+    @include transition( background 0.3s ease-out );
+
+    .text{
+      display: block;
+      color: $colorGray;
+      line-height: 1em;
+      margin-top: $grid-gutter-width;
+      @include transition( color 0.3s ease-out );
+    }
+
+    .lines{
+      display: block;
+      height: 5px;
+      border-top: 1px solid $colorTextGreen;
+      border-bottom: 1px solid $colorTextGreen;
+    }
+  
+    .icon{
+      display: block;
+      width: 98px;
+      height: 100px;
+      margin: 0 auto $grid-gutter-width;
+      background: asset-url('sprites-home.png') no-repeat 0 0 transparent;
+
+      &.administrations{
+        background-position: 0 -200px;
+      }
+      &.companies{
+        background-position: 0 -100px;
+      }
+    }
+
+    &:hover{
+      background: white;
+
+       .text{
+        color: $colorTextGreen;
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@
   <% @articles.each_with_index do |article, i| %>
     <% unless !(defined?(limit_to)).nil? and i >= limit_to %> 
 
-    <div class="wall-item col-sm-6 col-md-4">
+    <div class="wall-item col-sm-6">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3><%= link_to article.title, article_path(article) %></h3>
@@ -13,9 +13,11 @@
           <% if article.photo and !article.photo.url.blank? %>
             <%= link_to image_tag(article.photo.url(:small), :class => 'img-responsive'), article_path(article), :class => 'image' %>
           <% end %>
+          <!--
           <div class="description">
             <p><%= article.lead.html_safe %></p>
           </div>
+          -->
         </div>
       </div>
     </div>

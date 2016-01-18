@@ -2,12 +2,65 @@
   <h2>Un mapa de la contratación de obra pública en España</h2>
 </div>
 
-<div class="panel panel-default">
-  <%= image_tag('http://lorempixel.com/1140/500', class: 'img-responsive') %>
+<!-- Highlighted Post -->
+<div class="posts posts-highlighted">
+  <% @articles_highlighted.each do |article| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3><%= link_to article.title, article_path(article) %></h3>
+      </div>
+      <div class="panel-body">
+        <% if article.photo and !article.photo.url.blank? %>
+          <%= link_to image_tag(article.photo.url(:small), :class => 'img-responsive'), article_path(article), :class => 'image' %>
+        <% end %>
+        <div class="description">
+          <p><%= article.lead.html_safe %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
 
+<!--
 <div class="title posts">
   <p>Artículos recientes</p>
 </div>
+-->
 
-<%= render(partial: 'partials/posts', locals: { limit_to: 3 }) %>
+<%= render(partial: 'partials/posts') %>
+
+<div class="subtitle">
+  <h2>Descrubre todos los datos</h2>
+</div>
+
+<div class="home-btns">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <a href="<%= awards_path() %>">
+          <span class="icon contracts"></span>
+          <span class="lines"></span>
+          <span class="text">Contratos</span>
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <a href="<%= public_bodies_path() %>">
+          <span class="icon administrations"></span>
+          <span class="lines"></span>
+          <span class="text">Administraciones</span>
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <a href="<%= bidders_path() %>">
+          <span class="icon companies"></span>
+          <span class="lines"></span>
+          <span class="text">Empresas</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

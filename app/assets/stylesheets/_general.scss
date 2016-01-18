@@ -176,7 +176,7 @@ hr.title-lines-horizontal{
 
     a.image{
       display: block;
-      margin-bottom: 8px;
+      margin: 5px;
       @include transition( opacity 0.3s ease-out );
 
       &:hover{
