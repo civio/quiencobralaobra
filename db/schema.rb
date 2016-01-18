@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160118174506) do
     t.text     "content"
     t.text     "notes"
     t.string   "photo"
+    t.boolean  "highlighted",       default: false, null: false
   end
 
   add_index "articles", ["slug"], name: "index_articles_on_slug", unique: true, using: :btree

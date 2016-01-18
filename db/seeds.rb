@@ -82,7 +82,7 @@ first_article.save!
 
 second_article = Article.create!({
     title: 'El 60% de los contratos de los ministerios en 2014 se adjudicaron sin concurso',
-    lead: '',
+    lead: 'En el último año, de los <strong>7.237</strong> contratos adjudicados, solo 2.889 lo fueron vía concurso abierto',
     author: eva,
     content: '<p>La Ley de Contratos del Sector Público es clara: <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2011-17887&amp;tn=1&amp;p=20150331&amp;vd=#a138">“La adjudicación se realizará, ordinariamente, utilizando el procedimiento abierto o el procedimiento restringido”</a>. ¿Se cumple? En lo que respecta a los ministerios y, en los últimos dos años, no. Tanto en 2013 como en 2014, el 60% de los contratos se adjudicaron vía negociado, <strong>la gran mayoría sin publicidad</strong>.</p>
 
@@ -103,6 +103,7 @@ second_article = Article.create!({
     photo_credit: 'El autor',
     photo_credit_link: 'http://google.com',
     published: true,
+    highlighted: true,
     publication_date: '20/9/2015'
   })
 # second_article.mentions_in_content = create_mentions(first_article, [first_bidder, second_bidder, third_bidder])
@@ -181,6 +182,8 @@ third_article = Article.create!({
     publication_date: '4/10/2015'
   })
 # third_article.mentions_in_content = create_mentions(first_article, [first_body, second_body])
+third_article.photo.store!(File.open(File.join(Rails.root, 'db', 'seed_files', 'foo.png')))
+third_article.save!
 
 Article.create!({
     title: 'Lo que siempre quisiste saber sobre la contratación pública',
