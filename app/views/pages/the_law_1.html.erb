@@ -2,7 +2,7 @@
   <h2>Guía básica de la Ley de Contratos del Sector Público</h2>
 </div>
 
-<div class="row">
+<div class="row law">
   <div class="col-sm-3">
     <%= render "partials/page_the_law_navigation", index: @page_index %>
   </div>
@@ -11,7 +11,7 @@
     <div class="panel panel-default panel-page">
       <div class="panel-body">
 
-        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next, position: 'top' %>
         
         <h3>¿A quién aplica?</h3>
         <p>A priori, todos los contratos firmados por las administraciones públicas españolas tienen que cumplir, como mínimo, los preceptos que marca esta normativa. Eso sí, hay <strong>excepciones</strong>:</p>
@@ -51,7 +51,7 @@
         <h4>¿Por qué es importante esta distinción?</h4>
         <p>Los contratos que celebren las entidades que forman parte del sector público pero no son consideradas AAPP se denominan <strong>contratos privados</strong>. Aunque tienen que cumplir ciertos requisitos para su adjudicación similares a los que aplican a las AAPP -redacción de pliegos, ofertas, cierta publicidad del proceso- sus exisgencias son mucho menores. En este resumen vamos a centrarnos en el proceso, las exigencias y la normativa que aplica a las AAPP. </p>
           
-        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next, position: 'bottom' %>
           
       </div>
     </div>

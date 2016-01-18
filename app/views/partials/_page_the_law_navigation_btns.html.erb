@@ -1,7 +1,7 @@
-<div class="page-navigation-btns">
+<div class="page-navigation-btns <%= position %>">
   <% if page_prev != nil %>
   <a class="page-prev" href="<%= page_prev %>">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
     Anterior
   </a>
   <% end %>
@@ -9,7 +9,7 @@
   <% if page_next != nil %>
   <a class="page-next" href="<%= page_next %>">
     Siguiente
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
   </a>
   <% end %>
 </div>

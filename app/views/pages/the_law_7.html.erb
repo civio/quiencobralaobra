@@ -2,7 +2,7 @@
   <h2>Guía básica de la Ley de Contratos del Sector Público</h2>
 </div>
 
-<div class="row">
+<div class="row law">
   <div class="col-sm-3">
     <%= render "partials/page_the_law_navigation", index: @page_index %>
   </div>
@@ -11,7 +11,7 @@
     <div class="panel panel-default panel-page">
       <div class="panel-body">
 
-        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next, position: 'top' %>
         
         <h3>Los tiempos</h3>
         <p>[Estas reglas aplican, en general, a los procedimientos abiertos y sin tramitación urgente]</p>
@@ -45,7 +45,7 @@
           </li>
         </ol>
 
-        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next, position: 'bottom' %>
         
       </div>
     </div>

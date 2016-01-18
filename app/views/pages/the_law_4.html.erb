@@ -2,7 +2,7 @@
   <h2>Guía básica de la Ley de Contratos del Sector Público</h2>
 </div>
 
-<div class="row">
+<div class="row law">
   <div class="col-sm-3">
     <%= render "partials/page_the_law_navigation", index: @page_index %>
   </div>
@@ -11,7 +11,7 @@
     <div class="panel panel-default panel-page">
       <div class="panel-body">
 
-        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next, position: 'top' %>
         
         <h3>¿Cuándo se permite el uso del procedimiento negociado?</h3>
         <p>En la actualidad, este sistema <strong>se puede</strong> usar cuando se cumplan determinados <strong>requisitos por el objeto del contrato o por problemas en su tramitación</strong> o por <strong>criterios de precio</strong>, es decir, por debajo de un umbral de coste está permitido. La directiva europea que España debería aplicar antes de finalizar el mes de abril impone la supresión de los supuestos de precio. Pero, por el momento, y a la espera de su aplicación, estos son los supuestos en los que se permite el uso del procedimiento negociado: </p>
@@ -59,7 +59,7 @@
         <p>El resto son <strong>negociados sin publicidad</strong>
         </p>
 
-        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next %>
+        <%= render "partials/page_the_law_navigation_btns", page_prev: @page_prev, page_next: @page_next, position: 'bottom' %>
 
       </div>
     </div>
