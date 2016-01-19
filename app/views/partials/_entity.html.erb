@@ -6,43 +6,14 @@
   <%= render 'partials/sharing_buttons', title: @title %>
 </div>
 
-<div class="row">
+<div class="panel panel-default">
+  <%= image_tag('http://lorempixel.com/900/500', :class => 'img-responsive') %>
+</div>
 
-  <div class="entity-info col-sm-3">
-    <div class="panel panel-default">
-      <%= image_tag('http://lorempixel.com/300/300', :class => 'img-responsive') %>
-      <div class="panel-body">
-        <p class="entity-title"><%= @title %></p>
-        <hr class="title-lines-horizontal">
-        <p class="description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
-        <hr class="title-lines-horizontal">
-        <p class="entity-data"><strong>Lorem Ipsum</strong> <span class="pull-right"><%= rand(100000) %></span></p>
-        <p class="entity-data"><strong>Lorem Ipsum</strong> <span class="pull-right"><%= rand(100000) %></span></p>
-        <p class="entity-data"><strong>Lorem Ipsum</strong> <span class="pull-right"><%= rand(100000) %></span></p>
-      </div>
-      <div class='entity-links'>
-        <ul></ul>
-      </div>
-    </div>
-  </div>
+<div class="panel panel-default">
+  <%= render(partial: 'partials/contract_awards_table', locals: { :company => @title }) %>
+</div>
 
-  <div class="col-sm-9">
-    <div class="panel panel-default">
-      <%= image_tag('http://lorempixel.com/900/500', :class => 'img-responsive') %>
-    </div>
-  </div>
-
-
-  <div class="col-sm-12">
-    <div class="panel panel-default">
-      <%= render(partial: 'partials/contract_awards_table', locals: { :company => @title }) %>
-    </div>
-  </div>
-
-  <div class="col-sm-12">
-    <div class="panel panel-default">
-      <iframe src="http://quienmanda.es/entities/ferrovial?widget=1&history=" width="100%" height="450px" scrolling="no" marginheight="0" frameborder="0"></iframe>
-    </div>
-  </div>
-
+<div class="panel panel-default">
+  <iframe src="http://quienmanda.es/entities/ferrovial?widget=1&history=" width="100%" height="450px" scrolling="no" marginheight="0" frameborder="0"></iframe>
 </div>
