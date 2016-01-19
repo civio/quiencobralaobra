@@ -14,6 +14,9 @@ $colorLinkGreen:    #F15A24;  //f26c4f;
 $colorOrange:       #ce7a20;
 $colorSecondary:    #f0e3b7;  //#dde4cd;
 
+$colorChartPrimary:   adjust-hue( $colorTextGreen, 20% );
+$colorChartSecondary: adjust-hue( $colorTextGreen, -20% );
+
 $body-bg:           $colorBody;
 
 $link-color:            $colorTextGreen;

@@ -142,16 +142,26 @@
 #home-chart{
   background: $colorHeader;
   margin-top: 2*$grid-gutter-width;
+  min-height: 200px;
 
   .chart{
 
-    rect {
-      fill: $colorTextGreen;
+    .bar {
+      fill: $colorChartPrimary;
     }
 
-    text {
+    .amount {
       fill: white;
-      text-anchor: end;
+      //text-anchor: end;
+      font-size: 0.913em;
+      font-weight: 600;
+    }
+
+    .label {
+      fill: $colorGray;
+      //text-anchor: end;
+      font-size: 0.913em;
+      font-weight: 600;
     }
   }
 }

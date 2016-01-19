@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 
   resources :articles, path: 'articulos', only: [:index, :show]
 
+  # Data json
+  get 'data/empresas', to: 'data#empresas', as: :data_empresas
+
   # Data analysis
   get '/admin/data_analysis', to: 'data_analysis#index', as: :data_analysis_index
   get '/admin/data_analysis/show_attributes', to: 'data_analysis#show_attributes', as: :data_analysis_show_attributes
