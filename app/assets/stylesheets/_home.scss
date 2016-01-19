@@ -81,12 +81,6 @@
   .description{
     text-align: center;
   }
-
-  #home-chart{
-    min-height: 300px;
-    background: $colorHeader;
-    margin-top: 2*$grid-gutter-width;
-  }
 }
 
 .home-btns{
@@ -141,6 +135,23 @@
        .text{
         color: $colorTextGreen;
       }
+    }
+  }
+}
+
+#home-chart{
+  background: $colorHeader;
+  margin-top: 2*$grid-gutter-width;
+
+  .chart{
+
+    rect {
+      fill: $colorTextGreen;
+    }
+
+    text {
+      fill: white;
+      text-anchor: end;
     }
   }
 }
