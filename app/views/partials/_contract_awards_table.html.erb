@@ -9,7 +9,7 @@
         <th>Tipo</th>
         <th>Procedimiento</th>
         <th>Tramitación</th>
-        <th>Importe <i>(€)</i></th>
+        <th class="text-right">Importe <i>(€)</i></th>
       </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
         <td><%= award.category %></td>
         <td><%= award.process_type %></td>
         <td><%= award.process_track %></td>
-        <td><%= award.amount %></td>
+        <td class="text-right"><strong><%= (award.amount * 0.01).round %></strong></td>
       </tr>
     <% end %>
     </tbody>
