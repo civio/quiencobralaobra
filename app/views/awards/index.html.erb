@@ -5,24 +5,28 @@
 <div class="panel panel-default contracts-filters">
   <h3>Buscar contratos</h3>
   <%= form_tag "/contratos", method: "get" do %>
-    <div class="form-group">
-      <%= label_tag :bidder, "Empresa" %>
-      <%= select_tag :bidder, options_from_collection_for_select(@bidders, "id", "name"), class: "form-control" %>
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <%= label_tag :bidder, "Empresa" %>
+        <%= select_tag :bidder, options_from_collection_for_select(@bidders, "id", "name"), class: "form-control" %>
+      </div>
+      <div class="form-group col-sm-6">
+        <%= label_tag :public_bodies, "Administración" %>
+        <%= select_tag :public_bodies, options_from_collection_for_select(@public_bodies, "id", "name"), class: "form-control" %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= label_tag :public_bodies, "Administraciones" %>
-      <%= select_tag :public_bodies, options_from_collection_for_select(@public_bodies, "id", "name"), class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= label_tag :process_type, "Procedimiento" %>
-      <%= select_tag :process_type, options_from_collection_for_select(@contract_awards_types, "process_type", "process_type"), class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= label_tag :date, "Fecha adjudicación" %>
-      <div class="input-daterange input-group">
-        <%= text_field_tag "start", nil, class: "form-control" %>
-        <span class="input-group-addon">to</span>
-        <%= text_field_tag "end", nil, class: "form-control" %>
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <%= label_tag :process_type, "Tipo de procedimiento" %>
+        <%= select_tag :process_type, options_from_collection_for_select(@contract_awards_types, "process_type", "process_type"), class: "form-control" %>
+      </div>
+      <div class="form-group col-sm-6">
+        <%= label_tag :date, "Fecha adjudicación" %>
+        <div class="input-daterange input-group">
+          <%= text_field_tag "start", nil, placeholder: "desde", class: "form-control" %>
+          <span class="input-group-addon">-</span>
+          <%= text_field_tag "end", nil, placeholder: "hasta",class: "form-control" %>
+        </div>
       </div>
     </div>
     <%= submit_tag "Filtrar", class: "btn btn-default btn-primary" %>
@@ -31,4 +35,8 @@
 
 <div class="panel panel-default">
   <%= render('partials/contract_awards_table') %>
+</div>
+
+<div class="text-center">
+  <%= paginate @contract_awards %>
 </div>
