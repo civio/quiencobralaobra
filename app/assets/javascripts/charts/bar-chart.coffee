@@ -5,6 +5,7 @@ class window.BarChart
     BarChart.setup options
     BarChart.draw()
 
+
   # Setup funcion
   @setup: (options) ->
     # Setup default vars
@@ -16,14 +17,15 @@ class window.BarChart
 
     # Setup x function
     @x = d3.scale.linear()
-      .domain([0, d3.max(@data, (d) -> return d.amount)])
-      .range([0, @width])
+      .domain([0, d3.max(@data, (d) -> return d.total)])
+      .rangeRound([0, @width])
 
     # Setup svg
     @svg = d3.select('#home-chart').append('svg')
       .attr('class', 'chart')
       .attr('width', @width)
       .attr('height', 2 * @barHeight * @data.length)
+
 
   # Draw function
   @draw: ->
@@ -34,23 +36,17 @@ class window.BarChart
     .enter().append('g')
       .attr('transform', (d, i) => return 'translate(0,' + 2 * i * @barHeight + ')')
 
-    @data.forEach (d) ->
-      console.log d  
-
     # Append Rect to Bars
-    @bars.append('rect')
-      .attr('class', 'bar')
-      .attr('width', (d) => return @x(d.amount) )
+    @bars.selectAll('rect')
+      .data((d) -> return d.procedimientos)
+    .enter().append('rect')
+      .attr('class', (d) -> return d.name.toLowerCase() )
+      .attr('x', (d) => return @x(d.x0) )
+      .attr('width', (d) => return @x(d.x1) - @x(d.x0) )
       .attr('height', @barHeight-1)
-
-    # state.selectAll("rect")
-    #   .data(function(d) { return d.ages; })
-    # .enter().append("rect")
-    #   .attr("width", x.rangeBand())
-    #   .attr("y", function(d) { return y(d.y1); })
-    #   .attr("height", function(d) { return y(d.y0) - y(d.y1); })
-    #   .style("fill", function(d) { return color(d.name); });
-
+      .on('mouseover', (d) ->
+        console.log d.name, d.x1 - d.x0
+      )
 
     # Append text with amount to Bars
     @bars.append('text')
@@ -58,7 +54,7 @@ class window.BarChart
       .attr('x', 6) #(d) => return @x(d.amount)-6 )
       .attr('y', @barHeight * 0.5 )
       .attr('dy', '.35em')
-      .text((d) -> return d.amount.toLocaleString('es-ES') + ' €' )
+      .text((d) -> return d.total.toLocaleString('es-ES') + ' €' )
 
     # Append Label with 'contratista' to Bars
     @bars.append('text')
@@ -84,7 +80,7 @@ class window.BarChart
     @bars.selectAll('rect')
       .attr('width', (d) => return @x(d.amount) )
     #@bars.selectAll('.amount')
-    #  .attr('x', (d) => return @x(d.amount)-6 )
+      .attr('x', (d) => return @x(d.amount)-6 )
 
 
   # Public Resize method 

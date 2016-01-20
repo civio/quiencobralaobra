@@ -146,8 +146,11 @@
 
   .chart{
 
-    .bar {
+    rect.abierto {
       fill: $colorChartPrimary;
+    }
+    rect.negociado {
+      fill: $colorChartSecondary;
     }
 
     .amount {
