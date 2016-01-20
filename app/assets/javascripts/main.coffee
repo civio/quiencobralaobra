@@ -9,8 +9,9 @@ $(document).ready ->
         return console.warn(error)
 
       # Consolidate 'procedimiento' values
-      json.forEach (value) ->
-        value.procedimiento = if value.procedimiento.toLowerCase().indexOf('abierto') != -1 then 'Abierto' else 'Negociado'
+      # json.forEach (value) ->
+      #   value.procedimiento = if value.procedimiento.toLowerCase().indexOf('abierto') != -1 then 'Abierto' else 'Negociado'
+      
       console.dir json  
 
       # create a nested array with 'contratista' / 'procemiento' / 'data' structure

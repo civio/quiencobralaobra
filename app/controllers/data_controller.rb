@@ -4,14 +4,14 @@ class DataController < ApplicationController
   def empresas
     query = "SELECT 
        properties -> 'Formalización del contrato - Contratista' AS contratista,
-       properties -> 'Tramitación y procedimiento - Procedimiento' AS procedimiento,
+       process_type AS procedimiento,
        SUM(amount) AS importe,
        COUNT(amount) AS contratos
    FROM AWARDS
    WHERE
        properties -> 'Análisis - Tipo' = 'Obras' AND
        properties -> 'Formalización del contrato - Contratista' <> '' AND
-       properties -> 'Tramitación y procedimiento - Procedimiento' <> '' AND
+       process_type <> '' AND
        amount IS NOT NULL
    GROUP BY contratista, procedimiento
    ORDER BY importe DESC"
