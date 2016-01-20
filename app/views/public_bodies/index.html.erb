@@ -4,3 +4,6 @@
 
 <%= render(partial: 'partials/entities', locals: { entities_data: @public_bodies, path: 'administraciones' }) %>
 
+<div class="text-center">
+  <%= paginate @public_bodies %>
+</div>

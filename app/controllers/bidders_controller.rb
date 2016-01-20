@@ -2,7 +2,7 @@ class BiddersController < ApplicationController
   before_action :set_bidder, only: [:show]
 
   def index
-    @bidders = Bidder.all
+    @bidders = Bidder.all.page(params[:page]).per(24).order(name: :asc)
   end
 
   def show

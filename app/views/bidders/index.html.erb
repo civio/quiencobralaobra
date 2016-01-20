@@ -3,3 +3,7 @@
 </div>
 
 <%= render(partial: 'partials/entities', :locals => { :entities_data => @bidders, :path => 'empresas' }) %>
+
+<div class="text-center">
+  <%= paginate @bidders %>
+</div>
