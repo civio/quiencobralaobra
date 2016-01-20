@@ -14,6 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require_directory ./dist
+//= require_tree ./dist
 //= require_directory ./charts
 //= require main

@@ -45,6 +45,11 @@ $(document).ready ->
 
       homeChart = new BarChart {data: contratistas, width: $('#home-chart').width()}
 
+  # Add Datepicker in Contracts home
+  if $('.contracts-filters').length
+    $('.contracts-filters .input-daterange').datepicker({ language: 'es' })
+
+  # Add resize handler
   $(window).resize ->
     if homeChart
       console.log 'resize'

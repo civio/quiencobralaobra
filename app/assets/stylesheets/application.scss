@@ -17,7 +17,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@import "footable.core.min";
+@import "dist/footable.core.min";
+@import "dist/bootstrap-datepicker3";
 
 @import "_social_icons";
 
