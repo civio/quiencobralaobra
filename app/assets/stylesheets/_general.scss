@@ -52,6 +52,18 @@ table{
     padding-left:0;
 }
 
+.btn-primary{
+  background: $colorTextGreen;
+  border-color: $colorTextGreen;
+  font-weight: 600;
+
+  &:hover{
+    color: $colorTextGreen;
+    background: white;
+    border-color: $colorTextGreen;
+  }
+}
+
 hr.title-lines-horizontal{
   position: relative;
   border-color: transparent;
