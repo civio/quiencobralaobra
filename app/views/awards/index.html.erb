@@ -2,31 +2,6 @@
   <h2>Contratos</h2>
 </div>
 
-<div class="entities wall row">
- 
-  <!-- Entities list -->
-  <% @bidders[0..3].each do |bidder| %>
-    <div class="wall-item col-sm-3">
-      <div class="panel panel-default">
-        <%= link_to image_tag('http://lorempixel.com/500/300', :class => 'img-responsive'), bidder_path(bidder), :class => 'image' %>
-        <div class="panel-heading">
-          <h3><%= link_to bidder.name, bidder_path(bidder) %></h3>
-        </div>
-        <div class="panel-body">
-          <div class="description">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  <% end %>
-</div>
-
-<div class="panel panel-default">
-  <%= image_tag('http://lorempixel.com/1140/500', :class => 'img-responsive') %>
-</div>
-
 <div class="panel panel-default">
   <%= render('partials/contract_awards_table') %>
 </div>

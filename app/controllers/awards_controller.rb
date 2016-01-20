@@ -1,9 +1,9 @@
 class AwardsController < ApplicationController
   def index
     # FIXME: ¿Qué se supone que mostramos aquí? ¿Las empresas con más adjudicaciones?
-    @bidders = Bidder.all
+    #@bidders = Bidder.all
 
-    @contract_awards = Award.includes(:public_body, :bidder).all
+    @contract_awards = Award.includes(:public_body, :bidder).all.order(amount: :desc)
   end
 
   def show
