@@ -2,6 +2,17 @@ homeChart = null
 
 $(document).ready ->
 
+  # Add Packery wall layout
+  $wall = $('.wall')
+
+  if $wall.length
+    console.log 'setup wall'
+    $wall.imagesLoaded ->
+      $wall.packery {
+        itemSelector: '.wall-item',
+        columnWidth: $wall.width() / 12
+      }
+
   if $('#home-chart').length
 
     d3.json '/data/empresas', (error, json) ->
