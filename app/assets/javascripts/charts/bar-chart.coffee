@@ -1,21 +1,18 @@
 class window.BarChart
 
-  constructor: (options) ->
+  constructor: (id, data, options) ->
     options   = options || {}    
-    BarChart.setup options
+    BarChart.setup id, data, options
     BarChart.draw()
 
 
   # Setup funcion
-  @setup: (options) ->
+  @setup: (id, data, options) ->
     # Setup default vars
-    @width     = options.width || 720
+    @$el       = $('#'+id)
+    @data      = data || []
     @barHeight = options.barHeight || 24
-    @data      = options.data || []
-
-    @contOffset = $('#home-chart').offset()
-
-    console.log 'setup', @width
+    @width     = @$el.width()
 
     # Setup x function
     @x = d3.scale.linear()
@@ -23,13 +20,13 @@ class window.BarChart
       .rangeRound([0, @width])
 
     # Setup svg
-    @svg = d3.select('#home-chart').append('svg')
+    @svg = d3.select('#'+id).append('svg')
       .attr('class', 'chart')
       .attr('width', @width)
       .attr('height', 2 * @barHeight * @data.length)
 
     # Add tooltip 
-    @tooltip = d3.select('#home-chart')
+    @tooltip = d3.select('#'+id)
       .append('div')
         .attr('id', 'chart-tooltip')
 
@@ -52,18 +49,15 @@ class window.BarChart
       .attr('width', (d) => return @x(d.x1) - @x(d.x0) )
       .attr('height', @barHeight-1)
       .on('mouseover', (d) =>
-        console.log d.name, d.x1 - d.x0
         @tooltip.html( '<strong>'+d.name + '</strong><br/>' + (d.x1 - d.x0).toLocaleString('es-ES') + ' €')
         @tooltip.classed('active', true)
       )
       .on('mousemove', (d) =>
-        console.log d, $('#home-chart').offset()
         @tooltip
-          .style('top', (d3.event.pageY-@contOffset.top+15)+'px')
-          .style('left', (d3.event.pageX-@contOffset.left+10)+'px')
+          .style('top', (d3.event.pageY-@$el.offset().top+15)+'px')
+          .style('left', (d3.event.pageX-@$el.offset().left+10)+'px')
       )
       .on('mouseout', (d) =>
-        console.log 'mouseout'
         @tooltip.classed('active', false)
       )
 
@@ -85,23 +79,25 @@ class window.BarChart
 
 
   # Resize function
-  @resize: (w) ->
+  @resize: ->
+
     # Skip if width value doesn't change
-    if @width == w
+    if @width == @$el.width()
       return
 
+    console.log 'resize', @width, @$el.width()
+
     # Update values
-    @width = w
+    @width = @$el.width()
     @x.range([0, @width])
     @svg.attr('width', @width)
-    @contOffset = $('#home-chart').offset()
-    
+   
     # Update Bars widths
     @bars.selectAll('rect')
-      .attr('width', (d) => return @x(d.amount) )
-      .attr('x', (d) => return @x(d.amount)-6 )
+      .attr('x', (d) => return @x(d.x0) )
+      .attr('width', (d) => return @x(d.x1) - @x(d.x0) )
 
 
   # Public Resize method 
-  resize: (w) ->
-    BarChart.resize(w)
+  resize: ->
+    BarChart.resize()
