@@ -2,6 +2,10 @@
   <h2>Administraciones</h2>
 </div>
 
+<div class="panel panel-default">
+  <div id="administrations-chart" class="stacked-bar-chart"></div>
+</div>
+
 <%= render(partial: 'partials/entities', locals: { entities_data: @public_bodies, path: 'administraciones' }) %>
 
 <div class="text-center">

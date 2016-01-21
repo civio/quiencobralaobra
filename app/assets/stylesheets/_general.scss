@@ -277,3 +277,68 @@ hr.title-lines-horizontal{
     }
   }
 }
+
+// Charts
+.stacked-bar-chart{
+  position: relative;
+  background: $colorHeader;
+  margin-top: 2*$grid-gutter-width;
+  min-height: 200px;
+
+  .chart{
+
+    rect{
+      cursor: pointer;
+    }
+
+    rect.abierto {
+      fill: adjust-hue( $colorTextGreen, -8% );
+    }
+    rect.negociado-con-publicidad {
+      fill: adjust-hue( $colorTextGreen, 0% );
+    }
+    rect.negociado-sin-publicidad {
+      fill: adjust-hue( $colorTextGreen, 8% );
+    }
+    rect.restringido{
+      fill: adjust-hue( $colorTextGreen, 16% );
+    }
+    rect.diálogo-competitivo{
+      fill: adjust-hue( $colorTextGreen, 24% );
+    }
+
+    .amount {
+      fill: white;
+      //text-anchor: end;
+      font-size: 0.913em;
+      font-weight: 600;
+    }
+
+    .label {
+      fill: $colorGray;
+      //text-anchor: end;
+      font-size: 0.913em;
+      font-weight: 600;
+    }
+  }
+
+  #chart-tooltip{
+    display: none;
+    color: $colorGray;
+    background: white;
+    font-size: 0.913em;
+    font-weight: 600;
+    text-align: left;
+    position: absolute;
+    padding: $grid-gutter-width/2 $grid-gutter-width;
+    z-index: 60;
+
+    strong{
+      font-weight: 700;
+    }
+
+    &.active{
+      display: block;
+    }
+  }
+}
