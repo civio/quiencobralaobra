@@ -1,11 +1,15 @@
 .post{
 
+  .post-content{
+    margin-top: 2*$grid-gutter-width;
+  }
+
   .post-title{
-    font-size: 2em;
+    font-size: 2.25em;
     font-family: $font-family-serif;
     font-weight: bold;
-    line-height: 1.375em;
-    padding: $grid-gutter-width;
+    line-height: 1.25em;
+    padding: 2*$grid-gutter-width;
   }
 
   .picture-footer,
@@ -44,11 +48,11 @@
     position: relative;
     color: $colorGray;
     font-family: $font-family-serif;
-    font-size: 1.375em;
-    font-weight: bold;
+    font-size: 1.5em;
+    font-weight: 600;
     line-height: 1.375em;
     text-align: left;
-    padding-left: 12px;
+    padding: $grid-gutter-width;
     margin-left: 5px;
 
     @include title-lines-vertical( $colorTextGreen, -5px );
@@ -91,25 +95,19 @@
   }
 
   .post-meta{
-    color: #666;
+    color: $colorGray;
     padding: 12px 0;
     margin: 2*$grid-gutter-width 0 0;
     border-top: 1px solid $colorSecondary;
 
-    a{
+    .post-meta-author{
       color: $colorTitle;
-      font-family: $font-family-serif;
-      font-style: italic;
-      text-decoration: none;
-
-      &:hover{ 
-        color: #666;  
-      }
+      font-weight: 600;
     }
   }
 
   .post-description {
-    font-size: 1.125em; 
+    font-size: 1.25em; 
     line-height: 1.5em;    
     //color: $colorGray;
     overflow: hidden;
@@ -118,11 +116,12 @@
     border-top: 1px solid $colorSecondary;
 
     a{
+      font-weight: 600;
       border-bottom: 1px dotted $colorTextGreen;
 
       &:hover{
-        border-bottom: 1px solid #333;
-        color: #000;
+        border-bottom: 1px solid $colorTitle;
+        color: $colorTitle;
       }
     }
 
