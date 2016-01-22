@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   # Data json
   get 'data/empresas', to: 'data#empresas', as: :data_empresas
+  get 'data/administraciones', to: 'data#administraciones', as: :data_administraciones
 
   # Data analysis
   get '/admin/data_analysis', to: 'data_analysis#index', as: :data_analysis_index

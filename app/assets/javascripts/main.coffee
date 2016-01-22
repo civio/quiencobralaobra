@@ -11,17 +11,17 @@ setWallLayout = ->
       }
 
 # process Companies Data to be draw as a stacked bar chart
-getCompaniesData = (data) ->
-  # create a nested array with 'contratista' / 'procemiento' / 'data' structure
-  contratistas = d3.nest()
-    .key((d) -> return d.contratista)
+getFormattedData = (data, key, length) ->
+  # create a nested array with 'key' / 'procemiento' / 'data' structure
+  keys = d3.nest()
+    .key((d) -> return d[key])
     .key((d) -> return d.procedimiento)
     .entries(data)
 
   # Add procedimientos attribute to contratistas array
-  contratistas.forEach (contratista) ->
+  keys.forEach (item) ->
     total = 0
-    contratista.procedimientos = contratista.values.map (procedimiento) ->
+    item.procedimientos = item.values.map (procedimiento) ->
       procedimiento.total = 0
       procedimiento.values.forEach (d) ->
         procedimiento.total += +d.importe
@@ -30,18 +30,18 @@ getCompaniesData = (data) ->
         x0:   total
         x1:   total += procedimiento.total
       }
-    contratista.total = total
+    item.total = total
 
-  console.dir contratistas
+  console.dir keys
 
   # Sort contratistas by total amount
-  contratistas.sort (a, b) ->
+  keys.sort (a, b) ->
     return d3.descending(a.total, b.total)
 
   # Truncate array to 12 first elements
-  contratistas.splice 12, contratistas.length
+  keys.splice length, keys.length
 
-  return contratistas
+  return keys
 
 
 $(document).ready ->
@@ -53,12 +53,17 @@ $(document).ready ->
     d3.json '/data/empresas', (error, json) ->
       if error
         return console.warn(error)
-      chart = new BarChart 'home-chart', getCompaniesData(json)
+      chart = new BarChart 'home-chart', getFormattedData(json, 'contratista', 12)
   else if $('#companies-chart').length
     d3.json '/data/empresas', (error, json) ->
       if error
         return console.warn(error)
-      chart = new BarChart 'companies-chart', getCompaniesData(json)
+      chart = new BarChart 'companies-chart', getFormattedData(json, 'contratista', 12)
+  else if $('#administrations-chart').length
+    d3.json '/data/administraciones', (error, json) ->
+      if error
+        return console.warn(error)
+      chart = new BarChart 'administrations-chart', getFormattedData(json, 'administracion', 10)
   
 
   # Add Datepicker in Contracts home
