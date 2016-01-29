@@ -7,7 +7,9 @@
     <div class="wall-item col-sm-6">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3><%= link_to article.title, article_path(article) %></h3>
+          <h3>
+            <span><%= link_to article.title, article_path(article) %></span>
+          </h3>
         </div>
         <div class="panel-body">
           <% if article.photo and !article.photo.url.blank? %>

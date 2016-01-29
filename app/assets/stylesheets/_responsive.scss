@@ -35,6 +35,7 @@
     width: auto;
     margin-top: 0;
     padding-top: 86px;
+    padding-right: 27px;
     border: none;
     @include box-shadow( none );
 
@@ -43,9 +44,8 @@
       padding-left: 146px;
 
       > li > a{
-        padding: 9px $grid-gutter-width/2;
-        margin-top: 7px;
         border: none;
+        padding: $grid-gutter-width/2;
       }
     }
   
@@ -67,12 +67,7 @@
     .navbar-nav{
       margin-left: 68px;
       padding-left: 228px;
-      padding-right: 85px;
-
-      > li > a{
-        padding-right: $grid-gutter-width;
-        padding-left: $grid-gutter-width;
-      }
+      padding-right: 101px;
     }
 
     .navbar-form input{

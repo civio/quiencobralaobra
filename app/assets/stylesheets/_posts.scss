@@ -1,15 +1,30 @@
 .post{
 
   .post-content{
-    margin-top: 2*$grid-gutter-width;
+    margin-top: 1.5*$grid-gutter-width;
   }
 
   .post-title{
-    font-size: 2.25em;
-    font-family: $font-family-serif;
-    font-weight: bold;
-    line-height: 1.25em;
-    padding: 2*$grid-gutter-width;
+    padding: $grid-gutter-width 2*$grid-gutter-width;
+
+    h2{
+      font-size: 2.25em;
+      font-family: $font-family-serif;
+      font-weight: bold;
+      line-height: 1.25em;
+      padding-left: 3px;
+      border-left: 1px solid $colorLinkGreen;
+
+      span{
+        display: block;
+        border-left: 1px solid $colorLinkGreen;
+        padding-left: $grid-gutter-width/2;
+      }
+    }
+  }
+
+  .post-picture{
+    padding: 0 2*$grid-gutter-width;
   }
 
   .picture-footer,
@@ -17,8 +32,8 @@
     color: $colorGray;
     font-size: 0.875em;
     background: $colorSecondary;
-    margin: 0;
-    padding: $grid-gutter-width;
+    margin: 0 2*$grid-gutter-width;
+    padding: $grid-gutter-width/2;
 
     a{
       color: $colorLinkGreen;
@@ -41,29 +56,29 @@
 
   .panel-body{
     position: relative;
-    padding: 2*$grid-gutter-width 3*$grid-gutter-width;;
+    padding: $grid-gutter-width 2*$grid-gutter-width;;
   }
 
   h3.post-title{
     position: relative;
     color: $colorGray;
     font-family: $font-family-serif;
-    font-size: 1.5em;
+    font-size: 1.75em;
     font-weight: 600;
     line-height: 1.375em;
     text-align: left;
-    padding: $grid-gutter-width;
+    padding: 0;
     margin-left: 5px;
 
-    @include title-lines-vertical( $colorTextGreen, -5px );
+    //@include title-lines-vertical( $colorTextGreen, -5px );
   }
   
   .post-date{
     display: block;
     position: absolute;
-    top: 2*$grid-gutter-width;
-    left: 2*$grid-gutter-width;
-    width: 4*$grid-gutter-width;
+    top: $grid-gutter-width;
+    left: $grid-gutter-width;
+    width: 2*$grid-gutter-width;
     padding: 10px 0;
     background: $colorHeader;
     text-align: center;
@@ -96,8 +111,8 @@
 
   .post-meta{
     color: $colorGray;
-    padding: 12px 0;
-    margin: 2*$grid-gutter-width 0 0;
+    padding: $grid-gutter-width/2 0;
+    margin: $grid-gutter-width 0 0;
     border-top: 1px solid $colorSecondary;
 
     .post-meta-author{
@@ -112,7 +127,7 @@
     //color: $colorGray;
     overflow: hidden;
     background: asset-url('moustache.gif') no-repeat bottom center;
-    padding: 2*$grid-gutter-width 0 $grid-gutter-width;
+    padding: $grid-gutter-width 0 $grid-gutter-width/2;
     border-top: 1px solid $colorSecondary;
 
     a{
@@ -126,30 +141,30 @@
     }
 
     p{
-      margin-bottom: $grid-gutter-width;
+      margin-bottom: $grid-gutter-width/2;
     }
 
     ul{
-      padding-left: $grid-gutter-width;
-      padding-bottom: $grid-gutter-width;
+      padding-left: $grid-gutter-width/2;
+      padding-bottom: $grid-gutter-width/2;
       @include box-sizing( border-box );
     }
 
     li{
       padding-left: 40px;
-      padding-bottom: $grid-gutter-width;
+      padding-bottom: $grid-gutter-width/2;
       background: asset-url('list-moustache.gif') no-repeat 0px 7px;
     }
   }
 
   .post-comments{
     background: $colorSecondary;
-    padding: 4*$grid-gutter-width 2*$grid-gutter-width 2*$grid-gutter-width;
+    padding: 2*$grid-gutter-width $grid-gutter-width $grid-gutter-width;
   }
 
   .civio-banner{
     display: block;
-    margin: 2*$grid-gutter-width 0;
+    margin: $grid-gutter-width 0;
   }
 
   .post-content .sharing-buttons{
@@ -161,7 +176,7 @@
   }
 
   .sidebar .sharing-buttons{
-    margin: $grid-gutter-width 0 1.5*$grid-gutter-width;
+    margin: $grid-gutter-width/2 0 $grid-gutter-width;
     padding: 0;
   }
 
@@ -188,12 +203,12 @@
     .panel-heading{
       position: relative;
       background: transparent;
-      padding: 2*$grid-gutter-width 2*$grid-gutter-width 0;
+      padding: $grid-gutter-width $grid-gutter-width 0;
       border: none;
       @include title-lines-horizontal( $colorWhite, 46px );
       &:after{
-        right: 2*$grid-gutter-width;
-        left: 2*$grid-gutter-width;
+        right: $grid-gutter-width;
+        left: $grid-gutter-width;
       }
 
       h4{
@@ -227,7 +242,7 @@
         display: none;
       } 
 
-      $pictureW: 4*$grid-gutter-width;
+      $pictureW: 2*$grid-gutter-width;
 
       .picture{
         position: absolute;
@@ -240,7 +255,7 @@
 
         color: $colorGray;
         text-shadow: none;
-        margin-left: $pictureW + $grid-gutter-width;
+        margin-left: $pictureW + $grid-gutter-width/2;
 
         a{
           display: block;

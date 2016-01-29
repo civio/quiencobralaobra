@@ -7,8 +7,8 @@
 .navbar-toggle{
   position: absolute;
   float: none;
-  right: $grid-gutter-width/2;
-  bottom: $grid-gutter-width;
+  right: 8px;
+  bottom: $grid-gutter-width/2;
   padding: 11px 9px;
   margin: 0;
 
@@ -19,7 +19,7 @@
 
 .navbar .navbar-brand{
   display: block;
-  margin: $grid-gutter-width 0;
+  margin: $grid-gutter-width/2 0;
   padding: 0;
   width: 297px;
   height: 110px;
@@ -29,8 +29,8 @@
 
 #navbar{
   position: absolute;
-  right: $grid-gutter-width;
-  left: $grid-gutter-width;
+  right: $grid-gutter-width/2;
+  left: $grid-gutter-width/2;
   top: 2+$navbar-height;
   background: $colorHeader;
   width: auto;
@@ -41,15 +41,16 @@
     padding-right: 0;
     margin-top: 0;
     margin-bottom: 0;
-    background: asset-url('nav-pattern.png') repeat-x 0 26px transparent;
+    background: asset-url('nav-pattern.png') repeat-x 0 25px transparent;
 
     > li > a{
-      font-size: 1.25em;
+      font-size: 1.125em;
       font-family: $font-family-sans-serif;
       font-weight: 600;
-      padding: 10px $grid-gutter-width;
+      margin: 0;
+      padding: 10px $grid-gutter-width/2;
       background: $colorHeader;
-      //border-bottom: 2px solid $colorBody;
+      border-bottom: 1px solid mix($colorBody, $colorLinkGreen, 70%);
       //text-shadow: 0 1px 0 #fff;
       @include transition(color 0.3s ease-in-out);
     }

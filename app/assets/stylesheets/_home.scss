@@ -2,7 +2,7 @@
 
   position: relative;
   text-align: center;
-  margin: 3*$grid-gutter-width 0;
+  margin: 1.5*$grid-gutter-width 0;
 
   h2 {
     display: inline-block;
@@ -19,7 +19,7 @@
 .panel-page{
 
   .panel-body{
-    padding: 2*$grid-gutter-width;
+    padding: $grid-gutter-width 2*$grid-gutter-width;
     font-size: 1.125em;
     line-height: 1.5em;
   }
@@ -29,27 +29,27 @@
   }
 
   h3{
-    font-size: 1.625em;
-    line-height: 1.5em;
-    padding: $grid-gutter-width 0;
-    margin-bottom: $grid-gutter-width;
+    font-size: 1.75em;
+    line-height: 1.25em;
+    padding: $grid-gutter-width/2 0;
+    margin-bottom: $grid-gutter-width/2;
     border-bottom: 1px solid $colorSecondary;
     padding-left: 48px;
-    background: asset-url('favicon-32x32.png') no-repeat 0 21px transparent;
-    font-weight: 600;
+    background: asset-url('favicon-32x32.png') no-repeat 0 18px transparent;
+    font-weight: 700;
   }
 
   h4{
     font-size: 1.25em;
     line-height: 1.25em;
-    padding: $grid-gutter-width 0;
+    padding: $grid-gutter-width/2 0;
     font-weight: 600;
   }
 
   h5{
     font-size: 1em;
     line-height: 1.25em;
-    padding: $grid-gutter-width 0;
+    padding: $grid-gutter-width/2 0;
   }
 }
 
@@ -94,7 +94,7 @@
     font-family: $font-family-serif;
     font-size: 1.5em;
     font-weight: bold;
-    padding: $grid-gutter-width;
+    padding: $grid-gutter-width/2;
     background: $colorHeader;
     text-align: center;
     @include transition( background 0.3s ease-out );
@@ -103,7 +103,7 @@
       display: block;
       color: $colorGray;
       line-height: 1em;
-      margin-top: $grid-gutter-width;
+      margin-top: $grid-gutter-width/2;
       @include transition( color 0.3s ease-out );
     }
 
@@ -118,7 +118,7 @@
       display: block;
       width: 98px;
       height: 100px;
-      margin: 0 auto $grid-gutter-width;
+      margin: 0 auto $grid-gutter-width/2;
       background: asset-url('sprites-home.png') no-repeat 0 0 transparent;
 
       &.administrations{

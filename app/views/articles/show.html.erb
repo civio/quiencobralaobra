@@ -1,10 +1,16 @@
 <div class="post">
   <div class="post-content">
     <div class="panel panel-default">
-      <h2 class="post-title"><%= @title %></h2>
-      <% if @article.photo and !@article.photo.url.blank? %>
-        <%= link_to image_tag(@article.photo.url(:full), :class => 'img-responsive'), article_path(@article), :class => 'image' %>
-      <% end %>
+      <div class="post-title">
+        <h2>
+          <span><%= @title %></span>
+        </h2>
+      </div>
+      <div class="post-picture">
+        <% if @article.photo and !@article.photo.url.blank? %>
+          <%= link_to image_tag(@article.photo.url(:full), :class => 'img-responsive'), article_path(@article), :class => 'image' %>
+        <% end %>
+      </div>
       <div class="picture-footer"><%= @article.photo_footer %></div>
       <div class="picture-credits">Foto: <%= link_to @article.photo_credit, @article.photo_credit_link, target: '_blank' %></div>
       <div class="panel-body">

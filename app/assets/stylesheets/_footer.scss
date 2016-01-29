@@ -1,10 +1,10 @@
 .footer{
   color: white;
-  margin-top: 3*$grid-gutter-width;
+  margin-top: 1.5*$grid-gutter-width;
   
   .main-footer{
     background: $colorLinkGreen;
-    padding: 2*$grid-gutter-width $grid-gutter-width;
+    padding: $grid-gutter-width $grid-gutter-width/2;
 
     p{
       margin: 0;
@@ -15,7 +15,7 @@
 
     a{
       display: inline-block;
-      margin: $grid-gutter-width 0;
+      margin: $grid-gutter-width/2 0;
       font-size: 1.125em;
       font-weight: 700;
       color: white;
@@ -31,7 +31,7 @@
   .sub-footer{
     font-size: 0.875em;
     background: darken( $colorLinkGreen, 10% );
-    padding: $grid-gutter-width;
+    padding: $grid-gutter-width/2;
 
     p{
       margin: 0;

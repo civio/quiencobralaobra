@@ -3,6 +3,7 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  color: $colorTitle;
   margin: 0;
   padding: 0;
 }
@@ -26,6 +27,7 @@ h6 {
 
 .panel{
   border: none;
+  margin-bottom: $grid-gutter-width;
   @include box-shadow( 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05) );
 }
 
@@ -72,12 +74,12 @@ hr.title-lines-horizontal{
 
 .title{
   position: relative;
-  margin: 3*$grid-gutter-width 0;
+  margin: 1.5*$grid-gutter-width 0;
 
   h2, p{
     display: inline-block;
-    margin: 0 0 0 4*$grid-gutter-width;
-    padding: 0 $grid-gutter-width;
+    margin: 0 0 0 2*$grid-gutter-width;
+    padding: 0 $grid-gutter-width/2;
     color: $colorGray;
     background: $colorBody;
     font-family: $font-family-economica;
@@ -97,14 +99,14 @@ hr.title-lines-horizontal{
     position: absolute;
     top: 50%;
     left: 0;
-    width: 4*$grid-gutter-width;
-    height: 4*$grid-gutter-width;
-    margin-top: -2*$grid-gutter-width;
+    width: 64px;
+    height: 64px;
+    margin-top: -32px;
     overflow: hidden;
     background: asset-url('sprites.png') no-repeat 0 -8px $colorBody;
   }
 
-  @include title-lines-horizontal( mix( $colorBody, $colorTextGreen, 50% ), $grid-gutter-width+4, -1 );
+  @include title-lines-horizontal( mix( $colorBody, $colorTextGreen, 50% ), 4px+($grid-gutter-width/2), -1 );
 }
 
 
@@ -130,7 +132,7 @@ hr.title-lines-horizontal{
     .panel-heading{
       background: $panel-bg;
       border: none;
-      padding: 12px $grid-gutter-width;
+      padding: $grid-gutter-width/2;
     }
 
     .panel-body{
@@ -139,17 +141,21 @@ hr.title-lines-horizontal{
 
     h3{
       color: $colorGray;
-      font-size: 1.125em;
+      font-size: 1.375em;
       font-family: $font-family-serif;
       font-weight: 700;
-      line-height: 1.375em;
+      line-height: 1.25em;
       position: relative;
+      padding-left: 3px;
+      border-left: 1px solid $colorLinkGreen;
 
       //@include title-lines-vertical( $colorTextGreen );
 
       a{
         display: block;
         color: $colorGray;
+        padding-left: 8px;
+        border-left: 1px solid $colorLinkGreen;
         @include transition( color 0.3s ease-out );
 
         &:hover,
@@ -215,17 +221,13 @@ hr.title-lines-horizontal{
 
   h3{
     font-size: 1.5em;
-
-    a{
-      min-height: 56px;
-    }
   }
 }
 
 .panel{
 
   .page-navigation{
-    padding: 2*$grid-gutter-width 24px $grid-gutter-width;
+    padding: $grid-gutter-width 24px $grid-gutter-width/2;
     background: $colorHeader;
 
     li{
@@ -265,7 +267,7 @@ hr.title-lines-horizontal{
 
     &.bottom{
       font-size: 1em;
-      margin-top: 2*$grid-gutter-width;
+      margin-top: $grid-gutter-width;
     }
 
     .page-next{
@@ -282,7 +284,7 @@ hr.title-lines-horizontal{
 .stacked-bar-chart{
   position: relative;
   background: $colorHeader;
-  margin-top: 2*$grid-gutter-width;
+  margin-top: $grid-gutter-width;
   min-height: 200px;
 
   .chart{
@@ -330,7 +332,7 @@ hr.title-lines-horizontal{
     font-weight: 600;
     text-align: left;
     position: absolute;
-    padding: $grid-gutter-width/2 $grid-gutter-width;
+    padding: $grid-gutter-width/4 $grid-gutter-width/2;
     z-index: 60;
 
     strong{

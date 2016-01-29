@@ -10,13 +10,13 @@
 .sharing-right{
   display: none;
   position: absolute;
-  top: $grid-gutter-width;
+  top: $grid-gutter-width/2;
   right: 0;
   margin: 0;
 
   .sharing-buttons{
     padding-right: 0;
-    padding-left: $grid-gutter-width;
+    padding-left: $grid-gutter-width/2;
     background: $colorBody;
   }
 }

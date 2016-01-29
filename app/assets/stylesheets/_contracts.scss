@@ -8,10 +8,10 @@
 }
 
 .contracts-filters{
-  padding: 2*$grid-gutter-width;
+  padding: $grid-gutter-width;
 
   h3{
-    margin-bottom: $grid-gutter-width;
+    margin-bottom: $grid-gutter-width/2;
     font-weight: 700;
     font-size: 1.375em;
     text-align: center;
