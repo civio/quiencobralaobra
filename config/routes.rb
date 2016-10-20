@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :public_bodies, path: 'administraciones', only: [:index, :show]
 
-  resources :bidders, path: 'empresas', only: [:index, :show]
+  resources :bidders, path: 'grupos-empresariales', only: [:index, :show]
 
   resources :awards, path: 'contratos', only: [:index, :show]
 
