@@ -1,3 +1,10 @@
+.entity-description{
+  padding: $grid-gutter-width/2;
+  margin-bottom: $grid-gutter-width;
+  font-size: 1.25em;
+  background: $colorHeader;
+}
+
 .entity-info{
 
   .panel-body{

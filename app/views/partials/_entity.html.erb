@@ -6,9 +6,19 @@
   <%= render 'partials/sharing_buttons', title: @title %>
 </div>
 
+<div class="entity-description">
+  <% if controller.controller_name == 'bidders' %>
+    <strong><%= @title %></strong> se ha llevado <%= @contract_awards.count %> contratos por un importe de X €, de los cuales un X % ha sido por procedimiento negociado. La principal administración adjudicadora de <%= @title %> ha sido X (X % del total del importe adjudicado)
+  <% else %>
+    <strong><%= @title %></strong> ha adjudicado <%= @contract_awards.count %> contratos por un importe de X €, de los cuales un X % ha sido por procedimiento negociado. El principal grupo empresarial beneficiado ha sido X (X % del total del importe adjudicado)
+  <% end %>
+</div>
+
+<!--
 <div class="panel panel-default">
   <%= image_tag('http://lorempixel.com/900/500', :class => 'img-responsive') %>
 </div>
+-->
 
 <div class="panel panel-default">
   <%= render(partial: 'partials/contract_awards_table', locals: { :company => @title }) %>
