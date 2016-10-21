@@ -34,23 +34,22 @@
     position: static;
     width: auto;
     margin-top: 0;
-    padding-top: 86px;
-    padding-right: 27px;
+    padding-top: 90px;
     border: none;
     @include box-shadow( none );
 
     .navbar-nav{
       margin-left: 68px;
-      padding-left: 146px;
+      padding-left: 138px;
 
       > li > a{
         border: none;
-        padding: $grid-gutter-width/2;
+        padding: ($grid-gutter-width/2)-2 $grid-gutter-width/3;
       }
     }
   
     .navbar-form{
-      margin: 8px 0 0;
+      margin: 4px 0 0;
 
       input{
         width: 152px;
@@ -66,8 +65,8 @@
 
     .navbar-nav{
       margin-left: 68px;
-      padding-left: 228px;
-      padding-right: 101px;
+      padding-left: 220px;
+      padding-right: 96px;
     }
 
     .navbar-form input{
