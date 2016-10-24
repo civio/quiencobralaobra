@@ -1,6 +1,6 @@
 class DataController < ApplicationController
   
-  # GET /data/empresas
+  # GET /data/grupos-empresariales
   def empresas
     query = "SELECT 
        properties -> 'Formalización del contrato - Contratista' AS contratista,

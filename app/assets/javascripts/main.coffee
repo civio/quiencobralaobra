@@ -32,7 +32,7 @@ getFormattedData = (data, key, length) ->
       }
     item.total = total
 
-  console.dir keys
+  #console.dir keys
 
   # Sort contratistas by total amount
   keys.sort (a, b) ->
@@ -50,12 +50,12 @@ $(document).ready ->
   setWallLayout()
 
   if $('#home-chart').length
-    d3.json '/data/empresas', (error, json) ->
+    d3.json '/data/grupos-empresariales', (error, json) ->
       if error
         return console.warn(error)
       chart = new BarChart 'home-chart', getFormattedData(json, 'contratista', 12)
   else if $('#companies-chart').length
-    d3.json '/data/empresas', (error, json) ->
+    d3.json '/data/grupos-empresariales', (error, json) ->
       if error
         return console.warn(error)
       chart = new BarChart 'companies-chart', getFormattedData(json, 'contratista', 12)
