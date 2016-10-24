@@ -7,7 +7,7 @@ class PublicBodiesController < ApplicationController
 
   def show
     @title = @public_body.name
-    @contract_awards = @public_body.awards
+    @contract_awards = @public_body.awards.order(amount: :desc)
   end
 
   private

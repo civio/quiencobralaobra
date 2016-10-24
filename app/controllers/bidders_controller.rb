@@ -7,7 +7,7 @@ class BiddersController < ApplicationController
 
   def show
     @title = @bidder.name
-    @contract_awards = @bidder.awards
+    @contract_awards = @bidder.awards.order(amount: :desc)
   end
 
   private
