@@ -34,6 +34,56 @@ h6 {
 .table{
   font-size: 0.938em;
 
+  a,
+  strong{
+    font-weight: 600;
+  }
+
+  .glyphicon{
+    font-size: 1.125em;
+    color: #808080;
+    top: 3px;
+    margin-right: 2px;
+  }
+
+  .read-more{
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: #808080;
+    text-align: center;
+
+    .glyphicon{
+      font-size: 0.875em;
+      color: white;
+      top: 2px;
+      margin-left: 4px;
+    }
+  }
+
+  > tbody > tr:hover{
+    background: $colorHeader;
+
+    .glyphicon{
+      color: $colorTextGreen;
+
+       &:hover{
+        color: darken( $colorTextGreen, 10% );
+      }
+    }
+    .read-more{
+      background: $colorTextGreen;
+
+      &:hover{
+        background: darken( $colorTextGreen, 10% );
+      }
+      .glyphicon{
+        color: white;
+      }
+    }
+  }
+
   > thead > tr > th{
     font-weight: 600;
     text-transform: uppercase;
@@ -59,11 +109,6 @@ h6 {
     }
     &:last-child{
       padding-right: $grid-gutter-width/2;
-    }
-
-    a,
-    strong{
-      font-weight: 600;
     }
   }
 }
