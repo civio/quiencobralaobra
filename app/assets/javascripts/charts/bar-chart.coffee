@@ -15,7 +15,7 @@ class window.BarChart
     @width     = @$el.width()
 
     # Setup x function
-    @x = d3.scale.linear()
+    @x = d3.scaleLinear()
       .domain([0, d3.max(@data, (d) -> return d.total)])
       .rangeRound([0, @width])
 
@@ -70,13 +70,14 @@ class window.BarChart
       .text((d) -> return d.total.toLocaleString('es-ES') + ' €' )
 
     # Append Label with 'contratista' to Bars
-    @bars.append('text')
+    @bars.append('svg:a')
       .attr('class', 'label')
-      .attr('x', 0 )
-      .attr('y', @barHeight )
-      .attr('dy', '1em')
-      .text((d) -> return d.key )
-
+      .attr('xlink:href', (d) -> return 'http://quienmanda.es/' )
+      .append('svg:text')
+        .text((d) -> return d.key )
+        .attr('x', 0 )
+        .attr('y', @barHeight )
+        .attr('dy', '1em')
 
   # Resize function
   @resize: ->

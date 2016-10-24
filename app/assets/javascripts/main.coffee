@@ -3,7 +3,6 @@ chart = null
 setWallLayout = ->
   $wall = $('.wall')
   if $wall.length
-    console.log 'setup wall'
     $wall.imagesLoaded ->
       $wall.packery {
         itemSelector: '.wall-item',
@@ -31,6 +30,7 @@ getFormattedData = (data, key, length) ->
         x1:   total += procedimiento.total
       }
     item.total = total
+    item.link = item.link
 
   #console.dir keys
 
@@ -50,15 +50,15 @@ $(document).ready ->
   setWallLayout()
 
   if $('#home-chart').length
-    d3.json '/data/grupos-empresariales', (error, json) ->
+    d3.json '/data/grupos-constructores', (error, json) ->
       if error
         return console.warn(error)
-      chart = new BarChart 'home-chart', getFormattedData(json, 'contratista', 12)
+      chart = new BarChart 'home-chart', getFormattedData(json, 'contratista', 10)
   else if $('#companies-chart').length
-    d3.json '/data/grupos-empresariales', (error, json) ->
+    d3.json '/data/grupos-constructores', (error, json) ->
       if error
         return console.warn(error)
-      chart = new BarChart 'companies-chart', getFormattedData(json, 'contratista', 12)
+      chart = new BarChart 'companies-chart', getFormattedData(json, 'contratista', 10)
   else if $('#administrations-chart').length
     d3.json '/data/administraciones', (error, json) ->
       if error
