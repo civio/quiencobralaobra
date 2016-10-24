@@ -1,12 +1,12 @@
 <div class="title companies">
-  <h2>Grupos empresariales</h2>
+  <h2>Grupos constructores</h2>
 </div>
 
 <div class="panel panel-default">
   <div id="companies-chart" class="stacked-bar-chart"></div>
 </div>
 
-<%= render(partial: 'partials/entities', :locals => { :entities_data => @bidders, :path => 'grupos-empresariales' }) %>
+<%= render(partial: 'partials/entities', :locals => { :entities_data => @bidders, :path => 'grupos-constructores' }) %>
 
 <div class="text-center">
   <%= paginate @bidders %>

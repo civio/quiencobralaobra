@@ -21,14 +21,14 @@ Rails.application.routes.draw do
 
   resources :public_bodies, path: 'administraciones', only: [:index, :show]
 
-  resources :bidders, path: 'grupos-empresariales', only: [:index, :show]
+  resources :bidders, path: 'grupos-constructores', only: [:index, :show]
 
   resources :awards, path: 'contratos', only: [:index, :show]
 
   resources :articles, path: 'articulos', only: [:index, :show]
 
   # Data json
-  get 'data/grupos-empresariales', to: 'data#empresas', as: :data_empresas
+  get 'data/grupos-constructores', to: 'data#empresas', as: :data_empresas
   get 'data/administraciones', to: 'data#administraciones', as: :data_administraciones
 
   # Data analysis
