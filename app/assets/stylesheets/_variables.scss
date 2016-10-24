@@ -66,9 +66,9 @@ $panel-footer-padding:    $grid-gutter-width;
 
 // Table
 
-$table-bg-accent:       mix( $colorWhite, $colorHeader, 60% );
-$table-bg-hover:        mix( $colorWhite, $colorHeader, 50% );
-$table-border-color:    mix( $colorWhite, $colorTextGreen, 70% );
+//$table-bg-accent:       mix( $colorWhite, $colorHeader, 60% );
+//$table-bg-hover:        mix( $colorWhite, $colorHeader, 50% );
+$table-border-color:      #ddd; //mix( $colorWhite, $colorTextGreen, 70% );
 
 // Tooltip
 
