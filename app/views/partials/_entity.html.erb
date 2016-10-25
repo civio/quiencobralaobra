@@ -8,9 +8,10 @@
 
 <div class="entity-description">
   <% if controller.controller_name == 'bidders' %>
-    <strong><%= @title %></strong> se ha llevado <%= @contract_awards.count %> contratos por un importe de X €, de los cuales un X % ha sido por procedimiento negociado. La principal administración adjudicadora de <%= @title %> ha sido X (X % del total del importe adjudicado)
+    <strong><%= @title %></strong> se ha llevado de forma directa, entre 2009 y 2015, <%= @contract_awards.count %> contratos por un importe de X €. Además, ha formado parte de UTEs que resultaron adjudicatarias de otros X contratos y que suman otros X euros. 
+    Así, <%= @title %> ha estado presente, en total, en la adjudicación de X contratos y X euros. De esa cantidad, un X% del importe fue adjudicado vía procedimiento negociado. Entre las administraciones que le contratan, la que tiene mayor peso es X (X % del total del importe adjudicado tanto de forma directa como a través de las UTEs en las que participa).
   <% else %>
-    <strong><%= @title %></strong> ha adjudicado <%= @contract_awards.count %> contratos por un importe de X €, de los cuales un X % ha sido por procedimiento negociado. El principal grupo empresarial beneficiado ha sido X (X % del total del importe adjudicado)
+    <strong><%= @title %></strong>  ha adjudicado <%= @contract_awards.count %> contratos por un importe de X €, de los cuales un X % ha sido por procedimiento negociado. El principal grupo empresarial beneficiado ha sido X (está presente, de forma directa o a través de UTEs, en el X % del total del importe adjudicado)
   <% end %>
 </div>
 
