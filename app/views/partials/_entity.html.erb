@@ -25,15 +25,21 @@
   </div>
   -->
 
+  <% if controller.controller_name == 'bidders' %>
   <h3>Contratos adjudicados a <%= @title %></h3>
+  <% else %>
+  <h3>Contratos adjudicados por <%= @title %></h3>
+  <% end %>
   <div class="panel panel-default">
     <%= render('partials/contract_awards_table', awards: @contract_awards) %>
   </div>
 
+  <% if controller.controller_name == 'bidders' %>
   <h3>Contratos adjudicados a UTEs en las que participa <%= @title %></h3>
   <div class="panel panel-default">
     <%= render('partials/contract_awards_table', awards: @contract_awards) %>
   </div>
+  <% end %>
 
   <div class="panel panel-default">
     <iframe src="http://quienmanda.es/entities/ferrovial?widget=1&history=" width="100%" height="450px" scrolling="no" marginheight="0" frameborder="0"></iframe>
