@@ -1,9 +1,9 @@
 <div class="table-responsive">
-  <table class="table">
+  <table class="table sortable-theme-minimal" data-sortable>
     <thead>
       <tr>
-        <th></th>
-        <th>Fuente</th>
+        <th data-sortable="false"></th>
+        <th data-sortable="false">Fuente</th>
         <th>Fecha adjudicación</th>
         <th>Tipo</th>
 
@@ -15,11 +15,11 @@
         <th>Grupo constructor</th>
         <% else %>
         <th>Empresa</th>
-        <th>Objeto</th>
+        <th data-sortable="false">Objeto</th>
         <% end %>
 
         <% if controller_name == 'public_bodies' %>
-        <th>Objeto</th>
+        <th data-sortable="false">Objeto</th>
         <% end %>
 
         <!--
@@ -29,7 +29,7 @@
         <th>Procedimiento</th>
         <th>Tramitación</th>
         -->
-        <th class="text-right">Importe <i>(€)</i></th>
+        <th class="text-right" data-sortable-type="numeric" data-sorted="true" data-sorted-direction="descending">Importe <i>(€)</i></th>
       </tr>
     </thead>
     <tbody>
@@ -62,7 +62,7 @@
         <td><%= award.process_type %></td>
         <td><%= award.process_track %></td>
         -->
-        <td class="text-right"><strong><%= number_with_precision(award.amount.to_f*0.01, precision: 0, delimiter: ".") %></strong></td>
+        <td class="text-right" data-value="<%= award.amount.to_f*0.01 %>"><strong><%= number_with_precision(award.amount.to_f*0.01, precision: 0, delimiter: ".") %></strong></td>
       </tr>
     <% end %>
     </tbody>

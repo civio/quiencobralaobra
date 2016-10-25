@@ -65,10 +65,12 @@ $(document).ready ->
         return console.warn(error)
       chart = new BarChart 'administrations-chart', getFormattedData(json, 'administracion', 10)
   
-
   # Add Datepicker in Contracts home
   if $('.contracts-filters').length
     $('.contracts-filters .input-daterange').datepicker({ language: 'es' })
+
+  # Setup table sorting
+  Sortable.init()
 
   # Add resize handler
   $(window).resize ->
