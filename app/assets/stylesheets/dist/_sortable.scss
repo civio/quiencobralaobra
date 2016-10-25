@@ -1,0 +1,64 @@
+$arrowColor:        #adadad;
+$arrowColorHover:   #777;
+$arrowColorActive:  #333;
+
+@mixin sortable {
+  table[data-sortable] {
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    th {
+      position: relative;
+      padding-right: 20px !important;
+      vertical-align: bottom;
+    }
+
+    th {
+      &:after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        right: 5px;
+        bottom: 10px;
+        height: 0;
+        width: 0;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent;
+        vertical-align: inherit;
+        // Default descending values
+        margin-top: 8px;
+        border-top-color: $arrowColor;
+      }
+
+      &:hover:after{
+        border-top-color: $arrowColorHover;
+      }
+
+      &[data-sortable="false"]:after {
+        display: none;
+      }
+
+      &:not([data-sortable="false"]) {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-touch-callout: none;
+        cursor: pointer;
+      }
+
+      &[data-sorted="true"][data-sorted-direction="descending"]:after {
+        border-top-color: $arrowColorActive;
+      }
+
+      &[data-sorted="true"][data-sorted-direction="ascending"]:after {
+        border-top-color: transparent;
+        border-bottom-color: $arrowColorActive;
+        bottom: 15px;
+      }      
+    }
+  }
+}
