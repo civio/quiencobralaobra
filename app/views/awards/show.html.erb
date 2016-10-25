@@ -4,42 +4,51 @@
 
 <div class="panel panel-default">
   <div class="table-responsive">
+    <p><%= @award.properties['Objeto del contrato - Descripción'] %></p>
     <table class="table footable table-striped">
       <tbody>
-        <tr>
-          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Descripción</th>
-          <td><%= @award.properties['Objeto del contrato - Descripción'] %></td>
-        </tr>
         <tr>
           <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Fecha adjudicación</th>
           <td><%= @award.award_date %></td>
         </tr>
         <tr>
-          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> AAPP adjudicadora</th>
+          <th>Fecha formalización</th>
+          <td><%= @award.properties['Formalización del contrato - Fecha de formalización del contrato'].to_time.strftime('%Y-%m-%d') %></td>
+        </tr>
+        <tr>
+          <th>AAPP adjudicadora</th>
           <td><%= link_to @award.public_body.name, public_body_path(@award.public_body) unless @award.public_body.name.blank?%></td>
         </tr>
         <tr>
-          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Grupo constructor</th>
+          <th>Grupo constructor</th>
           <td><%= link_to @award.bidder.name, bidder_path(@award.bidder) unless @award.bidder.name.blank? %></td>
         </tr>
         <tr>
-          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Tipo</th>
+          <th>Empresa</th>
+          <td>...</td>
+        </tr>
+        <tr>
+          <th>Tipo</th>
           <td><%= @award.category %></td>
         </tr>
         <tr>
-          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Procedimiento</th>
-          <td><%= @award.process_type %></td>
+          <th>Importe</th>
+          <td><strong><%= number_to_currency(@award.amount*0.01, unit: '', precision: 2, delimiter: '.', separator: ',') %></strong> €</td>
         </tr>
         <tr>
-          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Tramitación</th>
-          <td><%= @award.process_track %></td>
+          <th>Tramitación</th>
+          <td>....</td>
         </tr>
         <tr>
-          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Importe</th>
-          <td><strong><%= number_to_currency(@award.amount, unit: '', precision: 2, delimiter: '.', separator: ',') %></strong> €</td>
+          <th>Presupuesto base de licitación</th>
+          <td><%= @award.properties['Presupuesto base de licitación'].gsub!('euros', '€') %></td>
         </tr>
         <tr>
-          <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Fuente</th>
+          <th>Ámbito geográfico</th>
+          <td><%= @award.properties['Análisis - Ámbito geográfico'] %></td>
+        </tr>
+        <tr>
+          <th>Fuente</th>
           <td><%= link_to '<i class="glyphicon glyphicon-file"></i>'.html_safe, "http://www.boe.es#{@award.properties['URL PDF']}", target: '_blank' %></td>
         </tr>
       </tbody>
@@ -47,6 +56,7 @@
   </div>
 </div>
 
+<!--
 <div class="panel panel-default">
   <div class="table-responsive">
     <table class="table footable table-striped">
@@ -62,3 +72,4 @@
     </table>
   </div>
 </div>
+-->
