@@ -14,7 +14,11 @@
         <% if controller_name != 'bidders' %>
         <th>Grupo constructor</th>
         <% else %>
+        <% if defined? utes %>
+        <th>UTE</th>
+        <% else %>
         <th>Empresa</th>
+        <% end %>
         <th data-sortable="false">Objeto</th>
         <% end %>
 
