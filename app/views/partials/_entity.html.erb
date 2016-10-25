@@ -1,30 +1,42 @@
-<div class="title entity single">
-  <h2><%= @title %></h2>
-</div>
+<div class="entity-content <%= controller_name %>">
 
-<div class="sharing-right">
-  <%= render 'partials/sharing_buttons', title: @title %>
-</div>
+  <div class="title entity single">
+    <h2><%= @title %></h2>
+  </div>
 
-<div class="entity-description">
-  <% if controller.controller_name == 'bidders' %>
-    <strong><%= @title %></strong> se ha llevado de forma directa, entre 2009 y 2015, <%= @contract_awards.count %> contratos por un importe de X €. Además, ha formado parte de UTEs que resultaron adjudicatarias de otros X contratos y que suman otros X euros. 
-    Así, <%= @title %> ha estado presente, en total, en la adjudicación de X contratos y X euros. De esa cantidad, un X% del importe fue adjudicado vía procedimiento negociado. Entre las administraciones que le contratan, la que tiene mayor peso es X (X % del total del importe adjudicado tanto de forma directa como a través de las UTEs en las que participa).
-  <% else %>
-    <strong><%= @title %></strong>  ha adjudicado <%= @contract_awards.count %> contratos por un importe de X €, de los cuales un X % ha sido por procedimiento negociado. El principal grupo empresarial beneficiado ha sido X (está presente, de forma directa o a través de UTEs, en el X % del total del importe adjudicado)
-  <% end %>
-</div>
+  <div class="sharing-right">
+    <%= render 'partials/sharing_buttons', title: @title %>
+  </div>
 
-<!--
-<div class="panel panel-default">
-  <%= image_tag('http://lorempixel.com/900/500', :class => 'img-responsive') %>
-</div>
--->
+  <div class="entity-description">
+    <% if controller.controller_name == 'bidders' %>
+      <strong><%= @title %></strong> se ha llevado de forma directa, entre 2009 y 2015, <%= @contract_awards.count %> contratos por un importe de X €. <br/>
+      Además, ha formado parte de UTEs que resultaron adjudicatarias de otros X contratos y que suman otros X euros. <br/>
+      Así, <%= @title %> ha estado presente, en total, en la adjudicación de X contratos y X euros. De esa cantidad, un X% del importe fue adjudicado vía procedimiento negociado. Entre las administraciones que le contratan, la que tiene mayor peso es X (X % del total del importe adjudicado tanto de forma directa como a través de las UTEs en las que participa).
+    <% else %>
+      <strong><%= @title %></strong>  ha adjudicado <%= @contract_awards.count %> contratos por un importe de X €, de los cuales un X % ha sido por procedimiento negociado. <br/>
+      El principal grupo empresarial beneficiado ha sido X (está presente, de forma directa o a través de UTEs, en el X % del total del importe adjudicado)
+    <% end %>
+  </div>
 
-<div class="panel panel-default">
-  <%= render(partial: 'partials/contract_awards_table', locals: { :company => @title }) %>
-</div>
+  <!--
+  <div class="panel panel-default">
+    <%= image_tag('http://lorempixel.com/900/500', :class => 'img-responsive') %>
+  </div>
+  -->
 
-<div class="panel panel-default">
-  <iframe src="http://quienmanda.es/entities/ferrovial?widget=1&history=" width="100%" height="450px" scrolling="no" marginheight="0" frameborder="0"></iframe>
+  <h3>Contratos adjudicados a <%= @title %></h3>
+  <div class="panel panel-default">
+    <%= render(partial: 'partials/contract_awards_table', locals: { awards: @contract_awards }) %>
+  </div>
+
+  <h3>Contratos adjudicados a UTEs en las que participa <%= @title %></h3>
+  <div class="panel panel-default">
+    <%= render(partial: 'partials/contract_awards_table', locals: { awards: @contract_awards }) %>
+  </div>
+
+  <div class="panel panel-default">
+    <iframe src="http://quienmanda.es/entities/ferrovial?widget=1&history=" width="100%" height="450px" scrolling="no" marginheight="0" frameborder="0"></iframe>
+  </div>
+
 </div>

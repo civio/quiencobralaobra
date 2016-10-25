@@ -1,3 +1,10 @@
+.entity-content h3{
+  font-family: $font-family-serif;
+  font-size: 1.25em;
+  font-weight: bold;
+  margin: $grid-gutter-width/2 0;
+}
+
 .entity-description{
   padding: $grid-gutter-width/2;
   margin-bottom: $grid-gutter-width;

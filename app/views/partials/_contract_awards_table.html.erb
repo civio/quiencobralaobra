@@ -33,7 +33,7 @@
       </tr>
     </thead>
     <tbody>
-    <% @contract_awards.each do |award| %>
+    <% awards.each do |award| %>
       <tr>
         <td><%= link_to '<i class="glyphicon glyphicon-plus"></i>'.html_safe, award_path(award), title: 'Ver más', class: 'read-more' %></td>
         <td><%= link_to '<i class="glyphicon glyphicon-link"></i>'.html_safe, "http://www.boe.es#{award.properties['URL PDF']}", target: '_blank' %></td>
