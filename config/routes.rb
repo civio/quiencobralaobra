@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'la-ley/prohibiciones-para-contratar-con-las-aapp', to: 'pages#the_law', as: :the_law_6, :defaults => { :id => 6 }
   get 'la-ley/los-tiempos', to: 'pages#the_law',                      as: :the_law_7, :defaults => { :id => 7 }
   get 'la-ley/clausulas-de-resolucion', to: 'pages#the_law',          as: :the_law_8, :defaults => { :id => 8 }
+  get 'la-ley/directivas-europeas', to: 'pages#the_law',          as: :the_law_9, :defaults => { :id => 9 }
   
   get 'glosario', to: 'pages#glossary', as: :glossary
   get 'metodologia', to: 'pages#methodology', as: :methodology
