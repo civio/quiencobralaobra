@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160118174506) do
+ActiveRecord::Schema.define(version: 20161026195444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,8 +59,11 @@ ActiveRecord::Schema.define(version: 20160118174506) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "group"
+    t.string   "acronym"
   end
 
+  add_index "bidders", ["group"], name: "index_bidders_on_group", using: :btree
   add_index "bidders", ["name"], name: "index_bidders_on_name", unique: true, using: :btree
   add_index "bidders", ["slug"], name: "index_bidders_on_slug", unique: true, using: :btree
 
