@@ -19,11 +19,36 @@
     <% end %>
   </div>
 
-  <!--
-  <div class="panel panel-default">
-    <%= image_tag('http://lorempixel.com/900/500', :class => 'img-responsive') %>
+  <% if controller.controller_name == 'bidders' %>
+  <div class="row">
+    <div class="col-md-6">
+      <div id="treemap-chart">
+        <div class='popover popover-top' role='tooltip'>
+          <div class='popover-arrow'></div>
+          <div class='popover-title'></div>
+          <div class='popover-budget'><strong></strong> €</div>
+          <div class='popover-area'></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div id="stacked-area-chart"></div>
+    </div>
   </div>
-  -->
+  <% else %>
+  <div class="row">
+    <div class="col-sm-12">
+      <div id="treemap-chart">
+        <div class='popover popover-top' role='tooltip'>
+          <div class='popover-arrow'></div>
+          <div class='popover-title'></div>
+          <div class='popover-budget'><strong></strong> €</div>
+          <div class='popover-area'></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
 
   <% if controller.controller_name == 'bidders' %>
   <h3>Contratos adjudicados a <%= @title %></h3>

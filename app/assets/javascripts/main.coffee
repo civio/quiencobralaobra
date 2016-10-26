@@ -43,6 +43,31 @@ getFormattedData = (data, key, length) ->
 
   return keys
 
+# get treemap data from contracts table
+getTreemapData = ->
+  data = [{ id: 'ob' }]
+  categories = []
+
+  # Get contracts data from contracts table
+  $('#contracts tbody tr').each ->
+
+    cat = $(this).find('.td-entity').data('id')
+    
+    # add category to categories array
+    if categories.indexOf(cat) == -1
+      categories.push cat
+      data.push { id: 'ob.'+cat }
+    
+    # add proposal objets to data array
+    data.push {
+      id:           'ob.'+cat+'.'+$(this).data('id')
+      entity:       $(this).find('.td-entity a').html()
+      amount:       +$(this).find('.td-amount').data('value')
+      description:  $(this).find('.td-description').html()
+    }
+  
+  return data
+
 
 $(document).ready ->
 
@@ -64,6 +89,9 @@ $(document).ready ->
       if error
         return console.warn(error)
       chart = new BarChart 'administrations-chart', getFormattedData(json, 'administracion', 10)
+
+  if $('#treemap-chart').length
+    chart = new TreemapChart 'treemap-chart', getTreemapData()
   
   # Add Datepicker in Contracts home
   if $('.contracts-filters').length

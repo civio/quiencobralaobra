@@ -1,0 +1,142 @@
+// Stacked Bar Chart
+
+.stacked-bar-chart{
+  position: relative;
+  background: $colorHeader;
+  padding: $grid-gutter-width/2 $grid-gutter-width/2 $grid-gutter-width/6;
+  margin-top: $grid-gutter-width;
+  min-height: 200px;
+
+  .chart{
+
+    rect.abierto {
+      fill: adjust-hue( $colorTextGreen, -8% );
+    }
+    rect.negociado-con-publicidad {
+      fill: adjust-hue( $colorTextGreen, 0% );
+    }
+    rect.negociado-sin-publicidad {
+      fill: adjust-hue( $colorTextGreen, 8% );
+    }
+    rect.restringido{
+      fill: adjust-hue( $colorTextGreen, 16% );
+    }
+    rect.diálogo-competitivo{
+      fill: adjust-hue( $colorTextGreen, 24% );
+    }
+
+    .amount {
+      fill: white;
+      //text-anchor: end;
+      font-size: 0.913em;
+      font-weight: 600;
+      pointer-events: none;
+    }
+
+    .label {
+      fill: $colorGray;
+      //text-anchor: end;
+      font-size: 0.913em;
+      font-weight: 600;
+
+      &:hover{
+        fill: $colorTextGreen;
+      }
+    }
+  }
+
+  #chart-tooltip{
+    display: none;
+    color: $colorGray;
+    background: white;
+    font-size: 0.913em;
+    font-weight: 600;
+    text-align: left;
+    position: absolute;
+    padding: $grid-gutter-width/4 $grid-gutter-width/2;
+    z-index: 60;
+
+    strong{
+      font-weight: 700;
+    }
+
+    &.active{
+      display: block;
+    }
+  }
+}
+
+
+// Treemap Chart
+
+#treemap-chart{
+  position: relative;
+  margin-bottom: $grid-gutter-width;
+  background: white;
+
+  .popover{
+    display: none;
+    position: absolute;
+    bottom: auto;
+    right: auto;
+    padding: 0;
+    pointer-events: none;
+    //box-shadow: $popover-box-shadow;
+
+    .popover-title{
+      font-size: 1.375rem;
+      line-height: 1.5rem;
+      padding: 0.75rem 0.75rem 1rem;
+      font-weight: 600;
+    }
+
+    .popover-budget{
+      display: inline;
+      font-size: 1.375rem;
+      font-weight: 400;
+      padding: 0.25rem 0.75rem;
+      //margin: 0 0.75rem;
+      border-radius: 0.25rem;
+      background: white;
+
+      strong{
+        font-weight: 600;
+      }
+    }
+
+    .popover-area{
+      font-size: 1.25rem;
+      padding: 0.75rem 0.75rem;
+    }
+  }
+
+  .node {
+    box-sizing: border-box;
+    position: absolute;
+    overflow: hidden;
+  }
+
+  .node-label {
+    display: table;
+    height: 100%;
+    width: 100%;
+    padding: 0 0.375rem;
+    height: 100%;
+    color: white;
+    text-align: center;
+
+    p {
+      display: table-cell;
+      padding: 0 5px;
+      margin: 0;
+      line-height: 1.25em;
+      vertical-align: middle;
+    }
+  }
+
+  .node-value {
+    //color: $gray;
+    font-size: 0.813rem;
+    margin-top: 0.25rem;
+  }
+}

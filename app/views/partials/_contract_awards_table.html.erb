@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table class="table sortable-theme-minimal" <% if controller_name != 'awards' %>data-sortable<% end %>>
+  <table id="contracts<% if defined? utes %>-utes<% end %>" class="table sortable-theme-minimal" <% if controller_name != 'awards' %>data-sortable<% end %>>
     <thead>
       <tr>
         <th data-sortable="false"></th>
@@ -38,35 +38,32 @@
     </thead>
     <tbody>
     <% awards.each do |award| %>
-      <tr>
+      <tr data-id="<%= award.id %>">
         <td><%= link_to '<i class="glyphicon glyphicon-plus"></i>'.html_safe, award_path(award), title: 'Ver más', class: 'read-more' %></td>
         <td><%= link_to '<i class="glyphicon glyphicon-link"></i>'.html_safe, "http://www.boe.es#{award.properties['URL PDF']}", target: '_blank' %></td>
         <td><%= award.award_date %></td>
         <td><%= award.category %></td>
 
         <% if controller_name != 'public_bodies' %>
-        <td><%= link_to award.public_body.name, public_body_path(award.public_body) unless award.public_body.name.blank? %></td>
+        <td class="td-entity" data-id="<%= award.public_body.id %>"><%= link_to award.public_body.name, public_body_path(award.public_body) unless award.public_body.name.blank? %></td>
         <% end %>
 
         <% if controller_name != 'bidders' %>
-        <td><%= link_to award.bidder.name, bidder_path(award.bidder) unless award.bidder.name.blank? %></td>
+        <td class="td-entity" data-id="<%= award.bidder.id %>"><%= link_to award.bidder.name, bidder_path(award.bidder) unless award.bidder.name.blank? %></td>
         <% else %>
         <td>...</td>
-        <td><%= truncate(award.properties['Objeto del contrato - Descripción'], length: 112) %></td>
+        <td class="td-description"><%= truncate(award.properties['Objeto del contrato - Descripción'], length: 112) %></td>
         <% end %>
 
         <% if controller_name == 'public_bodies' %>
-        <td><%= truncate(award.properties['Objeto del contrato - Descripción'], length: 112) %></td>
+        <td class="td-description"><%= truncate(award.properties['Objeto del contrato - Descripción'], length: 112) %></td>
         <% end %>
 
-        <!--
-        <td><%= truncate(award.properties['Objeto del contrato - Descripción'], length: 96) %></td>
-        -->
         <!--
         <td><%= award.process_type %></td>
         <td><%= award.process_track %></td>
         -->
-        <td class="text-right" data-value="<%= award.amount.to_f*0.01 %>"><strong><%= number_with_precision(award.amount.to_f*0.01, precision: 0, delimiter: ".") %></strong></td>
+        <td class="td-amount text-right" data-value="<%= award.amount.to_f*0.01 %>"><strong><%= number_with_precision(award.amount.to_f*0.01, precision: 0, delimiter: ".") %></strong></td>
       </tr>
     <% end %>
     </tbody>
