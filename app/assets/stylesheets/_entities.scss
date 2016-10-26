@@ -1,15 +1,19 @@
 .entity-content h3{
-  font-family: $font-family-serif;
-  font-size: 1.25em;
-  font-weight: bold;
+  //font-family: $font-family-serif;
+  font-size: 1.125em;
+  font-weight: 600;
   margin: $grid-gutter-width/2 0;
 }
 
 .entity-description{
-  padding: $grid-gutter-width/2;
-  margin-bottom: $grid-gutter-width;
-  font-size: 1.25em;
-  background: $colorHeader;
+  padding: $grid-gutter-width/2 2*$grid-gutter-width/3;
+  margin-bottom: $grid-gutter-width/2;
+  font-size: 1.125em;
+  background: mix( $colorBody, white, 50%);
+
+  strong{
+    font-weight: 600;
+  }
 }
 
 .entity-info{

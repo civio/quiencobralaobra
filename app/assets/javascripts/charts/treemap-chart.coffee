@@ -2,7 +2,6 @@ class window.TreemapChart
 
 
   constructor: (id, data, options) ->
-
     # Setup & draw chart
     TreemapChart.setup id, data, options
     TreemapChart.draw()
@@ -25,12 +24,13 @@ class window.TreemapChart
     d3.formatDefaultLocale {thousands: '.', grouping: [3]}
     @budgetFormat = d3.format(',d')
 
-    @color = d3.scaleOrdinal()
-      .range d3.schemeCategory10
+    @colorScale = d3.scaleLinear()
+      .domain d3.extent(@data, (d) -> return d.amount)
+      .range ['#f27649', '#f25f29']
 
     @fontSizeScale = d3.scaleLinear()
       .domain [0, 1]
-      .range [0.625, 3]
+      .range [0.75, 3]
 
     # get sizes
     @getSizes()
@@ -64,10 +64,11 @@ class window.TreemapChart
         .style 'top', (d) -> return d.y0 + 'px'
         .style 'width', (d) -> return d.x1 - d.x0 + 'px'
         .style 'height', (d) -> return d.y1 - d.y0 + 'px'
-        .style 'background', (d) => 
-          while (d.depth > 1)
-            d = d.parent
-          return @color(d.id)
+        # .style 'background', (d) => 
+        #   while (d.depth > 1)
+        #     d = d.parent
+        #   return @color(d.id)
+        .style 'background', (d) => return @colorScale(d.value)
         .on 'mouseover', @onMouseOver
         .on 'mousemove', @onMouseMove
         .on 'mouseout',  @onMouseOut
@@ -76,11 +77,11 @@ class window.TreemapChart
   @setLabels: (selection) =>
     selection
       # filter rects with dimensions greather than 50px
-      .filter (d) -> return d.x1-d.x0 > 50 && d.y1-d.y0 > 50
+      .filter (d) -> return d.x1-d.x0 > 60 && d.y1-d.y0 > 60
       .append('div')
         .attr 'class', 'node-label'
         .append('p')
-          .text (d) -> return d.data.entity
+          .text (d) -> return if d.data.entity.length < 50 then d.data.entity else d.data.entity.substring(0,50)+'...'
           .style 'font-size', @getFontSize
 
   # Get width & height

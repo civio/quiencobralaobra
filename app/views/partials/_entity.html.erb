@@ -19,12 +19,14 @@
     <% end %>
   </div>
 
+  <% if @contract_awards.length > 1 %>
   <% if controller.controller_name == 'bidders' %>
   <div class="row">
     <div class="col-md-6">
+      <h3>Reparto de contratos por Administración pública</h3>
       <div id="treemap-chart">
         <div class='popover popover-top' role='tooltip'>
-          <div class='popover-arrow'></div>
+          <div class='arrow'></div>
           <div class='popover-title'></div>
           <div class='popover-budget'><strong></strong> €</div>
           <div class='popover-area'></div>
@@ -32,15 +34,17 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div id="stacked-area-chart"></div>
+      <h3>Evolución temporal de los contratos recibidos</h3>
+      <div id="area-chart"></div>
     </div>
   </div>
   <% else %>
   <div class="row">
     <div class="col-sm-12">
+      <h3>Reparto de contratos por Grupo constructor</h3>
       <div id="treemap-chart">
         <div class='popover popover-top' role='tooltip'>
-          <div class='popover-arrow'></div>
+          <div class='arrow'></div>
           <div class='popover-title'></div>
           <div class='popover-budget'><strong></strong> €</div>
           <div class='popover-area'></div>
@@ -49,22 +53,27 @@
     </div>
   </div>
   <% end %>
-
-  <% if controller.controller_name == 'bidders' %>
-  <h3>Contratos adjudicados a <%= @title %></h3>
-  <% else %>
-  <h3>Contratos adjudicados por <%= @title %></h3>
   <% end %>
-  <div class="panel panel-default">
-    <%= render('partials/contract_awards_table', awards: @contract_awards) %>
+
+  <div>
+    <% if controller.controller_name == 'bidders' %>
+    <h3>Contratos adjudicados a <%= @title %></h3>
+    <% else %>
+    <h3>Contratos adjudicados por <%= @title %></h3>
+    <% end %>
+    <div class="panel panel-default">
+      <%= render('partials/contract_awards_table', awards: @contract_awards) %>
+    </div>
   </div>
 
-  <% if controller.controller_name == 'bidders' %>
-  <h3>Contratos adjudicados a UTEs en las que participa <%= @title %></h3>
-  <div class="panel panel-default">
-    <%= render('partials/contract_awards_table', awards: @contract_awards, utes: true) %>
+  <div>
+    <% if controller.controller_name == 'bidders' %>
+    <h3>Contratos adjudicados a UTEs en las que participa <%= @title %></h3>
+    <div class="panel panel-default">
+      <%= render('partials/contract_awards_table', awards: @contract_awards, utes: true) %>
+    </div>
+    <% end %>
   </div>
-  <% end %>
 
   <div class="panel panel-default">
     <iframe src="http://quienmanda.es/entities/ferrovial?widget=1&history=" width="100%" height="450px" scrolling="no" marginheight="0" frameborder="0"></iframe>

@@ -1,5 +1,6 @@
 chart = null
 
+
 setWallLayout = ->
   $wall = $('.wall')
   if $wall.length
@@ -8,6 +9,7 @@ setWallLayout = ->
         itemSelector: '.wall-item',
         columnWidth: $wall.width() / 12
       }
+
 
 # process Companies Data to be draw as a stacked bar chart
 getFormattedData = (data, key, length) ->
@@ -32,8 +34,6 @@ getFormattedData = (data, key, length) ->
     item.total = total
     item.link = item.link
 
-  #console.dir keys
-
   # Sort contratistas by total amount
   keys.sort (a, b) ->
     return d3.descending(a.total, b.total)
@@ -43,30 +43,49 @@ getFormattedData = (data, key, length) ->
 
   return keys
 
+
 # get treemap data from contracts table
 getTreemapData = ->
   data = [{ id: 'ob' }]
-  categories = []
+  entities = []
 
   # Get contracts data from contracts table
   $('#contracts tbody tr').each ->
 
-    cat = $(this).find('.td-entity').data('id')
+    entity = $(this).find('.td-entity').data('id')
     
     # add category to categories array
-    if categories.indexOf(cat) == -1
-      categories.push cat
-      data.push { id: 'ob.'+cat }
-    
-    # add proposal objets to data array
-    data.push {
-      id:           'ob.'+cat+'.'+$(this).data('id')
-      entity:       $(this).find('.td-entity a').html()
-      amount:       +$(this).find('.td-amount').data('value')
-      description:  $(this).find('.td-description').html()
-    }
+    if entities.indexOf(entity) == -1
+      entities.push entity
+      data.push { 
+        id:     'ob.'+entity
+        entity: $(this).find('.td-entity a').html()
+        amount: +$(this).find('.td-amount').data('value')
+      }
+    else
+      data.amount += +$(this).find('.td-amount').data('value')
   
   return data
+
+
+# get treemap data from contracts table
+getAreaData = ->
+  data = {}
+ 
+  # Get contracts data from contracts table
+  $('#contracts tbody tr').each ->
+    year = $(this).find('.td-date').html().split('-')[0]
+    amount = +$(this).find('.td-amount').data('value')
+
+    # avoid empty dates
+    if year
+      # add year to years array
+      if data[year]
+        data[year] += amount
+      else
+        data[year] = amount
+
+  return d3.entries(data)
 
 
 $(document).ready ->
@@ -93,6 +112,9 @@ $(document).ready ->
   if $('#treemap-chart').length
     chart = new TreemapChart 'treemap-chart', getTreemapData()
   
+  if $('#area-chart').length
+    areaChart = new AreaChart 'area-chart', getAreaData()
+  
   # Add Datepicker in Contracts home
   if $('.contracts-filters').length
     $('.contracts-filters .input-daterange').datepicker({ language: 'es' })
@@ -104,3 +126,5 @@ $(document).ready ->
   $(window).resize ->
     if chart
       chart.resize()
+    if areaChart
+      areaChart.resize()
