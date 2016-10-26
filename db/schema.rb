@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026200314) do
+ActiveRecord::Schema.define(version: 20161026221111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20161026200314) do
     t.string   "category"
     t.string   "process_type"
     t.string   "process_track"
+    t.string   "description"
+    t.string   "boe_id"
   end
 
   add_index "awards", ["bidder_id"], name: "index_awards_on_bidder_id", using: :btree
