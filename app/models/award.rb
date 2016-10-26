@@ -7,6 +7,7 @@ class Award < ActiveRecord::Base
   def self.load_from_hash(properties)
     # Find or create related public body entity
     public_body = PublicBody.where(name: properties['[QCLO] Entidad adjudicadora - Nombre']).first_or_create
+    populate_related_entity_attribute(public_body, :body_type, properties['[QCLO] Entidad adjudicadora - Tipo'])
 
     # Same with the bidder
     bidder = Bidder.where(name: properties['[QCLO] Contratista - Limpio']).first_or_create
