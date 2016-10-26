@@ -24,6 +24,10 @@ Then load a small subset of real contract data, which will automatically create 
 
     $ rake data:import_awards[db/awards.csv]
 
+Or, if you're feeling brave:
+
+    $ rake data:import_awards[/Users/David/Box\ Sync/Civio/Proyectos/07\ Quién\ cobra\ la\ obra/02\ Data/Limpieza\ y\ análisis/\!2009-2015/2009-2015.csv]
+
 Load CPV codes (not needed for now):
 
     $ rake data:import_cpv
