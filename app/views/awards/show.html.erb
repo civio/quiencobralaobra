@@ -11,14 +11,12 @@
           <th><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i> Fecha adjudicación</th>
           <td><%= @award.award_date %></td>
         </tr>
+        <% unless @award.properties['Formalización del contrato - Fecha de formalización del contrato'].nil? or @award.properties['Formalización del contrato - Fecha de formalización del contrato'].blank? %>
         <tr>
           <th>Fecha formalización</th>
-          <td><%=
-            @award.properties['Formalización del contrato - Fecha de formalización del contrato'].blank? ?
-              '' : 
-              @award.properties['Formalización del contrato - Fecha de formalización del contrato'].to_time.strftime('%Y-%m-%d') unless @award.properties['Formalización del contrato - Fecha de formalización del contrato'].nil?
-            %></td>
+          <td><%= @award.properties['Formalización del contrato - Fecha de formalización del contrato'].to_time.strftime('%Y-%m-%d') %></td>
         </tr>
+        <% end %>
         <tr>
           <th>AAPP adjudicadora</th>
           <td><%= link_to @award.public_body.name, public_body_path(@award.public_body) unless @award.public_body.name.blank?%></td>
