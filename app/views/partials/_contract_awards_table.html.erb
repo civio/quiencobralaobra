@@ -42,7 +42,7 @@
         <% end %>
 
         <% if controller_name != 'bidders' %>
-        <td class="td-entity" data-id="<%= award.bidder.id %>"><%= link_to award.bidder.name, bidder_path(award.bidder) unless award.bidder.name.blank? %></td>
+        <td class="td-entity" data-id="<%= award.bidder.id %>"><%= link_to award.bidder.group, bidder_path(award.bidder) unless award.bidder.group.blank? %></td>
         <% else %>
         <td><%= award.bidder.name %></td>
         <td class="td-description"><%= truncate(award.description, length: 112) %></td>
