@@ -69,21 +69,23 @@ getTreemapData = ->
 
 
 # get treemap data from contracts table
-getAreaData = ->
-  data = {}
+getBarsData = ->
+  data = []
  
   # Get contracts data from contracts table
   $('#contracts tbody tr').each ->
-    year = $(this).find('.td-date').html().split('-')[0]
-    amount = +$(this).find('.td-amount').data('value')
+    date = $(this).find('.td-date').html()
 
     # avoid empty dates
-    if year
+    if date and date != ''
+      date = date.split('-').slice(0,-1).join('-')
+      amount = +$(this).find('.td-amount').data('value')
+
       # add year to years array
-      if data[year]
-        data[year] += amount
+      if data[date]
+        data[date] += amount
       else
-        data[year] = amount
+        data[date] = amount
 
   return d3.entries(data)
 
@@ -112,8 +114,8 @@ $(document).ready ->
   if $('#treemap-chart').length
     chart = new TreemapChart 'treemap-chart', getTreemapData()
   
-  if $('#area-chart').length
-    areaChart = new AreaChart 'area-chart', getAreaData()
+  if $('#timeline-bar-chart').length
+    timelineBarsChart = new TimelineBarsChart 'timeline-bar-chart', getBarsData()
   
   # Add Datepicker in Contracts home
   if $('.contracts-filters').length
@@ -126,5 +128,5 @@ $(document).ready ->
   $(window).resize ->
     if chart
       chart.resize()
-    if areaChart
-      areaChart.resize()
+    if timelineBarsChart
+      timelineBarsChart.resize()

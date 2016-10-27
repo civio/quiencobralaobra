@@ -69,14 +69,10 @@
 
 // Treemap Chart
 
-#treemap-chart,
-#area-chart{
+#treemap-chart{
   position: relative;
   margin-bottom: $grid-gutter-width/2;
   background: mix( $colorBody, white, 50%);
-}
-
-#treemap-chart{
 
   .popover{
     display: none;
@@ -184,5 +180,27 @@
   }
   .axis-y-end{
     float: right;
+  }
+}
+
+// Timeline Bar Chart
+
+#timeline-bar-chart{
+  margin-bottom: $grid-gutter-width/2;
+  background: mix( $colorBody, white, 50%);
+
+  .bar{
+    fill: $colorTextGreen;
+  }
+
+  .axis{ 
+    .domain{
+      stroke: $colorTitle;
+    }
+    .tick text{
+      fill: $colorTitle;
+      font-size: 11px;
+      text-anchor: start;
+    }
   }
 }

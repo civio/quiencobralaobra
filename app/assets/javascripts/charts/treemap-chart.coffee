@@ -19,7 +19,7 @@ class window.TreemapChart
     @$el = $('#'+@options.id)
    
     # get tooltip 
-    @$tooltip  = @$popover = @$el.find('.popover')
+    @$tooltip = @$el.find('.popover')
 
     d3.formatDefaultLocale {thousands: '.', grouping: [3]}
     @budgetFormat = d3.format(',d')
@@ -59,15 +59,10 @@ class window.TreemapChart
       .data @root.leaves()
       .enter().append('div')
         .attr  'class', 'node'
-        #.attr  'title', (d) -> return d.id + '\n' + format(d.value)
         .style 'left', (d) -> return d.x0 + 'px'
         .style 'top', (d) -> return d.y0 + 'px'
         .style 'width', (d) -> return d.x1 - d.x0 + 'px'
         .style 'height', (d) -> return d.y1 - d.y0 + 'px'
-        # .style 'background', (d) => 
-        #   while (d.depth > 1)
-        #     d = d.parent
-        #   return @color(d.id)
         .style 'background', (d) => return @colorScale(d.value)
         .on 'mouseover', @onMouseOver
         .on 'mousemove', @onMouseMove
@@ -126,7 +121,6 @@ class window.TreemapChart
 
   @onMouseOver: (e) =>
     # Setup content
-    @$tooltip.find('.popover-area').html e.data.description
     @$tooltip.find('.popover-title').html           e.data.entity
     @$tooltip.find('.popover-budget strong').html   @budgetFormat(e.data.amount)
     # Show popover
