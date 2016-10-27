@@ -25,7 +25,7 @@ class window.TimelineBarsChart
 
     d3.formatDefaultLocale {thousands: '.', grouping: [3]}
     @budgetFormat = d3.format(',d')
-    @formatTime = d3.timeFormat('%Y-%m')
+    @formatTime = d3.timeFormat('%B %Y')
 
     # format data
     parseTime = d3.timeParse('%Y-%m')
@@ -33,8 +33,14 @@ class window.TimelineBarsChart
       d.date = parseTime d.key
       d.value = +d.value
 
+    # get minimum date between 2008-01 & 2009-01
+    # as explained in https://github.com/civio/quiencobralaobra/issues/65
+    filteredData = @data.filter (d) -> return d.date.getFullYear() >= 2008
+    min = d3.min filteredData, (d) -> return d.date
+    min = d3.min [min, parseTime('2009-01')]
+   
     @x = d3.scaleTime()
-      .domain d3.extent(@data, (d) -> return d.date)
+      .domain [min, parseTime('2016-01')]
       .range [0, @width]
 
     @y = d3.scaleLinear()
@@ -46,7 +52,6 @@ class window.TimelineBarsChart
       .tickFormat d3.timeFormat('%Y')
       .tickSize 0
       .tickPadding 6
-
     
     @monthLength = @getMonthLength()
 
@@ -134,7 +139,7 @@ class window.TimelineBarsChart
 
   @onMouseOver: (e) =>
     # Setup content
-    @$tooltip.find('.popover-title').html           @formatTime(e.date)
+    @$tooltip.find('.popover-title span').html      @formatTime(e.date)
     @$tooltip.find('.popover-budget strong').html   @budgetFormat(e.value)
     # Show popover
     @$tooltip.show()
@@ -157,16 +162,13 @@ class window.TimelineBarsChart
   # get number of months between min & max dates
   @getMonthLength: ->
 
-    min = d3.min @data, (d) -> return d.date
-    max = d3.max @data, (d) -> return d.date
-
     formatYear = d3.timeFormat('%Y')
     formatMonth = d3.timeFormat('%m')
 
-    minYear  = +formatYear  min
-    minMonth = +formatMonth min
-    maxYear  = +formatYear  max
-    maxMonth = +formatMonth max
+    minYear  = +formatYear  @x.domain()[0]
+    minMonth = +formatMonth @x.domain()[0]
+    maxYear  = +formatYear  @x.domain()[1]
+    maxMonth = +formatMonth @x.domain()[1]
 
     return ((maxYear-minYear)*12) + maxMonth - minMonth
    

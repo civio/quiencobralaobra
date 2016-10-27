@@ -72,6 +72,58 @@
 .entity-chart{
   margin-bottom: $grid-gutter-width/2;
   background: mix( $colorBody, white, 50%);
+
+  .popover{
+    display: none;
+    position: absolute;
+    bottom: auto;
+    right: auto;
+    min-width: 150px;
+    padding: 0;
+    pointer-events: none;
+    //box-shadow: $popover-box-shadow;
+
+    .popover-title{
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      padding: 1rem 0.75rem 0.25rem;
+      border: none;
+      font-weight: 600;
+
+      span{
+        font-weight: 400;
+      }
+    }
+
+    .popover-budget{
+      font-size: 1.75rem;
+      font-weight: 400;
+      padding: 0.5rem 0.75rem;
+      //margin: 0 0.75rem;
+      border-radius: 0.25rem;
+      background: white;
+
+      strong{
+        font-weight: 600;
+      }
+
+      .percentage{
+        font-size: 0.875em;
+        padding-left: 6px;
+      }
+    }
+
+    .glyphicon{
+      color: $colorTextGreen;
+      font-size: 11px;
+      padding-right: 6px;
+    }
+
+    .popover-area{
+      font-size: 1.375rem;
+      padding: 0.75rem 0.75rem;
+    }
+  }
 }
 
 .entity-charts{
@@ -89,42 +141,6 @@
 
 #treemap-chart{
   position: relative;
-
-  .popover{
-    display: none;
-    position: absolute;
-    bottom: auto;
-    right: auto;
-    padding: 0;
-    pointer-events: none;
-    //box-shadow: $popover-box-shadow;
-
-    .popover-title{
-      font-size: 1.5rem;
-      line-height: 1.5rem;
-      padding: 0.75rem 0.75rem 1rem;
-      font-weight: 600;
-    }
-
-    .popover-budget{
-      display: inline;
-      font-size: 1.5rem;
-      font-weight: 400;
-      padding: 0.25rem 0.75rem;
-      //margin: 0 0.75rem;
-      border-radius: 0.25rem;
-      background: white;
-
-      strong{
-        font-weight: 600;
-      }
-    }
-
-    .popover-area{
-      font-size: 1.375rem;
-      padding: 0.75rem 0.75rem;
-    }
-  }
 
   .node {
     box-sizing: border-box;

@@ -32,6 +32,21 @@ class window.TreemapChart
       .domain [0, 1]
       .range [0.75, 3]
 
+    @total = d3.sum @data, (d) -> return d.amount
+
+    # filter data to unify small parts in a 'Others' item
+    other = 0
+    @data.forEach (d, i) =>
+      if d.amount/@total < 0.003
+        d.remove = true
+        other += d.amount
+    if other > 0
+      @data = @data.filter (d) -> return d.remove != true
+      @data.push 
+        id: 'ob.other'
+        entity: 'Otros'
+        amount: other
+
     # get sizes
     @getSizes()
 
@@ -72,7 +87,7 @@ class window.TreemapChart
   @setLabels: (selection) =>
     selection
       # filter rects with dimensions greather than 50px
-      .filter (d) -> return d.x1-d.x0 > 60 && d.y1-d.y0 > 60
+      .filter (d) -> return d.x1-d.x0 > 55 && d.y1-d.y0 > 55
       .append('div')
         .attr 'class', 'node-label'
         .append('p')
@@ -121,8 +136,10 @@ class window.TreemapChart
 
   @onMouseOver: (e) =>
     # Setup content
-    @$tooltip.find('.popover-title').html           e.data.entity
-    @$tooltip.find('.popover-budget strong').html   @budgetFormat(e.data.amount)
+    @$tooltip.find('.popover-title').html              e.data.entity
+    @$tooltip.find('.popover-budget strong').html      @budgetFormat(e.data.amount)
+    @$tooltip.find('.popover-budget .percentage').html '('+(100*e.data.amount/@total).toFixed(1)+'%)'
+    
     # Show popover
     @$tooltip.show()
 
