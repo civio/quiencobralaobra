@@ -67,12 +67,28 @@
 }
 
 
+// Entity Chart (treemap & timeline-bar)
+
+.entity-chart{
+  margin-bottom: $grid-gutter-width/2;
+  background: mix( $colorBody, white, 50%);
+}
+
+.entity-charts{
+  .well{
+    font-size: 0.813em;
+    padding: $grid-gutter-width/3 $grid-gutter-width/2 ($grid-gutter-width/3)-2;
+    margin-top: $grid-gutter-width;
+    background: mix( $colorBody, white, 50%);
+    border: none;
+  }
+}
+
+
 // Treemap Chart
 
 #treemap-chart{
   position: relative;
-  margin-bottom: $grid-gutter-width/2;
-  background: mix( $colorBody, white, 50%);
 
   .popover{
     display: none;
@@ -146,48 +162,9 @@
   }
 }
 
-// Area Chart
-
-#area-chart{
-
-  .area{
-    fill: $colorTextGreen;
-    opacity: 0.8;
-  }
-
-  .line{
-    stroke: $colorTextGreen;
-    stroke-width: 2px;
-  }
-
-  .axis-y{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-top: 1px solid $colorTitle;
-  }
-
-  .axis-y-init,
-  .axis-y-end{
-    height: 0;
-    overflow: visible;
-    font-size: 0.875em;
-  }
-
-  .axis-y-init{
-    float: left;
-  }
-  .axis-y-end{
-    float: right;
-  }
-}
-
 // Timeline Bar Chart
 
 #timeline-bar-chart{
-  margin-bottom: $grid-gutter-width/2;
-  background: mix( $colorBody, white, 50%);
 
   .bar{
     fill: $colorTextGreen;
