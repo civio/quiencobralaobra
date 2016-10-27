@@ -11,6 +11,15 @@ namespace :data do
     end
   end
 
+  desc "Import UTE-companies mapping"
+  task import_utes: :environment do |t, args|
+    UteCompaniesMapping.delete_all
+    CSV.read('db/utes_mapping.csv').each do |row|
+      next if row[0].start_with?('#') or row[0].empty?
+      UteCompaniesMapping.create!(ute: row[0], company: row[1])
+    end
+  end
+
   desc "Import list of awards"
   task :import_awards, [:filename] => :environment do |t, args|
     def row_to_hash(row, column_names)

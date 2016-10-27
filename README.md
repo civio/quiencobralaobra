@@ -20,6 +20,10 @@ Create the first user (admin@quiencobralaobra.es / password) using the DB seeds:
 
     $ rake db:seed
 
+Load UTE-companies mapping:
+
+    $ rake data:import_utes
+
 Then load a small subset of real contract data, which will automatically create a number of public authorities and bidders:
 
     $ rake data:import_awards[db/awards.csv]

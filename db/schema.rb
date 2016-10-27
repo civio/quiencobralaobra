@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026221111) do
+ActiveRecord::Schema.define(version: 20161027012822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,5 +117,15 @@ ActiveRecord::Schema.define(version: 20161026221111) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "ute_companies_mappings", force: :cascade do |t|
+    t.string   "ute"
+    t.string   "company"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "ute_companies_mappings", ["company"], name: "index_ute_companies_mappings_on_company", using: :btree
+  add_index "ute_companies_mappings", ["ute"], name: "index_ute_companies_mappings_on_ute", using: :btree
 
 end
