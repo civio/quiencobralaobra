@@ -1,7 +1,7 @@
 class AwardsController < ApplicationController
   def index
     # Get 'Empresas', 'Administraciones' & 'Tipo de procedimientos de contratos' for filter selects
-    @bidders = Bidder.all.order(name: :asc)
+    @bidders = Bidder.all.order(group: :asc)
     @public_bodies = PublicBody.all.order(name: :asc)
     @contract_awards_types = Award.select(:process_type).distinct.order(process_type: :asc)
 

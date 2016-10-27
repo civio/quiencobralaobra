@@ -26,13 +26,6 @@
         <th data-sortable="false">Objeto</th>
         <% end %>
 
-        <!--
-        <th>Objeto</th>
-        -->
-        <!--
-        <th>Procedimiento</th>
-        <th>Tramitación</th>
-        -->
         <th class="text-right" data-sortable-type="numeric" data-sorted="true" data-sorted-direction="descending">Importe <i>(€)</i></th>
       </tr>
     </thead>
@@ -40,7 +33,7 @@
     <% awards.each do |award| %>
       <tr data-id="<%= award.id %>">
         <td><%= link_to '<i class="glyphicon glyphicon-plus"></i>'.html_safe, award_path(award), title: 'Ver más', class: 'read-more' %></td>
-        <td><%= link_to '<i class="glyphicon glyphicon-link"></i>'.html_safe, "http://www.boe.es#{award.properties['URL PDF']}", target: '_blank' %></td>
+        <td><%= link_to '<i class="glyphicon glyphicon-link"></i>'.html_safe, "http://www.boe.es/buscar/doc.php?id=#{award.boe_id}", target: '_blank' %></td>
         <td class="td-date"><%= award.award_date %></td>
         <td><%= award.category %></td>
 
@@ -51,18 +44,14 @@
         <% if controller_name != 'bidders' %>
         <td class="td-entity" data-id="<%= award.bidder.id %>"><%= link_to award.bidder.name, bidder_path(award.bidder) unless award.bidder.name.blank? %></td>
         <% else %>
-        <td>...</td>
-        <td class="td-description"><%= truncate(award.properties['Objeto del contrato - Descripción'], length: 112) %></td>
+        <td><%= award.bidder.name %></td>
+        <td class="td-description"><%= truncate(award.description, length: 112) %></td>
         <% end %>
 
         <% if controller_name == 'public_bodies' %>
-        <td class="td-description"><%= truncate(award.properties['Objeto del contrato - Descripción'], length: 112) %></td>
+        <td class="td-description"><%= truncate(award.description, length: 112) %></td>
         <% end %>
 
-        <!--
-        <td><%= award.process_type %></td>
-        <td><%= award.process_track %></td>
-        -->
         <td class="td-amount text-right" data-value="<%= award.amount.to_f*0.01 %>"><strong><%= number_with_precision(award.amount.to_f*0.01, precision: 0, delimiter: ".") %></strong></td>
       </tr>
     <% end %>
