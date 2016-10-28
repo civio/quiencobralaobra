@@ -35,18 +35,18 @@ class window.TreemapChart
     @total = d3.sum @data, (d) -> return d.amount
 
     # filter data to unify small parts in a 'Others' item
-    other = 0
-    @data.forEach (d, i) =>
-      if d.amount/@total < 0.003
-        d.remove = true
-        other += d.amount
-    if other > 0
-      @data = @data.filter (d) -> return d.remove != true
-      @data.push 
-        id: 'ob.other'
-        entity: 'Otros'
-        amount: other
-        type: 'others'
+    # other = 0
+    # @data.forEach (d, i) =>
+    #   if d.amount/@total < 0.001
+    #     d.remove = true
+    #     other += d.amount
+    # if other > 0
+    #   @data = @data.filter (d) -> return d.remove != true
+    #   @data.push 
+    #     id: 'ob.other'
+    #     entity: 'Otros'
+    #     amount: other
+    #     type: 'others'
 
     # get sizes
     @getSizes()
