@@ -1,0 +1,100 @@
+.post-gallery{
+
+  .gallery-item{
+    position: relative;
+  }
+
+  .gallery-intro{
+    font-size: 1.25em;
+    border-top: 1px solid $colorSecondary;
+    border-bottom: 1px solid $colorSecondary;
+    margin: 0 2*$grid-gutter-width $grid-gutter-width;
+    padding: $grid-gutter-width/3 0;
+  }
+ 
+  .gallery-title{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 60;
+    width: 100%;
+    padding: $grid-gutter-width 2*$grid-gutter-width 1.5*$grid-gutter-width;
+    background: rgba(0,0,0,0.6);
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0.6)), color-stop(65%, rgba(0,0,0,0.4)), color-stop(100%, rgba(0,0,0,0)));
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0) 100%);
+    background: -o-linear-gradient(top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0) 100%);
+    background: -ms-linear-gradient(top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 65%, rgba(0,0,0,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+
+    h3{
+      display: inline-block;
+      color: white;
+      font-size: 2em;
+      //line-height: 1.5em;
+      font-weight: bold;
+      padding-right: $grid-gutter-width/3;
+      margin-bottom: 0; 
+    }
+    .location{
+      color: white;
+      display: inline-block;
+      font-size: 2em;
+      line-height: 32px;
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+    .budget{
+      clear: both;
+      color: #ff642b;
+      font-size: 2em;
+      font-weight: 600;
+      margin: 0;
+      padding: $grid-gutter-width/3 0;
+    }
+  }
+
+  .post-picture{
+    padding: 0;
+  } 
+  .picture-footer{
+    padding: $grid-gutter-width/3 2*$grid-gutter-width;
+    margin: 0;
+  }
+
+  .gallery-content{
+    position: relative;
+  }
+  .gallery-description{
+    font-size: 1.25em;
+    padding-bottom: $grid-gutter-width;
+    margin: $grid-gutter-width 2*$grid-gutter-width 2*$grid-gutter-width;
+    border-bottom: 1px solid $colorSecondary;
+  }
+
+  .btn-default{
+    color: white;
+    border: none;
+    background: $colorTextGreen;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: $grid-gutter-width/3 0 2*$grid-gutter-width/3;
+
+    .glyphicon{
+      font-size: 0.813em;
+    }
+
+    &:hover{
+      background: darken( $colorTextGreen, 10% );
+    }
+  }
+
+  .panel-body{
+    padding-top: 0;
+    padding-bottom: 2*$grid-gutter-width;
+  }
+  .civio-banner{
+    margin: 0;
+  }
+}
