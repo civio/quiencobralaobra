@@ -31,7 +31,7 @@
     </thead>
     <tbody>
     <% awards.each do |award| %>
-      <tr data-id="<%= award.id %>">
+      <tr data-id="<%= award.id %>"<% if controller_name != 'public_bodies' %> data-body-type="<%= award.public_body.body_type %>"<% end %>>
         <td><%= link_to '<i class="glyphicon glyphicon-plus"></i>'.html_safe, award_path(award), title: 'Ver más', class: 'read-more' %></td>
         <td><%= link_to '<i class="glyphicon glyphicon-link"></i>'.html_safe, "http://www.boe.es/buscar/doc.php?id=#{award.boe_id}", target: '_blank' %></td>
         <td class="td-date"><%= award.award_date %></td>

@@ -61,6 +61,7 @@ getTreemapData = ->
         id:     'ob.'+entity
         entity: $(this).find('.td-entity a').html()
         amount: +$(this).find('.td-amount').data('value')
+        type:   if $(this).data('body-type') then slugify($(this).data('body-type')) else ''
       }
     else
       data.amount += +$(this).find('.td-amount').data('value')
@@ -88,6 +89,17 @@ getBarsData = ->
         data[date] = amount
 
   return d3.entries(data)
+
+
+slugify = (s) ->
+  return s
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '')
 
 
 $(document).ready ->
@@ -123,6 +135,11 @@ $(document).ready ->
 
   # Setup table sorting
   Sortable.init()
+
+  # Setup affix for contracts tables
+  # $('#contracts').affix
+  #   offset:
+  #     top: () -> console.log($(this)); return 100 #$(this).offset().top
 
   # Add resize handler
   $(window).resize ->

@@ -146,7 +146,24 @@
     box-sizing: border-box;
     position: absolute;
     overflow: hidden;
-    background: mix( $colorTextGreen, white, 70% );
+    background: $colorTextGreen;
+   
+    &.ministerios{
+      background: $colorTextGreen;
+    }
+    &.comunidades-autnomas{
+      background: mix( $colorTextGreen, $colorSecondary, 80% );
+    }
+    &.administracin-local{
+      background: mix( $colorTextGreen, $colorSecondary, 60% );
+    }
+    &.universidades,
+    &.otros-poderes-adjudicadores{
+      background: mix( $colorTextGreen, $colorSecondary, 40% );
+    }
+    &.others{
+      background: desaturate( $colorSecondary, 25% );
+    }
   }
 
   .node-label {

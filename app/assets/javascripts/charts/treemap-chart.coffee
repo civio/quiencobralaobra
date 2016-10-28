@@ -46,6 +46,7 @@ class window.TreemapChart
         id: 'ob.other'
         entity: 'Otros'
         amount: other
+        type: 'others'
 
     # get sizes
     @getSizes()
@@ -73,12 +74,12 @@ class window.TreemapChart
       .selectAll('.node')
       .data @root.leaves()
       .enter().append('div')
-        .attr  'class', 'node'
+        .attr  'class', (d) -> return if d.data.type then 'node '+d.data.type else 'node'
         .style 'left', (d) -> return d.x0 + 'px'
         .style 'top', (d) -> return d.y0 + 'px'
         .style 'width', (d) -> return d.x1 - d.x0 + 'px'
         .style 'height', (d) -> return d.y1 - d.y0 + 'px'
-        .style 'background', (d) => return @colorScale(d.value)
+        #.style 'background', (d) => return @colorScale(d.value)
         .on 'mouseover', @onMouseOver
         .on 'mousemove', @onMouseMove
         .on 'mouseout',  @onMouseOut
