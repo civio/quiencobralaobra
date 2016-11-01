@@ -11,8 +11,12 @@
           <%= link_to image_tag(@article.photo.url(:full), :class => 'img-responsive'), article_path(@article), :class => 'image' %>
         <% end %>
       </div>
+      <% if @article.photo and !@article.photo_footer.blank? %>
       <div class="picture-footer"><%= @article.photo_footer %></div>
+      <% end %>
+      <% if @article.photo and !@article.photo_credit.blank? %>
       <div class="picture-credits">Foto: <%= link_to @article.photo_credit, @article.photo_credit_link, target: '_blank' %></div>
+      <% end %>
       <div class="panel-body">
         <h3 class="post-title"><%= @article.lead.html_safe %></h3>
         <div class="post-meta">
