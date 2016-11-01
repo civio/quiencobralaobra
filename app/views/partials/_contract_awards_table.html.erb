@@ -1,11 +1,10 @@
 <div class="table-responsive">
-  <table id="contracts<% if defined? utes %>-utes<% end %>" class="table sortable-theme-minimal" <% if controller_name != 'awards' %>data-sortable<% end %>>
+  <table id="contracts<% if defined? utes %>-utes<% end %>" class="table table-contracts sortable-theme-minimal" <% if controller_name != 'awards' %>data-sortable<% end %>>
     <thead>
       <tr>
         <th data-sortable="false"></th>
         <th data-sortable="false">Fuente</th>
-        <th>Fecha adjudicación</th>
-        <th>Tipo</th>
+        
 
         <% if controller_name != 'public_bodies' %>
         <th>Administración pública</th>
@@ -26,16 +25,18 @@
         <th data-sortable="false">Objeto</th>
         <% end %>
 
+        <th>Fecha adjudicación</th>
+        <th>Procedimiento</th>
+
         <th class="text-right" data-sortable-type="numeric" data-sorted="true" data-sorted-direction="descending">Importe <i>(€)</i></th>
       </tr>
     </thead>
     <tbody>
     <% awards.each do |award| %>
-      <tr data-id="<%= award.id %>">
+      <tr data-id="<%= award.id %>"<% if controller_name != 'public_bodies' %> data-body-type="<%= award.public_body.body_type %>"<% end %>>
         <td><%= link_to '<i class="glyphicon glyphicon-plus"></i>'.html_safe, award_path(award), title: 'Ver más', class: 'read-more' %></td>
         <td><%= link_to '<i class="glyphicon glyphicon-link"></i>'.html_safe, "http://www.boe.es/buscar/doc.php?id=#{award.boe_id}", target: '_blank' %></td>
-        <td class="td-date"><%= award.award_date %></td>
-        <td><%= award.category %></td>
+        
 
         <% if controller_name != 'public_bodies' %>
         <td class="td-entity" data-id="<%= award.public_body.id %>"><%= link_to award.public_body.name, public_body_path(award.public_body) unless award.public_body.name.blank? %></td>
@@ -51,6 +52,9 @@
         <% if controller_name == 'public_bodies' %>
         <td class="td-description"><%= truncate(award.description, length: 112) %></td>
         <% end %>
+
+        <td class="td-date"><%= award.award_date %></td>
+        <td><%= award.category %></td>
 
         <td class="td-amount text-right" data-value="<%= award.amount.to_f*0.01 %>"><strong><%= number_with_precision(award.amount.to_f*0.01, precision: 0, delimiter: ".") %></strong></td>
       </tr>

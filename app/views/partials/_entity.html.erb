@@ -10,49 +10,48 @@
 
   <div class="entity-description">
     <% if controller.controller_name == 'bidders' %>
-      <strong><%= @title %></strong> se ha llevado de forma directa, entre 2009 y 2015, <%= @contract_awards.count %> contratos por un importe de X €. <br/>
+      <strong>De todas las adjudicaciones publicadas en el BOE entre 2009 y 2015, <%= @title %></strong> se ha llevado de forma directa <%= @contract_awards.count %> contratos por un importe de X €. <br/>
       Además, ha formado parte de UTEs que resultaron adjudicatarias de otros X contratos y que suman otros X euros. <br/>
       Así, <%= @title %> ha estado presente, en total, en la adjudicación de X contratos y X euros. De esa cantidad, un X% del importe fue adjudicado vía procedimiento negociado. Entre las administraciones que le contratan, la que tiene mayor peso es X (X % del total del importe adjudicado tanto de forma directa como a través de las UTEs en las que participa).
     <% else %>
-      <strong><%= @title %></strong>  ha adjudicado, entre 2009 y 2015, <%= @contract_awards.count %> contratos por un importe de X €, de los cuales un X % ha sido por procedimiento negociado. <br/>
+      <strong>De todas las adjudicaciones publicadas en el BOE entre 2009 y 2015, <%= @title %></strong> ha adjudicado <%= @contract_awards.count %> contratos por un importe de X €, de los cuales un X % ha sido por procedimiento negociado. <br/>
       El principal grupo empresarial beneficiado ha sido X (está presente, de forma directa o a través de UTEs, en el X % del total del importe adjudicado)
     <% end %>
   </div>
 
   <% if @contract_awards.length > 1 %>
-  <% if controller.controller_name == 'bidders' %>
-  <div class="row">
+  <div class="row entity-charts">
     <div class="col-md-6">
+      <% if controller.controller_name == 'bidders' %>
       <h3>Reparto de contratos por Administración pública</h3>
-      <div id="treemap-chart">
-        <div class='popover popover-top' role='tooltip'>
+      <% else %>
+      <h3>Reparto de contratos por Grupo constructor</h3>
+      <% end %>
+      <div id="treemap-chart" class="entity-chart">
+        <div class='popover top' role='tooltip'>
           <div class='arrow'></div>
           <div class='popover-title'></div>
-          <div class='popover-budget'><strong></strong> €</div>
-          <div class='popover-area'></div>
+          <div class='popover-budget'><strong></strong> € <span class="percentage"></span></div>
         </div>
       </div>
+      <div class="well">Texto explicativo del gráfico superior</div>
     </div>
     <div class="col-md-6">
+      <% if controller.controller_name == 'bidders' %>
       <h3>Evolución temporal de los contratos recibidos</h3>
-      <div id="area-chart"></div>
-    </div>
-  </div>
-  <% else %>
-  <div class="row">
-    <div class="col-sm-12">
-      <h3>Reparto de contratos por Grupo constructor</h3>
-      <div id="treemap-chart">
-        <div class='popover popover-top' role='tooltip'>
+      <% else %>
+      <h3>Evolución temporal de los contratos adjudicados</h3>
+      <% end %>
+      <div id="timeline-bar-chart" class="entity-chart">
+        <div class='popover top' role='tooltip'>
           <div class='arrow'></div>
-          <div class='popover-title'></div>
+          <div class='popover-title'><i class="glyphicon glyphicon-calendar"></i><span></span></div>
           <div class='popover-budget'><strong></strong> €</div>
-          <div class='popover-area'></div>
         </div>
       </div>
+      <div class="well">Texto explicativo del gráfico superior</div>
     </div>
   </div>
-  <% end %>
   <% end %>
 
   <div>

@@ -19,7 +19,7 @@ class window.TreemapChart
     @$el = $('#'+@options.id)
    
     # get tooltip 
-    @$tooltip  = @$popover = @$el.find('.popover')
+    @$tooltip = @$el.find('.popover')
 
     d3.formatDefaultLocale {thousands: '.', grouping: [3]}
     @budgetFormat = d3.format(',d')
@@ -31,6 +31,22 @@ class window.TreemapChart
     @fontSizeScale = d3.scaleLinear()
       .domain [0, 1]
       .range [0.75, 3]
+
+    @total = d3.sum @data, (d) -> return d.amount
+
+    # filter data to unify small parts in a 'Others' item
+    # other = 0
+    # @data.forEach (d, i) =>
+    #   if d.amount/@total < 0.001
+    #     d.remove = true
+    #     other += d.amount
+    # if other > 0
+    #   @data = @data.filter (d) -> return d.remove != true
+    #   @data.push 
+    #     id: 'ob.other'
+    #     entity: 'Otros'
+    #     amount: other
+    #     type: 'others'
 
     # get sizes
     @getSizes()
@@ -58,17 +74,12 @@ class window.TreemapChart
       .selectAll('.node')
       .data @root.leaves()
       .enter().append('div')
-        .attr  'class', 'node'
-        #.attr  'title', (d) -> return d.id + '\n' + format(d.value)
+        .attr  'class', (d) -> return if d.data.type then 'node '+d.data.type else 'node'
         .style 'left', (d) -> return d.x0 + 'px'
         .style 'top', (d) -> return d.y0 + 'px'
         .style 'width', (d) -> return d.x1 - d.x0 + 'px'
         .style 'height', (d) -> return d.y1 - d.y0 + 'px'
-        # .style 'background', (d) => 
-        #   while (d.depth > 1)
-        #     d = d.parent
-        #   return @color(d.id)
-        .style 'background', (d) => return @colorScale(d.value)
+        #.style 'background', (d) => return @colorScale(d.value)
         .on 'mouseover', @onMouseOver
         .on 'mousemove', @onMouseMove
         .on 'mouseout',  @onMouseOut
@@ -77,7 +88,7 @@ class window.TreemapChart
   @setLabels: (selection) =>
     selection
       # filter rects with dimensions greather than 50px
-      .filter (d) -> return d.x1-d.x0 > 60 && d.y1-d.y0 > 60
+      .filter (d) -> return d.x1-d.x0 > 55 && d.y1-d.y0 > 55
       .append('div')
         .attr 'class', 'node-label'
         .append('p')
@@ -126,9 +137,10 @@ class window.TreemapChart
 
   @onMouseOver: (e) =>
     # Setup content
-    @$tooltip.find('.popover-area').html e.data.description
-    @$tooltip.find('.popover-title').html           e.data.entity
-    @$tooltip.find('.popover-budget strong').html   @budgetFormat(e.data.amount)
+    @$tooltip.find('.popover-title').html              e.data.entity
+    @$tooltip.find('.popover-budget strong').html      @budgetFormat(e.data.amount)
+    @$tooltip.find('.popover-budget .percentage').html '('+(100*e.data.amount/@total).toFixed(1)+'%)'
+    
     # Show popover
     @$tooltip.show()
 

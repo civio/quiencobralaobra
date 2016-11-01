@@ -126,7 +126,7 @@
     line-height: 1.5em;    
     //color: $colorGray;
     overflow: hidden;
-    background: asset-url('moustache.gif') no-repeat bottom center;
+    //background: asset-url('moustache.gif') no-repeat bottom center;
     padding: $grid-gutter-width 0 $grid-gutter-width/2;
     border-top: 1px solid $colorSecondary;
 
@@ -154,6 +154,14 @@
       padding-left: 40px;
       padding-bottom: $grid-gutter-width/2;
       background: asset-url('list-moustache.gif') no-repeat 0px 7px;
+    }
+
+    h3{
+      font-family: $font-family-serif;
+      font-weight: 700;
+      font-size: 1.375em;
+      margin:  $grid-gutter-width 0px;
+      line-height: 1.25em;
     }
   }
 

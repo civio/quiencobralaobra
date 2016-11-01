@@ -67,22 +67,18 @@
 }
 
 
-// Treemap Chart
+// Entity Chart (treemap & timeline-bar)
 
-#treemap-chart,
-#area-chart{
-  position: relative;
+.entity-chart{
   margin-bottom: $grid-gutter-width/2;
-  background: mix( $colorBody, white, 50%);
-}
-
-#treemap-chart{
+  background: mix( $colorBody, white, 25%);
 
   .popover{
     display: none;
     position: absolute;
     bottom: auto;
     right: auto;
+    min-width: 150px;
     padding: 0;
     pointer-events: none;
     //box-shadow: $popover-box-shadow;
@@ -90,15 +86,19 @@
     .popover-title{
       font-size: 1.5rem;
       line-height: 1.5rem;
-      padding: 0.75rem 0.75rem 1rem;
+      padding: 1rem 0.75rem 0.25rem;
+      border: none;
       font-weight: 600;
+
+      span{
+        font-weight: 400;
+      }
     }
 
     .popover-budget{
-      display: inline;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       font-weight: 400;
-      padding: 0.25rem 0.75rem;
+      padding: 0.5rem 0.75rem;
       //margin: 0 0.75rem;
       border-radius: 0.25rem;
       background: white;
@@ -106,6 +106,17 @@
       strong{
         font-weight: 600;
       }
+
+      .percentage{
+        font-size: 0.875em;
+        padding-left: 6px;
+      }
+    }
+
+    .glyphicon{
+      color: $colorTextGreen;
+      font-size: 11px;
+      padding-right: 6px;
     }
 
     .popover-area{
@@ -113,12 +124,46 @@
       padding: 0.75rem 0.75rem;
     }
   }
+}
+
+.entity-charts{
+  .well{
+    font-size: 0.813em;
+    padding: $grid-gutter-width/3 $grid-gutter-width/2 ($grid-gutter-width/3)-2;
+    margin-top: $grid-gutter-width;
+    background: mix( $colorBody, white, 50%);
+    border: none;
+  }
+}
+
+
+// Treemap Chart
+
+#treemap-chart{
+  position: relative;
 
   .node {
     box-sizing: border-box;
     position: absolute;
     overflow: hidden;
-    background: mix( $colorTextGreen, white, 70% );
+    background: $colorTextGreen;
+   
+    &.ministerios{
+      background: $colorTextGreen;
+    }
+    &.comunidades-autnomas{
+      background: mix( $colorTextGreen, $colorSecondary, 80% );
+    }
+    &.administracin-local{
+      background: mix( $colorTextGreen, $colorSecondary, 60% );
+    }
+    &.universidades,
+    &.otros-poderes-adjudicadores{
+      background: mix( $colorTextGreen, $colorSecondary, 40% );
+    }
+    &.others{
+      background: desaturate( $colorSecondary, 25% );
+    }
   }
 
   .node-label {
@@ -150,39 +195,22 @@
   }
 }
 
-// Area Chart
+// Timeline Bar Chart
 
-#area-chart{
+#timeline-bar-chart{
 
-  .area{
+  .bar{
     fill: $colorTextGreen;
-    opacity: 0.8;
   }
 
-  .line{
-    stroke: $colorTextGreen;
-    stroke-width: 2px;
-  }
-
-  .axis-y{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-top: 1px solid $colorTitle;
-  }
-
-  .axis-y-init,
-  .axis-y-end{
-    height: 0;
-    overflow: visible;
-    font-size: 0.875em;
-  }
-
-  .axis-y-init{
-    float: left;
-  }
-  .axis-y-end{
-    float: right;
+  .axis{ 
+    .domain{
+      stroke: $colorTitle;
+    }
+    .tick text{
+      fill: $colorTitle;
+      font-size: 11px;
+      text-anchor: start;
+    }
   }
 }

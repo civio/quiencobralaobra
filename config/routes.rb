@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-
   get 'la-ley', to: 'pages#the_law',                                  as: :the_law_0, :defaults => { :id => 0 }
   get 'la-ley/a-quien-aplica', to: 'pages#the_law',                   as: :the_law_1, :defaults => { :id => 1 }
   get 'la-ley/tipos-de-contrato-por-el-objeto', to: 'pages#the_law',  as: :the_law_2, :defaults => { :id => 2 }
@@ -19,6 +18,8 @@ Rails.application.routes.draw do
   
   get 'glosario', to: 'pages#glossary', as: :glossary
   get 'metodologia', to: 'pages#methodology', as: :methodology
+
+  get 'galeria', to: 'pages#gallery', as: :gallery
 
   resources :public_bodies, path: 'administraciones', only: [:index, :show]
 
