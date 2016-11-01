@@ -8,7 +8,7 @@
     <div class="row">
       <div class="form-group col-sm-6">
         <%= label_tag :bidder, "Empresa" %>
-        <%= select_tag :bidder, options_from_collection_for_select(@bidders, "id", "name"), class: "form-control" %>
+        <%= select_tag :bidder, options_from_collection_for_select(@bidders, "slug", "group"), class: "form-control" %>
       </div>
       <div class="form-group col-sm-6">
         <%= label_tag :public_bodies, "Administración" %>
