@@ -40,6 +40,9 @@ class Award < ActiveRecord::Base
 
   private
 
+  # Fill additional fields of the related entities. Note that there's no guarantee the related info will be
+  # consistent or completely filled-up in the input data, that comes in denormalized. Hence the need
+  # to create the object just with the name, and populate it with further info in a later step.
   def self.populate_related_entity_attribute(entity, field, value)
     return if value.blank? # Nothing to do
 
