@@ -32,7 +32,7 @@ def get_consolidated_column_names(files)
   columns = []
   files.each do |filename|
     xlsx = Roo::Spreadsheet.open(File.join($base_path, filename))
-    # We remove column names with names of the form [...]: they are a bunch
+    # We remove column names with names of the form "[...]": they are a bunch
     # of internal columns used during the manual process. Just noise.
     columns += xlsx.row(1).delete_if {|column| column =~ /^\[.+\]$/ }
   end
@@ -47,7 +47,9 @@ def get_consolidated_column_names(files)
       '[QCLO] Entidad adjudicadora - Tipo',
       '[QCLO] Es UTE',
       '[QCLO] Fecha de adjudicación',
-      '[QCLO] Importe o canon de adjudicación - Limpio'
+      '[QCLO] Importe o canon de adjudicación - Limpio',
+      '[QCLO] Procedimiento',
+      '[QCLO] Tramitación'
     ]
 
   columns.compact.sort.uniq
@@ -184,6 +186,17 @@ def get_entity_data(row, column_names, id)
   end
 end
 
+# Helper functions to get details about procedure type ('Tramitación' and 'Procedimiento')
+def get_process_field(row, column_names, field)
+  # The information can be found in a number of columns. We prioritize the 'Análisis' set
+  analysis_info = get_column_value_by_name(row, column_names, "Análisis - #{field}")
+  first_body_location = get_column_value_by_name(row, column_names, "Tramitación y procedimiento - #{field}")
+  second_body_location = get_column_value_by_name(row, column_names, "Tramitación, procedimiento y forma de adjudicación - #{field}")
+  return analysis_info=='' ?
+          (first_body_location=='' ? second_body_location : first_body_location) :
+          analysis_info
+end
+
 
 # We precalculate the consolidated list of column names across all files...
 consolidated_column_names = get_consolidated_column_names(files)
@@ -251,6 +264,12 @@ files.each do |filename|
         original_amount = get_column_value_by_name(row, column_names, '[QCLO] Importe o canon de adjudicación')
         $stderr.puts "**Missing amount mapping at #{id}: [#{original_amount}]" unless $amount_mappings.include? original_amount or original_amount==''
         values.push $amount_mappings[original_amount] || original_amount
+
+      elsif column == '[QCLO] Procedimiento'
+        values.push get_process_field(row, column_names, 'Procedimiento')
+
+      elsif column == '[QCLO] Tramitación'
+        values.push get_process_field(row, column_names, 'Tramitación')
 
       else 
         values.push get_column_value_by_name(row, column_names, column)
