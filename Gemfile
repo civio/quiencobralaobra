@@ -46,6 +46,10 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Needed for merge_contracts.rb script
+  gem 'roo'
+  gem 'slop'
 end
 
 
