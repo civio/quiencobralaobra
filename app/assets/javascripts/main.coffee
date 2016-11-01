@@ -129,9 +129,10 @@ $(document).ready ->
   if $('#timeline-bar-chart').length
     timelineBarsChart = new TimelineBarsChart 'timeline-bar-chart', getBarsData()
   
-  # Add Datepicker in Contracts home
+  # Add Datepicker & Range Slider in Contracts home
   if $('.contracts-filters').length
     $('.contracts-filters .input-daterange').datepicker({ language: 'es' })
+    $('.contracts-filters input#amount').ionRangeSlider()
 
   # Setup table sorting
   Sortable.init()

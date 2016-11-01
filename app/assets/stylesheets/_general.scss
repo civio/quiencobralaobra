@@ -275,3 +275,13 @@ hr.title-lines-horizontal{
     }
   }
 }
+
+// Ion Range Slider Override
+
+.irs-bar,
+.irs-from, .irs-to, .irs-single {
+  background: $colorTextGreen;
+}
+.irs-from:after, .irs-to:after, .irs-single:after {
+  border-top-color: $colorTextGreen;
+}
