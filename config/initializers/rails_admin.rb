@@ -107,6 +107,8 @@ RailsAdmin.config do |config|
       group :internal do
         label "Internal"
         field :published
+        field :featured
+        field :highlighted
         field :slug do
           help 'Leave blank for the URL slug to be auto-generated'
         end
