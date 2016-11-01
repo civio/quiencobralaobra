@@ -29,6 +29,12 @@
         </div>
       </div>
     </div>
+     <div class="row">
+      <div class="form-group col-sm-6">
+        <%= label_tag :amount, "Importe" %>
+        <%= text_field_tag :amount, nil, 'data-type': 'double', 'data-min': 0, 'data-max': 400000000, 'data-from': 0, 'data-to': 400000000, 'data-postfix': ' €', 'data-hide_min_max': true  %>
+      </div>
+    </div>
     <%= submit_tag "Filtrar", class: "btn btn-default btn-primary" %>
   <% end %>
 </div>
