@@ -2,4 +2,21 @@
   <h2>Artículos</h2>
 </div>
 
-<%= render "partials/posts" %>
+<!-- Highlighted Posts -->
+<% @articles_highlighted.each do |article| %>
+  <div class="posts posts-highlighted row">
+    <div class="wall-item col-sm-12">
+      <%= render('partials/post', article: article) %>
+    </div>
+  </div>
+<% end %>
+
+<!-- Posts list -->
+<div class="posts wall row">
+  <% @articles.each do |article| %>
+    <div class="wall-item col-sm-6">
+      <%= render('partials/post', article: article) %>
+    </div>
+  <% end %>
+</div>
+

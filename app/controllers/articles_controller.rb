@@ -3,6 +3,8 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = (can? :manage, Article) ? Article.all : Article.published
+    @articles_highlighted = @articles.where( highlighted: true )
+    @articles = @articles.where( highlighted: false )
   end
 
   def show

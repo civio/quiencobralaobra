@@ -2,23 +2,57 @@
   <h2>Un mapa de la contratación de obra pública en España</h2>
 </div>
 
-<!-- Highlighted Post -->
-<div class="posts posts-highlighted">
-  <% @articles_highlighted.each do |article| %>
+<!-- Highlighted Posts -->
+<% @articles_highlighted.each do |article| %>
+  <div class="posts posts-highlighted row">
+    <div class="wall-item col-sm-12">
+      <%= render('partials/post', article: article) %>
+    </div>
+  </div>
+<% end %>
+
+<!-- Gallery -->
+<div class="posts posts-gallery row">
+  <div class="wall-item col-sm-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3><%= link_to article.title, article_path(article) %></h3>
+        <h3>
+          <span><%= link_to 'Las superobras', '/galeria' %></span>
+        </h3>
       </div>
       <div class="panel-body">
-        <% if article.photo and !article.photo.url.blank? %>
-          <%= link_to image_tag(article.photo.url(:small), :class => 'img-responsive'), article_path(article), :class => 'image' %>
-        <% end %>
+        <%= link_to image_tag(image_path(@gallery_picture), :class => 'img-responsive'), '/galeria', :class => 'image' %>
         <div class="description">
-          <p><%= article.lead.html_safe %></p>
+          <p>Descubre las mayores obras realizadas en España entre 2009 y 2015</p>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Featured Posts -->
+<div class="posts wall row">
+  <% @articles.each do |article| %>
+    <div class="wall-item col-sm-6">
+      <%= render('partials/post', article: article) %>
+    </div>
   <% end %>
+
+  <!-- La Ley -->
+  <div class="wall-item col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>
+          <span><%= link_to 'La ley', '/la-ley' %></span>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="description">
+          <p>La ley</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--
@@ -26,8 +60,6 @@
   <p>Artículos recientes</p>
 </div>
 -->
-
-<%= render(partial: 'partials/posts') %>
 
 <div class="subtitle">
   <h2>Descrubre todos los datos</h2>

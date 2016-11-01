@@ -53,7 +53,11 @@
   }
 }
 
-.posts-highlighted .panel{
+.posts-highlighted .wall-item .panel{
+
+  #home-chart{
+    margin: $grid-gutter-width/2 $grid-gutter-width/6 -1*($grid-gutter-width/6);
+  }
 
   .panel-heading{
     background: transparent;
@@ -65,7 +69,6 @@
     font-weight: 700;
     font-size: 1.75em;
     line-height: 1.375em;
-    text-align: center;
 
     a{
       display: block;
@@ -78,8 +81,11 @@
     }
   }
 
-  .description{
-    text-align: center;
+  .description p{
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0;
+    margin: 0 2*$grid-gutter-width/3 $grid-gutter-width/3;
   }
 }
 
