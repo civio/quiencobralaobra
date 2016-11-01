@@ -13,11 +13,7 @@
         </tr>
         <tr>
           <th>Fecha formalización</th>
-          <td><%=
-            @award.properties['Formalización del contrato - Fecha de formalización del contrato'].blank? ?
-              '' : 
-              @award.properties['Formalización del contrato - Fecha de formalización del contrato'].to_time.strftime('%Y-%m-%d') unless @award.properties['Formalización del contrato - Fecha de formalización del contrato'].nil?
-            %></td>
+          <td><%= @award.properties['Formalización del contrato - Fecha de formalización del contrato'] %></td>
         </tr>
         <tr>
           <th>AAPP adjudicadora</th>
