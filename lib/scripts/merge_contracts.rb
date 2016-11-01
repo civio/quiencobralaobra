@@ -49,7 +49,9 @@ def get_consolidated_column_names(files)
       '[QCLO] Fecha de adjudicación',
       '[QCLO] Importe o canon de adjudicación - Limpio',
       '[QCLO] Procedimiento',
-      '[QCLO] Tramitación'
+      '[QCLO] Procedimiento - Limpio',
+      '[QCLO] Tramitación',
+      '[QCLO] Tramitación - Limpio'
     ]
 
   columns.compact.sort.uniq
@@ -197,6 +199,36 @@ def get_process_field(row, column_names, field)
           analysis_info
 end
 
+def guess_process_type(raw_value)
+  if raw_value =~ /\babier|\bconcurso/i
+    value = 'Abierto'
+  elsif raw_value =~ /\bsin +pub/i
+    value = 'Negociado sin publicidad'
+  elsif raw_value =~ /\bnegociado +con +pub/i
+    value = 'Negociado con publicidad'
+  elsif raw_value =~ /\bnegociado/i
+    value = 'Negociado'
+  elsif raw_value =~ /\bdi[aá]logo/i
+    value = 'Dialogo competitivo'
+  elsif raw_value =~ /\brestringido/i
+    value = 'Restringido'
+  else
+    value = ''
+  end
+end
+
+def guess_process_track(raw_value)
+  if raw_value =~ /\bo(rd|r|d)i+nar|\bnormal/i
+    value = 'Ordinaria'
+  elsif raw_value =~ /\bur?gen/i
+    value = 'Urgente'
+  elsif raw_value =~ /\bemergencia/i
+    value = 'Emergencia'
+  else
+    value = ''
+  end
+end
+
 
 # We precalculate the consolidated list of column names across all files...
 consolidated_column_names = get_consolidated_column_names(files)
@@ -265,11 +297,53 @@ files.each do |filename|
         $stderr.puts "**Missing amount mapping at #{id}: [#{original_amount}]" unless $amount_mappings.include? original_amount or original_amount==''
         values.push $amount_mappings[original_amount] || original_amount
 
+      # Returns the best guess for process type, based on available information across a number of fields.
+      # See issue #50 for further details.
       elsif column == '[QCLO] Procedimiento'
         values.push get_process_field(row, column_names, 'Procedimiento')
 
+      elsif column == '[QCLO] Procedimiento - Limpio'
+        raw_value = get_process_field(row, column_names, 'Procedimiento')
+        # Once we have a value, we need to try to understand it, as it's often dirty
+        value = guess_process_type(raw_value)
+        if value==''
+          # Often process track and type are reversed, so try the other way around
+          raw_value = get_process_field(row, column_names, 'Tramitación')
+          value = guess_process_type(raw_value)
+
+          # Last resort, look in the title
+          if value==''
+            title = get_column_value_by_name(row, column_names, 'Título')
+            value = guess_process_type(title)
+          end
+
+          # If that fails just keep going, it's too unreliable to look in the whole body text (see #50)
+        end
+        values.push value
+
+      # Same as with '[QCLO] Procedimiento'
       elsif column == '[QCLO] Tramitación'
         values.push get_process_field(row, column_names, 'Tramitación')
+
+      elsif column == '[QCLO] Tramitación - Limpio'
+        raw_value = get_process_field(row, column_names, 'Tramitación')
+        # Once we have a value, we need to try to understand it, as it's often dirty
+        value = guess_process_track(raw_value)
+        if value==''
+          # Often process track and type are reversed, so try the other way around
+          raw_value = get_process_field(row, column_names, 'Procedimiento')
+          value = guess_process_track(raw_value)
+
+          # Last resort, look in the title, but be very specific, since 'ordinaria' is a common word
+          # and there'd be false positives
+          if value==''
+            title = get_column_value_by_name(row, column_names, 'Título')
+            value = 'Urgente' if title =~ /\bUrgente\b/i
+          end
+
+          # If that fails just keep going, it's too unreliable to look in the whole body text (see #50)
+        end
+        values.push value
 
       else 
         values.push get_column_value_by_name(row, column_names, column)
