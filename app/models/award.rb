@@ -18,17 +18,12 @@ class Award < ActiveRecord::Base
     # even in one cent. That's why we are avoiding floats, not a good fit when exact precision is needed.
     amount = BigDecimal.new(properties['[QCLO] Importe o canon de adjudicación - Limpio'])*100
 
-    # Description can come from any of two fields (but not both at the same time, we checked)
-    description = properties['Objeto del contrato - Descripción'].blank? ?
-                    properties['Objeto del contrato - Descripción del objeto'] :
-                    properties['Objeto del contrato - Descripción']
-
     # Store the award
     Award.create!({
         boe_id: properties['BOE ID'],
         public_body: public_body,
         bidder: bidder,
-        description: description,
+        description: properties['[QCLO] Descripción del objeto'],
         award_date: properties['[QCLO] Fecha de adjudicación'],
         category: properties['Análisis - Tipo'],
         process_type: properties['Análisis - Procedimiento'],

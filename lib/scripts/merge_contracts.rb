@@ -42,6 +42,7 @@ def get_consolidated_column_names(files)
       '[QCLO] Contratista - Limpio',
       '[QCLO] Contratista - Acrónimo',
       '[QCLO] Contratista - Grupo',
+      '[QCLO] Descripción del objeto',
       '[QCLO] Entidad adjudicadora - Nombre',
       '[QCLO] Entidad adjudicadora - Tipo',
       '[QCLO] Es UTE',
@@ -212,6 +213,13 @@ files.each do |filename|
 
       elsif column == '[QCLO] Contratista - Grupo'
         values.push get_bidder_group_name(get_clean_bidder(row, column_names, id))
+
+      elsif column == '[QCLO] Descripción del objeto'
+        # Description can come from any of two fields (but not both at the same time, we checked)
+        first_location = get_column_value_by_name(row, column_names, 'Objeto del contrato - Descripción')
+        second_location = get_column_value_by_name(row, column_names, 'Objeto del contrato - Descripción del objeto')
+        description = first_location=='' ? second_location : first_location
+        values.push description
 
       elsif column == '[QCLO] Entidad adjudicadora - Nombre'
         values.push get_entity_data(row, column_names, id)[:entity_name]
