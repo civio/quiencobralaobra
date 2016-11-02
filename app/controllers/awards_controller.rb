@@ -11,5 +11,6 @@ class AwardsController < ApplicationController
 
   def show
     @award = Award.find_by_id(params[:id])
+    @hasAwardExtraInfo = !@award.properties['Presupuesto base de licitación'].blank? && !@award.properties['Análisis - Ámbito geográfico'].blank?
   end
 end

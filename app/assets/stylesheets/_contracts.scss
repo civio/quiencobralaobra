@@ -130,6 +130,10 @@
     .budget{
       font-size: 1.375em;
       line-height: 1.125em;
+
+      strong{
+        padding-right: $grid-gutter-width/6;
+      }
     }
     .description{
       font-size: 1.125em;
@@ -156,6 +160,10 @@
       .glyphicon{
         margin-left: 5px;
       }
+    }
+
+    .pull-left{
+      padding-right: $grid-gutter-width/2;
     }
 
     &:first-child{
