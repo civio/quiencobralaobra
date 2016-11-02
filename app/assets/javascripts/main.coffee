@@ -10,6 +10,47 @@ setWallLayout = ->
         columnWidth: $wall.width() / 12
       }
 
+setPageNavigation = ->
+  # Smooth page scroll to an article section
+  $('.page-navigation a[href^="#"]').click ->
+    $target = $($(this).attr('href'))
+    if $target.length
+      $('html,body').animate({
+        scrollTop: $target.offset().top+1
+      }, 1000)
+
+  menuItems = $('.page-navigation li a')
+
+  if menuItems.length
+
+    # Anchors corresponding to menu items
+    scrollItems = menuItems.map ->
+      item = $($(this).attr("href"))
+      if item.length
+        return item
+
+    # activate items when scroll down
+    $(window).scroll (e) ->
+      
+      # Get container scroll position
+      fromTop = $(e.target).scrollTop()
+     
+      # Get id of current scroll item
+      cur = scrollItems.map ->
+       if $(this).offset().top <= fromTop
+         return this
+
+      # Get the id of the current element
+      cur = cur[cur.length-1];
+      id = if cur && cur.length then cur[0].id else ""
+
+      if lastId != id
+        lastId = id
+        # Set/remove active class
+        menuItems
+          .parent().removeClass("active")
+          .end().filter("[href=\\#"+id+"]").parent().addClass("active")
+
 
 # process Companies Data to be draw as a stacked bar chart
 getFormattedData = (data, key, length) ->
@@ -141,6 +182,18 @@ $(document).ready ->
   # $('#contracts').affix
   #   offset:
   #     top: () -> console.log($(this)); return 100 #$(this).offset().top
+
+  # Setup the law page navigation
+  if $('body').hasClass('the_law')
+
+    $('.law-navigation .panel').affix
+      offset:
+        top: -> return $('.law-navigation').offset().top-20
+        bottom: -> return $('.footer').height()+75
+        #bottom: -> return $('.law .col-sm-9 .panel').offset().top + $('.law .col-sm-9 .panel').height()
+
+    setPageNavigation()
+
 
   # Add resize handler
   $(window).resize ->
