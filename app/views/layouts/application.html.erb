@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <%= render "partials/head" %>
-  <body>
+  <body class="<%= controller_name %> <%= action_name %>">
     <%= render "partials/header" %>
     <div class="container">
       <% unless notice.nil? %>

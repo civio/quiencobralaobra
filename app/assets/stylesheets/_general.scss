@@ -72,6 +72,10 @@ hr.title-lines-horizontal{
   position: relative;
   margin: 1.5*$grid-gutter-width 0;
 
+  @media (min-width: $screen-sm-min) {
+    padding-right: 195px;
+  }
+
   h2, p{
     display: inline-block;
     margin: 0 0 0 2*$grid-gutter-width;
@@ -223,13 +227,14 @@ hr.title-lines-horizontal{
 .panel{
 
   .page-navigation{
-    padding: $grid-gutter-width 24px $grid-gutter-width/2;
+    padding: $grid-gutter-width/6 2*$grid-gutter-width/3;
+    margin: 0;
     background: $colorHeader;
 
     li{
       line-height: 1.25em;
       padding-bottom: 14px;
-      margin-bottom: 12px;
+      padding-top: 12px;
       list-style: none;
       border-bottom: 1px solid mix( $colorBody, $colorTextGreen, 75% );
       
@@ -246,9 +251,14 @@ hr.title-lines-horizontal{
         }
       }
 
-      &.active a{
-        color: $colorTextGreen;
-        font-weight: 600;
+      &.active{
+        border-color: $colorTextGreen;
+        border-width: 2px;
+
+        a{
+          //color: $colorTextGreen;
+          font-weight: 600;
+        }
       }
     }
   }
@@ -276,12 +286,78 @@ hr.title-lines-horizontal{
   }
 }
 
+.law .panel-page .panel-body{
+  padding: 1.5*$grid-gutter-width $grid-gutter-width;
+
+  @media (min-width: $screen-lg-min) {
+    padding: 1.5*$grid-gutter-width;;
+  }
+}
+
+.law-navigation{
+  display: none;
+  position: relative;
+
+  @media (min-width: $screen-md-min) {
+    display: block;
+  }
+
+  .affix{
+    position: fixed;
+    top: 20px;
+
+    @media (min-width: $screen-md-min) {
+      width: 293.33px;
+    }  
+    @media (min-width: $screen-lg-min) {
+      width: 262.5px;
+    } 
+  }
+  .affix-bottom {
+    position: relative
+  }
+}
+
+.glossary .panel-page .panel-body{
+  padding-top: 0;
+} 
+
+
 // Ion Range Slider Override
+
+.irs-line{
+  border: none;
+  background: $colorBody;
+}
+
+.irs-line,
+.irs-bar{
+  height: 12px;
+}
+
+.irs-slider{
+  width: 2px;
+  height: 22px;
+  top: 28px;
+  border: none;
+  background: $colorTextGreen !important;
+
+  &:hover,
+  &:focus{
+    background: $colorTextGreen;
+  }
+}
+
+.irs-min, .irs-max{
+  display: none;
+}
 
 .irs-bar,
 .irs-from, .irs-to, .irs-single {
   background: $colorTextGreen;
+  border: none;
 }
-.irs-from:after, .irs-to:after, .irs-single:after {
-  border-top-color: $colorTextGreen;
+.irs-from, .irs-to{
+  font-weight: 600;
+  cursor: pointer;
 }
