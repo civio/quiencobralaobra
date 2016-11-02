@@ -278,10 +278,40 @@ hr.title-lines-horizontal{
 
 // Ion Range Slider Override
 
+
+.irs-line{
+  border: none;
+  background: $colorBody;
+}
+
+.irs-line,
+.irs-bar{
+  height: 12px;
+}
+
+.irs-slider{
+  width: 2px;
+  height: 22px;
+  top: 28px;
+  border: none;
+  background: $colorTextGreen !important;
+
+  &:hover,
+  &:focus{
+    background: $colorTextGreen;
+  }
+}
+
+.irs-min, .irs-max{
+  display: none;
+}
+
 .irs-bar,
 .irs-from, .irs-to, .irs-single {
   background: $colorTextGreen;
+  border: none;
 }
-.irs-from:after, .irs-to:after, .irs-single:after {
-  border-top-color: $colorTextGreen;
+.irs-from, .irs-to{
+  font-weight: 600;
+  cursor: pointer;
 }
