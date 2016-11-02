@@ -72,6 +72,7 @@
 // Entity Chart (treemap & timeline-bar)
 
 .entity-chart{
+  position: relative;
   margin-bottom: $grid-gutter-width/2;
   background: mix( $colorBody, white, 25%);
 

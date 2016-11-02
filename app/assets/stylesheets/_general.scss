@@ -361,3 +361,18 @@ hr.title-lines-horizontal{
   font-weight: 600;
   cursor: pointer;
 }
+
+
+// Bootstrap Switch
+
+.bootstrap-switch{
+  //border-color: $colorTextGreen;
+
+  .bootstrap-switch-handle-on.bootstrap-switch-primary{
+    font-weight: 600;
+    background: $colorTextGreen;
+  }
+  .bootstrap-switch-handle-off.bootstrap-switch-default{
+    background: mix( $colorBody, white, 25%);
+  }
+} 

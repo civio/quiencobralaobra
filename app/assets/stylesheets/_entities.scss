@@ -81,3 +81,19 @@
     }
   }
 }
+
+.entity-chart-title{
+  position: relative;
+
+  h3{
+    line-height: 1.25em;
+    padding-right: 150px;
+    margin: $grid-gutter-width 0  2*$grid-gutter-width/3;
+  }
+
+  .utes-switch-container{
+    position: absolute;
+    right: 0;
+    bottom: -$grid-gutter-width/6;
+  }
+}

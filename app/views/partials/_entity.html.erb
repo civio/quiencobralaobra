@@ -22,11 +22,16 @@
   <% if @contract_awards.length > 1 %>
   <div class="row entity-charts">
     <div class="col-md-6">
-      <% if controller.controller_name == 'bidders' %>
-      <h3>Reparto de contratos por Administración pública</h3>
-      <% else %>
-      <h3>Reparto de contratos por Grupo constructor</h3>
-      <% end %>
+      <div class="entity-chart-title">
+        <% if controller.controller_name == 'bidders' %>
+        <h3>Reparto de contratos por Administración pública</h3>
+        <% else %>
+        <h3>Reparto de contratos por Grupo constructor</h3>
+        <% end %>
+        <div class="utes-switch-container">
+          <input id="utes-switch" class="utes-switch" type="checkbox" checked data-size="small" data-on-text="Con UTEs" data-off-text="Sin UTEs">
+        </div>
+      </div>
       <div id="treemap-chart" class="entity-chart">
         <div class='popover top' role='tooltip'>
           <div class='arrow'></div>
@@ -37,11 +42,13 @@
       <div class="well">Texto explicativo del gráfico superior</div>
     </div>
     <div class="col-md-6">
-      <% if controller.controller_name == 'bidders' %>
-      <h3>Evolución temporal de los contratos recibidos</h3>
-      <% else %>
-      <h3>Evolución temporal de los contratos adjudicados</h3>
-      <% end %>
+      <div class="entity-chart-title">
+        <% if controller.controller_name == 'bidders' %>
+        <h3>Evolución temporal de los contratos recibidos</h3>
+        <% else %>
+        <h3>Evolución temporal de los contratos adjudicados</h3>
+        <% end %>
+      </div>
       <div id="timeline-bar-chart" class="entity-chart">
         <div class='popover top' role='tooltip'>
           <div class='arrow'></div>
