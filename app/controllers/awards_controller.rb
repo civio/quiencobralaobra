@@ -10,6 +10,6 @@ class AwardsController < ApplicationController
   end
 
   def show
-    @award = Award.find_by_id(params[:id])
+    @award = Award.find_by_slug!(params[:id])
   end
 end
