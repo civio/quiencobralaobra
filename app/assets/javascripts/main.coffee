@@ -87,27 +87,38 @@ getFormattedData = (data, key, length) ->
 
 # get treemap data from contracts table
 getTreemapData = ->
-  data = [{ id: 'ob' }]
-  entities = []
+  data = { 'ob': {id: 'ob'} }
 
   # Get contracts data from contracts table
   $('#contracts tbody tr').each ->
-
     entity = $(this).find('.td-entity').data('id')
-    
-    # add category to categories array
-    if entities.indexOf(entity) == -1
-      entities.push entity
-      data.push { 
+    if data['ob.'+entity]
+      data['ob.'+entity].amount += +$(this).find('.td-amount').data('value')
+      data['ob.'+entity].amountUTE += +$(this).find('.td-amount').data('value')
+    else
+      data['ob.'+entity] =
         id:     'ob.'+entity
         entity: $(this).find('.td-entity a').html()
         amount: +$(this).find('.td-amount').data('value')
+        amountUTE: +$(this).find('.td-amount').data('value')
         type:   if $(this).data('body-type') then slugify($(this).data('body-type')) else ''
-      }
+
+  #Get contracts data from contracts ute table
+  $('#contracts-utes tbody tr').each ->
+    entity = $(this).find('.td-entity').data('id')
+    if data['ob.'+entity]
+      data['ob.'+entity].amountUTE += +$(this).find('.td-amount').data('value') * Math.random() # Add random by now for testing
     else
-      data.amount += +$(this).find('.td-amount').data('value')
-  
-  return data
+      data['ob.'+entity] =
+        id:     'ob.'+entity
+        entity: $(this).find('.td-entity a').html()
+        amount: 0
+        amountUTE: +$(this).find('.td-amount').data('value')
+        type:   if $(this).data('body-type') then slugify($(this).data('body-type')) else ''
+
+  console.log d3.values data
+
+  return d3.values data
 
 
 # get treemap data from contracts table
@@ -166,7 +177,13 @@ $(document).ready ->
 
   if $('#treemap-chart').length
     chart = new TreemapChart 'treemap-chart', getTreemapData()
-  
+    # Setup utes switch
+    $('#utes-switch')
+      .bootstrapSwitch()
+      .on 'switchChange.bootstrapSwitch', (e, state) ->
+        console.log e, state
+        chart.update state
+      
   if $('#timeline-bar-chart').length
     timelineBarsChart = new TimelineBarsChart 'timeline-bar-chart', getBarsData()
   

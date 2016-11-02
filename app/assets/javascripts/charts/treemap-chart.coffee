@@ -6,13 +6,12 @@ class window.TreemapChart
     TreemapChart.setup id, data, options
     TreemapChart.draw()
 
-
   # Setup funcion
   @setup: (id, data, options) ->
-
     # Setup default vars
     @options    = options || {}
     @options.id = id
+    @options.utes = true
     @data       = data || []
 
     # get main element
@@ -24,15 +23,15 @@ class window.TreemapChart
     d3.formatDefaultLocale {thousands: '.', grouping: [3]}
     @budgetFormat = d3.format(',d')
 
-    @colorScale = d3.scaleLinear()
-      .domain d3.extent(@data, (d) -> return d.amount)
-      .range ['#f27649', '#f25f29']
+    # @colorScale = d3.scaleLinear()
+    #   .domain d3.extent(@data, @getAmount)
+    #   .range ['#f27649', '#f25f29']
 
     @fontSizeScale = d3.scaleLinear()
       .domain [0, 1]
       .range [0.75, 3]
 
-    @total = d3.sum @data, (d) -> return d.amount
+    @total = d3.sum @data, @getAmount
 
     # filter data to unify small parts in a 'Others' item
     # other = 0
@@ -57,33 +56,65 @@ class window.TreemapChart
       .padding  1
       .round    true
 
-    stratify = d3.stratify()
+    @stratify = d3.stratify()
       .parentId (d) -> return d.id.substring(0, d.id.lastIndexOf('.'))
 
-    @root = stratify(@data)
-      .sum (d) -> return d.amount
+    @root = @stratify(@data)
+      .sum @getAmount
       .sort (a, b) -> return b.value - a.value
 
     @treemap @root
 
+    @el = d3.select('#'+@options.id)
+
 
   # Draw function
-  @draw: (id) =>
+  @draw: (redraw) ->
+    # setup transition
+    t = d3.transition()
+      .duration if redraw == true then 700 else 0
 
-    d3.select('#'+@options.id)
+    # JOIN
+    @nodes = @el
       .selectAll('.node')
       .data @root.leaves()
-      .enter().append('div')
-        .attr  'class', (d) -> return if d.data.type then 'node '+d.data.type else 'node'
-        .style 'left', (d) -> return d.x0 + 'px'
-        .style 'top', (d) -> return d.y0 + 'px'
-        .style 'width', (d) -> return d.x1 - d.x0 + 'px'
-        .style 'height', (d) -> return d.y1 - d.y0 + 'px'
-        #.style 'background', (d) => return @colorScale(d.value)
-        .on 'mouseover', @onMouseOver
-        .on 'mousemove', @onMouseMove
-        .on 'mouseout',  @onMouseOut
-        .call @setLabels
+
+    # ENTER
+    @nodes.enter().append('div')
+      .attr  'class', (d) -> return if d.data.type then 'node '+d.data.type else 'node'
+      #.style 'background', (d) => return @colorScale(d.value)
+      .on 'mouseover', @onMouseOver
+      .on 'mousemove', @onMouseMove
+      .on 'mouseout',  @onMouseOut
+    .merge(@nodes)
+      .call @setLabels
+      .transition t
+      .call @setDimensions
+
+    # EXIT
+    @nodes.exit().remove()
+
+
+  @update: (state) =>
+    # update utes state
+    @options.utes = state
+
+    # Update total amount, root & treemap
+    @total = d3.sum @data, @getAmount
+    @root.sum @getAmount
+    #@root.sort (a, b) -> return b.value - a.value
+    @treemap @root
+
+    # redraw
+    @draw true
+
+
+  @setDimensions: (selection) =>
+    selection
+      .style 'left', (d) -> return d.x0 + 'px'
+      .style 'top', (d) -> return d.y0 + 'px'
+      .style 'width', (d) -> return d.x1 - d.x0 + 'px'
+      .style 'height', (d) -> return d.y1 - d.y0 + 'px'
 
   @setLabels: (selection) =>
     selection
@@ -95,9 +126,11 @@ class window.TreemapChart
           .text (d) -> return if d.data.entity.length < 50 then d.data.entity else d.data.entity.substring(0,50)+'...'
           .style 'font-size', @getFontSize
 
+  @getAmount: (d) =>
+    return if @options.utes == true then d.amountUTE else d.amount
+
   # Get width & height
   @getSizes: ->
-
     @width   = @$el.width()
 
     # height based on width
@@ -116,7 +149,6 @@ class window.TreemapChart
 
   # Resize event handler
   @resize: =>
-
     if @width != @$el.width()
 
       # update sizes
@@ -138,8 +170,8 @@ class window.TreemapChart
   @onMouseOver: (e) =>
     # Setup content
     @$tooltip.find('.popover-title').html              e.data.entity
-    @$tooltip.find('.popover-budget strong').html      @budgetFormat(e.data.amount)
-    @$tooltip.find('.popover-budget .percentage').html '('+(100*e.data.amount/@total).toFixed(1)+'%)'
+    @$tooltip.find('.popover-budget strong').html      @budgetFormat(e.value)
+    @$tooltip.find('.popover-budget .percentage').html '('+(100*e.value/@total).toFixed(1)+'%)'
     
     # Show popover
     @$tooltip.show()
@@ -167,3 +199,6 @@ class window.TreemapChart
   # Public Resize method 
   resize: ->
     TreemapChart.resize()
+
+  update: (state) ->
+    TreemapChart.update(state)
