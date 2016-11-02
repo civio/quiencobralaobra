@@ -10,12 +10,19 @@
 
   <div class="entity-description">
     <% if controller.controller_name == 'bidders' %>
-      <strong>De todas las adjudicaciones publicadas en el BOE entre 2009 y 2015, <%= @title %></strong> se ha llevado de forma directa <%= @contract_awards.count %> contratos por un importe de X €. <br/>
-      Además, ha formado parte de UTEs que resultaron adjudicatarias de otros X contratos y que suman otros X euros. <br/>
-      Así, <%= @title %> ha estado presente, en total, en la adjudicación de X contratos y X euros. De esa cantidad, un X% del importe fue adjudicado vía procedimiento negociado. Entre las administraciones que le contratan, la que tiene mayor peso es X (X % del total del importe adjudicado tanto de forma directa como a través de las UTEs en las que participa).
+      De todas las adjudicaciones publicadas en el BOE entre 2009 y 2015, <strong><%= @title %></strong> se ha llevado de forma directa <strong><%= pluralize(@contract_awards.count, 'contrato', 'contratos')%></strong> por un importe de <strong><%= number_with_precision(@contract_awards_amount.to_f*0.01, precision: 0, delimiter: ".") %> €.</strong><br/>
+      <% unless @contract_awards_utes.empty? %>
+      Además, ha formado parte de varias UTE que resultaron adjudicatarias de otros <%= @contract_awards_utes.count %> contratos y que suman otros <%= number_with_precision(@contract_awards_utes_amount.to_f*0.01, precision: 0, delimiter: ".") %> €.<br/>
+      Así, <%= @title %> ha estado presente, en total, en la adjudicación de <%= @contract_awards.count+@contract_awards_utes.count %> contratos y <%= number_with_precision((@contract_awards_amount.to_f+@contract_awards_utes_amount.to_f)*0.01, precision: 0, delimiter: ".") %> €.
+      <% end %>
+      De esa cantidad, un X% del importe fue adjudicado vía procedimiento negociado. Entre las administraciones que le contratan, la que tiene mayor peso es X (X % del total del importe adjudicado<% unless @contract_awards_utes.empty? %> tanto de forma directa como a través de las UTE en las que participa<% end %>).
     <% else %>
-      <strong>De todas las adjudicaciones publicadas en el BOE entre 2009 y 2015, <%= @title %></strong> ha adjudicado <%= @contract_awards.count %> contratos por un importe de X €, de los cuales un X % ha sido por procedimiento negociado. <br/>
-      El principal grupo empresarial beneficiado ha sido X (está presente, de forma directa o a través de UTEs, en el X % del total del importe adjudicado)
+      De todas las adjudicaciones publicadas en el BOE entre 2009 y 2015, <%= @title_prefix %><strong><%= @title %></strong> ha adjudicado <strong><%= pluralize(@contract_awards.count, 'contrato', 'contratos')%></strong> por un importe de <strong><%= number_with_precision(@contract_awards_amount.to_f*0.01, precision: 0, delimiter: ".") %> €</strong>, de los cuales un X % ha sido por procedimiento negociado. <br/>
+      <% if @contract_awards.count > 1 %>
+      El principal grupo empresarial beneficiado ha sido X (está presente, de forma directa o a través de UTE, en el X % del total del importe adjudicado).
+      <% else %>
+      El único grupo empresarial beneficiado ha sido X.
+      <% end %>
     <% end %>
   </div>
 
@@ -29,7 +36,7 @@
         <h3>Reparto de contratos por Grupo constructor</h3>
         <% end %>
         <div class="utes-switch-container">
-          <input id="utes-switch" class="utes-switch" type="checkbox" checked data-size="small" data-on-text="Con UTEs" data-off-text="Sin UTEs">
+          <input id="utes-switch" class="utes-switch" type="checkbox" checked data-size="small" data-on-text="Con UTE" data-off-text="Sin UTE">
         </div>
       </div>
       <div id="treemap-chart" class="entity-chart">
@@ -74,7 +81,7 @@
 
   <div>
     <% if controller.controller_name == 'bidders' %>
-    <h3>Contratos adjudicados a UTEs en las que participa <%= @title %></h3>
+    <h3>Contratos adjudicados a UTE en las que participa <%= @title %></h3>
     <div class="panel panel-default">
       <%= render('partials/contract_awards_table', awards: @contract_awards, utes: true) %>
     </div>

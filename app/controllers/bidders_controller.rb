@@ -8,6 +8,9 @@ class BiddersController < ApplicationController
   def show
     @title = @bidder.group
     @contract_awards = Award.joins(:bidder).where('bidders.group = ?', @bidder.group).order(amount: :desc)
+    @contract_awards_utes = Award.joins(:bidder).where('bidders.group = ?', @bidder.group).order(amount: :desc)
+    @contract_awards_amount = @contract_awards.sum('amount')
+    @contract_awards_utes_amount = @contract_awards_utes.sum('amount')
   end
 
   private
