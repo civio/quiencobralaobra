@@ -72,6 +72,10 @@ hr.title-lines-horizontal{
   position: relative;
   margin: 1.5*$grid-gutter-width 0;
 
+  @media (min-width: $screen-sm-min) {
+    padding-right: 195px;
+  }
+
   h2, p{
     display: inline-block;
     margin: 0 0 0 2*$grid-gutter-width;
@@ -313,6 +317,10 @@ hr.title-lines-horizontal{
     position: relative
   }
 }
+
+.glossary .panel-page .panel-body{
+  padding-top: 0;
+} 
 
 
 // Ion Range Slider Override
