@@ -41,7 +41,7 @@
         <% end %>
 
         <% if controller_name != 'bidders' %>
-        <td class="td-entity" data-id="<%= award.bidder.id %>"><%= link_to award.bidder.group, bidder_path(award.bidder) unless award.bidder.group.blank? %></td>
+        <td class="td-entity" data-id="<%= award.bidder.slug %>"><%= link_to award.bidder.group, bidder_path(award.bidder) unless award.bidder.group.blank? %></td>
         <% else %>
         <td><%= award.bidder.name %></td>
         <td class="td-description"><%= truncate(award.description, length: 112) %></td>
@@ -52,10 +52,10 @@
         <% end %>
 
         <td class="td-date"><%= award.award_date %></td>
-        <% if award.process_type.blank? && award.process_track.blank? %>
+        <% if award.process_type.blank? %>
         <td>-</td>
         <% else %>
-        <td><%= "#{award.process_type} #{award.process_track}" %></td>
+        <td><%= award.process_type %></td>
         <% end %>
 
         <td class="td-amount text-right" data-value="<%= award.amount.to_f*0.01 %>"><strong><%= number_with_precision(award.amount.to_f*0.01, precision: 0, delimiter: ".") %></strong></td>
