@@ -40,13 +40,15 @@
     </tr>
     <tr>
       <td <% unless @hasAwardExtraInfo %>colspan="3"<% end %>>
-        <div class="pull-left">
-          <p class="label">Procedimiento</p>
-          <p class="property"><% if !@award.process_type.blank? %><%= @award.process_type %><% else %>-<% end %></p>
-        </div>
-        <div>
-          <p class="label">Tramitación</p>
-          <p class="property"><% if !@award.process_track.blank? %><%= @award.process_track %><% else %>-<% end %></p>
+        <div class="procedure-tramitation-container">
+          <div class="procedure">
+            <p class="label">Procedimiento</p>
+            <p class="property"><% if !@award.process_type.blank? %><%= @award.process_type %><% else %>-<% end %></p>
+          </div>
+          <div class="tramitation">
+            <p class="label">Tramitación</p>
+            <p class="property"><% if !@award.process_track.blank? %><%= @award.process_track %><% else %>-<% end %></p>
+          </div>
         </div>
         <p class="label">Fuente</p>
         <p class="source"><%= link_to '<i class="glyphicon glyphicon-file"></i> BOE'.html_safe, "http://www.boe.es/buscar/doc.php?id=#{@award.boe_id}", target: '_blank' %></p>

@@ -162,7 +162,12 @@
       }
     }
 
-    .pull-left{
+    .procedure-tramitation-container{
+      display: table;
+    }
+    .procedure,
+    .tramitation{
+      display: table-cell;
       padding-right: $grid-gutter-width/2;
     }
 
