@@ -26,8 +26,8 @@ class Award < ActiveRecord::Base
         description: properties['[QCLO] Descripción del objeto'],
         award_date: properties['[QCLO] Fecha de adjudicación'],
         category: properties['Análisis - Tipo'],
-        process_type: properties['Análisis - Procedimiento'],
-        process_track: properties['Análisis - Tramitación'],
+        process_type: properties['[QCLO] Procedimiento - Limpio'],
+        process_track: properties['[QCLO] Tramitación - Limpio'],
         amount: amount,
         properties: properties
       })
