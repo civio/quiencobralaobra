@@ -102,7 +102,7 @@ class window.TreemapChart
     # Update total amount, root & treemap
     @total = d3.sum @data, @getAmount
     @root.sum @getAmount
-    #@root.sort (a, b) -> return b.value - a.value
+    @root.sort (a, b) -> return b.value - a.value
     @treemap @root
 
     # redraw
