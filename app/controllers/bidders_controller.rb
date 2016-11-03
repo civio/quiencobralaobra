@@ -7,6 +7,7 @@ class BiddersController < ApplicationController
 
   def show
     @title = @bidder.group
+    @qm_id = qm_ids()
     @contract_awards = Award.includes(:bidder, :public_body) \
                           .where(bidders: { group: @bidder.group }) \
                           .order(amount: :desc)
@@ -37,5 +38,21 @@ class BiddersController < ApplicationController
 
     def set_bidder
       @bidder = Bidder.includes(:awards).find_by_slug!(params[:id])
+    end
+
+    def qm_ids 
+      qm_ids = {
+        'acs' => 'acs-actividades-de-construccion-y-servicios', 
+        'acciona' => 'acciona',
+        'comsa' => 'comsa-corporacion',
+        'fcc' => 'fomento-de-construcciones-y-contratas',
+        'grupo-aldesa' => 'aldesa-1',
+        'grupo-ferrovial' => 'ferrovial',
+        'grupo-sanjose' => 'grupo-empresarial-san-jose',
+        'grupo-villar-mir' => 'grupo-villar-mir',
+        'isolux-corsan' => 'isolux',
+        'sacyr' => 'sacyr'
+      }
+      return qm_ids[@bidder.slug]
     end
 end

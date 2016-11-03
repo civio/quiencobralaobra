@@ -23,6 +23,12 @@
   }
 }
 
+.entity-qm-embed{
+  margin-top: 2*$grid-gutter-width/3;
+  height: 450px;
+  overflow: hidden;
+}
+
 .entity-info{
 
   .panel-body{
