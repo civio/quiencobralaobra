@@ -6,7 +6,10 @@ class AwardsController < ApplicationController
     @contract_awards_types = Award.select(:process_type).distinct.order(process_type: :asc)
 
     # Get 'Contratos' paginated & order by amount
-    @contract_awards = Award.includes(:public_body, :bidder).page(params[:page]).per(24).order(amount: :desc)
+    awards = Award.includes(:public_body, :bidder)
+    awards = awards.where(bidders: { slug: params[:bidder] }) unless params[:bidder].blank?
+    awards = awards.where(public_body: params[:public_bodies]) unless params[:public_bodies].blank?
+    @contract_awards = awards.page(params[:page]).per(24).order(amount: :desc)
   end
 
   def show
