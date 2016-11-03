@@ -83,7 +83,7 @@
     <% if controller.controller_name == 'bidders' %>
     <h3>Contratos adjudicados a UTE en las que participa <%= @title %></h3>
     <div class="panel panel-default">
-      <%= render('partials/contract_awards_table', awards: @contract_awards, utes: true) %>
+      <%= render('partials/contract_awards_table', awards: @contract_awards_utes, utes: true) %>
     </div>
     <% end %>
   </div>
