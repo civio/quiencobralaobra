@@ -89,34 +89,29 @@ getFormattedData = (data, key, length) ->
 getTreemapData = ->
   data = { 'ob': {id: 'ob'} }
 
-  # Get contracts data from contracts table
-  $('#contracts tbody tr').each ->
-    entity = $(this).find('.td-entity').data('id')
+  # Set contracts data for each item
+  setTreemapItemData = ($item, isUTE) ->
+    entity = $item.find('.td-entity').data('id')
+    value  = +$item.find('.td-amount').data('value')
     if data['ob.'+entity]
-      data['ob.'+entity].amount += +$(this).find('.td-amount').data('value')
-      data['ob.'+entity].amountUTE += +$(this).find('.td-amount').data('value')
+      unless isUTE
+        data['ob.'+entity].amount += value
+      data['ob.'+entity].amountUTE += value
     else
       data['ob.'+entity] =
-        id:     'ob.'+entity
-        entity: $(this).find('.td-entity a').html()
-        amount: +$(this).find('.td-amount').data('value')
-        amountUTE: +$(this).find('.td-amount').data('value')
-        type:   if $(this).data('body-type') then slugify($(this).data('body-type')) else ''
+        id:       'ob.'+entity
+        entity:    $item.find('.td-entity a').html()
+        amount:    if isUTE == true then 0 else value
+        amountUTE: value
+        type:      if $item.data('body-type') then slugify($item.data('body-type')) else ''
+
+  # Get contracts data from contracts table
+  $('#contracts tbody tr').each ->
+    setTreemapItemData $(this), false
 
   #Get contracts data from contracts ute table
   $('#contracts-utes tbody tr').each ->
-    entity = $(this).find('.td-entity').data('id')
-    if data['ob.'+entity]
-      data['ob.'+entity].amountUTE += +$(this).find('.td-amount').data('value') * Math.random() # Add random by now for testing
-    else
-      data['ob.'+entity] =
-        id:     'ob.'+entity
-        entity: $(this).find('.td-entity a').html()
-        amount: 0
-        amountUTE: +$(this).find('.td-amount').data('value')
-        type:   if $(this).data('body-type') then slugify($(this).data('body-type')) else ''
-
-  console.log d3.values data
+    setTreemapItemData $(this), true
 
   return d3.values data
 
