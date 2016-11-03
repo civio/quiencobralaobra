@@ -16,7 +16,7 @@ namespace :data do
     UteCompaniesMapping.delete_all
     CSV.read('db/utes_mapping.csv').each do |row|
       next if row[0].start_with?('#') or row[0].empty?
-      UteCompaniesMapping.create!(ute: row[0], company: row[1])
+      UteCompaniesMapping.create!(ute: row[0], company: row[1], group: row[2])
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102163028) do
+ActiveRecord::Schema.define(version: 20161103041850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20161102163028) do
     t.string   "company"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "group"
   end
 
   add_index "ute_companies_mappings", ["company"], name: "index_ute_companies_mappings_on_company", using: :btree
