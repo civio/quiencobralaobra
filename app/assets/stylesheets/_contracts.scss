@@ -2,10 +2,27 @@
   padding: $grid-gutter-width;
 
   h3{
-    margin-bottom: $grid-gutter-width/2;
-    font-weight: 700;
+    margin-top: -$grid-gutter-width/6;
+    margin-bottom: 2*$grid-gutter-width/3;
+    font-weight: 600;
     font-size: 1.375em;
-    text-align: center;
+  }
+
+  .btn-primary{
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: $grid-gutter-width/3;
+
+    .glyphicon{
+      font-size: 0.875em;
+      padding-right: 5px;
+    }
+  }
+
+  label{
+    font-size: 0.875em;
+    font-weight: 600;
+    text-transform: uppercase;
   }
 }
 

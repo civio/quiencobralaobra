@@ -7,18 +7,18 @@
   <%= form_tag "/contratos", method: "get" do %>
     <div class="row">
       <div class="form-group col-sm-6">
-        <%= label_tag :bidder, "Empresa" %>
-        <%= select_tag :bidder, options_from_collection_for_select(@bidders, "slug", "group"), class: "form-control" %>
+        <%= label_tag :bidder, "Grupo constructor" %>
+        <%= select_tag :bidder, options_from_collection_for_select(@bidders, "slug", "group"), include_blank: 'Todos los grupos constructores', class: "form-control" %>
       </div>
       <div class="form-group col-sm-6">
         <%= label_tag :public_bodies, "Administración" %>
-        <%= select_tag :public_bodies, options_from_collection_for_select(@public_bodies, "id", "name"), class: "form-control" %>
+        <%= select_tag :public_bodies, options_from_collection_for_select(@public_bodies, "id", "name"), include_blank: 'Todas las administraciones', class: "form-control" %>
       </div>
     </div>
     <div class="row">
       <div class="form-group col-sm-6">
         <%= label_tag :process_type, "Tipo de procedimiento" %>
-        <%= select_tag :process_type, "<option>Abierto</option><option>Negociado</option><option>Otros</option>".html_safe, class: "form-control" %>
+        <%= select_tag :process_type, "<option>Cualquier tipo de procedimiento</option><option>Abierto</option><option>Negociado</option><option>Otros</option>".html_safe, class: "form-control" %>
       </div>
       <div class="form-group col-sm-6">
         <%= label_tag :date, "Fecha adjudicación" %>
@@ -35,7 +35,9 @@
         <%= text_field_tag :amount, nil, 'data-type': 'double', 'data-min': 0, 'data-max': 400000000, 'data-from': 0, 'data-to': 400000000, 'data-postfix': ' €', 'data-hide_min_max': true  %>
       </div>
     </div>
-    <%= submit_tag "Filtrar", class: "btn btn-default btn-primary" %>
+    <%= button_tag(type: 'submit', class: 'btn btn-default btn-primary') do %>
+    <i class='glyphicon glyphicon-search'></i> Buscar
+    <% end %>
   <% end %>
 </div>
 
