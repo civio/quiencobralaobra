@@ -181,7 +181,6 @@ $(document).ready ->
     $('#utes-switch')
       .bootstrapSwitch()
       .on 'switchChange.bootstrapSwitch', (e, state) ->
-        console.log e, state
         chart.update state
       
   if $('#timeline-bar-chart').length
@@ -194,6 +193,9 @@ $(document).ready ->
 
   # Setup table sorting
   Sortable.init()
+
+  # Setup contracts search selects
+  $('.contracts-filters #bidder, .contracts-filters #public_bodies').select2()
 
   # Setup affix for contracts tables
   # $('#contracts').affix
