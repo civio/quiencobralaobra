@@ -35,9 +35,11 @@
         <% else %>
         <h3>Reparto de contratos por Grupo constructor</h3>
         <% end %>
+        <% if controller.controller_name == 'bidders' && !@contract_awards_utes.empty? %>
         <div class="utes-switch-container">
           <input id="utes-switch" class="utes-switch" type="checkbox" checked data-size="small" data-on-text="Con UTE" data-off-text="Sin UTE">
         </div>
+        <% end %>
       </div>
       <div id="treemap-chart" class="entity-chart">
         <div class='popover top' role='tooltip'>
@@ -79,14 +81,14 @@
     </div>
   </div>
 
+  <% if controller.controller_name == 'bidders' && !@contract_awards_utes.empty? %>
   <div>
-    <% if controller.controller_name == 'bidders' %>
     <h3>Contratos adjudicados a UTE en las que participa <%= @title %></h3>
     <div class="panel panel-default">
       <%= render('partials/contract_awards_table', awards: @contract_awards_utes, utes: true) %>
     </div>
-    <% end %>
   </div>
+  <% end %>
 
   <div class="panel panel-default">
     <iframe src="http://quienmanda.es/entities/ferrovial?widget=1&history=" width="100%" height="450px" scrolling="no" marginheight="0" frameborder="0"></iframe>

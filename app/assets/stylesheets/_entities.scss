@@ -1,13 +1,20 @@
-.entity-content h3{
-  //font-family: $font-family-serif;
-  font-size: 1.125em;
-  font-weight: 600;
-  margin: $grid-gutter-width/2 0;
+.entity-content{
+  h3{
+    //font-family: $font-family-serif;
+    font-size: 1.125em;
+    font-weight: 600;
+    margin: $grid-gutter-width/2 0;
+  }
+
+  .panel{
+    margin-bottom: 1.5*$grid-gutter-width;
+  } 
 }
+
 
 .entity-description{
   padding: $grid-gutter-width/2 2*$grid-gutter-width/3;
-  margin-bottom: $grid-gutter-width/2;
+  margin-bottom: $grid-gutter-width;
   font-size: 1.125em;
   background: mix( $colorBody, white, 25%);
 
@@ -88,7 +95,7 @@
   h3{
     line-height: 1.25em;
     padding-right: 150px;
-    margin: $grid-gutter-width 0  2*$grid-gutter-width/3;
+    margin: $grid-gutter-width/2 0  2*$grid-gutter-width/3;
   }
 
   .utes-switch-container{

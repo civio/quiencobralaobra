@@ -134,6 +134,7 @@
     font-size: 0.813em;
     padding: $grid-gutter-width/3 $grid-gutter-width/2 ($grid-gutter-width/3)-2;
     margin-top: $grid-gutter-width;
+    margin-bottom: $grid-gutter-width;
     background: mix( $colorBody, white, 50%);
     border: none;
   }
