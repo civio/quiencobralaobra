@@ -195,4 +195,30 @@
       border-right-width: 0; 
     }
   }
+
+  @media (max-width: $screen-sm-min) {
+    display: block;
+
+    tbody, tr, td { 
+      display: block;
+    }
+    > tbody > tr > td{
+      border-right: none;
+      border-left: none;
+      border-top: 2px solid $colorBody;
+      border-bottom: 2px solid $colorBody;
+      margin: 0;
+
+      &.text-right,
+      &.text-right .label{
+        text-align: left;
+      }
+
+      .procedure-tramitation-container,
+      .procedure,
+      .tramitation{
+        display: block;
+      }
+    }
+  }
 }
