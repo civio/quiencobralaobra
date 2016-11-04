@@ -291,4 +291,45 @@
       }
     }
   }
+
+  // Los reyes del ladrillo pictures
+  .reyes-ladrillo-pictures{
+    font-size: 0.875em;
+    background: $colorHeader;
+    padding: 2*$grid-gutter-width/3 ($grid-gutter-width - $grid-gutter-width/6) $grid-gutter-width/6;
+
+    .row > div{
+      padding-bottom: $grid-gutter-width/2;
+
+      @media (min-width: $screen-lg-min) {
+        &:nth-child(6){
+          clear: both;
+        } 
+      }
+    }
+
+    h4{
+      line-height: 1.5em;
+      margin-top: $grid-gutter-width/2;
+
+      a{
+        color: $colorTitle;
+        font-size: 1.5em;
+        font-family: $font-family-serif;
+        font-weight: bold;
+
+        &:hover{
+          color: $colorTextGreen;
+        }
+      }
+    }
+
+    a, a:hover{
+      border: none;
+    }
+
+    .group{
+
+    }
+  }
 }
