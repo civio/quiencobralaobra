@@ -63,6 +63,9 @@
           <div class='arrow'></div>
           <div class='popover-title'><i class="glyphicon glyphicon-calendar"></i><span></span></div>
           <div class='popover-budget'><strong></strong> €</div>
+          <% if controller.controller_name == 'bidders' %>
+          <div class='popover-budget-ute'><strong></strong> € <small>con UTE</small></div>
+          <% end %>
         </div>
       </div>
       <div class="well">Texto explicativo del gráfico superior</div>

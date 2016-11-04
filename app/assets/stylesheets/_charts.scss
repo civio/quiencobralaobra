@@ -74,6 +74,7 @@
 .entity-chart{
   position: relative;
   margin-bottom: $grid-gutter-width/2;
+  min-height: 405px;
   background: mix( $colorBody, white, 25%);
 
   .popover{
@@ -98,7 +99,8 @@
       }
     }
 
-    .popover-budget{
+    .popover-budget,
+    .popover-budget-ute{
       font-size: 1.75rem;
       font-weight: 400;
       padding: 0.5rem 0.75rem;
@@ -115,6 +117,16 @@
         padding-left: 6px;
       }
     }
+
+    .popover-budget-ute{
+      padding-top: 0;
+      padding-bottom: 0.75rem;
+      margin-top: -5px;
+
+      small{
+        font-size: 0.875em;
+      }
+    } 
 
     .glyphicon{
       color: $colorTextGreen;
@@ -205,6 +217,9 @@
 
   .bar{
     fill: $colorTextGreen;
+  }
+  .bar-ute{
+    fill: mix($colorTextGreen, $colorSecondary, 50%);
   }
 
   .axis{ 

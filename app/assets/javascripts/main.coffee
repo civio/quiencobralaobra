@@ -118,24 +118,32 @@ getTreemapData = ->
 
 # get treemap data from contracts table
 getBarsData = ->
-  data = []
+  data = {}
+
+  # Set contracts data for each item
+  setBarItemData = ($item, isUTE) ->
+    date   = $item.find('.td-date').html()
+    amount = +$item.find('.td-amount').data('value')
+    # avoid empty dates
+    if date
+      date = date.split('-').slice(0,-1).join('-')
+      if data[date]
+        data[date].amount    += if isUTE == true then 0 else amount
+        data[date].amountUTE += amount
+      else
+        data[date] = 
+          amount:    if isUTE == true then 0 else amount
+          amountUTE: amount
  
   # Get contracts data from contracts table
   $('#contracts tbody tr').each ->
-    date = $(this).find('.td-date').html()
+    setBarItemData $(this), false
 
-    # avoid empty dates
-    if date and date != ''
-      date = date.split('-').slice(0,-1).join('-')
-      amount = +$(this).find('.td-amount').data('value')
+  #Get contracts data from contracts ute table
+  $('#contracts-utes tbody tr').each ->
+    setBarItemData $(this), true
 
-      # add year to years array
-      if data[date]
-        data[date] += amount
-      else
-        data[date] = amount
-
-  return d3.entries(data)
+  return d3.entries data
 
 
 slugify = (s) ->
@@ -179,7 +187,7 @@ $(document).ready ->
         chart.update state
       
   if $('#timeline-bar-chart').length
-    timelineBarsChart = new TimelineBarsChart 'timeline-bar-chart', getBarsData()
+    timelineBarsChart = new TimelineBarsChart 'timeline-bar-chart', getBarsData(), $('#contracts-utes').length > 0
   
   # Add Datepicker & Range Slider in Contracts home
   if $('.contracts-filters').length

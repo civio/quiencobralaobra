@@ -1,19 +1,20 @@
 class window.TimelineBarsChart
 
-  constructor: (id, data, options) ->   
-    TimelineBarsChart.setup id, data, options
+  constructor: (id, data, utes, options) ->   
+    TimelineBarsChart.setup id, data, utes, options
     TimelineBarsChart.draw()
 
 
   # Setup funcion
-  @setup: (id, data, options) ->
+  @setup: (id, data, utes, options) ->
 
     # Setup default vars
     @options        = options || {}
     @options.id     = id
+    @options.utes   = utes
     @options.margin = @options.margin || {top: 0, right: 0, bottom: 50, left: 0}
     @data           = data || []
-    
+
     # get main element
     @$el = $('#'+@options.id)
 
@@ -23,6 +24,16 @@ class window.TimelineBarsChart
     # get sizes
     @getSizes()
 
+    d3.timeFormatDefaultLocale {
+      dateTime: "%a %b %e %X %Y"
+      date: "%d/%m/%Y"
+      time: "%H:%M:%S"
+      periods: ["AM", "PM"]
+      days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]
+      shortDays: ["Dom", "Lun", "Mar", "Mi", "Jue", "Vie", "Sab"]
+      months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+      shortMonths: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+    }
     d3.formatDefaultLocale {thousands: '.', grouping: [3]}
     @budgetFormat = d3.format(',d')
     @formatTime = d3.timeFormat('%B %Y')
@@ -31,7 +42,8 @@ class window.TimelineBarsChart
     parseTime = d3.timeParse('%Y-%m')
     @data.forEach (d) =>
       d.date = parseTime d.key
-      d.value = +d.value
+      d.amount = d.value.amount
+      d.amountUTE = d.value.amountUTE
 
     # get minimum date between 2008-01 & 2009-01
     # as explained in https://github.com/civio/quiencobralaobra/issues/65
@@ -44,7 +56,7 @@ class window.TimelineBarsChart
       .range [0, @width]
 
     @y = d3.scaleLinear()
-      .domain [0, d3.max(@data, (d) -> return d.value)]
+      .domain [0, d3.max(@data, (d) => return if @options.utes == true then d.value.amountUTE else d.value.amount)]
       .range [@height, 0]
 
     @axisBottom = d3.axisBottom(@x)
@@ -71,16 +83,22 @@ class window.TimelineBarsChart
       .attr 'class', 'axis axis-x'
       .attr 'transform', 'translate(0,' + @height + ')'
       .call @axisBottom
-    
+
     @bar = @svg.selectAll('.bar')
       .data @data
-      .enter()
+
+    if @options.utes
+      @bar.enter()
         .append('rect')
-          .attr 'class', 'bar'
-          .call @setBarsAttributes
-          .on 'mouseover', @onMouseOver
-          .on 'mousemove', @onMouseMove
-          .on 'mouseout',  @onMouseOut
+          .attr 'class', 'bar bar-ute'
+          .call @setBarsUTEAttributes
+          .call @setBarsEvents
+
+    @bar.enter()
+      .append('rect')
+        .attr 'class', 'bar bar-group'
+        .call @setBarsAttributes
+        .call @setBarsEvents
 
 
   # Get width & height
@@ -104,7 +122,6 @@ class window.TimelineBarsChart
 
   # Resize function
   @resize: ->
-
     # Skip if width value doesn't change
     if @width == @$el.width()
       return
@@ -125,22 +142,44 @@ class window.TimelineBarsChart
       .attr 'transform', 'translate(0,' + @height + ')'
       .call @axisBottom
 
-    @svg.selectAll('.bar')
+    @svg.selectAll('.bar-group')
       .call @setBarsAttributes
+
+    @svg.selectAll('.bar-ute')
+      .call @setBarsUTEAttributes
+
     
- 
+  @setBarsEvents: (selection) =>
+    selection
+      .on 'mouseover', @onMouseOver
+      .on 'mousemove', @onMouseMove
+      .on 'mouseout',  @onMouseOut
+
   @setBarsAttributes: (selection) =>
     selection
       .attr 'x', (d) => return @x(d.date)
-      .attr 'y', (d) => return @y(d.value)
+      .attr 'y', (d) => return @y(d.value.amount)
       .attr 'width', (@width/@monthLength)-1
-      .attr 'height', (d) => return @height - @y(d.value)
+      .attr 'height', (d) => return @height - @y(d.value.amount)
+
+  @setBarsUTEAttributes: (selection) =>
+    selection
+      .attr 'x', (d) => return @x(d.date)
+      .attr 'y', (d) => return @y(d.value.amountUTE)
+      .attr 'width', (@width/@monthLength)-1
+      .attr 'height', (d) => return @height - @y(d.value.amountUTE)
 
 
   @onMouseOver: (e) =>
     # Setup content
-    @$tooltip.find('.popover-title span').html      @formatTime(e.date)
-    @$tooltip.find('.popover-budget strong').html   @budgetFormat(e.value)
+    @$tooltip.find('.popover-title span').html        @formatTime(e.date)
+    @$tooltip.find('.popover-budget strong').html     @budgetFormat(e.value.amount)
+    if @options.utes
+      if e.value.amountUTE == e.value.amount
+        @$tooltip.find('.popover-budget-ute').hide()
+      else
+        @$tooltip.find('.popover-budget-ute strong').html @budgetFormat(e.value.amountUTE)
+        @$tooltip.find('.popover-budget-ute').show()
     # Show popover
     @$tooltip.show()
 
