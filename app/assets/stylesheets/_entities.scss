@@ -13,10 +13,10 @@
 
 
 .entity-description{
-  padding: $grid-gutter-width/2 2*$grid-gutter-width/3;
+  padding: 2*$grid-gutter-width/3 2*$grid-gutter-width/3;
   margin-bottom: $grid-gutter-width;
   font-size: 1.125em;
-  background: mix( $colorBody, white, 25%);
+  background: white;  // mix( $colorBody, white, 25%);
 
   strong{
     font-weight: 600;
