@@ -215,6 +215,10 @@
 
 #timeline-bar-chart{
 
+  .overlay{
+    opacity: 0;
+  }
+
   .bar{
     fill: $colorTextGreen;
   }

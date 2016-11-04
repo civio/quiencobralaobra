@@ -12,7 +12,7 @@ class window.TimelineBarsChart
     @options        = options || {}
     @options.id     = id
     @options.utes   = utes
-    @options.margin = @options.margin || {top: 0, right: 0, bottom: 50, left: 0}
+    @options.margin = @options.margin || {top: 0, right: 0, bottom: 20, left: 0}
     @data           = data || []
 
     # get main element
@@ -36,7 +36,8 @@ class window.TimelineBarsChart
     }
     d3.formatDefaultLocale {thousands: '.', grouping: [3]}
     @budgetFormat = d3.format(',d')
-    @formatTime = d3.timeFormat('%B %Y')
+    @formatDateTooltip = d3.timeFormat('%B %Y')
+    @formatDate = d3.timeFormat('%Y-%m')
 
     # format data
     parseTime = d3.timeParse('%Y-%m')
@@ -64,8 +65,10 @@ class window.TimelineBarsChart
       .tickFormat d3.timeFormat('%Y')
       .tickSize 0
       .tickPadding 6
-    
+
     @monthLength = @getMonthLength()
+
+    @bisectDate = d3.bisector( (d) -> return d.date ).left
 
     # Setup svg
     @svg = d3.select('#'+@options.id).append('svg')
@@ -92,13 +95,17 @@ class window.TimelineBarsChart
         .append('rect')
           .attr 'class', 'bar bar-ute'
           .call @setBarsUTEAttributes
-          .call @setBarsEvents
 
     @bar.enter()
       .append('rect')
         .attr 'class', 'bar bar-group'
         .call @setBarsAttributes
-        .call @setBarsEvents
+
+    @overlay = @svg.append('rect')
+      .attr 'class', 'overlay'
+      .attr 'width', @width
+      .attr 'height', @height
+      .call @setBarsEvents
 
 
   # Get width & height
@@ -148,6 +155,10 @@ class window.TimelineBarsChart
     @svg.selectAll('.bar-ute')
       .call @setBarsUTEAttributes
 
+    @overlay
+      .attr 'width', @width
+      .attr 'height', @height
+
     
   @setBarsEvents: (selection) =>
     selection
@@ -171,15 +182,6 @@ class window.TimelineBarsChart
 
 
   @onMouseOver: (e) =>
-    # Setup content
-    @$tooltip.find('.popover-title span').html        @formatTime(e.date)
-    @$tooltip.find('.popover-budget strong').html     @budgetFormat(e.value.amount)
-    if @options.utes
-      if e.value.amountUTE == e.value.amount
-        @$tooltip.find('.popover-budget-ute').hide()
-      else
-        @$tooltip.find('.popover-budget-ute strong').html @budgetFormat(e.value.amountUTE)
-        @$tooltip.find('.popover-budget-ute').show()
     # Show popover
     @$tooltip.show()
 
@@ -192,8 +194,37 @@ class window.TimelineBarsChart
       left: d3.event.pageX - offset.left - @$tooltip.width()*0.5
       top:  d3.event.pageY - offset.top - @$tooltip.height() - 12
 
+    mouseDate = @x.invert(d3.mouse(d3.event.currentTarget)[0])
+    mouseDateFormatted = @formatDate(mouseDate)
+
+    # skip if date has nost changed
+    if @currentDate == mouseDateFormatted
+      return
+
+    @currentDate = mouseDateFormatted
+    mouseData = @data.filter (d) -> d.key == mouseDateFormatted
+    amount    = if mouseData.length > 0 then mouseData[0].amount else 0
+    amountUTE = if mouseData.length > 0 then mouseData[0].amountUTE else 0
+
+    # Hover current bar
+    @svg.selectAll('.bar')
+      .style 'opacity', (d) => return if @formatDate(d.date) == mouseDateFormatted then 1 else 0.3
+
+    # Setup content
+    @$tooltip.find('.popover-title span').html    @formatDateTooltip(mouseDate)
+    @$tooltip.find('.popover-budget strong').html @budgetFormat(amount)
+    if @options.utes
+      if amountUTE == amount
+        @$tooltip.find('.popover-budget-ute').hide()
+      else
+        @$tooltip.find('.popover-budget-ute strong').html @budgetFormat(amountUTE)
+        @$tooltip.find('.popover-budget-ute').show()
+
 
   @onMouseOut: (e) =>
+    # Remove hover bar
+    @svg.selectAll('.bar')
+      .style 'opacity', 1
     # Hide popover
     @$tooltip.hide()
 
