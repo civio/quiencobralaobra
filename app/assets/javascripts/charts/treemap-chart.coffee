@@ -168,6 +168,16 @@ class window.TreemapChart
 
 
   @onMouseOver: (e) =>
+    t = d3.transition()
+      .duration 200
+
+    @el.selectAll('.node')
+      .transition t
+      .style 'opacity', 0.5
+    d3.select(d3.event.currentTarget)
+      .interrupt()
+      .style 'opacity', 1
+
     # Setup content
     @$tooltip.find('.popover-title').html              e.data.entity
     @$tooltip.find('.popover-budget strong').html      @budgetFormat(e.value)
@@ -176,6 +186,8 @@ class window.TreemapChart
     # Show popover
     @$tooltip.show()
 
+    # Trigger entity-select event
+    @$el.trigger 'entity-select', e.data.id.split('.').slice(1)
 
   @onMouseMove: (e) =>
     # get element offset
@@ -187,6 +199,11 @@ class window.TreemapChart
 
 
   @onMouseOut: (e) =>
+    t = d3.transition()
+      .duration 300
+    @el.selectAll('.node')
+      .transition t
+      .style 'opacity', 1
     # Hide popover
     @$tooltip.hide()
 
@@ -202,3 +219,6 @@ class window.TreemapChart
 
   update: (state) ->
     TreemapChart.update(state)
+
+  el: ->
+    return TreemapChart.$el

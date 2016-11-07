@@ -107,6 +107,9 @@ class window.TimelineBarsChart
       .attr 'height', @height
       .call @setBarsEvents
 
+  @addEntityBars: (entity) ->
+    console.log entity
+
 
   # Get width & height
   @getSizes: ->
@@ -212,13 +215,14 @@ class window.TimelineBarsChart
 
     # Setup content
     @$tooltip.find('.popover-title span').html    @formatDateTooltip(mouseDate)
-    @$tooltip.find('.popover-budget strong').html @budgetFormat(amount)
+    @$tooltip.find('.popover-budget strong').html @budgetFormat(amountUTE)
     if @options.utes
+      @$tooltip.find('.popover-budget-alone strong').html @budgetFormat(amount)
       if amountUTE == amount
-        @$tooltip.find('.popover-budget-ute').hide()
+        @$tooltip.find('.popover-budget-ute, .popover-budget-alone').hide()
       else
-        @$tooltip.find('.popover-budget-ute strong').html @budgetFormat(amountUTE)
-        @$tooltip.find('.popover-budget-ute').show()
+        @$tooltip.find('.popover-budget-ute strong').html @budgetFormat(amountUTE-amount)
+        @$tooltip.find('.popover-budget-ute, .popover-budget-alone').show()
 
 
   @onMouseOut: (e) =>
@@ -246,3 +250,6 @@ class window.TimelineBarsChart
   # Public Resize method 
   resize: ->
     TimelineBarsChart.resize()
+
+  addEntityBars: (entity) ->
+    TimelineBarsChart.addEntityBars(entity)
