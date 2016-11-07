@@ -23,11 +23,6 @@ Rails.application.routes.draw do
   get 'data/grupos-constructores',      to: 'data#empresas',          as: :data_empresas
   get 'data/administraciones',          to: 'data#administraciones',  as: :data_administraciones
 
-  # Data analysis
-  get '/admin/data_analysis', to: 'data_analysis#index', as: :data_analysis_index
-  get '/admin/data_analysis/show_attributes', to: 'data_analysis#show_attributes', as: :data_analysis_show_attributes
-  get '/admin/data_analysis/cpv_not_available', to: 'data_analysis#cpv_not_available', as: :data_analysis_cpv_not_available
-
   # Admin interface
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
