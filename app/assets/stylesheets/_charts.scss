@@ -3,7 +3,7 @@
 .stacked-bar-chart{
   position: relative;
   background: $colorHeader;
-  padding: $grid-gutter-width/2 $grid-gutter-width/2 $grid-gutter-width/6;
+  padding: $grid-gutter-width/3 $grid-gutter-width/2;
   margin-top: $grid-gutter-width;
   min-height: 200px;
   font-size: 16px;
@@ -13,20 +13,24 @@
 
     rect.abierto,
     rect.sin-utes {
-      fill: adjust-hue( $colorTextGreen, -8% );
+      fill: $colorTextGreen;  // adjust-hue( $colorTextGreen, -8% );
     }
     rect.negociado-con-publicidad {
-      fill: adjust-hue( $colorTextGreen, 0% );
+      fill: mix( $colorTextGreen, $colorSecondary, 85% ); //adjust-hue( $colorTextGreen, 0% );
     }
     rect.negociado-sin-publicidad {
-      fill: adjust-hue( $colorTextGreen, 8% );
+      fill: mix( $colorTextGreen, $colorSecondary, 70% ); //adjust-hue( $colorTextGreen, 8% );
     }
-    rect.restringido,
+    rect.restringido{
+      fill: mix( $colorTextGreen, $colorSecondary, 55% ); //adjust-hue( $colorTextGreen, 16% );
+    }
+
     rect.con-utes{
-      fill: adjust-hue( $colorTextGreen, 16% );
+      fill: mix( $colorTextGreen, $colorSecondary, 50% );
     }
+
     rect.dialogo-competitivo{
-      fill: adjust-hue( $colorTextGreen, 24% );
+      fill: mix( $colorTextGreen, $colorSecondary, 40% ); //adjust-hue( $colorTextGreen, 24% );
     }
 
     .amount {
@@ -38,7 +42,7 @@
     }
 
     .label {
-      fill: $colorGray;
+      fill: $colorTitle;
       //text-anchor: end;
       font-size: 0.913em;
       font-weight: 600;
@@ -70,14 +74,17 @@
   }
 }
 
+.stacked-bar-chart-footer{
+  font-size: 0.813em;
+  padding: $grid-gutter-width/3 $grid-gutter-width/2 ($grid-gutter-width/3)-2;
+  background: white;
+  border: none;
+}
 
-// Entity Chart (treemap & timeline-bar)
 
+// Popoover Charts
+.stacked-bar-chart,
 .entity-chart{
-  position: relative;
-  margin-bottom: $grid-gutter-width/2;
-  min-height: 405px;
-  background: mix( $colorBody, white, 25%);
 
   .popover{
     display: none;
@@ -92,7 +99,7 @@
     .popover-title{
       font-size: 1.5rem;
       line-height: 1.5rem;
-      padding: 1rem 0.75rem 0.25rem;
+      padding: 1.25rem 0.75rem 0.25rem;
       border: none;
       font-weight: 600;
 
@@ -102,11 +109,13 @@
     }
 
     .popover-budget,
+    .popover-budget-alone,
     .popover-budget-ute{
       font-size: 1.75rem;
       font-weight: 400;
-      padding: 0.5rem 0.75rem;
+      padding: 1rem 0.75rem;
       //margin: 0 0.75rem;
+      line-height: 1.125em;
       border-radius: 0.25rem;
       background: white;
 
@@ -121,19 +130,29 @@
     }
 
     .popover-budget-ute{
-      padding-top: 0;
-      padding-bottom: 0.75rem;
-      margin-top: -5px;
+      border-top: 1px solid $colorBody;
+      padding-bottom: 0;
 
       small{
-        font-size: 0.875em;
+        color: mix($colorTextGreen, $colorSecondary, 50%);
+        font-weight: 600;
       }
-    } 
+    }
+
+    .popover-budget-alone{
+      padding-top: 0.5rem;
+
+      small{
+        color: $colorTextGreen;
+        font-weight: 600;
+      }
+    }
 
     .glyphicon{
-      color: $colorTextGreen;
+      color: #aaa;
       font-size: 11px;
       padding-right: 6px;
+      top: 0;
     }
 
     .popover-area{
@@ -143,17 +162,24 @@
   }
 }
 
-.entity-charts{
-  .well{
-    font-size: 0.813em;
-    padding: $grid-gutter-width/3 $grid-gutter-width/2 ($grid-gutter-width/3)-2;
-    margin-top: $grid-gutter-width;
-    margin-bottom: $grid-gutter-width;
-    background: mix( $colorBody, white, 50%);
-    border: none;
-  }
+
+// Entity Chart (treemap & timeline-bar)
+
+.entity-chart{
+  position: relative;
+  margin-bottom: $grid-gutter-width/2;
+  min-height: 405px;
+  background: mix( $colorBody, white, 25%);
 }
 
+.entity-charts .well{
+  font-size: 0.813em;
+  padding: $grid-gutter-width/3 $grid-gutter-width/2 ($grid-gutter-width/3)-2;
+  margin-top: $grid-gutter-width;
+  margin-bottom: $grid-gutter-width;
+  background: mix( $colorBody, white, 50%);
+  border: none;
+}
 
 // Treemap Chart
 

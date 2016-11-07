@@ -1,7 +1,7 @@
 class window.BarChart
 
   constructor: (id, data, options) ->
-    options   = options || {}    
+    options = options || {}
     BarChart.setup id, data, options
     BarChart.draw()
 
@@ -9,12 +9,10 @@ class window.BarChart
   # Setup funcion
   @setup: (id, data, options) ->
 
-    console.log data
-
     # Setup default vars
     @$el       = $('#'+id)
     @data      = data || []
-    @barHeight = options.barHeight || 24
+    @barHeight = options.barHeight || 25
     @width     = @$el.width()
 
     # Setup x function
@@ -28,10 +26,8 @@ class window.BarChart
       .attr('width', @width)
       .attr('height', 2 * @barHeight * @data.length)
 
-    # Add tooltip 
-    @tooltip = d3.select('#'+id)
-      .append('div')
-        .attr('id', 'chart-tooltip')
+    # Get tooltip 
+    @$tooltip = $('#'+id+' .popover')
 
 
   # Draw function
@@ -49,38 +45,53 @@ class window.BarChart
     .enter().append('rect')
       .attr('class', (d) -> return d.name.toLowerCase().split(' ').join('-') )
       .attr('x', (d) => return @x(d.x0) )
+      .attr('y', @barHeight)
       .attr('width', (d) => return @x(d.x1) - @x(d.x0) )
       .attr('height', @barHeight-1)
-      .on('mouseover', (d) =>
-        @tooltip.html( '<strong>'+d.name + '</strong><br/>' + (d.x1 - d.x0).toLocaleString('es-ES') + ' €')
-        @tooltip.classed('active', true)
-      )
-      .on('mousemove', (d) =>
-        @tooltip
-          .style('top', (d3.event.pageY-@$el.offset().top+15)+'px')
-          .style('left', (d3.event.pageX-@$el.offset().left+10)+'px')
-      )
-      .on('mouseout', (d) =>
-        @tooltip.classed('active', false)
-      )
+      .on('mouseover', @onMouseOver)
+      .on('mousemove', @onMouseMove)
+      .on('mouseout', @onMouseOut)
 
     # Append text with amount to Bars
-    @bars.append('text')
-      .attr('class', 'amount')
-      .attr('x', 6) #(d) => return @x(d.amount)-6 )
-      .attr('y', @barHeight * 0.5 )
-      .attr('dy', '.35em')
-      .text((d) -> return d.total.toLocaleString('es-ES') + ' €' )
+    # @bars.append('text')
+    #   .attr('class', 'amount')
+    #   .attr('x', 6) #(d) => return @x(d.amount)-6 )
+    #   .attr('y', @barHeight )
+    #   .attr('dy', '1.125em')
+    #   .text((d) -> return d.total.toLocaleString('es-ES') + ' €' )
 
     # Append Label with 'contratista' to Bars
     @bars.append('svg:a')
       .attr('class', 'label')
-      .attr('xlink:href', (d) -> return 'http://quienmanda.es/' )
+      .attr('xlink:href', (d) -> return d.link )
       .append('svg:text')
         .text((d) -> return d.key )
         .attr('x', 0 )
         .attr('y', @barHeight )
-        .attr('dy', '1em')
+        .attr('dy', '-0.375em')
+
+  @onMouseOver: (d) =>
+    if @$el.attr('id') == 'companies-chart'
+      data = d3.select(d3.event.target.parentNode).datum()
+      amountAlone = data.items[1].x0
+      amountTotal = data.items[1].x1
+      @$tooltip.find('.popover-title').html(data.key)
+      @$tooltip.find('.popover-budget strong').html(amountTotal.toLocaleString('es-ES'))
+      @$tooltip.find('.popover-budget-alone strong').html(amountAlone.toLocaleString('es-ES'))
+      @$tooltip.find('.popover-budget-ute strong').html((amountTotal-amountAlone).toLocaleString('es-ES'))
+    else
+      @$tooltip.find('.popover-title').html(d.name)
+      @$tooltip.find('.popover-budget strong').html((d.x1 - d.x0).toLocaleString('es-ES'))
+    @$tooltip.show()
+
+  @onMouseMove: =>
+    offset = @$el.offset()
+    @$tooltip.css
+      left: d3.event.pageX - offset.left - @$tooltip.width()*0.5
+      top:  d3.event.pageY - offset.top - @$tooltip.height() - 12
+
+  @onMouseOut: =>
+    @$tooltip.hide()
 
   # Resize function
   @resize: ->
@@ -88,8 +99,6 @@ class window.BarChart
     # Skip if width value doesn't change
     if @width == @$el.width()
       return
-
-    console.log 'resize', @width, @$el.width()
 
     # Update values
     @width = @$el.width()

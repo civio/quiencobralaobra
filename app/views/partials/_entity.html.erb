@@ -10,10 +10,10 @@
 
   <div class="entity-description">
     <% if controller.controller_name == 'bidders' %>
-      De todas las adjudicaciones publicadas en el BOE entre 2009 y 2015, <strong><%= @title %></strong> se ha llevado de forma directa <strong><%= pluralize(@contract_awards.count, 'contrato', 'contratos')%></strong> por un importe de <strong><%= number_with_precision(@contract_awards_amount.to_f*0.01, precision: 0, delimiter: ".") %> €.</strong><br/>
+      De todas las adjudicaciones publicadas en el BOE entre 2009 y 2015, <strong><%= @title %> se ha llevado de forma directa <%= pluralize(@contract_awards.count, 'contrato', 'contratos')%> por un importe de <%= number_with_precision(@contract_awards_amount.to_f*0.01, precision: 0, delimiter: ".") %> €.</strong><br/>
       <% unless @contract_awards_utes.empty? %>
       Además, ha formado parte de varias UTE que resultaron adjudicatarias de otros <%= @contract_awards_utes.count %> contratos y que suman otros <%= number_with_precision(@contract_awards_utes_amount.to_f*0.01, precision: 0, delimiter: ".") %> €.<br/>
-      Así, <%= @title %> ha estado presente, en total, en la adjudicación de <%= @contract_awards.count+@contract_awards_utes.count %> contratos y <%= number_with_precision((@contract_awards_amount.to_f+@contract_awards_utes_amount.to_f)*0.01, precision: 0, delimiter: ".") %> €.
+      Así, <strong><%= @title %> ha estado presente, en total, en la adjudicación de <%= @contract_awards.count+@contract_awards_utes.count %> contratos y <%= number_with_precision((@contract_awards_amount.to_f+@contract_awards_utes_amount.to_f)*0.01, precision: 0, delimiter: ".") %> €.</strong>
       <% end %>
       De esa cantidad, un X% del importe fue adjudicado vía procedimiento negociado. Entre las administraciones que le contratan, la que tiene mayor peso es X (X % del total del importe adjudicado<% unless @contract_awards_utes.empty? %> tanto de forma directa como a través de las UTE en las que participa<% end %>).
     <% else %>
@@ -37,7 +37,7 @@
         <% end %>
         <% if controller.controller_name == 'bidders' && !@contract_awards_utes.empty? %>
         <div class="utes-switch-container">
-          <input id="utes-switch" class="utes-switch" type="checkbox" checked data-size="small" data-on-text="Con UTE" data-off-text="Sin UTE">
+          <input id="utes-switch" class="utes-switch" type="checkbox" checked data-size="small" data-on-text="Con UTE" data-off-text="En&nbsp;solitario">
         </div>
         <% end %>
       </div>
@@ -64,7 +64,8 @@
           <div class='popover-title'><i class="glyphicon glyphicon-calendar"></i><span></span></div>
           <div class='popover-budget'><strong></strong> €</div>
           <% if controller.controller_name == 'bidders' %>
-          <div class='popover-budget-ute'><strong></strong> € <small>con UTE</small></div>
+          <div class='popover-budget-ute'><strong></strong> € <small>en&nbsp;UTE</small></div>
+          <div class='popover-budget-alone'><strong></strong> € <small>en&nbsp;solitario</small></div>
           <% end %>
         </div>
       </div>

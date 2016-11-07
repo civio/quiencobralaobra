@@ -3,7 +3,16 @@
 </div>
 
 <div class="panel panel-default">
-  <div id="companies-chart" class="stacked-bar-chart"></div>
+  <div id="companies-chart" class="stacked-bar-chart">
+  	<div class='popover top' role='tooltip'>
+		<div class='arrow'></div>
+		<div class='popover-title'></div>
+		<div class='popover-budget'><strong></strong> €</div>
+		<div class='popover-budget-ute'><strong></strong> € <small>en&nbsp;UTE</small></div>
+		<div class='popover-budget-alone'><strong></strong> € <small>en&nbsp;solitario</small></div>
+	</div>
+  </div>
+  <div class="well stacked-bar-chart-footer">Los 10 mayores grupos constructores</div>
 </div>
 
 <%= render(partial: 'partials/entities', :locals => { entities: @bidders, field: :group, path: 'grupos-constructores' }) %>
