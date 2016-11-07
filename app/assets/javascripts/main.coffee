@@ -1,6 +1,5 @@
 chart = null
 
-
 setWallLayout = ->
   $wall = $('.wall')
   if $wall.length
@@ -52,35 +51,65 @@ setPageNavigation = ->
           .end().filter("[href=\\#"+id+"]").parent().addClass("active")
 
 
-# process Companies Data to be draw as a stacked bar chart
-getFormattedData = (data, key, length) ->
+# process Administrations data to be draw as a stacked bar chart
+getPublicBodiesData = (data) ->
   # create a nested array with 'key' / 'procemiento' / 'data' structure
   keys = d3.nest()
-    .key((d) -> return d[key])
+    .key((d) -> return d.administracion)
     .key((d) -> return d.procedimiento)
     .entries(data)
 
   # Add procedimientos attribute to contratistas array
   keys.forEach (item) ->
     total = 0
-    item.procedimientos = item.values.map (procedimiento) ->
-      procedimiento.total = 0
-      procedimiento.values.forEach (d) ->
-        procedimiento.total += +d.importe
+    item.items = item.values.map (value) ->
+      value.total = 0
+      value.values.forEach (d) ->
+        value.total += +d.importe
       return { 
-        name: procedimiento.key
+        name: value.key
         x0:   total
-        x1:   total += procedimiento.total
+        x1:   total += value.total
       }
     item.total = total
     item.link = item.link
+    item.values = null
+    delete item.values
 
   # Sort contratistas by total amount
   keys.sort (a, b) ->
     return d3.descending(a.total, b.total)
 
-  # Truncate array to 12 first elements
-  keys.splice length, keys.length
+  # Truncate array to 10 first elements
+  keys.splice 10, keys.length
+
+  return keys
+
+
+# process Companies data to be draw as a stacked bar chart
+getBiddersData = (data) ->
+  keys = []
+
+  data.forEach (item) ->
+    amount = Math.ceil(+item.importe_grupo*0.01)
+    amountUTE = Math.ceil(+item.importe_utes*0.01)
+    total = amount + amountUTE
+    keys.push
+      key: item.grupo
+      link: '/grupos-constructores/'+item.slug
+      total: total
+      items: [
+        { 
+          name: 'sin UTES'
+          x0: 0
+          x1: amount 
+        },
+        { 
+          name: 'con UTES'
+          x0: amount
+          x1: total
+        }
+      ]
 
   return keys
 
@@ -146,6 +175,37 @@ getBarsData = ->
   return d3.entries data
 
 
+getEntityBarsData = (entity) ->
+  data = {}
+
+  # Set contracts data for each item
+  setBarItemData = ($item, isUTE) ->
+    date   = $item.find('.td-date').html()
+    amount = +$item.find('.td-amount').data('value')
+    # avoid empty dates
+    if date
+      date = date.split('-').slice(0,-1).join('-')
+      if data[date]
+        data[date].amount    += if isUTE == true then 0 else amount
+        data[date].amountUTE += amount
+      else
+        data[date] = 
+          amount:    if isUTE == true then 0 else amount
+          amountUTE: amount
+ 
+  # Get contracts data from contracts table
+  $('#contracts tbody tr').each ->
+    if $(this).find('.td-entity').data('id') == entity
+      setBarItemData $(this), false
+
+  #Get contracts data from contracts ute table
+  $('#contracts-utes tbody tr').each ->
+    if $(this).find('.td-entity').data('id') == entity
+      setBarItemData $(this), true
+
+  return d3.entries data
+
+
 slugify = (s) ->
   return s
     .trim()
@@ -166,20 +226,24 @@ $(document).ready ->
     d3.json '/data/grupos-constructores', (error, json) ->
       if error
         return console.warn(error)
-      chart = new BarChart 'home-chart', getFormattedData(json, 'contratista', 10)
+      chart = new BarChart 'home-chart', getBiddersData(json)
   else if $('#companies-chart').length
     d3.json '/data/grupos-constructores', (error, json) ->
       if error
         return console.warn(error)
-      chart = new BarChart 'companies-chart', getFormattedData(json, 'contratista', 10)
+      chart = new BarChart 'companies-chart', getBiddersData(json)
   else if $('#administrations-chart').length
     d3.json '/data/administraciones', (error, json) ->
       if error
         return console.warn(error)
-      chart = new BarChart 'administrations-chart', getFormattedData(json, 'administracion', 10)
+      chart = new BarChart 'administrations-chart', getPublicBodiesData(json)
 
   if $('#treemap-chart').length
     chart = new TreemapChart 'treemap-chart', getTreemapData()
+    # Add entity bars on entity select
+    chart.el().on 'entity-select', (e, entity) -> 
+      if timelineBarsChart
+        timelineBarsChart.addEntityBars getEntityBarsData(+entity)
     # Setup utes switch
     $('#utes-switch')
       .bootstrapSwitch()

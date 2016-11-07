@@ -1,5 +1,6 @@
 class DataController < ApplicationController
-  
+
+  # GET /data/grupos-constructores
   def grupos_constructores
     query = <<-EOQ
       WITH
@@ -84,7 +85,7 @@ class DataController < ApplicationController
     render json: @results
   end
 
-  # GET /data/grupos-constructores
+  # GET /data/empresas
   def empresas
     query = "SELECT 
       properties -> 'Formalización del contrato - Contratista' AS contratista,
@@ -100,7 +101,7 @@ class DataController < ApplicationController
     GROUP BY contratista, procedimiento
     ORDER BY importe DESC"
     @results = Award.connection.execute(query)
-    render json: @results #'bidders/show.json.jbuilder'
+    render json: @results
   end
 
   # GET /data/administraciones

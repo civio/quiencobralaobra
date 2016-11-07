@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   resources :articles, path: 'articulos', only: [:index, :show]
 
   # Data json
-  get 'data/grupos-constructores',      to: 'data#empresas',          as: :data_empresas
-  get 'data/administraciones',          to: 'data#administraciones',  as: :data_administraciones
+  get 'data/grupos-constructores',      to: 'data#grupos_constructores', as: :grupos_constructores
+  get 'data/administraciones',          to: 'data#administraciones', as: :data_administraciones
 
   # Admin interface
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'

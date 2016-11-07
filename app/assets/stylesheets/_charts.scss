@@ -11,7 +11,8 @@
 
   .chart{
 
-    rect.abierto {
+    rect.abierto,
+    rect.sin-utes {
       fill: adjust-hue( $colorTextGreen, -8% );
     }
     rect.negociado-con-publicidad {
@@ -20,10 +21,11 @@
     rect.negociado-sin-publicidad {
       fill: adjust-hue( $colorTextGreen, 8% );
     }
-    rect.restringido{
+    rect.restringido,
+    rect.con-utes{
       fill: adjust-hue( $colorTextGreen, 16% );
     }
-    rect.diálogo-competitivo{
+    rect.dialogo-competitivo{
       fill: adjust-hue( $colorTextGreen, 24% );
     }
 

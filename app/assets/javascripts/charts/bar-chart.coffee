@@ -8,6 +8,9 @@ class window.BarChart
 
   # Setup funcion
   @setup: (id, data, options) ->
+
+    console.log data
+
     # Setup default vars
     @$el       = $('#'+id)
     @data      = data || []
@@ -42,7 +45,7 @@ class window.BarChart
 
     # Append Rect to Bars
     @bars.selectAll('rect')
-      .data((d) -> return d.procedimientos)
+      .data((d) -> return d.items)
     .enter().append('rect')
       .attr('class', (d) -> return d.name.toLowerCase().split(' ').join('-') )
       .attr('x', (d) => return @x(d.x0) )
