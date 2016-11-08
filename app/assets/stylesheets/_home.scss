@@ -20,7 +20,7 @@
 
   .panel-body{
     padding: $grid-gutter-width 2*$grid-gutter-width;
-    font-size: 1.125em;
+    font-size: 1.25em;
     line-height: 1.5em;
   }
 
@@ -54,6 +54,14 @@
     padding: $grid-gutter-width/2 0;
     font-weight: 600;
   }
+
+  strong{
+    font-weight: 600;
+  }
+}
+
+.methodology .panel-page h3:first-child{
+  margin-top: 0;
 }
 
 .posts-highlighted .wall-item .panel{
