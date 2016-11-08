@@ -46,9 +46,9 @@ class BiddersController < ApplicationController
         'acciona' => 'acciona',
         'comsa' => 'comsa-corporacion',
         'fcc' => 'fomento-de-construcciones-y-contratas',
-        'grupo-aldesa' => 'aldesa-1',
+        'copisa' => 'copisa',
         'grupo-ferrovial' => 'ferrovial',
-        'grupo-sanjose' => 'grupo-empresarial-san-jose',
+        'grupo-sando' => 'construcciones-sanchez-dominguez-sando-sa',
         'grupo-villar-mir' => 'grupo-villar-mir',
         'isolux-corsan' => 'isolux',
         'sacyr' => 'sacyr'
