@@ -145,7 +145,7 @@
     }
 
     ul{
-      padding-left: $grid-gutter-width/2;
+      padding-left: 0;
       padding-bottom: $grid-gutter-width/2;
       @include box-sizing( border-box );
     }
@@ -302,7 +302,7 @@
     font-size: 0.875em;
     background: $colorHeader;
     padding: 2*$grid-gutter-width/3 ($grid-gutter-width - $grid-gutter-width/6) $grid-gutter-width/6;
-    margin: $grid-gutter-width; 
+    margin: $grid-gutter-width 0; 
 
     .row > div{
       padding-bottom: $grid-gutter-width/2;
