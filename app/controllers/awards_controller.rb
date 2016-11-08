@@ -9,7 +9,7 @@ class AwardsController < ApplicationController
     awards = Award.includes(:public_body, :bidder)
     awards = awards.where(bidders: { slug: params[:bidder] }) unless params[:bidder].blank?
     awards = awards.where(public_body: params[:public_bodies]) unless params[:public_bodies].blank?
-    @contract_awards = awards.page(params[:page]).per(24).order(amount: :desc)
+    @contract_awards = awards.page(params[:page]).per(50).order(amount: :desc)
   end
 
   def show

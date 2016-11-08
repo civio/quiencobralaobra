@@ -2,7 +2,7 @@ class PublicBodiesController < ApplicationController
   before_action :set_public_body, only: [:show]
 
   def index
-    @public_bodies = PublicBody.all.page(params[:page]).per(24).order(name: :asc)
+    @public_bodies = PublicBody.all.page(params[:page]).per(50).order(name: :asc)
   end
 
   def show
