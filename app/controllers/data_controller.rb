@@ -106,20 +106,38 @@ class DataController < ApplicationController
 
   # GET /data/administraciones
   def administraciones
-    query = "SELECT 
-      properties -> 'Departamento' AS administracion,
-      process_type AS procedimiento,
-      SUM(amount) AS importe,
-      COUNT(amount) AS contratos
-    FROM AWARDS
-    WHERE
-      properties -> 'Análisis - Tipo' = 'Obras' AND
-      properties -> 'Departamento' <> '' AND
-      process_type <> '' AND
-      amount IS NOT NULL
-    GROUP BY administracion, procedimiento
-    ORDER BY importe DESC"
-    @results = PublicBody.connection.execute(query)
+    query = <<-EOQ
+      WITH public_bodies_per_process_type AS (
+        SELECT
+          public_bodies.name AS administracion,
+          public_bodies.slug,
+          awards.process_type AS procedimiento,
+          SUM(awards.amount) AS importe
+        FROM awards
+          INNER JOIN public_bodies
+            ON awards.public_body_id = public_bodies.id
+        WHERE
+          properties -> 'Análisis - Tipo' = 'Obras' AND
+          process_type <> '' AND
+          amount IS NOT NULL
+        GROUP BY
+          administracion,
+          public_bodies.slug,
+          procedimiento
+        ORDER BY importe DESC
+      )
+
+      SELECT *
+      FROM public_bodies_per_process_type
+      WHERE administracion IN (
+        SELECT administracion
+        FROM public_bodies_per_process_type
+        GROUP BY administracion
+        ORDER BY sum(importe) DESC
+        LIMIT 10
+      );
+    EOQ
+    @results = ActiveRecord::Base.connection.execute(query)
     render json: @results
   end
 end
