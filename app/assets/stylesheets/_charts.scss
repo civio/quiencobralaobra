@@ -129,13 +129,20 @@
       }
     }
 
+    .popover-budget-ute,
+    .popover-budget-alone{
+      small{
+        font-weight: 600;
+        font-size: 0.813em;
+      }
+    }
+
     .popover-budget-ute{
       border-top: 1px solid $colorBody;
       padding-bottom: 0;
 
       small{
         color: mix($colorTextGreen, $colorSecondary, 50%);
-        font-weight: 600;
       }
     }
 
@@ -144,7 +151,6 @@
 
       small{
         color: $colorTextGreen;
-        font-weight: 600;
       }
     }
 
