@@ -2,7 +2,12 @@ class BiddersController < ApplicationController
   before_action :set_bidder, only: [:show]
 
   def index
-    @bidders = Bidder.select(:group, :slug).distinct.page(params[:page]).per(50).order(group: :asc)
+    if params[:name]
+      @bidders = Bidder.select(:group, :slug).distinct.where('"group" ILIKE ?', params[:name]+'%').order(group: :asc)
+    else
+      @bidders = Bidder.select(:group, :slug).distinct.page(params[:page]).per(50).order(group: :asc)
+      @paginate = true
+    end
   end
 
   def show

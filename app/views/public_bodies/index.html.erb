@@ -13,8 +13,24 @@
   <div class="well stacked-bar-chart-footer">Las 10 mayores administraciones adjudicadoras</div>
 </div>
 
-<%= render(partial: 'partials/entities', locals: { entities: @public_bodies, field: :name, path: 'administraciones' }) %>
+<div class="menu-alphabetic btn-group" role="group">
+<% for char in 'A'..'Z' %>
+  <% if params[:name] != char %>
+  <%= link_to( "#{char}", public_bodies_path(:name => char), class: "btn btn-default" ) %>
+  <% else %>
+  <%= link_to( "#{char}", public_bodies_path(:name => char), class: "btn btn-default active" ) %>
+  <% end %>
+<% end %>
+</div>
 
+<% if @public_bodies.empty? %>
+<p class="well">No hay administraciones cuyo nombre comience por <%= params[:name] %></p>
+<% else %>
+<%= render(partial: 'partials/entities', locals: { entities: @public_bodies, field: :name, path: 'administraciones' }) %>
+<% end %>
+
+<% if defined? @paginate %>
 <div class="text-center">
   <%= paginate @public_bodies %>
 </div>
+<% end %>

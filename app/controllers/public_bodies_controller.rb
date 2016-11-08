@@ -2,7 +2,12 @@ class PublicBodiesController < ApplicationController
   before_action :set_public_body, only: [:show]
 
   def index
-    @public_bodies = PublicBody.all.page(params[:page]).per(50).order(name: :asc)
+    if params[:name]
+      @public_bodies = PublicBody.where('"name" ILIKE ?', params[:name]+'%').order(name: :asc)
+    else
+      @public_bodies = PublicBody.all.page(params[:page]).per(50).order(name: :asc)
+      @paginate = true
+    end
   end
 
   def show

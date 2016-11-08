@@ -1,3 +1,7 @@
+.entities .wall-item .panel .panel-heading{
+  border-bottom: 1px solid darken( $colorBody, 10% );
+}
+
 .entity-content{
   h3{
     //font-family: $font-family-serif;
@@ -10,7 +14,6 @@
     margin-bottom: 1.5*$grid-gutter-width;
   } 
 }
-
 
 .entity-description{
   padding: 2*$grid-gutter-width/3 2*$grid-gutter-width/3;
@@ -108,5 +111,34 @@
     position: absolute;
     right: 0;
     bottom: -$grid-gutter-width/6;
+  }
+}
+
+.menu-alphabetic{
+  width: 100%;
+  padding: 0;
+  margin: 0 0 $grid-gutter-width;
+
+  > .btn{
+    width: 3.93%;
+    min-width: 28px;
+    color: $colorTextGreen;
+    padding-left: 0;
+    padding-right: 0;
+    border-color: $colorBody;
+
+    &:hover{
+      background: $colorHeader;
+      font-weight: 600;
+    }
+
+    &.active,
+    &.active:hover,
+    &:focus{
+      color: white;
+      border-color: $colorTextGreen;
+      background: $colorTextGreen;
+      font-weight: 600;
+    }
   }
 }

@@ -15,8 +15,20 @@
   <div class="well stacked-bar-chart-footer">Los 10 mayores grupos constructores</div>
 </div>
 
+<div class="menu-alphabetic btn-group" role="group">
+<% for char in 'A'..'Z' %>
+  <% if params[:name] != char %>
+  <%= link_to( "#{char}", bidders_path(:name => char), class: "btn btn-default" ) %>
+  <% else %>
+  <%= link_to( "#{char}", bidders_path(:name => char), class: "btn btn-default active" ) %>
+  <% end %>
+<% end %>
+</div>
+
 <%= render(partial: 'partials/entities', :locals => { entities: @bidders, field: :group, path: 'grupos-constructores' }) %>
 
+<% if defined? @paginate %>
 <div class="text-center">
   <%= paginate @bidders %>
 </div>
+<% end %>

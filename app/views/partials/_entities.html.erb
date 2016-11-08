@@ -1,15 +1,14 @@
 <div class="entities wall row">
  
-  <!-- Entities list -->
-  <% entities.each do |entity| %>
+  <div class="wall-item col-sm-12">
+    <div class="panel panel-default">
 
-    <div class="wall-item col-sm-3">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3><%= link_to entity[field], "#{path}/#{entity.slug}" %></h3>
-        </div>
+    <!-- Entities list -->
+    <% entities.each do |entity| %>
+      <div class="panel-heading">
+        <h3><%= link_to entity[field], "#{path}/#{entity.slug}" %></h3>
       </div>
+    <% end %>
     </div>
-
-  <% end %>
+  </div>
 </div>
