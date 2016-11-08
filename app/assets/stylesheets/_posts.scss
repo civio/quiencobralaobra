@@ -156,6 +156,11 @@
       background: asset-url('list-moustache.gif') no-repeat 0px 7px;
     }
 
+    blockquote{
+      font-weight: 600;
+      border-color: $colorBody;
+    }
+
     h3{
       font-family: $font-family-serif;
       font-weight: 700;
@@ -297,6 +302,7 @@
     font-size: 0.875em;
     background: $colorHeader;
     padding: 2*$grid-gutter-width/3 ($grid-gutter-width - $grid-gutter-width/6) $grid-gutter-width/6;
+    margin: $grid-gutter-width; 
 
     .row > div{
       padding-bottom: $grid-gutter-width/2;
