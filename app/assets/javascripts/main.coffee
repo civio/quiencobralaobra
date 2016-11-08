@@ -264,10 +264,16 @@ $(document).ready ->
   # Setup contracts search selects
   $('.contracts-filters #bidder, .contracts-filters #public_bodies').select2()
 
-  # Setup affix for contracts tables
-  # $('#contracts').affix
-  #   offset:
-  #     top: () -> console.log($(this)); return 100 #$(this).offset().top
+  # Setup sticky tables
+  $contracts = $('#contracts')
+  if $contracts.length and $contracts.find('tbody tr').length > 3
+    console.log 'sticky'
+    $contracts.stickyTableHeaders()
+
+  $contractsUTE = $('#contracts-utes')
+  if $contractsUTE.length and $contractsUTE.find('tbody tr').length > 3
+    console.log 'sticky ute'
+    $contractsUTE.stickyTableHeaders()
 
   # Setup the law page navigation
   if $('body').hasClass('the_law')
