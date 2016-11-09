@@ -78,7 +78,7 @@
   h3{
     font-family: $font-family-serif;
     font-weight: 700;
-    font-size: 1.75em;
+    font-size: 2em;
     line-height: 1.375em;
 
     a{
@@ -93,10 +93,10 @@
   }
 
   .description p{
-    font-size: 1em;
-    font-weight: 600;
+    font-size: 1.125em;
+    //font-weight: 600;
     padding: 0;
-    margin: 0 2*$grid-gutter-width/3 $grid-gutter-width/3;
+    margin: 0 2*$grid-gutter-width/3 $grid-gutter-width/2;
   }
 }
 
