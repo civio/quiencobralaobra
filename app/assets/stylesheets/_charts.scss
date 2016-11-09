@@ -43,35 +43,60 @@
       }
     }
   }
-
-  #chart-tooltip{
-    display: none;
-    color: $colorGray;
-    background: white;
-    font-size: 0.913em;
-    font-weight: 600;
-    text-align: left;
-    position: absolute;
-    padding: $grid-gutter-width/4 $grid-gutter-width/2;
-    z-index: 60;
-
-    strong{
-      font-weight: 700;
-    }
-
-    &.active{
-      display: block;
-    }
-  }
 }
 
 .stacked-bar-chart-footer{
-  font-size: 0.813em;
   padding: $grid-gutter-width/3 $grid-gutter-width/2 ($grid-gutter-width/3)-2;
-  background: white;
+  background: $colorWhite;
   border: none;
+  font-family: $font-family-sans-serif;
+  font-size: $font-size-base;
+  font-weight: normal;
+  line-height: 24px;
+
+  strong{
+    font-weight: 600;
+  }
+
+  a{
+    font-weight: bold;
+  }
+
+  .orange,
+  .orange-light,
+  .gray{
+    color: white;
+    padding: 0 0.25em 0.1em;
+    font-weight: 600;
+  }
+
+  .orange{
+    background: $colorTextGreen;
+  }
+
+  .orange-light{
+    background: mix($colorTextGreen, $colorSecondary, 50%);
+  }
+
+  .gray{
+    background: #aaa;
+  }
 }
 
+.wall-item{ 
+
+  .stacked-bar-chart{
+    margin-top: $grid-gutter-width/2;
+    margin-right: $grid-gutter-width/6;
+    margin-left: $grid-gutter-width/6;
+  }
+
+  .stacked-bar-chart-footer{
+    margin: 0 $grid-gutter-width/6;
+    padding-bottom: 0;
+    background: none;
+  }
+}
 
 // Popoover Charts
 .stacked-bar-chart,
@@ -194,8 +219,12 @@
   padding: $grid-gutter-width/3 $grid-gutter-width/2 ($grid-gutter-width/3)-2;
   margin-top: $grid-gutter-width;
   margin-bottom: $grid-gutter-width;
-  background: mix( $colorBody, white, 50%);
+  background: mix( $colorBody, white, 25%);
   border: none;
+
+  strong, a{
+    font-weight: 600;
+  }
 }
 
 // Treemap Chart

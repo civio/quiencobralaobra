@@ -31,9 +31,9 @@
     <div class="col-md-6">
       <div class="entity-chart-title">
         <% if controller.controller_name == 'bidders' %>
-        <h3>Reparto de contratos por Administración pública</h3>
+        <h3>Reparto de contratos por administración pública</h3>
         <% else %>
-        <h3>Reparto de contratos por Grupo constructor</h3>
+        <h3>Reparto de contratos de forma directa</h3>
         <% end %>
         <% if controller.controller_name == 'bidders' && !@contract_awards_utes.empty? %>
         <div class="utes-switch-container">
@@ -48,7 +48,11 @@
           <div class='popover-budget'><strong></strong> € <span class="percentage"></span></div>
         </div>
       </div>
-      <div class="well">Texto explicativo del gráfico superior</div>
+      <% if controller.controller_name == 'bidders' %>
+      <div class="well">Distribución de los contratos publicados en el BOE entre 2009 y 2015. <strong>Con UTE</strong> incluye todos los contratos <a href="/metodologia#que-pasa-con-las-ute">en los que participa</a>. <strong>En solitario</strong>, solo aquellos que se llevó íntegros.</div>
+      <% else %>
+        <div class="well">Distribución de forma directa (no suma a los grupos las UTE en las que participan) de los contratos publicados en el BOE entre 2009 y 2015.</div>
+      <% end %>
     </div>
     <div class="col-md-6">
       <div class="entity-chart-title">
@@ -69,7 +73,11 @@
           <% end %>
         </div>
       </div>
-      <div class="well">Texto explicativo del gráfico superior</div>
+      <% if controller.controller_name == 'bidders' %>
+      <div class="well">Contratos publicados en el BOE, en solitario y a través de <a href="/metodologia#que-pasa-con-las-ute">UTE</a></div>
+      <% else %>
+        <div class="well">Incluye todos los contratos adjudicados vía BOE.</div>
+      <% end %>
     </div>
   </div>
   <% end %>
