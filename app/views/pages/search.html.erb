@@ -13,11 +13,11 @@
 </div>
 <% end %>
 
-<% unless @bidders.empty? %>
+<% unless @groups.empty? %>
 <div class="title companies">
   <h2>Grupos constructores</h2>
 </div>
-<%= render('partials/entities', entities: @bidders, field: :group, path: 'grupos-constructores') %>
+<%= render('partials/entities', entities: @groups, field: :group, path: 'grupos-constructores') %>
 <% end %>
 
 <% unless @public_bodies.empty? %>

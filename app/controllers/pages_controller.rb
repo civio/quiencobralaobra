@@ -13,11 +13,14 @@ class PagesController < ApplicationController
                   content ILIKE ?
                 EOQ
 
-    search = Array.new(2, "%#{params[:search]}%")
-    @bidders = Bidder.where(<<-EOQ, *search)
-                 name ILIKE ? OR
-                 "group" ILIKE ?
-               EOQ
+    search = "%#{params[:search]}%"
+    @groups = Bidder.select(:group, :slug).distinct.where(<<-EOQ, search)
+                "group" ILIKE ? AND
+                "group" NOT IN (
+                  SELECT ute
+                  FROM ute_companies_mappings
+                )
+              EOQ
 
     search = "%#{params[:search]}%"
     @public_bodies = PublicBody.where(<<-EOQ, search)
