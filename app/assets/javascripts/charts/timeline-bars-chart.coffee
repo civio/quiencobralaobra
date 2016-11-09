@@ -205,9 +205,10 @@ class window.TimelineBarsChart
       return
 
     @currentDate = mouseDateFormatted
-    mouseData = @data.filter (d) -> d.key == mouseDateFormatted
-    amount    = if mouseData.length > 0 then mouseData[0].amount else 0
-    amountUTE = if mouseData.length > 0 then mouseData[0].amountUTE else 0
+    mouseData   = @data.filter (d) -> d.key == mouseDateFormatted
+    amount      = if mouseData.length > 0 then mouseData[0].amount else 0
+    amountTotal = if mouseData.length > 0 then mouseData[0].amountUTE else 0
+    amountUTE   = amountTotal - amount
 
     # Hover current bar
     @svg.selectAll('.bar')
@@ -215,13 +216,13 @@ class window.TimelineBarsChart
 
     # Setup content
     @$tooltip.find('.popover-title span').html    @formatDateTooltip(mouseDate)
-    @$tooltip.find('.popover-budget strong').html @budgetFormat(amountUTE)
+    @$tooltip.find('.popover-budget strong').html @budgetFormat(amountTotal)
     if @options.utes
-      @$tooltip.find('.popover-budget-alone strong').html @budgetFormat(amount)
-      if amountUTE == amount
+      @$tooltip.find('.popover-budget-alone strong').html @budgetFormat(Math.round(100*amount/amountTotal))
+      if amountUTE == 0
         @$tooltip.find('.popover-budget-ute, .popover-budget-alone').hide()
       else
-        @$tooltip.find('.popover-budget-ute strong').html @budgetFormat(amountUTE-amount)
+        @$tooltip.find('.popover-budget-ute strong').html @budgetFormat(Math.round(100*amountUTE/amountTotal))
         @$tooltip.find('.popover-budget-ute, .popover-budget-alone').show()
 
 

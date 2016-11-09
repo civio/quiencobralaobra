@@ -28,6 +28,19 @@ class window.BarChart
 
     # Get tooltip 
     @$tooltip = $('#'+id+' .popover')
+    if id == 'companies-chart'
+      @$tooltip.append("<div class='arrow'></div>\
+        <div class='popover-title'></div>\
+        <div class='popover-budget'><strong></strong> millones de €</div>\
+        <div class='popover-budget-data popover-budget-alone'><strong></strong>% <small>en&nbsp;solitario</small></div>\
+        <div class='popover-budget-data popover-budget-ute'><strong></strong>% <small>en&nbsp;UTE</small></div>")
+    else
+      @$tooltip.append("<div class='arrow'></div>\
+        <div class='popover-title'></div>\
+        <div class='popover-budget'><strong></strong> millones de €</div>
+        <div class='popover-budget-data popover-budget-abierto'><strong></strong>% <small>Abierto</small></div>\
+        <div class='popover-budget-data popover-budget-negociado'><strong></strong>% <small>Negociado</small></div>
+        <div class='popover-budget-data popover-budget-otros'><strong></strong>% <small>Otros</small></div>")
 
 
   # Draw function
@@ -71,17 +84,28 @@ class window.BarChart
         .attr('dy', '-0.375em')
 
   @onMouseOver: (d) =>
+    data = d3.select(d3.event.target.parentNode).datum()
+    # setup popover for companies
     if @$el.attr('id') == 'companies-chart'
-      data = d3.select(d3.event.target.parentNode).datum()
       amountAlone = data.items[1].x0
       amountTotal = data.items[1].x1
-      @$tooltip.find('.popover-title').html(data.key)
-      @$tooltip.find('.popover-budget strong').html(amountTotal.toLocaleString('es-ES'))
-      @$tooltip.find('.popover-budget-alone strong').html(amountAlone.toLocaleString('es-ES'))
-      @$tooltip.find('.popover-budget-ute strong').html((amountTotal-amountAlone).toLocaleString('es-ES'))
+      @$tooltip.find('.popover-budget-alone strong').html(Math.round(100*amountAlone/amountTotal).toLocaleString('es-ES'))
+      @$tooltip.find('.popover-budget-ute strong').html(Math.round(100*(amountTotal-amountAlone)/amountTotal).toLocaleString('es-ES'))
+    # setup popover for administrations
     else
-      @$tooltip.find('.popover-title').html(d.name)
-      @$tooltip.find('.popover-budget strong').html((d.x1 - d.x0).toLocaleString('es-ES'))
+      amountAbierto   = data.items.filter( (d) -> return d.name == 'Abierto' )[0]
+      amountNegociado = data.items.filter( (d) -> return d.name == 'Negociado' )[0]
+      amountOtros     = data.items.filter( (d) -> return d.name == 'Otros' )[0]
+      amountAbierto   = if amountAbierto then amountAbierto.x1-amountAbierto.x0 else 0
+      amountNegociado = if amountNegociado then amountNegociado.x1-amountNegociado.x0 else 0
+      amountOtros     = if amountOtros then amountOtros.x1-amountOtros.x0 else 0
+      amountTotal     = amountAbierto + amountNegociado + amountOtros
+      @setAmount 'abierto', amountAbierto, amountTotal
+      @setAmount 'negociado', amountNegociado, amountTotal
+      @setAmount 'otros', amountOtros, amountTotal
+    # set common properties
+    @$tooltip.find('.popover-title').html(data.key)
+    @$tooltip.find('.popover-budget strong').html(Math.floor(amountTotal/1000000).toLocaleString('es-ES'))
     @$tooltip.show()
 
   @onMouseMove: =>
@@ -92,6 +116,15 @@ class window.BarChart
 
   @onMouseOut: =>
     @$tooltip.hide()
+
+  @setAmount: (id, amount, total) ->
+    if amount > 0
+      val = 100*amount/total
+      val = if val > 1 then Math.round(val) else val.toFixed(2)
+      @$tooltip.find('.popover-budget-'+id+' strong').html(val.toLocaleString('es-ES'))
+      @$tooltip.find('.popover-budget-'+id).show()
+    else
+      @$tooltip.find('.popover-budget-'+id).hide()
 
   # Resize function
   @resize: ->

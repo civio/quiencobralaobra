@@ -21,7 +21,7 @@
     }
     
     rect.otros{
-      fill: #999;
+      fill: #aaa;
     }
 
     .amount {
@@ -100,12 +100,9 @@
     }
 
     .popover-budget,
-    .popover-budget-alone,
-    .popover-budget-ute{
-      font-size: 1.75rem;
+    .popover-budget-data{
       font-weight: 400;
       padding: 1rem 0.75rem;
-      //margin: 0 0.75rem;
       line-height: 1.125em;
       border-radius: 0.25rem;
       background: white;
@@ -115,34 +112,42 @@
       }
 
       .percentage{
-        font-size: 0.875em;
-        padding-left: 6px;
+        //font-size: 0.875em;
+        //padding-left: 6px;
       }
     }
 
-    .popover-budget-ute,
-    .popover-budget-alone{
+    .popover-budget{
+      margin-bottom: 1rem;
+      border-bottom: 1px solid $colorBody;
+
+      strong{
+        font-size: 1.25em;
+      }
+    }
+
+    .popover-budget-data{
+      padding-top: 0;
+      line-height: 1em;
+
       small{
         font-weight: 600;
-        font-size: 0.813em;
+        font-size: 0.913em;
       }
     }
 
-    .popover-budget-ute{
-      border-top: 1px solid $colorBody;
-      padding-bottom: 0;
-
-      small{
-        color: mix($colorTextGreen, $colorSecondary, 50%);
-      }
+    .popover-budget-alone small,
+    .popover-budget-abierto small{
+      color: $colorTextGreen;
     }
 
-    .popover-budget-alone{
-      padding-top: 0.5rem;
+    .popover-budget-ute small,
+    .popover-budget-negociado small{
+      color: mix($colorTextGreen, $colorSecondary, 50%);
+    }
 
-      small{
-        color: $colorTextGreen;
-      }
+    .popover-budget-otros small{
+      color: #aaa;
     }
 
     .glyphicon{
@@ -156,6 +161,21 @@
       font-size: 1.375rem;
       padding: 0.75rem 0.75rem;
     }
+  }
+}
+
+.entity-chart .popover{
+  .popover-budget{
+    border-bottom: none;
+    margin-bottom: 0;    
+  }
+  .popover-budget-ute{
+    border-top: 1px solid $colorBody;
+    padding-top: 1rem;
+  }
+
+  .popover-budget-alone{
+    
   }
 }
 
