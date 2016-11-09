@@ -98,8 +98,6 @@ class DataController < ApplicationController
           INNER JOIN public_bodies
             ON awards.public_body_id = public_bodies.id
         WHERE
-          properties -> 'Análisis - Tipo' = 'Obras' AND
-          process_type <> '' AND
           amount IS NOT NULL
         GROUP BY
           administracion,
