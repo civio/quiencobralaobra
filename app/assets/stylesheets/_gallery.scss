@@ -68,7 +68,7 @@
   }
   .gallery-description{
     font-size: 1.25em;
-    padding-bottom: $grid-gutter-width;
+    padding-bottom: 2*$grid-gutter-width - $grid-gutter-width/3;
     margin: $grid-gutter-width 2*$grid-gutter-width 2*$grid-gutter-width;
     border-bottom: 1px solid $colorSecondary;
   }
@@ -79,7 +79,7 @@
     background: $colorTextGreen;
     font-weight: 600;
     text-transform: uppercase;
-    margin: $grid-gutter-width/3 0 2*$grid-gutter-width/3;
+    margin: $grid-gutter-width/3 0 0;
 
     .glyphicon{
       font-size: 0.813em;
