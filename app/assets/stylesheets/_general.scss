@@ -386,12 +386,12 @@ hr.title-lines-horizontal{
   display: none;
 }
 
-.irs-bar,
-.irs-single {
+.irs-bar{
   background: $colorTextGreen;
   border: none;
 }
-.irs-from, .irs-to{
+.irs-from, .irs-to,
+.irs-single{
   background: #666;
   border: none;
   font-weight: 600;

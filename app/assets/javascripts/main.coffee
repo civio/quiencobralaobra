@@ -264,7 +264,15 @@ $(document).ready ->
   # Add Datepicker & Range Slider in Contracts home
   if $('.contracts-filters').length
     $('.contracts-filters .input-daterange').datepicker({ language: 'es' })
-    $('.contracts-filters input#amount').ionRangeSlider()
+    $('.contracts-filters input#amount').ionRangeSlider(
+      type: 'double'
+      grid: true
+      from: 0
+      to: 370000000
+      values: [0, 100000, 200000, 500000, 1000000, 5225000, 12000000, 100000000, 370000000]
+      postfix: ' €'
+      hide_min_max: true
+    )
 
   # Setup table sorting
   Sortable.init()
