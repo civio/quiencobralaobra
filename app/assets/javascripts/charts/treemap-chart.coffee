@@ -69,30 +69,19 @@ class window.TreemapChart
 
 
   # Draw function
-  @draw: (redraw) ->
-    # setup transition
-    t = d3.transition()
-      .duration if redraw == true then 700 else 0
+  @draw: ->
+    @el.selectAll('.node').remove()
 
-    # JOIN
-    @nodes = @el
-      .selectAll('.node')
+    @el.selectAll('.node')
       .data @root.leaves()
-
-    # ENTER
-    @nodes.enter().append('div')
-      .attr  'class', (d) -> return if d.data.type then 'node '+d.data.type else 'node'
-      #.style 'background', (d) => return @colorScale(d.value)
-      .on 'mouseover', @onMouseOver
-      .on 'mousemove', @onMouseMove
-      .on 'mouseout',  @onMouseOut
-    .merge(@nodes)
-      .call @setLabels
-      .transition t
-      .call @setDimensions
-
-    # EXIT
-    @nodes.exit().remove()
+      .enter()
+        .append('div')
+          .attr  'class', (d) -> return if d.data.type then 'node '+d.data.type else 'node'
+          .call @setDimensions
+          .on 'mouseover', @onMouseOver
+          .on 'mousemove', @onMouseMove
+          .on 'mouseout',  @onMouseOut
+          .call @setLabels
 
 
   @update: (state) =>
@@ -106,7 +95,7 @@ class window.TreemapChart
     @treemap @root
 
     # redraw
-    @draw true
+    @draw()
 
 
   @setDimensions: (selection) =>
@@ -169,7 +158,7 @@ class window.TreemapChart
 
   @onMouseOver: (e) =>
     t = d3.transition()
-      .duration 200
+      .duration 150
 
     @el.selectAll('.node')
       .transition t
@@ -200,7 +189,7 @@ class window.TreemapChart
 
   @onMouseOut: (e) =>
     t = d3.transition()
-      .duration 300
+      .duration 200
     @el.selectAll('.node')
       .transition t
       .style 'opacity', 1
