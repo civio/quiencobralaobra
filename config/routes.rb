@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get 'galeria', to: 'pages#gallery', as: :gallery
 
+  get 'busqueda', to: 'pages#search', as: :search
+
   resources :public_bodies, path: 'administraciones', only: [:index, :show]
 
   resources :bidders, path: 'grupos-constructores', only: [:index, :show]
