@@ -72,7 +72,7 @@ getPublicBodiesData = (data) ->
     item.items = item.values.map (value) ->
       value.total = 0
       value.values.forEach (d) ->
-        value.total += +d.importe
+        value.total += Math.floor(+d.importe*0.01)
       return {
         name: value.key
         x0:   total
@@ -99,8 +99,8 @@ getBiddersData = (data) ->
   keys = []
 
   data.forEach (item) ->
-    amount = Math.ceil(+item.importe_grupo*0.01)
-    amountUTE = Math.ceil(+item.importe_utes*0.01)
+    amount = Math.floor(+item.importe_grupo*0.01)
+    amountUTE = Math.floor(+item.importe_utes*0.01)
     total = amount + amountUTE
     keys.push
       key: item.grupo
