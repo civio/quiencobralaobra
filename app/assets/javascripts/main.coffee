@@ -53,10 +53,17 @@ setPageNavigation = ->
 
 # process Administrations data to be draw as a stacked bar chart
 getPublicBodiesData = (data) ->
+
   # create a nested array with 'key' / 'procemiento' / 'data' structure
   keys = d3.nest()
-    .key((d) -> return d.administracion)
-    .key((d) -> return d.procedimiento)
+    .key (d) -> return d.administracion
+    .key (d) -> 
+      if d.procedimiento == 'Abierto'
+        return 'Abierto'
+      else if d.procedimiento == 'Negociado sin publicidad' or d.procedimiento == 'Negociado con publicidad'
+        return 'Negociado'
+      else
+        return 'Otros'
     .entries(data)
 
   # Add procedimientos attribute to contratistas array
@@ -66,22 +73,23 @@ getPublicBodiesData = (data) ->
       value.total = 0
       value.values.forEach (d) ->
         value.total += +d.importe
-      return { 
+      return {
         name: value.key
         x0:   total
         x1:   total += value.total
       }
+    # console.log item.items
+    # item.items = item.items.sort (a, b) -> return a.id - b.id  # sort items Abierto / Negociado / Otros 
+    # console.log item.items
+    # console.log '---'
+    item.link = '/administraciones/'+item.values[0].values[0].slug
     item.total = total
-    item.link = item.link
     item.values = null
     delete item.values
 
   # Sort contratistas by total amount
   keys.sort (a, b) ->
     return d3.descending(a.total, b.total)
-
-  # Truncate array to 10 first elements
-  keys.splice 10, keys.length
 
   return keys
 

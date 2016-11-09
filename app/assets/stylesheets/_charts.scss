@@ -13,24 +13,15 @@
 
     rect.abierto,
     rect.sin-utes {
-      fill: $colorTextGreen;  // adjust-hue( $colorTextGreen, -8% );
+      fill: $colorTextGreen;
     }
-    rect.negociado-con-publicidad {
-      fill: mix( $colorTextGreen, $colorSecondary, 85% ); //adjust-hue( $colorTextGreen, 0% );
-    }
-    rect.negociado-sin-publicidad {
-      fill: mix( $colorTextGreen, $colorSecondary, 70% ); //adjust-hue( $colorTextGreen, 8% );
-    }
-    rect.restringido{
-      fill: mix( $colorTextGreen, $colorSecondary, 55% ); //adjust-hue( $colorTextGreen, 16% );
-    }
-
+    rect.negociado,
     rect.con-utes{
       fill: mix( $colorTextGreen, $colorSecondary, 50% );
     }
-
-    rect.dialogo-competitivo{
-      fill: mix( $colorTextGreen, $colorSecondary, 40% ); //adjust-hue( $colorTextGreen, 24% );
+    
+    rect.otros{
+      fill: #999;
     }
 
     .amount {
