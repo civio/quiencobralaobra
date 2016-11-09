@@ -2,12 +2,18 @@
   <h2>Grupos constructores</h2>
 </div>
 
+<% if defined? @paginate %>
 <div class="panel panel-default">
   <div id="companies-chart" class="stacked-bar-chart">
   	<div class='popover top' role='tooltip'></div>
   </div>
   <div class="well stacked-bar-chart-footer"><strong>Los 10 mayores grupos</strong>, teniendo en cuenta los contratos publicados en el BOE entre 2009 y 2015, ya sean adjudicatarios <span class="orange">en solitario</span> o <span class="orange-light">como parte de una <a href="/metodologia#que-pasa-con-las-ute">UTE</a></span></div>
 </div>
+<% else %>
+<div class="btn-all-entities">
+  <%= link_to( "<i class='glyphicon glyphicon-chevron-left'></i> Volver a todos los Grupos constructores".html_safe, bidders_path(), class: "btn btn-default" ) %>
+</div>
+<% end %>
 
 <div class="menu-alphabetic btn-group" role="group">
 <% for char in 'A'..'Z' %>

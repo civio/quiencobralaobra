@@ -26,6 +26,27 @@
   }
 }
 
+.btn-all-entities{
+  margin-bottom: $grid-gutter-width;
+
+  .btn{
+    color: $colorTextGreen;
+    font-size: 0.875em;
+    text-transform: uppercase;
+    border: none;
+
+    .glyphicon{
+      font-size: 0.875em;
+    }
+
+    &:hover{
+      color: white;
+      background: $colorTextGreen;
+      font-weight: 600;
+    }
+  }
+}
+
 .entity-qm-embed{
   margin-top: 2*$grid-gutter-width/3;
   height: 450px;
