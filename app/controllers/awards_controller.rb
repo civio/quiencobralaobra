@@ -15,7 +15,7 @@ class AwardsController < ApplicationController
 
     awards = awards.where(bidders: { slug: params[:bidder] }) unless params[:bidder].blank?
 
-    awards = awards.where(public_body: params[:public_bodies]) unless params[:public_bodies].blank?
+    awards = awards.where(public_body: params[:public_body]) unless params[:public_body].blank?
 
     process_type = params[:process_type] unless params[:process_type].blank?
     process_type = "" if process_type == "Sin información"

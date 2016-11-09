@@ -278,7 +278,7 @@ $(document).ready ->
   Sortable.init()
 
   # Setup contracts search selects
-  $('.contracts-filters #bidder, .contracts-filters #public_bodies').select2()
+  $('.contracts-filters #bidder, .contracts-filters #public_body').select2()
 
   # Setup sticky tables
   $contracts = $('#contracts')

@@ -8,31 +8,31 @@
     <div class="row">
       <div class="form-group col-sm-6">
         <%= label_tag :bidder, "Grupo constructor" %>
-        <%= select_tag :bidder, options_from_collection_for_select(@bidders, "slug", "group"), include_blank: 'Todos los grupos constructores', class: "form-control" %>
+        <%= select_tag :bidder, options_from_collection_for_select(@bidders, "slug", "group", params[:bidder]), include_blank: 'Todos los grupos constructores', class: "form-control" %>
       </div>
       <div class="form-group col-sm-6">
-        <%= label_tag :public_bodies, "Administración" %>
-        <%= select_tag :public_bodies, options_from_collection_for_select(@public_bodies, "id", "name"), include_blank: 'Todas las administraciones', class: "form-control" %>
+        <%= label_tag :public_body, "Administración" %>
+        <%= select_tag :public_body, options_from_collection_for_select(@public_bodies, "id", "name", params[:public_body]), include_blank: 'Todas las administraciones', class: "form-control" %>
       </div>
     </div>
     <div class="row">
       <div class="form-group col-sm-6">
         <%= label_tag :process_type, "Tipo de procedimiento" %>
-        <%= select_tag :process_type, options_from_collection_for_select(@contract_awards_types, "process_type", "process_type"), include_blank: 'Cualquier tipo de procedimiento', class: "form-control" %>
+        <%= select_tag :process_type, options_from_collection_for_select(@contract_awards_types, "process_type", "process_type", params[:process_type]), include_blank: 'Cualquier tipo de procedimiento', class: "form-control" %>
       </div>
       <div class="form-group col-sm-6">
         <%= label_tag :date, "Fecha adjudicación" %>
         <div class="input-daterange input-group">
-          <%= text_field_tag "start", nil, placeholder: "desde", class: "form-control" %>
+          <%= text_field_tag "start", params[:start], placeholder: "desde", class: "form-control" %>
           <span class="input-group-addon">-</span>
-          <%= text_field_tag "end", nil, placeholder: "hasta",class: "form-control" %>
+          <%= text_field_tag "end", params[:end], placeholder: "hasta",class: "form-control" %>
         </div>
       </div>
     </div>
      <div class="row">
       <div class="form-group col-sm-6">
         <%= label_tag :amount, "Importe" %>
-        <%= text_field_tag :amount, nil %>
+        <%= text_field_tag :amount, params[:amount] %>
       </div>
     </div>
     <%= button_tag(type: 'submit', class: 'btn btn-default btn-primary') do %>
