@@ -1,19 +1,37 @@
-<div class="title contracts">
-  <h2>Contratos</h2>
-</div>
-<%= @awards.count %>
+<h2 class="search-title">Resultados de búsqueda para <strong><%= params[:search] %></strong></h2>
 
+<% unless @articles.empty? %>
 <div class="title articles">
   <h2>Artículos</h2>
 </div>
-<%= @articles.count %>
-
-<div class="title bidders">
-  <h2>Empresas</h2>
+<div class="posts wall row">
+  <% @articles.each do |article| %>
+    <div class="wall-item <% if @articles.count > 2 %>col-sm-4<% else %>col-sm-<%= 12/@articles.count %><% end %>">
+      <%= render('partials/post', article: article) %>
+    </div>
+  <% end %>
 </div>
-<%= @bidders.count %>
+<% end %>
 
-<div class="title public_bodies">
+<% unless @bidders.empty? %>
+<div class="title companies">
+  <h2>Grupos constructores</h2>
+</div>
+<%= render('partials/entities', entities: @bidders, field: :group, path: 'grupos-constructores') %>
+<% end %>
+
+<% unless @public_bodies.empty? %>
+<div class="title administrations">
   <h2>Administraciones</h2>
 </div>
-<%= @public_bodies.count %>
+<%= render('partials/entities', entities: @public_bodies, field: :name, path: 'administraciones') %>
+<% end %>
+
+<% unless @awards.empty? %>
+<div class="title contracts">
+  <h2>Contratos</h2>
+</div>
+<div class="panel panel-default">
+  <%= render('partials/contract_awards_table', awards: @awards) %>
+</div>
+<% end %>

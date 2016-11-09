@@ -157,6 +157,15 @@ hr.title-lines-horizontal{
   background-position: 0 -199px;
 }
 
+.search-title{
+  margin-top: 1.5*$grid-gutter-width;
+  font-size: 1.375em;
+
+  strong{
+    font-weight: 600;
+  }
+}
+
 .wall-item{
   
   .panel{
