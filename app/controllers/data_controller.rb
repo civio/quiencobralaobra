@@ -3,83 +3,55 @@ class DataController < ApplicationController
   # GET /data/grupos-constructores
   def grupos_constructores
     query = <<-EOQ
-      WITH
-      totals_awarded_to_group_companies_or_fully_controlled_utes AS
-      (
+      WITH totals_awarded_to_group_companies_or_fully_controlled_utes AS (
         SELECT
           bidders.group,
           bidders.slug,
           sum(awards.amount) as direct
-        FROM
-          bidders
-            INNER JOIN awards
-              ON bidders.id = awards.bidder_id
+        FROM bidders
+          INNER JOIN awards
+            ON bidders.id = awards.bidder_id
         GROUP BY
           bidders.group,
           bidders.slug
-        HAVING
-          bidders.group NOT IN
-          (
-            SELECT
-              ute
-            FROM
-              ute_companies_mappings
-          )
-      ),
-      totals_awarded_to_participated_but_not_fully_controlled_utes AS
-      (
-        WITH
-        awarded_utes_with_group AS
-        (
-          WITH
-          awarded_utes AS
-          (
-            SELECT
-              bidders.group as ute,
-              ute_companies_mappings.company,
-              sum(awards.amount) as sum
-            FROM
-              bidders
-                INNER JOIN awards
-                  ON bidders.id = awards.bidder_id
-                INNER JOIN ute_companies_mappings
-                  ON bidders.group = ute_companies_mappings.ute
-            GROUP BY
-                bidders.group,
-                ute_companies_mappings.company
-          )
-          SELECT
-            awarded_utes.ute,
-            awarded_utes.company,
-            awarded_utes.sum,
-            bidders.group
-          FROM
-            awarded_utes
-            INNER JOIN bidders
-              ON awarded_utes.company = bidders.name
+        HAVING bidders.group NOT IN (
+          SELECT ute
+          FROM ute_companies_mappings
         )
+      ),
+      totals_awarded_to_participated_but_not_fully_controlled_utes AS (
+        WITH awarded_utes AS (
+          SELECT DISTINCT
+            bidders.group as ute,
+            awards.boe_id AS boe_id,
+            awards.properties -> 'Objeto del contrato - Lote' as lote,
+            awards.amount as sum,
+            ute_companies_mappings.group as group
+          FROM bidders
+            INNER JOIN awards
+              ON bidders.id = awards.bidder_id
+            INNER JOIN ute_companies_mappings
+              ON bidders.group = ute_companies_mappings.ute
+        )
+
         SELECT
-          "group",
-          sum("sum") as on_utes
-        FROM
-          awarded_utes_with_group
-        GROUP BY
-          "group"
+          awarded_utes.group,
+          SUM(awarded_utes.sum)
+        FROM awarded_utes
+        GROUP BY awarded_utes.group
       )
+
       SELECT
         totals_awarded_to_group_companies_or_fully_controlled_utes.group as grupo,
         slug,
         direct as importe_grupo,
-        COALESCE(on_utes, 0) as importe_utes,
-        (direct + COALESCE(on_utes, 0)) as total
-      FROM
-        totals_awarded_to_group_companies_or_fully_controlled_utes
-          LEFT JOIN totals_awarded_to_participated_but_not_fully_controlled_utes
-            ON totals_awarded_to_group_companies_or_fully_controlled_utes.group = totals_awarded_to_participated_but_not_fully_controlled_utes.group
-      ORDER BY
-        total DESC
-      LIMIT
-        10;
+        COALESCE(totals_awarded_to_participated_but_not_fully_controlled_utes.sum, 0) as importe_utes,
+        (direct + COALESCE(totals_awarded_to_participated_but_not_fully_controlled_utes.sum, 0)) as total
+      FROM totals_awarded_to_group_companies_or_fully_controlled_utes
+        LEFT JOIN totals_awarded_to_participated_but_not_fully_controlled_utes
+          ON totals_awarded_to_group_companies_or_fully_controlled_utes.group = totals_awarded_to_participated_but_not_fully_controlled_utes.group
+      ORDER BY total DESC
+      LIMIT 10;
     EOQ
     @results = ActiveRecord::Base.connection.execute(query)
     render json: @results
