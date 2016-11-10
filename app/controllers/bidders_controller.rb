@@ -3,18 +3,21 @@ class BiddersController < ApplicationController
 
   def index
     @title = 'Grupos constructores'
-    if params[:name]
-      @bidders = Bidder.select(:group, :slug).distinct.where(<<-EOQ, "#{params[:name]}%").order(group: :asc)
+
+    @bidders = Bidder.select(:group, :slug).distinct.where(<<-EOQ, "#{params[:name]}%")
                  "bidders"."group" ILIKE ? AND
                  "bidders"."group" NOT IN (
                    SELECT ute
                    FROM ute_companies_mappings
                  )
-      EOQ
-    else
-      @bidders = Bidder.select(:group, :slug).distinct.page(params[:page]).per(50).order(group: :asc)
+               EOQ
+
+    if paginate?
+      @bidders = @bidders.page(params[:page]).per(50)
       @pagination = true
     end
+
+    @bidders = @bidders.order(group: :asc)
   end
 
   def show
@@ -66,5 +69,9 @@ class BiddersController < ApplicationController
         'sacyr' => 'sacyr'
       }
       return qm_ids[@bidder.slug]
+    end
+
+    def paginate?
+      params[:name].blank?
     end
 end
