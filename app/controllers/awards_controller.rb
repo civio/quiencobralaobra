@@ -1,5 +1,6 @@
 class AwardsController < ApplicationController
   def index
+    @title = 'Buscador de contratos'
     # Get 'Grupos', 'Administraciones' & 'Tipo de procedimientos de contratos' for filter selects
     @bidders = Bidder.select(:group, :slug).distinct.where(<<-EOQ).order(group: :asc)
                  "bidders"."group" NOT IN (
@@ -53,7 +54,6 @@ class AwardsController < ApplicationController
   private
 
   def paginate?
-    # TODO: find a better way to identify amount filter 'blank' value
-    [params[:bidder], params[:public_body], params[:process_type], params[:start], params[:end]].all?(&:blank?) && params[:amount] == "0;370000000"
+    [params[:bidder], params[:public_body], params[:process_type], params[:start], params[:end]].all?(&:blank?) && (params[:amount].blank? || params[:amount] == "0;370000000")
   end
 end
