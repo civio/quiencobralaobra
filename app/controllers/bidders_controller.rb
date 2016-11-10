@@ -4,7 +4,7 @@ class BiddersController < ApplicationController
   def index
     @title = 'Grupos constructores'
 
-    @bidders = Bidder.select(:group, :slug).distinct.where(<<-EOQ, "#{params[:name]}%")
+    @bidders = Bidder.select(:group, :slug).distinct.where(<<-EOQ, "#{params[:name]}%").order(slug: :asc)
                  "bidders"."slug" ILIKE ? AND
                  "bidders"."group" NOT IN (
                    SELECT ute
@@ -13,11 +13,10 @@ class BiddersController < ApplicationController
                EOQ
 
     if paginate?
-      @bidders = @bidders.page(params[:page]).per(50)
       @pagination = true
+      @page_count = (Bidder.from("(#{@bidders.to_sql}) groups").count / 50.to_f).ceil
+      @bidders = @bidders.page(params[:page]).per(50)
     end
-
-    @bidders = @bidders.order(slug: :asc)
   end
 
   def show
