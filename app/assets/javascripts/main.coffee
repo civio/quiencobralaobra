@@ -281,13 +281,12 @@ $(document).ready ->
     $contractsUTE.stickyTableHeaders()
 
   # Setup the law page navigation
-  if $('body').hasClass('the_law')
+  if $('.page-navigation-cont')
 
-    $('.law-navigation .panel').affix
+    $('.page-navigation-cont .panel').affix
       offset:
-        top: -> return $('.law-navigation').offset().top-20
+        top: -> return $('.page-navigation-cont').offset().top-20
         bottom: -> return $('.footer').height()+75
-        #bottom: -> return $('.law .col-sm-9 .panel').offset().top + $('.law .col-sm-9 .panel').height()
 
     setPageNavigation()
 
