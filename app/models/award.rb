@@ -26,6 +26,7 @@ class Award < ActiveRecord::Base
     bidder = Bidder.where(name: properties['[QCLO] Contratista - Limpio']).first_or_create
     populate_related_entity_attribute(bidder, :group, properties['[QCLO] Contratista - Grupo'])
     populate_related_entity_attribute(bidder, :acronym, properties['[QCLO] Contratista - Acrónimo'])
+    populate_related_entity_attribute(bidder, :is_ute, properties['[QCLO] Es UTE']=='S')
 
     # Read amount and store it in cents. We are being extra careful here not to change any amount
     # even in one cent. That's why we are avoiding floats, not a good fit when exact precision is needed.

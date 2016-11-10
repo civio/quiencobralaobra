@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103041850) do
+ActiveRecord::Schema.define(version: 20161110183235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,9 +66,11 @@ ActiveRecord::Schema.define(version: 20161103041850) do
     t.datetime "updated_at"
     t.string   "group"
     t.string   "acronym"
+    t.boolean  "is_ute"
   end
 
   add_index "bidders", ["group"], name: "index_bidders_on_group", using: :btree
+  add_index "bidders", ["is_ute"], name: "index_bidders_on_is_ute", using: :btree
   add_index "bidders", ["name"], name: "index_bidders_on_name", unique: true, using: :btree
   add_index "bidders", ["slug"], name: "index_bidders_on_slug", using: :btree
 
