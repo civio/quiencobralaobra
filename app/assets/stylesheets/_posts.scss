@@ -173,7 +173,7 @@
       font-size: 1.25em;
       line-height: 1.25em;
       padding: $grid-gutter-width/2 0;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     h5{
@@ -181,6 +181,10 @@
       font-size: 1em;
       line-height: 1.25em;
       padding: $grid-gutter-width/2 0;
+      font-weight: 600;
+    }
+    
+    strong{
       font-weight: 600;
     }
   }
