@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @articles = (can? :manage, Article) ? Article.where( featured: true ) : Article.published.where( featured: true )
+    @articles = (can? :manage, Article) ? Article.where( featured: true ).order(publication_date: :desc) : Article.published.where( featured: true ).order(publication_date: :desc)
     @articles_highlighted = @articles.where( highlighted: true )
     @articles = @articles.where( highlighted: false )
 
