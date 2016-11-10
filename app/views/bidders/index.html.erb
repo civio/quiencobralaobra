@@ -27,8 +27,8 @@
 
 <%= render(partial: 'partials/entities', :locals => { entities: @bidders, field: :group, path: 'grupos-constructores' }) %>
 
-<% if @pagination %>
+<% if @pagination && @page_count %>
 <div class="text-center">
-  <%= paginate @bidders %>
+  <%= paginate @bidders, total_pages: @page_count %>
 </div>
 <% end %>
