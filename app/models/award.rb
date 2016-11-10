@@ -9,6 +9,14 @@ class Award < ActiveRecord::Base
     slug
   end
 
+  def isUTE?
+    UteCompaniesMapping.getUTEGroups().has_key? bidder.name
+  end
+
+  def getUTEGroups
+    UteCompaniesMapping.getUTEGroups()[bidder.name]
+  end
+
   def self.load_from_hash(properties)
     # Find or create related public body entity
     public_body = PublicBody.where(name: properties['[QCLO] Entidad adjudicadora - Nombre']).first_or_create

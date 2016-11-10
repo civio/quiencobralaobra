@@ -25,7 +25,15 @@
       </td>
       <td>
         <p class="label">Grupo constructor</p>
-        <p class="entity"><%= link_to @award.bidder.group, bidder_path(@award.bidder) unless @award.bidder.group.blank? %></p>
+        <% if @award.isUTE? %>
+        <p class="entity">UTE:
+          <% @award.getUTEGroups().each do |group| %>
+            <%= link_to group[:name], bidder_path(group[:slug]) %>
+          <% end %>
+        <% else %>
+        <p class="entity"><%= link_to @award.bidder.group, bidder_path(@award.bidder) unless @award.bidder.group.blank? %>
+        <% end %>
+        </p>
         <p class="label">Empresa</p>
         <p class="entity-company"><%= @award.bidder.name %></p>
       </td>
