@@ -32,6 +32,11 @@ class AwardsController < ApplicationController
     awards = awards.where("amount >= ?", amount_start) unless amount_start.nil?
     awards = awards.where("amount <= ?", amount_end) unless amount_end.nil?
 
+    # setup amounts variables for amount range slider
+    @amounts = [0, 100000, 200000, 500000, 1000000, 5225000, 12000000, 100000000, 370000000]
+    @amount_min = amount ? @amounts.index(amount.first) : @amounts.first
+    @amount_max = amount ? @amounts.index(amount.last) : @amounts.last
+
     @contract_awards = awards.page(params[:page]).per(50).order(amount: :desc)
   end
 

@@ -78,10 +78,6 @@ getPublicBodiesData = (data) ->
         x0:   total
         x1:   total += value.total
       }
-    # console.log item.items
-    # item.items = item.items.sort (a, b) -> return a.id - b.id  # sort items Abierto / Negociado / Otros 
-    # console.log item.items
-    # console.log '---'
     item.link = '/administraciones/'+item.values[0].values[0].slug
     item.total = total
     item.values = null
@@ -264,15 +260,13 @@ $(document).ready ->
   # Add Datepicker & Range Slider in Contracts home
   if $('.contracts-filters').length
     $('.contracts-filters .input-daterange').datepicker({ language: 'es' })
-    $('.contracts-filters input#amount').ionRangeSlider(
-      type: 'double'
-      grid: true
-      from: 0
-      to: 370000000
-      values: [0, 100000, 200000, 500000, 1000000, 5225000, 12000000, 100000000, 370000000]
-      postfix: ' €'
-      hide_min_max: true
-    )
+    $('.contracts-filters input#amount').ionRangeSlider()
+      # type: 'double'
+      # grid: true
+      # values: [0, 100000, 200000, 500000, 1000000, 5225000, 12000000, 100000000, 370000000]
+      # postfix: ' €'
+      # hide_min_max: true
+    #)
 
   # Setup table sorting
   Sortable.init()
