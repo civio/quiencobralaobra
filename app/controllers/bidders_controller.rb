@@ -5,7 +5,7 @@ class BiddersController < ApplicationController
     @title = 'Grupos constructores'
 
     @bidders = Bidder.select(:group, :slug).distinct.where(<<-EOQ, "#{params[:name]}%")
-                 "bidders"."group" ILIKE ? AND
+                 "bidders"."slug" ILIKE ? AND
                  "bidders"."group" NOT IN (
                    SELECT ute
                    FROM ute_companies_mappings
@@ -17,7 +17,7 @@ class BiddersController < ApplicationController
       @pagination = true
     end
 
-    @bidders = @bidders.order(group: :asc)
+    @bidders = @bidders.order(slug: :asc)
   end
 
   def show

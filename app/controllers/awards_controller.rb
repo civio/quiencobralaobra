@@ -2,7 +2,7 @@ class AwardsController < ApplicationController
   def index
     @title = 'Buscador de contratos'
     # Get 'Grupos', 'Administraciones' & 'Tipo de procedimientos de contratos' for filter selects
-    @bidders = Bidder.select(:group, :slug).distinct.where(<<-EOQ).order(group: :asc)
+    @bidders = Bidder.select(:group, :slug).distinct.where(<<-EOQ).order(slug: :asc)
                  "bidders"."group" NOT IN (
                    SELECT ute
                    FROM ute_companies_mappings
