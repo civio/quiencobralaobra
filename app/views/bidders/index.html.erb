@@ -2,7 +2,7 @@
   <h2>Grupos constructores</h2>
 </div>
 
-<% if defined? @paginate %>
+<% if @pagination %>
 <div class="panel panel-default">
   <div id="companies-chart" class="stacked-bar-chart">
   	<div class='popover top' role='tooltip'></div>
@@ -27,7 +27,7 @@
 
 <%= render(partial: 'partials/entities', :locals => { entities: @bidders, field: :group, path: 'grupos-constructores' }) %>
 
-<% if defined? @paginate %>
+<% if @pagination %>
 <div class="text-center">
   <%= paginate @bidders %>
 </div>

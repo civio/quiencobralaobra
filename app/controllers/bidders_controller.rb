@@ -3,10 +3,16 @@ class BiddersController < ApplicationController
 
   def index
     if params[:name]
-      @bidders = Bidder.select(:group, :slug).distinct.where('"group" ILIKE ?', params[:name]+'%').order(group: :asc)
+      @bidders = Bidder.select(:group, :slug).distinct.where(<<-EOQ, "#{params[:name]}%").order(group: :asc)
+                 "bidders"."group" ILIKE ? AND
+                 "bidders"."group" NOT IN (
+                   SELECT ute
+                   FROM ute_companies_mappings
+                 )
+      EOQ
     else
       @bidders = Bidder.select(:group, :slug).distinct.page(params[:page]).per(50).order(group: :asc)
-      @paginate = true
+      @pagination = true
     end
   end
 
