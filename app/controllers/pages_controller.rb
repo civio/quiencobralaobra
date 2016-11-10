@@ -1,4 +1,21 @@
 class PagesController < ApplicationController
+
+  def gallery
+    @title = 'Galería de superobras'
+  end
+  
+  def the_law
+    @title = 'Guía de la Ley'
+  end
+
+  def glossary
+    @title = 'Glosario'
+  end
+
+  def methodology
+    @title = 'Metodología'
+  end
+
   def search
     search = Array.new(4, "%#{params[:search]}%")
     @awards = Award.joins(:public_body, :bidder).where(<<-EOQ, *search)

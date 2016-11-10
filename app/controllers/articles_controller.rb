@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show]
 
   def index
+    @title = 'Artículos'
     @articles = (can? :manage, Article) ? Article.all.order(publication_date: :desc) : Article.published.order(publication_date: :desc)
     @articles_highlighted = @articles.where( highlighted: true )
     @articles = @articles.where( highlighted: false )

@@ -2,6 +2,7 @@ class PublicBodiesController < ApplicationController
   before_action :set_public_body, only: [:show]
 
   def index
+    @title = 'Administraciones'
     if params[:name]
       @public_bodies = PublicBody.where('"name" ILIKE ?', params[:name]+'%').order(name: :asc)
     else

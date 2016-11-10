@@ -3,7 +3,7 @@
     <div class="panel panel-default">
       <div class="post-title">
         <h2>
-          <span>Galería de superobras</span>
+          <span><%= @title %></span>
         </h2>
       </div>
         
@@ -92,7 +92,7 @@
           </div>
           <div class="picture-footer"><p>Ministerio de Fomento | 19 de agosto de 2015 | <a href="http://www.fomento.gob.es/MFOMBPrensa/Noticias/Rajoy-supervisa-las-obras-de-la-conexi%C3%B3n-de-alta-y/3cbfd03b-fbed-413f-b77c-070140cfab63">fomento.gob.es</a></p></div>
           <div class="gallery-description">
-            <p>La línea de Alta Velocidad Madrid-Galicia recibe cuatro contratos de los <a href="/contratos?utf8=%E2%9C%93&amp;bidder=&amp;public_bodies=&amp;process_type=&amp;start=&amp;end=&amp;amount=117000000%3B370000000">30 más cuantiosos</a> de todos los adjudicados de <%= year_min() %> a <%= year_max() %>. Estos comprenden desde la construcción de la plataforma del AVE, que incluye viaductos y túneles, al montaje de las vías. Se trata de los tramos Olmedo-Pedralba (198,2M€), Pedralba-Túnel del Padornelo (136,1M€), Cernadilla-Pedralba (125,7M€ más una <a href="https://assets.documentcloud.org/documents/3215616/Contratos-complementarios-y-modificados-de-ADIF.pdf">modificación de 10 millones</a> y Prado-Porto (123,2M€). Este último recibió el año pasado la visita del presidente del Gobierno, Mariano Rajoy, y la entonces ministra de Fomento, Ana Pastor.</p>
+            <p>La línea de Alta Velocidad Madrid-Galicia recibe cuatro contratos de los <a href="/contratos?utf8=%E2%9C%93&amp;bidder=&amp;public_bodies=&amp;process_type=&amp;start=&amp;end=&amp;amount=117000000%3B370000000">30 más cuantiosos</a> de todos los adjudicados de <%= year_min() %> a <%= year_max() %>. Estos comprenden desde la construcción de la plataforma del AVE, que incluye viaductos y túneles, al montaje de las vías. Se trata de los tramos Olmedo-Pedralba (198,2M€), Pedralba-Túnel del Padornelo (136,1M€), Cernadilla-Pedralba (125,7M€ más una <a href="https://assets.documentcloud.org/documents/3215616/Contratos-complementarios-y-modificados-de-ADIF.pdf">modificación de 10 millones</a>) y Prado-Porto (123,2M€). Este último recibió el año pasado la visita del presidente del Gobierno, Mariano Rajoy, y la entonces ministra de Fomento, Ana Pastor.</p>
             <a href="/contratos/boe-b-2012-30105" class="btn btn-default" target="_blank"><i class="glyphicon glyphicon-plus"></i> Ver contrato 1</a>
             <a href="/contratos/boe-b-2010-600" class="btn btn-default" target="_blank"><i class="glyphicon glyphicon-plus"></i> Ver contrato 2</a>
             <a href="/contratos/boe-b-2010-599" class="btn btn-default" target="_blank"><i class="glyphicon glyphicon-plus"></i> Ver contrato 3</a>
@@ -413,7 +413,7 @@
         <a href="http://www.civio.es/dona/" class="civio-banner" target="_blank">
           <img class="img-responsive" alt="Banner civio" src="<%= asset_path("banner_civio.jpg") %>">
         </a>
-        <%= render 'partials/sharing_buttons', title: 'Las superobras' %>
+        <%= render 'partials/sharing_buttons', title: @title %>
       </div>
       <%= render 'partials/posts_comments' %>
     </div>

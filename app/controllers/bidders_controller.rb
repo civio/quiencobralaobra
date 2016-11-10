@@ -2,6 +2,7 @@ class BiddersController < ApplicationController
   before_action :set_bidder, only: [:show]
 
   def index
+    @title = 'Grupos constructores'
     if params[:name]
       @bidders = Bidder.select(:group, :slug).distinct.where(<<-EOQ, "#{params[:name]}%").order(group: :asc)
                  "bidders"."group" ILIKE ? AND
