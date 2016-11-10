@@ -56,7 +56,7 @@
 
 		<h4 id="introduccion">Introducción</h4>
 
-		<p>En <em>¿Quién cobra la obra?</em> <strong>hemos analizado por primera vez todos los contratos de obra pública publicados en el BOE entre 2009 y 2015</strong>. Son <strong>8.058</strong> y suman <strong>38.828 millones de euros</strong>. La clave -y la parte más dura- de todo el proceso ha sido crear la estructura que permitiera tratarlos y compararlos para extraer conclusiones y buscar la primera cifra, inédita hasta ahora: el total por constructora. </p>
+		<p>En <em>¿Quién cobra la obra?</em> <strong>hemos analizado por primera vez todos los contratos de obra pública publicados en el BOE entre <%= year_min() %> y <%= year_max() %></strong>. Son <strong>8.058</strong> y suman <strong>38.828 millones de euros</strong>. La clave -y la parte más dura- de todo el proceso ha sido crear la estructura que permitiera tratarlos y compararlos para extraer conclusiones y buscar la primera cifra, inédita hasta ahora: el total por constructora. </p>
 
 		<p>Para llevarla a cabo, hemos realizado <strong>tareas automáticas</strong>, programando determinadas funciones adaptadas a la idiosincracia de los datos que nos íbamos encontrando. En paralelo, hemos tenido que dedicarle mucho tiempo al <strong>trabajo manual</strong>, analizando y limpiando año a año. A medida que los datos se iban complicando -sobre todo con los contratos más antiguos- y la información era menos consistente y, por lo tanto, menos comparable, esta tarea se complicaba. Si quieres detalles sobre todo el proceso, puedes leer nuestra <a href="#metodologia" title="Metodología">metodología pro para muy viciosos</a>.</p>
 
@@ -66,7 +66,7 @@
 
 		<h4 id="que-contratos-incluye">¿Qué contratos incluye?</h4>
 
-		<p><em>¿Quién cobra la obra?</em> analiza <strong>todos los contratos de obra pública cuya formalización se publicó en el BOE entre el 1 de enero de 2009 y el 31 de diciembre de 2015</strong>. Como un contrato puede tardar un tiempo entre que se adjudica y se publica en el BOE, la base de datos incluye algunos contratos adjudicados en 2008 y, lo que es más sorprendente, dos de 2007 y uno de 2005 (sí, tardaron cuatro años en publicar la formalización en el boletín). Además, las adjudicaciones de 2015 no están cerradas, porque algunas pueden aparecer en boletines de 2016. </p>
+		<p><em>¿Quién cobra la obra?</em> analiza <strong>todos los contratos de obra pública cuya formalización se publicó en el BOE entre el 1 de enero de <%= year_min() %> y el 31 de diciembre de <%= year_max() %></strong>. Como un contrato puede tardar un tiempo entre que se adjudica y se publica en el BOE, la base de datos incluye algunos contratos adjudicados en 2008 y, lo que es más sorprendente, dos de 2007 y uno de 2005 (sí, tardaron cuatro años en publicar la formalización en el boletín). Además, las adjudicaciones de <%= year_max() %> no están cerradas, porque algunas pueden aparecer en boletines de <%= year_max()+1 %>. </p>
 
 		<p>Según la ley, el BOE debe recoger las formalizaciones de:</p>
 
@@ -93,9 +93,9 @@
 
 		<p>Así, tuvimos que decidir entre abarcar un mayor número y tipo de administraciones públicas, aunque no tuviéramos todos sus contratos; o limitar la investigación a los ministerios y poco más. Y optamos por la primera opción: <strong>aunque no tengamos todos los contratos, sí están los más relevantes y podemos ir más allá de la Administración General del Estado</strong>. No podíamos hablar de obra pública en España y obviar a ayuntamientos y comunidades autónomas. </p>
 
-		<h4 id="por-que-desde-2009">¿Por qué desde 2009?</h4>
+		<h4 id="por-que-desde-<%= year_min() %>">¿Por qué desde <%= year_min() %>?</h4>
 
-		<p>Hemos retrocedido todo lo posible, pero <strong>los datos empeoran según su antigüedad</strong>. En 2008 las adjudicaciones se publicaban como texto plano, sin estructura clara, y el proceso se complicaba. De hecho, la gran mayoría del tiempo y esfuerzo dedicado en limpieza de datos se ha centrado en los datos más antiguos. Si hubiéramos utilizado Contratación del Estado, ni siquiera hubiéramos podido abarcar 2009.</p>
+		<p>Hemos retrocedido todo lo posible, pero <strong>los datos empeoran según su antigüedad</strong>. En <%= year_min()-1 %> las adjudicaciones se publicaban como texto plano, sin estructura clara, y el proceso se complicaba. De hecho, la gran mayoría del tiempo y esfuerzo dedicado en limpieza de datos se ha centrado en los datos más antiguos. Si hubiéramos utilizado Contratación del Estado, ni siquiera hubiéramos podido abarcar <%= year_min() %>.</p>
 
 		<h4 id="que-pasa-con-las-ute">¿Qué pasa con las UTE?</h4>
 

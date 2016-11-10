@@ -23,7 +23,7 @@
       <div class="panel-body">
         <%= link_to image_tag(image_path(@gallery_picture), :class => 'img-responsive'), '/galeria', :class => 'image' %>
         <div class="description">
-          <p>Descubre las mayores obras realizadas en España entre 2009 y 2015</p>
+          <p>Descubre las mayores obras realizadas en España entre <%= year_min() %> y <%= year_max() %></p>
         </div>
       </div>
     </div>

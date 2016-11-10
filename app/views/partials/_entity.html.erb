@@ -10,14 +10,14 @@
 
   <div class="entity-description">
     <% if controller.controller_name == 'bidders' %>
-      De todas las adjudicaciones publicadas en el BOE entre 2009 y 2015, <strong><%= @title %> se ha llevado de forma directa <%= pluralize(@contract_awards.count, 'contrato', 'contratos')%> por un importe de <%= number_with_precision(@contract_awards_amount.to_f*0.01, precision: 0, delimiter: ".") %> €.</strong><br/>
+      De todas las adjudicaciones publicadas en el BOE entre <%= year_min() %> y <%= year_max() %>, <strong><%= @title %> se ha llevado de forma directa <%= pluralize(@contract_awards.count, 'contrato', 'contratos')%> por un importe de <%= number_with_precision(@contract_awards_amount.to_f*0.01, precision: 0, delimiter: ".") %> €.</strong><br/>
       <% unless @contract_awards_utes.empty? %>
       Además, ha formado parte de varias UTE que resultaron adjudicatarias de otros <%= @contract_awards_utes.count %> contratos y que suman otros <%= number_with_precision(@contract_awards_utes_amount.to_f*0.01, precision: 0, delimiter: ".") %> €.<br/>
       Así, <strong><%= @title %> ha estado presente, en total, en la adjudicación de <%= @contract_awards.count+@contract_awards_utes.count %> contratos y <%= number_with_precision((@contract_awards_amount.to_f+@contract_awards_utes_amount.to_f)*0.01, precision: 0, delimiter: ".") %> €.</strong>
       <% end %>
       De esa cantidad, un X% del importe fue adjudicado vía procedimiento negociado. Entre las administraciones que le contratan, la que tiene mayor peso es X (X % del total del importe adjudicado<% unless @contract_awards_utes.empty? %> tanto de forma directa como a través de las UTE en las que participa<% end %>).
     <% else %>
-      De todas las adjudicaciones publicadas en el BOE entre 2009 y 2015, <%= @title_prefix %><strong><%= @title %></strong> ha adjudicado <strong><%= pluralize(@contract_awards.count, 'contrato', 'contratos')%></strong> por un importe de <strong><%= number_with_precision(@contract_awards_amount.to_f*0.01, precision: 0, delimiter: ".") %> €</strong>, de los cuales un X % ha sido por procedimiento negociado. <br/>
+      De todas las adjudicaciones publicadas en el BOE entre <%= year_min() %> y <%= year_max() %>, <%= @title_prefix %><strong><%= @title %></strong> ha adjudicado <strong><%= pluralize(@contract_awards.count, 'contrato', 'contratos')%></strong> por un importe de <strong><%= number_with_precision(@contract_awards_amount.to_f*0.01, precision: 0, delimiter: ".") %> €</strong>, de los cuales un X % ha sido por procedimiento negociado. <br/>
       <% if @contract_awards.count > 1 %>
       El principal grupo empresarial beneficiado ha sido X (está presente, de forma directa o a través de UTE, en el X % del total del importe adjudicado).
       <% else %>
@@ -49,9 +49,9 @@
         </div>
       </div>
       <% if controller.controller_name == 'bidders' %>
-      <div class="well">Distribución de los contratos publicados en el BOE entre 2009 y 2015. <strong>Con UTE</strong> incluye todos los contratos <a href="/metodologia#que-pasa-con-las-ute">en los que participa</a>. <strong>En solitario</strong>, solo aquellos que se llevó íntegros.</div>
+      <div class="well">Distribución de los contratos publicados en el BOE entre <%= year_min() %> y <%= year_max() %>. <strong>Con UTE</strong> incluye todos los contratos <a href="/metodologia#que-pasa-con-las-ute">en los que participa</a>. <strong>En solitario</strong>, solo aquellos que se llevó íntegros.</div>
       <% else %>
-        <div class="well">Distribución de forma directa (no suma a los grupos las UTE en las que participan) de los contratos publicados en el BOE entre 2009 y 2015.</div>
+        <div class="well">Distribución de forma directa (no suma a los grupos las UTE en las que participan) de los contratos publicados en el BOE entre <%= year_min() %> y <%= year_max() %>.</div>
       <% end %>
     </div>
     <div class="col-md-6">
