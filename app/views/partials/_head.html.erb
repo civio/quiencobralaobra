@@ -19,6 +19,25 @@
   <meta name="keywords" content="contrato de servicios, proyecto de obra, constructoras, proyectos de construccion, constructor, obra nueva, obra construccion, proyecto obra, proyecto obra civil, licitación, obra pública, proyecto y construcción de obra, licitaciones públicas, contratación del estado, contratación publica, contrato de obra, contratos publicos, tipos de contratos, obras publicas, licitacion de obra publica, proyecto de construccion civil, proyectos en construccion, proyecto obra civil, concurso obra, contrato publico, contratacion del estado licitaciones, FCC, ACS, sacyr, acciona, ferrovial, villar mir, Florentino Pérez, entrecanales, Koplowitz, Civio, investigación, transparencia, contratos publicos españa, clasificacion de contratista de obra, clasificacion de empresas contratistas de obras, clasificacion contratistas obras, legislación de contratos del sector público, clasificacion contratistas servicios, contratos del sector publico resumen">
   <meta name="author" content="Fundación Ciudadana Civio">
 
+  <% if @title %>
+    <meta property="og:title" content="<%= @title %> | Quién Cobra la Obra">
+  <% else %>
+    <meta property="og:title" content="Quién Cobra la Obra">
+  <% end %>
+  <meta property="og:description" content="Un mapa de la contratación de obra pública en España">
+  <meta property="og:url" content="<%= request.original_url %>">
+  <meta property="og:site_name" content="Quién Cobra la Obra">
+  <meta property="og:type" content="website">
+
+  <% if @title %>
+    <meta name="twitter:title" content="<%= @title %> | Quién Cobra la Obra">
+  <% else %>
+    <meta name="twitter:title" content="Quién Cobra la Obra">
+  <% end %>
+  <meta name="twitter:description" content="Un mapa de la contratación de obra pública en España">
+  <meta name="twitter:url" content="<%= request.original_url %>">
+  <meta name="twitter:creator" content="@civio">
+
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="57x57" href="<%= asset_path("apple-icon-57x57.png") %>">
   <link rel="apple-touch-icon" sizes="60x60" href="<%= asset_path("apple-icon-60x60.png") %>">
