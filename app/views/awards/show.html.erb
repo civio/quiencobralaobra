@@ -27,7 +27,8 @@
         <p class="label">Grupo constructor</p>
         <% if @award.isUTE? %>
         <p class="entity">UTE:
-          <% @award.getUTEGroups().each do |group| %>
+          <% @award.getUTEGroups().each_with_index do |group, i| %>
+            <%= i==0 ? '' : ' - ' %>
             <%= link_to group[:name], bidder_path(group[:slug]) %>
           <% end %>
         <% else %>
