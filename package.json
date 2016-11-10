@@ -1,0 +1,22 @@
+{
+  "name": "quiencobralaobra",
+  "version": "0.0.1",
+  "scripts": {
+    "prepublish": "rollup -c -o app/assets/javascripts/dist/d3-bundle.js"
+  },
+  "devDependencies": {
+    "d3-array": "1.0.1",
+    "d3-axis": "1.0.3",
+    "d3-collection": "1.0.1",
+    "d3-format": "1.0.2",
+    "d3-hierarchy": "1.0.2",
+    "d3-request": "1.0.2",
+    "d3-scale": "1.0.3",
+    "d3-selection": "1.0.2",
+    "d3-time": "1.0.4",
+    "d3-time-format": "2.0.2",
+    "d3-transition": "1.0.2",
+    "rollup": "0.36",
+    "rollup-plugin-node-resolve": "2"
+  }
+}
