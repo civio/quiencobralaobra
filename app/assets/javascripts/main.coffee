@@ -199,12 +199,12 @@ getEntityBarsData = (entity) ->
  
   # Get contracts data from contracts table
   $('#contracts tbody tr').each ->
-    if $(this).find('.td-entity').data('id') == entity
+    if ''+$(this).find('.td-entity').data('id') == entity
       setBarItemData $(this), false
 
   #Get contracts data from contracts ute table
   $('#contracts-utes tbody tr').each ->
-    if $(this).find('.td-entity').data('id') == entity
+    if ''+$(this).find('.td-entity').data('id') == entity
       setBarItemData $(this), true
 
   return d3.entries data
@@ -245,9 +245,12 @@ $(document).ready ->
   if $('#treemap-chart').length
     chart = new TreemapChart 'treemap-chart', getTreemapData()
     # Add entity bars on entity select
-    chart.el().on 'entity-select', (e, entity) -> 
+    chart.el().on 'entity-over', (e, entity) -> 
       if timelineBarsChart
-        timelineBarsChart.addEntityBars getEntityBarsData(+entity)
+        timelineBarsChart.addEntityBars getEntityBarsData(entity)
+    chart.el().on 'entity-out', (e) -> 
+      if timelineBarsChart
+        timelineBarsChart.removeEntityBars()
     # Setup utes switch
     $('#utes-switch')
       .bootstrapSwitch()
@@ -271,12 +274,10 @@ $(document).ready ->
   # Setup sticky tables
   $contracts = $('#contracts')
   if $contracts.length and $contracts.find('tbody tr').length > 3
-    console.log 'sticky'
     $contracts.stickyTableHeaders()
 
   $contractsUTE = $('#contracts-utes')
   if $contractsUTE.length and $contractsUTE.find('tbody tr').length > 3
-    console.log 'sticky ute'
     $contractsUTE.stickyTableHeaders()
 
   # Setup the law page navigation

@@ -40,20 +40,17 @@ class window.TimelineBarsChart
     @formatDate = d3.timeFormat('%Y-%m')
 
     # format data
-    parseTime = d3.timeParse('%Y-%m')
-    @data.forEach (d) =>
-      d.date = parseTime d.key
-      d.amount = d.value.amount
-      d.amountUTE = d.value.amountUTE
+    @parseTime = d3.timeParse('%Y-%m')
+    @data.forEach @parseData
 
     # get minimum date between 2008-01 & 2009-01
     # as explained in https://github.com/civio/quiencobralaobra/issues/65
     filteredData = @data.filter (d) -> return d.date.getFullYear() >= 2008
     min = d3.min filteredData, (d) -> return d.date
-    min = d3.min [min, parseTime('2009-01')]
+    min = d3.min [min, @parseTime('2009-01')]
    
     @x = d3.scaleTime()
-      .domain [min, parseTime('2016-01')]
+      .domain [min, @parseTime('2016-01')]
       .range [0, @width]
 
     @y = d3.scaleLinear()
@@ -69,6 +66,9 @@ class window.TimelineBarsChart
     @monthLength = @getMonthLength()
 
     @bisectDate = d3.bisector( (d) -> return d.date ).left
+
+    @transition = d3.transition()
+      .duration 200
 
     # Setup svg
     @svg = d3.select('#'+@options.id).append('svg')
@@ -101,14 +101,46 @@ class window.TimelineBarsChart
         .attr 'class', 'bar bar-group'
         .call @setBarsAttributes
 
+
+    @barEntitiesCont = @svg.append('g')
+
     @overlay = @svg.append('rect')
       .attr 'class', 'overlay'
       .attr 'width', @width
       .attr 'height', @height
       .call @setBarsEvents
 
+
   @addEntityBars: (entity) ->
-    console.log entity
+
+    entity.forEach @parseData
+
+    @svg.selectAll('.bar')
+      .interrupt()
+      .transition @transition
+      .style 'opacity', 0
+    @barEntitiesCont.selectAll('.bar-entity').remove()
+
+    barEntities = @barEntitiesCont.selectAll('.bar-entity')
+      .data entity
+
+    barEntities.enter()
+      .append('rect')
+        .attr 'class', 'bar-entity bar-ute'
+        .call @setBarsUTEAttributes
+
+    barEntities.enter()
+      .append('rect')
+        .attr 'class', 'bar-entity bar-group'
+        .call @setBarsAttributes
+
+
+  @removeEntityBars: ->
+    @svg.selectAll('.bar')
+      .interrupt()
+      .transition @transition
+      .style 'opacity', 1
+    @barEntitiesCont.selectAll('.bar-entity').remove()
 
 
   # Get width & height
@@ -161,8 +193,13 @@ class window.TimelineBarsChart
     @overlay
       .attr 'width', @width
       .attr 'height', @height
-
     
+
+  @parseData: (d) =>
+    d.date      = @parseTime d.key
+    d.amount    = d.value.amount
+    d.amountUTE = d.value.amountUTE
+
   @setBarsEvents: (selection) =>
     selection
       .on 'mouseover', @onMouseOver
@@ -254,3 +291,7 @@ class window.TimelineBarsChart
 
   addEntityBars: (entity) ->
     TimelineBarsChart.addEntityBars(entity)
+
+  removeEntityBars: ->
+    TimelineBarsChart.removeEntityBars()
+

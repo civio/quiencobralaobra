@@ -301,9 +301,11 @@
     opacity: 0;
   }
 
-  .bar{
+  .bar,
+  .bar-entity{
     fill: $colorTextGreen;
   }
+  
   .bar-ute{
     fill: mix($colorTextGreen, $colorSecondary, 50%);
   }

@@ -175,8 +175,9 @@ class window.TreemapChart
     # Show popover
     @$tooltip.show()
 
-    # Trigger entity-select event
-    @$el.trigger 'entity-select', e.data.id.split('.').slice(1)
+    # Trigger entity-over event
+    @$el.trigger 'entity-over', e.data.id.split('.').slice(1)
+
 
   @onMouseMove: (e) =>
     # get element offset
@@ -195,6 +196,9 @@ class window.TreemapChart
       .style 'opacity', 1
     # Hide popover
     @$tooltip.hide()
+
+     # Trigger entity-out event
+    @$el.trigger 'entity-out'
 
 
   @getFontSize: (d) =>
