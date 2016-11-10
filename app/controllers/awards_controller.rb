@@ -37,11 +37,23 @@ class AwardsController < ApplicationController
     @amount_min = amount ? @amounts.index(amount.first) : @amounts.first
     @amount_max = amount ? @amounts.index(amount.last) : @amounts.last
 
-    @contract_awards = awards.page(params[:page]).per(50).order(amount: :desc)
+    if paginate?
+      awards = awards.page(params[:page]).per(50)
+      @pagination = true
+    end
+
+    @contract_awards = awards.order(amount: :desc)
   end
 
   def show
     @award = Award.find_by_slug!(params[:id])
     @hasAwardExtraInfo = !@award.properties['Presupuesto base de licitación'].blank? && !@award.properties['Análisis - Ámbito geográfico'].blank?
+  end
+
+  private
+
+  def paginate?
+    # TODO: find a better way to identify amount filter 'blank' value
+    [params[:bidder], params[:public_body], params[:process_type], params[:start], params[:end]].all?(&:blank?) && params[:amount] == "0;370000000"
   end
 end

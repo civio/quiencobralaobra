@@ -45,6 +45,8 @@
   <%= render('partials/contract_awards_table', awards: @contract_awards) %>
 </div>
 
+<% if @pagination %>
 <div class="text-center">
   <%= paginate @contract_awards %>
 </div>
+<% end %>
