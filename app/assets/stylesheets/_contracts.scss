@@ -161,7 +161,9 @@
     }
     .entity{
       font-size: 1.25em;
-      font-weight: 700;
+      a{
+        font-weight: 700;
+      }
     }
     .source{
       font-weight: bold;
