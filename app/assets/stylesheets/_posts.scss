@@ -345,8 +345,10 @@
     }
 
     h4{
-      line-height: 1.5em;
       margin-top: $grid-gutter-width/2;
+      line-height: 1.75em;
+      font-size: 0.75em;
+      padding: 0;
 
       a{
         color: $colorTitle;
@@ -364,8 +366,8 @@
       border: none;
     }
 
-    .group{
-
+    img:hover{
+      opacity: 0.85;
     }
   }
 }
