@@ -46,6 +46,9 @@ class BiddersController < ApplicationController
     #   @contract_awards_utes_amount = @contract_awards_utes.distinct.sum('amount')
     # but there's an issue in Rails with 'distinct' sums https://github.com/rails/rails/issues/16791
     @contract_awards_utes_amount = @contract_awards_utes.map(&:amount).inject(:+)
+
+    # Get some extra details for the 'robo-text'
+    @contract_awards_total_amount = @contract_awards_amount + @contract_awards_utes_amount
   end
 
   private

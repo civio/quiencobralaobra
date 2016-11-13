@@ -13,7 +13,7 @@
       De todas las adjudicaciones publicadas en el BOE entre <%= year_min() %> y <%= year_max() %>, <strong><%= @title %> se ha llevado de forma directa <%= pluralize(@contract_awards.count, 'contrato', 'contratos')%> por un importe de <%= number_with_precision(@contract_awards_amount.to_f*0.01, precision: 0, delimiter: ".") %> €.</strong><br/>
       <% unless @contract_awards_utes.empty? %>
       Además, ha formado parte de varias UTE que resultaron adjudicatarias de otros <%= @contract_awards_utes.count %> contratos y que suman otros <%= number_with_precision(@contract_awards_utes_amount.to_f*0.01, precision: 0, delimiter: ".") %> €.<br/>
-      Así, <strong><%= @title %> ha estado presente, en total, en la adjudicación de <%= @contract_awards.count+@contract_awards_utes.count %> contratos y <%= number_with_precision((@contract_awards_amount.to_f+@contract_awards_utes_amount.to_f)*0.01, precision: 0, delimiter: ".") %> €.</strong>
+      Así, <strong><%= @title %> ha estado presente, en total, en la adjudicación de <%= @contract_awards.count+@contract_awards_utes.count %> contratos y <%= number_with_precision(@contract_awards_total_amount.to_f*0.01, precision: 0, delimiter: ".") %> €.</strong>
       <% end %>
       De esa cantidad, un X% del importe fue adjudicado vía procedimiento negociado. Entre las administraciones que le contratan, la que tiene mayor peso es X (X % del total del importe adjudicado<% unless @contract_awards_utes.empty? %> tanto de forma directa como a través de las UTE en las que participa<% end %>).
     <% else %>
