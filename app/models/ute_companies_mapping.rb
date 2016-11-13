@@ -10,7 +10,7 @@ class UteCompaniesMapping < ActiveRecord::Base
   # specially given the "not ideal" data model is risky and painful,
   # so we create a singleton containing all the mapping info and use that
   # freely from the views.
-  def self.getUTEGroups()
+  def self.get_ute_groups()
     if @@ute_groups.nil?
       ute_groups = {}
       UteCompaniesMapping.find_each do |map|

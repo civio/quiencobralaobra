@@ -13,12 +13,12 @@ class Award < ActiveRecord::Base
     return process_type.start_with? 'Negociado'
   end
 
-  def isUTE?
-    UteCompaniesMapping.getUTEGroups().has_key? bidder.name
+  def is_ute?
+    UteCompaniesMapping.get_ute_groups().has_key? bidder.name
   end
 
-  def getUTEGroups
-    UteCompaniesMapping.getUTEGroups()[bidder.name]
+  def get_ute_groups
+    UteCompaniesMapping.get_ute_groups()[bidder.name]
   end
 
   def self.load_from_hash(properties)
