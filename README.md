@@ -12,6 +12,10 @@ Install required gems:
 
 In OS X, if using Postgres.app as the database, the 'pg' gem may throw an error. If so, install it [manually](http://edgar.tumblr.com/post/113599678239/install-pg-gem-in-mac-os-x-with-postgresapp) specifying the path to Postgres.app.
 
+Install JS dependencies:
+
+    $ npm install
+
 Create the database:
 
     $ rake db:create
