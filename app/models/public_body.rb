@@ -8,4 +8,11 @@ class PublicBody < ActiveRecord::Base
     slug
   end
 
+  def prefix
+    if body_type == 'Ministerios' or name.downcase.start_with?('ajuntament', 'área', 'ayuntamiento', 'cabildo', 'centro', 'consejo', 'consell', 'consorci', 'tribunal')
+      'el '
+    elsif body_type == 'Comunidades Autónomas' or name.downcase.start_with?('comunidad', 'diputación', 'fundaci', 'mancomunidad', 'universi')
+      'la '
+    end
+  end
 end

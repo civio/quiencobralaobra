@@ -13,12 +13,7 @@ class PublicBodiesController < ApplicationController
 
   def show
     @title = @public_body.name
-    @title_prefix = ''
-    if @public_body.body_type == 'Ministerios' or @title.downcase.start_with?('ajuntament', 'área', 'ayuntamiento', 'cabildo', 'centro', 'consejo', 'consell', 'consorci', 'tribunal')
-      @title_prefix = 'el ' 
-    elsif @public_body.body_type == 'Comunidades Autónomas' or @title.downcase.start_with?('comunidad', 'diputación', 'fundaci', 'mancomunidad', 'universi')
-      @title_prefix = 'la '
-    end
+    @title_prefix = @public_body.prefix
 
     @contract_awards = @public_body.awards.order(amount: :desc)
     @contract_awards_amount = @contract_awards.sum('amount')

@@ -49,11 +49,15 @@ class BiddersController < ApplicationController
 
     # Get some extra details for the 'robo-text'
     @contract_awards_total_amount = @contract_awards_amount + @contract_awards_utes_amount
-
     @close_bid_total = 0
+    public_body_breakdown = {}
     (@contract_awards.to_a + @contract_awards_utes.to_a).each do |award|
       @close_bid_total+=award.amount if award.is_close_bid?
+
+      public_body = award.public_body
+      public_body_breakdown[public_body] = (public_body_breakdown[public_body]||0) + award.amount
     end
+    @biggest_public_body = public_body_breakdown.max_by {|public_body, amount| amount }
   end
 
   private
