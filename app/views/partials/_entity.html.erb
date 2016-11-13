@@ -19,7 +19,7 @@
     <% else %>
       De todas las adjudicaciones publicadas en el BOE entre <%= year_min() %> y <%= year_max() %>, <%= @title_prefix %><strong><%= @title %></strong> ha adjudicado <strong><%= pluralize(@contract_awards.count, 'contrato', 'contratos')%></strong> por un importe de <strong><%= number_with_precision(@contract_awards_amount.to_f*0.01, precision: 0, delimiter: ".") %> €</strong><% unless @close_bid_total==0 %>, de los cuales un <%= number_with_precision(@close_bid_total/@contract_awards_amount*100.0, precision: 1) %>% ha sido por procedimiento negociado<% end %>.<br/>
       <% if @contract_awards.count > 1 %>
-      El principal grupo empresarial beneficiado ha sido X (está presente, de forma directa o a través de UTE, en el X % del total del importe adjudicado).
+      El principal grupo empresarial beneficiado ha sido <strong><%= @biggest_bidder[0] %></strong> (está presente, de forma directa o a través de UTE, en el <%= number_with_precision(@biggest_bidder[1]/@contract_awards_amount*100.0, precision: 1) %>% del total del importe adjudicado).
       <% else %>
       El único grupo empresarial beneficiado ha sido X.
       <% end %>

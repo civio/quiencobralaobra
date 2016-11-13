@@ -14,11 +14,11 @@ class Award < ActiveRecord::Base
   end
 
   def is_ute?
-    UteCompaniesMapping.get_ute_groups().has_key? bidder.name
+    !UteCompaniesMapping.get_ute_groups(bidder.name).nil?
   end
 
   def get_ute_groups
-    UteCompaniesMapping.get_ute_groups()[bidder.name]
+    UteCompaniesMapping.get_ute_groups(bidder.name)
   end
 
   def self.load_from_hash(properties)
