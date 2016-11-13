@@ -9,6 +9,10 @@ class Award < ActiveRecord::Base
     slug
   end
 
+  def is_close_bid?
+    return process_type.start_with? 'Negociado'
+  end
+
   def isUTE?
     UteCompaniesMapping.getUTEGroups().has_key? bidder.name
   end

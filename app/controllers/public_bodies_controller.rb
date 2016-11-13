@@ -22,6 +22,12 @@ class PublicBodiesController < ApplicationController
 
     @contract_awards = @public_body.awards.order(amount: :desc)
     @contract_awards_amount = @contract_awards.sum('amount')
+
+    # Get some extra details for the 'robo-text'
+    @close_bid_total = 0
+    @contract_awards.each do |award|
+      @close_bid_total+=award.amount if award.is_close_bid?
+    end
   end
 
   private

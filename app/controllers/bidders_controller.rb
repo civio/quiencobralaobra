@@ -49,6 +49,11 @@ class BiddersController < ApplicationController
 
     # Get some extra details for the 'robo-text'
     @contract_awards_total_amount = @contract_awards_amount + @contract_awards_utes_amount
+
+    @close_bid_total = 0
+    (@contract_awards.to_a + @contract_awards_utes.to_a).each do |award|
+      @close_bid_total+=award.amount if award.is_close_bid?
+    end
   end
 
   private
