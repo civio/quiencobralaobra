@@ -20,15 +20,15 @@ class PublicBodiesController < ApplicationController
 
     # Get some extra details for the 'robo-text'
     @close_bid_total = 0
-    bidder_breakdown = {}
+    @bidder_breakdown = {}
     @contract_awards.each do |award|
       @close_bid_total+=award.amount if award.is_close_bid?
 
       # The breakdown needs to take into account that UTEs have companies from different groups
       bidder_groups = UteCompaniesMapping.get_ute_groups(award.bidder.group) || [{ name: award.bidder.group }]
-      bidder_groups.each {|group| bidder_breakdown[group[:name]] = (bidder_breakdown[group[:name]]||0) + award.amount }
+      bidder_groups.each {|group| @bidder_breakdown[group[:name]] = (@bidder_breakdown[group[:name]]||0) + award.amount }
     end
-    @biggest_bidder = bidder_breakdown.max_by {|bidder, amount| amount }
+    @biggest_bidder = @bidder_breakdown.max_by {|bidder, amount| amount }
   end
 
   private

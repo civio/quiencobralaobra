@@ -15,13 +15,13 @@
       Además, ha formado parte de varias UTE que resultaron adjudicatarias de otros <%= @contract_awards_utes.count %> contratos y que suman otros <%= number_with_precision(@contract_awards_utes_amount.to_f*0.01, precision: 0, delimiter: ".") %> €.<br/>
       Así, <strong><%= @title %> ha estado presente, en total, en la adjudicación de <%= @contract_awards.count+@contract_awards_utes.count %> contratos y <%= number_with_precision(@contract_awards_total_amount.to_f*0.01, precision: 0, delimiter: ".") %> €.</strong>
       <% end %>
-      <% unless @close_bid_total==0 %>De esa cantidad, un <%= number_with_precision(@close_bid_total/@contract_awards_total_amount*100.0, precision: 1) %>% del importe fue adjudicado vía procedimiento negociado. <%end %>Entre las administraciones que le contratan, la que tiene mayor peso es <%= @biggest_public_body[0].prefix + ' ' + @biggest_public_body[0].name %> (<%= number_with_precision(@biggest_public_body[1]/@contract_awards_total_amount*100.0, precision: 1) %>% del total del importe adjudicado<% unless @contract_awards_utes.empty? %> tanto de forma directa como a través de las UTE en las que participa<% end %>).
+      <% unless @close_bid_total==0 %>De esa cantidad, un <%= number_with_precision(@close_bid_total/@contract_awards_total_amount*100.0, precision: 1) %>% del importe fue adjudicado vía procedimiento negociado. <%end %>Entre las administraciones que le contratan, la que tiene mayor peso es <strong><%= @biggest_public_body[0].prefix + ' ' + @biggest_public_body[0].name %></strong> (<%= number_with_precision(@biggest_public_body[1]/@contract_awards_total_amount*100.0, precision: 1) %>% del total del importe adjudicado<% unless @contract_awards_utes.empty? %> tanto de forma directa como a través de las UTE en las que participa<% end %>).
     <% else %>
       De todas las adjudicaciones publicadas en el BOE entre <%= year_min() %> y <%= year_max() %>, <%= @title_prefix %><strong><%= @title %></strong> ha adjudicado <strong><%= pluralize(@contract_awards.count, 'contrato', 'contratos')%></strong> por un importe de <strong><%= number_with_precision(@contract_awards_amount.to_f*0.01, precision: 0, delimiter: ".") %> €</strong><% unless @close_bid_total==0 %>, de los cuales un <%= number_with_precision(@close_bid_total/@contract_awards_amount*100.0, precision: 1) %>% ha sido por procedimiento negociado<% end %>.<br/>
-      <% if @contract_awards.count > 1 %>
+      <% if @bidder_breakdown.count > 1 %>
       El principal grupo empresarial beneficiado ha sido <strong><%= @biggest_bidder[0] %></strong> (está presente, de forma directa o a través de UTE, en el <%= number_with_precision(@biggest_bidder[1]/@contract_awards_amount*100.0, precision: 1) %>% del total del importe adjudicado).
       <% else %>
-      El único grupo empresarial beneficiado ha sido X.
+      El único grupo empresarial beneficiado ha sido <strong><%= @bidder_breakdown.first[0] %></strong>.
       <% end %>
     <% end %>
   </div>
