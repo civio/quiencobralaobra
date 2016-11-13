@@ -41,8 +41,7 @@
         <% end %>
 
         <td class="td-entity" data-id="<%= award.bidder.slug %>">
-          <%# TODO!!! use render_bidder_group(award) %>
-          <%= link_to award.bidder.group, bidder_path(award.bidder) unless award.bidder.group.blank? %>
+          <%= render_bidder_group(award) %>
         </td>
 
         <% if controller_name == 'public_bodies' or controller_name == 'bidders' %>
