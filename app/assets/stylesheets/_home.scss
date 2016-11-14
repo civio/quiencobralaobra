@@ -58,6 +58,14 @@
   strong{
     font-weight: 600;
   }
+
+  ul, ol{
+    padding-left: $grid-gutter-width;
+  }
+
+  li{
+    margin-bottom: $grid-gutter-width/3; 
+  }
 }
 
 .methodology .panel-page h3:first-child{
