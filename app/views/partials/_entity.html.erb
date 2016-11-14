@@ -90,6 +90,7 @@
   </div>
   <% end %>
 
+  <% if @contract_awards.size > 0 %>
   <div>
     <% if controller.controller_name == 'bidders' %>
     <h3>Contratos adjudicados a <%= @title %> en solitario</h3>
@@ -100,6 +101,7 @@
       <%= render('partials/contract_awards_table', awards: @contract_awards) %>
     </div>
   </div>
+  <% end %>
 
   <% if controller.controller_name == 'bidders' && !@contract_awards_utes.empty? %>
   <div>
