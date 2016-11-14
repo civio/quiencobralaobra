@@ -32,8 +32,8 @@ class window.BarChart
       @$tooltip.append("<div class='arrow'></div>\
         <div class='popover-title'></div>\
         <div class='popover-budget'><strong></strong> millones de €</div>\
-        <div class='popover-budget-data popover-budget-alone'><strong></strong>% <small>en&nbsp;solitario</small></div>\
-        <div class='popover-budget-data popover-budget-ute'><strong></strong>% <small>en&nbsp;UTE</small></div>")
+        <div class='popover-budget-data popover-budget-alone'><strong></strong> millones de € <small>en&nbsp;solitario</small></div>\
+        <div class='popover-budget-data popover-budget-ute'><strong></strong> millones de € <small>en&nbsp;UTE</small></div>")
     else
       @$tooltip.append("<div class='arrow'></div>\
         <div class='popover-title'></div>\
@@ -89,8 +89,8 @@ class window.BarChart
     if @$el.attr('id') == 'companies-chart'
       amountAlone = data.items[1].x0
       amountTotal = data.items[1].x1
-      @$tooltip.find('.popover-budget-alone strong').html(Math.round(100*amountAlone/amountTotal).toLocaleString('es-ES'))
-      @$tooltip.find('.popover-budget-ute strong').html(Math.round(100*(amountTotal-amountAlone)/amountTotal).toLocaleString('es-ES'))
+      @$tooltip.find('.popover-budget-alone strong').html(Math.floor(amountAlone/1000000).toLocaleString('es-ES'))
+      @$tooltip.find('.popover-budget-ute strong').html(Math.floor((amountTotal-amountAlone)/1000000).toLocaleString('es-ES'))
     # setup popover for administrations
     else
       amountAbierto   = data.items.filter( (d) -> return d.name == 'Abierto' )[0]
