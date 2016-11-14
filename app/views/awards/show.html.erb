@@ -15,7 +15,7 @@
       </td>
       <td class="text-right">
         <p class="label">Importe</p>
-        <p class="budget"><strong><%= number_to_currency(@award.amount*0.01, unit: '', precision: 2, delimiter: '.', separator: ',') %></strong>€</p>
+        <p class="budget"><strong><%= number_with_precision(@award.amount*0.01, precision: 2, delimiter: '.') %></strong>€</p>
       </td>
     </tr>
     <tr>
@@ -31,7 +31,7 @@
       </td>
       <td class="text-right">
         <p class="label">Fecha adjudicación <i class="glyphicon glyphicon-calendar"></i></p>
-        <p class="date"><%= @award.award_date %></p>
+        <p class="date"><%= @award.award_date.strftime('%d-%m-%Y') %></p>
         <% unless @award.properties['Formalización del contrato - Fecha de formalización del contrato'].blank? %>
         <p class="label">Fecha formalización <i class="glyphicon glyphicon-calendar"></i></p>
         <p class="date"><%= @award.properties['Formalización del contrato - Fecha de formalización del contrato'] %></p>

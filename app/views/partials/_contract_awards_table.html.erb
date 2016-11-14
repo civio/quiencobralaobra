@@ -43,7 +43,7 @@
         <td class="td-description"><%= truncate(award.description, length: 112) %></td>
         <% end %>
 
-        <td class="td-date"><%= award.award_date %></td>
+        <td class="td-date" data-value="<%= award.award_date %>"><%= award.award_date.strftime('%d-%m-%Y') %></td>
         <% if award.process_type.blank? %>
         <td>-</td>
         <% else %>

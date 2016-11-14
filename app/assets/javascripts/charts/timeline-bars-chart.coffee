@@ -37,20 +37,22 @@ class window.TimelineBarsChart
     d3.formatDefaultLocale {thousands: '.', grouping: [3]}
     @budgetFormat = d3.format(',d')
     @formatDateTooltip = d3.timeFormat('%B %Y')
-    @formatDate = d3.timeFormat('%Y-%m')
+    @formatDate = d3.timeFormat('%m-%Y')
+
+    console.log @data
 
     # format data
-    @parseTime = d3.timeParse('%Y-%m')
+    @parseTime = d3.timeParse('%m-%Y')
     @data.forEach @parseData
 
     # get minimum date between 2008-01 & 2009-01
     # as explained in https://github.com/civio/quiencobralaobra/issues/65
     filteredData = @data.filter (d) -> return d.date.getFullYear() >= 2008
     min = d3.min filteredData, (d) -> return d.date
-    min = d3.min [min, @parseTime('2009-01')]
+    min = d3.min [min, @parseTime('01-2009')]
    
     @x = d3.scaleTime()
-      .domain [min, @parseTime('2016-01')]
+      .domain [min, @parseTime('01-2016')]
       .range [0, @width]
 
     @y = d3.scaleLinear()

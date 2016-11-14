@@ -159,7 +159,7 @@ getBarsData = ->
     amount = +$item.find('.td-amount').data('value')
     # avoid empty dates
     if date
-      date = date.split('-').slice(0,-1).join('-')
+      date = date.split('-').slice(1).join('-')
       if data[date]
         data[date].amount    += if isUTE == true then 0 else amount
         data[date].amountUTE += amount
@@ -188,7 +188,7 @@ getEntityBarsData = (entity) ->
     amount = +$item.find('.td-amount').data('value')
     # avoid empty dates
     if date
-      date = date.split('-').slice(0,-1).join('-')
+      date = date.split('-').slice(1).join('-')
       if data[date]
         data[date].amount    += if isUTE == true then 0 else amount
         data[date].amountUTE += amount
