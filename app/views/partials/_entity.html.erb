@@ -92,7 +92,7 @@
 
   <div>
     <% if controller.controller_name == 'bidders' %>
-    <h3>Contratos adjudicados a <%= @title %></h3>
+    <h3>Contratos adjudicados a <%= @title %> en solitario</h3>
     <% else %>
     <h3>Contratos adjudicados por <%= @title %></h3>
     <% end %>
@@ -103,7 +103,7 @@
 
   <% if controller.controller_name == 'bidders' && !@contract_awards_utes.empty? %>
   <div>
-    <h3>Contratos adjudicados a UTE en las que participa <%= @title %></h3>
+    <h3>Contratos adjudicados a las UTE en las que participa <%= @title %></h3>
     <div class="panel panel-default">
       <%= render('partials/contract_awards_table', awards: @contract_awards_utes, utes: true) %>
     </div>
