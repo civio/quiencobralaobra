@@ -11,16 +11,9 @@
 
         <% if controller_name != 'bidders' %>
         <th>Grupo constructor</th>
-        <% else %>
-        <% if defined? utes %>
-        <th>UTE</th>
-        <% else %>
-        <th>Empresa</th>
-        <% end %>
-        <th data-sortable="false">Objeto</th>
         <% end %>
 
-        <% if controller_name == 'public_bodies' %>
+        <% if controller_name == 'public_bodies' or controller_name == 'bidders' %>
         <th data-sortable="false">Objeto</th>
         <% end %>
 
@@ -40,9 +33,11 @@
         <td class="td-entity" data-id="<%= award.public_body.id %>"><%= link_to award.public_body.name, public_body_path(award.public_body) unless award.public_body.name.blank? %></td>
         <% end %>
 
+        <% if controller_name != 'bidders' %>
         <td class="td-entity" data-id="<%= award.bidder.slug %>">
           <%= render_bidder_group(award) %>
         </td>
+        <% end %>
 
         <% if controller_name == 'public_bodies' or controller_name == 'bidders' %>
         <td class="td-description"><%= truncate(award.description, length: 112) %></td>
