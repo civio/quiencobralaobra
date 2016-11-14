@@ -2,12 +2,7 @@ class AwardsController < ApplicationController
   def index
     @title = 'Buscador de contratos'
     # Get 'Grupos', 'Administraciones' & 'Tipo de procedimientos de contratos' for filter selects
-    @bidders = Bidder.select(:group, :slug).distinct.where(<<-EOQ).order(slug: :asc)
-                 "bidders"."group" NOT IN (
-                   SELECT ute
-                   FROM ute_companies_mappings
-                 )
-               EOQ
+    @bidders = Bidder.select(:group, :slug).distinct.where(is_ute: [nil, false]).order(slug: :asc)
     @public_bodies = PublicBody.all.order(name: :asc)
     @contract_awards_types = Award.select(:process_type).distinct.each{ |a| a.process_type.blank? ? a.process_type = "Sin información" : a.process_type }.sort{ |a, b| a.process_type <=> b.process_type }
 
