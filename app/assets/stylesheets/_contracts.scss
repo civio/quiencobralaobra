@@ -1,3 +1,8 @@
+.contracts-alert{
+  border: none;
+  background: mix( $colorBody, white, 50% );
+}
+
 .contracts-filters{
   padding: $grid-gutter-width;
 

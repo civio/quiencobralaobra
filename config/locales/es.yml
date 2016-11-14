@@ -132,3 +132,10 @@ es:
       long: "%d de %B de %Y %H:%M"
       short: "%d de %b %H:%M"
     pm: pm
+  views:
+    pagination:
+      first: Primera
+      last: Última
+      next: Siguiente &rsaquo;
+      previous: "&lsaquo; Anterior"
+      truncate: "&hellip;"

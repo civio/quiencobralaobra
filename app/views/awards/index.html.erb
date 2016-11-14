@@ -41,6 +41,10 @@
   <% end %>
 </div>
 
+<% if @contract_awards.length == 1000 %>
+<div class="well contracts-alert">Tus criterios de búsqueda son demasiado amplios, por lo que te ofrecemos sólo los 1000 mayores contratos. Usa el resto de campos para afinar tu búsqueda.</div>
+<% end %>
+
 <div class="panel panel-default">
   <%= render('partials/contract_awards_table', awards: @contract_awards) %>
 </div>

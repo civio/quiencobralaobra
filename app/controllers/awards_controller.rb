@@ -41,9 +41,10 @@ class AwardsController < ApplicationController
     if paginate?
       awards = awards.page(params[:page]).per(50)
       @pagination = true
+      @contract_awards = awards.order(amount: :desc)
+    else
+      @contract_awards = awards.order(amount: :desc).limit(1000)
     end
-
-    @contract_awards = awards.order(amount: :desc)
   end
 
   def show
