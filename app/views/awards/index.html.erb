@@ -8,7 +8,7 @@
     <div class="row">
       <div class="form-group col-sm-6">
         <%= label_tag :bidder, "Grupo constructor" %>
-        <%= select_tag :bidder, options_from_collection_for_select(@bidders, "slug", "group", params[:bidder]), include_blank: 'Todos los grupos constructores', class: "form-control" %>
+        <%= select_tag :bidder, options_from_collection_for_select(@bidders, "group", "group", params[:bidder]), include_blank: 'Todos los grupos constructores', class: "form-control" %>
       </div>
       <div class="form-group col-sm-6">
         <%= label_tag :public_body, "Administración" %>

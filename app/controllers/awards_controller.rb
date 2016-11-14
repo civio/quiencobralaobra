@@ -6,10 +6,16 @@ class AwardsController < ApplicationController
     @public_bodies = PublicBody.all.order(name: :asc)
     @contract_awards_types = Award.select(:process_type).distinct.each{ |a| a.process_type.blank? ? a.process_type = "Sin información" : a.process_type }.sort{ |a, b| a.process_type <=> b.process_type }
 
-    # Get 'Contratos' paginated & order by amount
-    awards = Award.includes(:public_body, :bidder)
+    # Get 'Contratos' paginated & order by amount.
+    # We include not only awards won by groups on their own, but also via UTEs.
+    awards = Award \
+              .distinct \
+              .joins('INNER JOIN bidders bidder ON awards.bidder_id=bidder.id') \
+              .joins('LEFT OUTER JOIN ute_companies_mappings ute_mapping ON bidder.name=ute_mapping.ute') \
+              .includes(:public_body, :bidder)
 
-    awards = awards.where(bidders: { slug: params[:bidder] }) unless params[:bidder].blank?
+    # Filter by group, either on its own or via UTEs
+    awards = awards.where('ute_mapping.group = ? OR bidder.group = ?', params[:bidder], params[:bidder]) unless params[:bidder].blank?
 
     awards = awards.where(public_body: params[:public_body]) unless params[:public_body].blank?
 
