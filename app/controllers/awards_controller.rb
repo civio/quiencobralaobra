@@ -4,7 +4,7 @@ class AwardsController < ApplicationController
     # Get 'Grupos', 'Administraciones' & 'Tipo de procedimientos de contratos' for filter selects
     @bidders = Bidder.select(:group, :slug).distinct.where(is_ute: [nil, false]).order(slug: :asc)
     @public_bodies = PublicBody.all.order(name: :asc)
-    @contract_awards_types = Award.select(:process_type).distinct.each{ |a| a.process_type.blank? ? a.process_type = "Sin información" : a.process_type }.sort{ |a, b| a.process_type <=> b.process_type }
+    @contract_awards_types = ["Abierto", "Negociado", "Otros"]
 
     # Get 'Contratos' paginated & order by amount.
     # We include not only awards won by groups on their own, but also via UTEs.
@@ -19,9 +19,10 @@ class AwardsController < ApplicationController
 
     awards = awards.where(public_body: params[:public_body]) unless params[:public_body].blank?
 
-    process_type = params[:process_type] unless params[:process_type].blank?
-    process_type = "" if process_type == "Sin información"
-    awards = awards.where(process_type: process_type) unless process_type.nil?
+    process_type = params[:process_type]
+    awards = awards.where(process_type: process_type) if process_type == "Abierto"
+    awards = awards.where(process_type: ["Negociado", "Negociado con publicidad", "Negociado sin publicidad"]) if process_type == "Negociado"
+    awards = awards.where.not(process_type: ["Abierto", "Negociado", "Negociado con publicidad", "Negociado sin publicidad"]) if process_type == "Otros"
 
     date_start = Date.parse(params[:start]) unless params[:start].blank?
     date_end = Date.parse(params[:end]) unless params[:end].blank?
