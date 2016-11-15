@@ -81,10 +81,6 @@
 
 .posts-highlighted .wall-item .panel{
 
-  #home-chart{
-    margin: $grid-gutter-width/2 $grid-gutter-width/6 -1*($grid-gutter-width/6);
-  }
-
   .panel-heading{
     background: transparent;
     border-color: $colorBody;
@@ -168,5 +164,19 @@
         color: $colorTextGreen;
       }
     }
+  }
+}
+
+// Add home picture instead bar chart
+.home #reyes-chart,
+.articles.index #reyes-chart{
+  padding: 0;
+
+  a img{
+    @include transition( opacity 0.3s ease-out );
+  }
+
+  a:hover img{
+    opacity: 0.8;
   }
 }

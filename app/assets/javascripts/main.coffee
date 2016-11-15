@@ -226,17 +226,23 @@ $(document).ready ->
   # Add Packery wall layout
   setWallLayout()
 
-  if $('#home-chart').length
-    d3.json '/data/grupos-constructores', (error, json) ->
-      if error
-        return console.warn(error)
-      chart = new BarChart 'home-chart', getBiddersData(json)
-  else if $('#companies-chart').length
+  if $('#reyes-chart').length
+    if $('body').hasClass('articles') and $('body').hasClass('show')
+      d3.json '/data/grupos-constructores', (error, json) ->
+        if error
+          return console.warn(error)
+        chart = new BarChart 'reyes-chart', getBiddersData(json)
+    else
+      # Add picture instead of bar chart at home
+      $('#reyes-chart').html '<a href="/articulos/los-reyes-del-ladrillo"><img class="img-responsive" src="/images/reyes-del-ladrillo.jpg" alt="Los reyes del ladrillo"></a>'
+
+  if $('#companies-chart').length
     d3.json '/data/grupos-constructores', (error, json) ->
       if error
         return console.warn(error)
       chart = new BarChart 'companies-chart', getBiddersData(json)
-  else if $('#administrations-chart').length
+
+  if $('#administrations-chart').length
     d3.json '/data/administraciones', (error, json) ->
       if error
         return console.warn(error)
