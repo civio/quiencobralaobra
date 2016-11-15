@@ -252,13 +252,11 @@ def get_description_from_title_if_possible(original_description, title)
   end
 
   # Ignore some hand-picked cases
-  next if original_description=='Obras de plan de asfalto en Parla'
-  next if title.include? 'Obras de adecuación del Parque PP-9'
+  return original_description if original_description=='Obras de plan de asfalto en Parla'
+  return original_description if title.include? 'Obras de adecuación del Parque PP-9'
 
   # Try to extract a description from the title
-  description = extract_description(title) || original_description
-  puts CSV::generate_line([original_description, title, description])
-  description
+  extract_description(title) || original_description
 end
 
 
