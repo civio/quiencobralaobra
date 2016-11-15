@@ -1,5 +1,5 @@
-# ruby merge_contracts.rb /Users/David/Box\ Sync/Civio/Proyectos/07\ Quién\ cobra\ la\ obra/02\ Data/Limpieza\ y\ análisis/ > 2009-2015.csv
-# ruby merge_contracts.rb /Users/David/Box\ Sync/Civio/Proyectos/07\ Quién\ cobra\ la\ obra/02\ Data/Limpieza\ y\ análisis/ --split-UTEs > 2009-2015.split.csv
+# ruby lib/scripts/merge_contracts.rb /Users/David/Box\ Sync/Civio/Proyectos/07\ Quién\ cobra\ la\ obra/02\ Data/Limpieza\ y\ análisis/ > 2009-2015.csv
+# ruby lib/scripts/merge_contracts.rb /Users/David/Box\ Sync/Civio/Proyectos/07\ Quién\ cobra\ la\ obra/02\ Data/Limpieza\ y\ análisis/ --split-UTEs > 2009-2015.split.csv
 
 require 'roo'
 require 'csv'
@@ -229,6 +229,38 @@ def guess_process_track(raw_value)
   end
 end
 
+# Try to extract appropriate descriptions from title when the actual description is crappy
+def get_description_from_title_if_possible(original_description, title)
+  def extract_description(title)
+    regex = [
+      /Objeto: (.*)/i,
+      /"([A-Za-z].*)/,  # Avoid picking up an unmatched closing quote, it happens
+      /(Obras .*)/i,
+      /(contrato .*)/i,
+      /adjudicación definitiva de la (.*)/i,
+      /proyecto de (.*)/i
+    ]
+    regex.each do |r|
+      if title =~ r
+        description = $1
+        description[0] = description[0].upcase  # We are anal like this
+        description.gsub!('"', '')              # Don't really like quotes
+        return description
+      end
+    end
+    nil # We failed, nothing found
+  end
+
+  # Ignore some hand-picked cases
+  next if original_description=='Obras de plan de asfalto en Parla'
+  next if title.include? 'Obras de adecuación del Parque PP-9'
+
+  # Try to extract a description from the title
+  description = extract_description(title) || original_description
+  puts CSV::generate_line([original_description, title, description])
+  description
+end
+
 
 # We precalculate the consolidated list of column names across all files...
 consolidated_column_names = get_consolidated_column_names(files)
@@ -264,6 +296,14 @@ files.each do |filename|
         first_location = get_column_value_by_name(row, column_names, 'Objeto del contrato - Descripción')
         second_location = get_column_value_by_name(row, column_names, 'Objeto del contrato - Descripción del objeto')
         description = first_location=='' ? second_location : first_location
+
+        # Still, sometimes the description is crappy, it just refers to the title, so let's try
+        # to recover those
+        if description.length < 48  # Magic number based on manual inspection of actual descriptions. See #63
+          title = get_column_value_by_name(row, column_names, 'Título')
+          description = get_description_from_title_if_possible(description, title)
+        end
+
         values.push description
 
       elsif column == '[QCLO] Entidad adjudicadora - Nombre'
