@@ -1,6 +1,6 @@
 require 'csv'
 
-def self.load_from_hash(properties)
+def load_from_hash(properties)
   # Find or create related public body entity
   public_body = PublicBody.where(name: properties['[QCLO] Entidad adjudicadora - Nombre']).first_or_create
   populate_related_entity_attribute(public_body, :body_type, properties['[QCLO] Entidad adjudicadora - Tipo'])
@@ -94,7 +94,7 @@ namespace :data do
         column_names = row
       else
         # We convert the row to a hash with named properties, and load it
-        Award.load_from_hash(row_to_hash(row, column_names))
+        load_from_hash(row_to_hash(row, column_names))
         processed_records += 1
       end
     end

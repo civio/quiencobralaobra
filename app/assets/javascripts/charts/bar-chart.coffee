@@ -28,19 +28,19 @@ class window.BarChart
 
     # Get tooltip 
     @$tooltip = $('#'+id+' .popover')
-    if id == 'companies-chart'
-      @$tooltip.append("<div class='arrow'></div>\
-        <div class='popover-title'></div>\
-        <div class='popover-budget'><strong></strong> millones de €</div>\
-        <div class='popover-budget-data popover-budget-alone'><strong></strong> millones de € <small>en&nbsp;solitario</small></div>\
-        <div class='popover-budget-data popover-budget-ute'><strong></strong> millones de € <small>en&nbsp;UTE</small></div>")
-    else
+    if id == 'administrations-chart'
       @$tooltip.append("<div class='arrow'></div>\
         <div class='popover-title'></div>\
         <div class='popover-budget'><strong></strong> millones de €</div>
         <div class='popover-budget-data popover-budget-abierto'><strong></strong>% <small>Abierto</small></div>\
         <div class='popover-budget-data popover-budget-negociado'><strong></strong>% <small>Negociado</small></div>
         <div class='popover-budget-data popover-budget-otros'><strong></strong>% <small>Otros</small></div>")
+    else
+      @$tooltip.append("<div class='arrow'></div>\
+        <div class='popover-title'></div>\
+        <div class='popover-budget'><strong></strong> millones de €</div>\
+        <div class='popover-budget-data popover-budget-alone'><strong></strong> millones de € <small>en&nbsp;solitario</small></div>\
+        <div class='popover-budget-data popover-budget-ute'><strong></strong> millones de € <small>en&nbsp;UTE</small></div>")
 
 
   # Draw function
@@ -85,14 +85,8 @@ class window.BarChart
 
   @onMouseOver: (d) =>
     data = d3.select(d3.event.target.parentNode).datum()
-    # setup popover for companies
-    if @$el.attr('id') == 'companies-chart'
-      amountAlone = data.items[1].x0
-      amountTotal = data.items[1].x1
-      @$tooltip.find('.popover-budget-alone strong').html(Math.floor(amountAlone/1000000).toLocaleString('es-ES'))
-      @$tooltip.find('.popover-budget-ute strong').html(Math.floor((amountTotal-amountAlone)/1000000).toLocaleString('es-ES'))
     # setup popover for administrations
-    else
+    if @$el.attr('id') == 'administrations-chart'
       amountAbierto   = data.items.filter( (d) -> return d.name == 'Abierto' )[0]
       amountNegociado = data.items.filter( (d) -> return d.name == 'Negociado' )[0]
       amountOtros     = data.items.filter( (d) -> return d.name == 'Otros' )[0]
@@ -103,6 +97,12 @@ class window.BarChart
       @setAmount 'abierto', amountAbierto, amountTotal
       @setAmount 'negociado', amountNegociado, amountTotal
       @setAmount 'otros', amountOtros, amountTotal
+    # setup popover for companies
+    else
+      amountAlone = data.items[1].x0
+      amountTotal = data.items[1].x1
+      @$tooltip.find('.popover-budget-alone strong').html(Math.floor(amountAlone/1000000).toLocaleString('es-ES'))
+      @$tooltip.find('.popover-budget-ute strong').html(Math.floor((amountTotal-amountAlone)/1000000).toLocaleString('es-ES'))
     # set common properties
     @$tooltip.find('.popover-title').html(data.key)
     @$tooltip.find('.popover-budget strong').html(Math.floor(amountTotal/1000000).toLocaleString('es-ES'))

@@ -33,10 +33,7 @@ class PagesController < ApplicationController
     search = "%#{params[:search]}%"
     @groups = Bidder.select(:group, :slug).distinct.where(<<-EOQ, search)
                 "group" ILIKE ? AND
-                "group" NOT IN (
-                  SELECT ute
-                  FROM ute_companies_mappings
-                )
+                "is_ute" IS NOT True
               EOQ
 
     search = "%#{params[:search]}%"

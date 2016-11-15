@@ -5,7 +5,7 @@
   }
 
   .post-title{
-    padding: $grid-gutter-width 2*$grid-gutter-width;
+    padding: $grid-gutter-width;
 
     h2{
       font-size: 2.25em;
@@ -56,7 +56,15 @@
 
   .panel-body{
     position: relative;
-    padding: $grid-gutter-width 2*$grid-gutter-width;;
+    padding: $grid-gutter-width;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    .post-title,
+    .panel-body{
+      padding-right: 2*$grid-gutter-width;
+      padding-left: 2*$grid-gutter-width;
+    }
   }
 
   h3.post-title{

@@ -6,10 +6,7 @@ class BiddersController < ApplicationController
 
     @bidders = Bidder.select(:group, :slug).distinct.where(<<-EOQ, "#{params[:name]}%").order(slug: :asc)
                  "bidders"."slug" ILIKE ? AND
-                 "bidders"."group" NOT IN (
-                   SELECT ute
-                   FROM ute_companies_mappings
-                 )
+                 "bidders"."is_ute" IS NOT True
                EOQ
 
     if paginate?

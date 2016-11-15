@@ -11,13 +11,10 @@ class DataController < ApplicationController
         FROM bidders
           INNER JOIN awards
             ON bidders.id = awards.bidder_id
+        WHERE bidders.is_ute IS NOT True
         GROUP BY
           bidders.group,
           bidders.slug
-        HAVING bidders.group NOT IN (
-          SELECT ute
-          FROM ute_companies_mappings
-        )
       ),
       totals_awarded_to_participated_but_not_fully_controlled_utes AS (
         WITH awarded_utes AS (
