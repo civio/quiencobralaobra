@@ -19,9 +19,16 @@
 .panel-page{
 
   .panel-body{
-    padding: $grid-gutter-width 2*$grid-gutter-width;
+    padding: $grid-gutter-width;
     font-size: 1.25em;
     line-height: 1.5em;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    .panel-body{
+      padding-right: 2*$grid-gutter-width;
+      padding-left: 2*$grid-gutter-width;
+    }
   }
 
   h3, h4, h5, h6{
