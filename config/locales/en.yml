@@ -22,11 +22,11 @@
 en:
   views:
     pagination:
-      first: "&laquo; First"
-      last: "Last &raquo;"
-      previous: "← anterior"
-      next: "siguiente →"
-      truncate: "&hellip;"
+      first: "&laquo; Primera"
+      last: "Última &raquo;"
+      previous: "&lsaquo; Anterior"
+      next: "Siguiente &rsaquo;"
+      truncate: "..."
   number:
     currency:
       format:
