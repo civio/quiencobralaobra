@@ -6,7 +6,7 @@ $colorTitle:        #414141;
 $colorWhite:        #f9f9f9;
 $colorHeader:       lighten( #f7f1d7, 3% ); //#eef2ea;
 $colorHeaderLink:   #F15A24;  //f26c4f;
-$colorGray:         #515151;
+$colorGray:         #333; //#515151;
 $colorBody:         lighten( #f0e3b7, 5% );  // #dee5d8;
 $colorSidebar:      mix( $colorBody, $colorHeaderLink, 90% );  //#e1e1cd;
 $colorTextGreen:    #F15A24;  //f26c4f;  //#6bb21b;
@@ -25,7 +25,7 @@ $font-family-sans-serif:  'Lato', Arial, sans-serif;
 $font-family-serif:       'Merriweather', Georgia, sans-serif;
 $font-family-economica:   'Merriweather', Georgia, sans-serif;
 
-$font-size-base:          14px;
+$font-size-base:          15px;
 
 $font-size-h1:            floor(($font-size-base * 2.6)) !default;     // ~36px
 $font-size-h2:            floor(($font-size-base * 1.25)) !default;    // ~20px

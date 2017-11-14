@@ -3,14 +3,15 @@
   margin-top: 1.5*$grid-gutter-width;
   
   .main-footer{
-    background: $colorLinkGreen;
+    background: lighten( #032C6B, 10% );  // $colorLinkGreen;
     padding: $grid-gutter-width $grid-gutter-width/2;
+    letter-spacing: .02em;
 
     p{
       margin: 0;
       font-size: 1.125em;
-      font-family: $font-family-serif;
-      font-style: italic;
+      //font-family: $font-family-serif;
+      //font-style: italic;
     }
 
     a{
@@ -30,7 +31,8 @@
 
   .sub-footer{
     font-size: 0.875em;
-    background: darken( $colorLinkGreen, 10% );
+    background: #032C6B;
+    //background: darken( $colorLinkGreen, 10% );
     padding: $grid-gutter-width/2;
 
     p{
