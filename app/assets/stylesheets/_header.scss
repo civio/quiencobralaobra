@@ -1,5 +1,5 @@
 .navbar-default{
-  margin: 0;
+  margin: 45px 0 0;
   z-index: 1000;
   @include box-shadow( 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05) );
 }
@@ -16,7 +16,6 @@
     height: 3px;
   }
 }
-
 .navbar .navbar-brand{
   display: block;
   margin: $grid-gutter-width/2 0;
@@ -25,6 +24,9 @@
   height: 110px;
   text-indent: -9999px;
   background: asset-url('logo-qclo.png') no-repeat 0 0 transparent;
+}
+.navbar > .container .navbar-brand{
+  margin-left: 0;
 }
 
 #navbar{
