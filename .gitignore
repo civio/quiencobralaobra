@@ -17,14 +17,14 @@
 !/log/.keep
 /tmp
 
-#
+# Ignore local env
+.env
 config/application.yml
+
+# Ignore app specifics
 public/uploads
 public/assets
 *.dump
-
-config/application.yml-example
-
 db/2015.csv
 2009-2015.*
 
