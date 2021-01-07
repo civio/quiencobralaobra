@@ -19,5 +19,5 @@ test:
 production:
   <<: *default
   username: rails
-  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
+  password: <%= ENV["APP_DATABASE_PASSWORD"] %>
   database: qclo_production

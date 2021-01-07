@@ -22,5 +22,14 @@ module Quiencobralaobra
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Workaround to carrierwave doing "require 'fog'""
+    # This let's us get ./lib in the load path, where our own fake
+    # fog.rb is loaded for carrierwave, but we've already loaded
+    # fog-aws (require 'fog/aws'), which is all we need anyway.
+    # See https://gist.github.com/darrenboyd/feb2bc38f46a88e44b8d
+    config.before_configuration do
+      require 'carrierwave'
+    end
   end
 end

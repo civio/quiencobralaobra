@@ -17,19 +17,17 @@
 !/log/.keep
 /tmp
 
-#
+# Ignore local env
+.env
 config/application.yml
+
+# Ignore app specifics
 public/uploads
 public/assets
 *.dump
-
-config/application.yml-example
-
 db/2015.csv
 2009-2015.*
 .DS_Store
-
-Gemfile.lock
 
 # Ignore nodes modules folder from npm install
 /node_modules

@@ -280,11 +280,11 @@ $(document).ready ->
   # Setup sticky tables
   $contracts = $('#contracts')
   if $contracts.length and $contracts.find('tbody tr').length > 3
-    $contracts.stickyTableHeaders()
+    $contracts.stickyTableHeaders({fixedOffset: 45})
 
   $contractsUTE = $('#contracts-utes')
   if $contractsUTE.length and $contractsUTE.find('tbody tr').length > 3
-    $contractsUTE.stickyTableHeaders()
+    $contractsUTE.stickyTableHeaders({fixedOffset: 45})
 
   # Setup the law page navigation
   if $('.page-navigation-cont')

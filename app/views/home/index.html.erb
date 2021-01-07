@@ -2,35 +2,11 @@
   <h2>Un mapa de la contratación de obra pública en España</h2>
 </div>
 
-<!-- Highlighted Posts -->
-<% @articles_highlighted.each do |article| %>
-  <div class="posts posts-highlighted row">
-    <div class="wall-item col-sm-12">
-      <%= render('partials/post', article: article) %>
-    </div>
-  </div>
-<% end %>
-
-<%= render('partials/gallery_preview') %>
-
-<!-- Featured Posts -->
-<div class="posts wall row">
-  <% @articles.each do |article| %>
-    <div class="wall-item col-sm-6">
-      <%= render('partials/post', article: article) %>
-    </div>
-  <% end %>
-</div>
-
 <!--
-<div class="title posts">
-  <p>Artículos recientes</p>
-</div>
--->
-
 <div class="subtitle">
   <h2>Descubre todos los datos</h2>
 </div>
+-->
 
 <div class="home-btns">
   <div class="row">
@@ -63,3 +39,20 @@
     </div>
   </div>
 </div>
+
+<!-- Highlighted Posts -->
+<% @articles_highlighted.each do |article| %>
+  <div class="posts posts-highlighted row">
+    <div class="wall-item col-sm-12">
+      <%= render('partials/post', article: article) %>
+    </div>
+  </div>
+<% end %>
+
+<%= render('partials/gallery_preview') %>
+
+<!--
+<div class="title posts">
+  <p>Artículos recientes</p>
+</div>
+-->
