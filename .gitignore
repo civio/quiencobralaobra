@@ -27,6 +27,7 @@ config/application.yml-example
 
 db/2015.csv
 2009-2015.*
+.DS_Store
 
 Gemfile.lock
 
