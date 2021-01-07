@@ -20,10 +20,11 @@ CarrierWave.configure do |config|
     config.storage = :file
     config.root = "#{Rails.root}/tmp"
     config.enable_processing = false
-  elsif Rails.env.development? and ENV['FORCE_S3_IN_DEV']!='true'
-    config.storage = :file
+  # Disable AWS S3 for now, maybe for ever. See civio/infra-management#146
+  # elsif Rails.env.production? or ENV['FORCE_S3_IN_DEV']=='true'
+  #   config.storage = :fog
   else
-    config.storage = :fog
+    config.storage = :file
   end
 
   config.cache_dir = "#{Rails.root}/tmp/uploads"
